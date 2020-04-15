@@ -6,7 +6,9 @@ During the academic year 2020-2021, the course ``Information Science`` (1st seme
 
 ## Course description
 
-This section describes the content of the course ``Information Science`` for the UAntwerp Master of Linguistics.
+This section describes the provisional content of the course ``Information Science`` for the UAntwerp Master of Linguistics.
+
+## Reading
 
 ## Installation instructions
 In this section, we will guide through the necessary steps to set up your computer for the course.
