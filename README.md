@@ -1,1 +1,3 @@
 # Information Science
+
+Course Description
