@@ -1,1 +1,1 @@
-# InformationScience
+# Information Science
