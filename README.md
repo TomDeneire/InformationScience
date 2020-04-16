@@ -8,56 +8,47 @@ During the academic year 2020-2021, the course "Information Science" (1st semest
 
 This section describes the provisional content of the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
 
-### 1: Introduction
-- General introduction
-- Information overload vs information retrieval
-- History, ethics, goals
--
-history (e.g. Otlet) and scope
-problems (ethics) and goals
-information models
-reading: [to be decided]
+### 1: Introduction, data and queries
+- Course information
+- Definition, history, ethics, goals
+- Information models
+- Database models
+- Query languages
+- *Exercise*: Python JSON metadata-harvester (e.g. Europeana)
 
-Basics
-Boolean algebra
-text vs bytes: text encoding-> overleg met Wout
-document types (CSV, XML, JSON, RDF, ...)-> overleg met Wout
-query languages
-database models
-exercise: Python JSON metadata-harvester (e.g. Europeana)
+### 2: Metadata
+- Ontology
+- Thesauri
+- Standards (MARC, EAD, Dublin Core)
+- *Exercise*: Python XML metadata-converter (e.g. MARC<->MODS)
 
-Metadata
-ontology
-thesauri
-RDA
-standards (MARC, EAD, Dublin Core)
-exercise: Python XML metadata-converter (e.g. MARC<->MODS)
+### 3: Text I
+- Indexing
+- Searching
+- *Exercise*: Lucene (PyLucene, lupyne, …)
 
-Text search I
-searching (fuzzy, etc.)
-distance (Jacquart, Levenshtein, …)
-indexing (bitmaps, Lucene, ...)
-exercise: Lucene (PyLucene, lupyne, …)
+### 4: Text II
+- Evaluation
+- Ranking
+- *Exercise*: ranking algorithms for discovery service
 
-Text search II
-evaluation
-ranking
-exercise: ranking algorithms for UA discovery service
-
-Library systems
-General conceps (LMS, ILS, OPAC, digital library, …)
-Brocade architecture (servers, software repository, database, backup, …)
-exercise: YottaDB Acculturation Workshop (set up YDB in virtual box, access via MUMPS, C, Go, Rust, ... API)
-
+### 5: Library systems
+- General conceps (LMS, ILS, OPAC, digital library, …)
+- Brocade architecture (servers, software repository, database, backup, …)
+- *Exercise*: YottaDB Acculturation Workshop
 
 
 ## Reading
 
-## Installation instructions
-In this section, we will guide through the necessary steps to set up your computer for the course.
+Ricardo Baeza-Yates, Berthier Ribeiro-Neto, *Modern Information Retrieval: The Concepts and Technology behind Search*, Second edition (Harlow e.a.: Addison-Wesley, 2011), [ISBN 978-0-321-41691-9](https://isbnsearch.org/isbn/9780321416919).
 
-### Course materials
+The following chapters are mandatory reading:
 
-### Editor
+- *11 Web Retrieval*
+- *14 Multimedia Information Retrieval*
+- *17 Digital Libraries*
 
-### Python3
+
+## Technical instructions
+
+tba
