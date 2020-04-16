@@ -20,7 +20,7 @@ This section describes the provisional content of the course "Information Scienc
 - Ontology
 - Thesauri
 - Standards (MARC, EAD, Dublin Core)
-- *Exercise*: Python XML metadata-converter (e.g. MARC<->MODS)
+- *Exercise*: Python XML metadata-converter (e.g. MARC from/to MODS)
 
 ### 3: Text I
 - Indexing
