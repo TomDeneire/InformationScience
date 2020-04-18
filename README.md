@@ -2,6 +2,8 @@
 
 ## Course details
 
+test | test
+--- | ---
 Course Code | 2005FLWDTA
 Study domain | Linguistics and Proficiency
 Academic year | 2020-2021
@@ -10,11 +12,6 @@ Credits | 3
 Contract restrictions | No contract restriction
 Language of instruction | English
 Exam period | exam in the 1st semester
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
 
 ## Course schedule
 
