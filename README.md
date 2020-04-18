@@ -2,7 +2,7 @@
 
 ## Course details
 
-test | test
+ |
 --- | ---
 Course Code | 2005FLWDTA
 Study domain | Linguistics and Proficiency
