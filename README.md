@@ -11,6 +11,10 @@ Contract restrictions | No contract restriction
 Language of instruction | English
 Exam period | exam in the 1st semester
 
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
 
 ## Course schedule
 
@@ -21,6 +25,10 @@ During the academic year 2020-2021, the course "Information Science" (1st semest
 ### 1. Prerequisites
 
 At the start of this course the student should have acquired the following competences:
+
+- An academic background in the humanities (broadly speaking)
+- A good working knowledge of Python
+- Basic understanding of Git
 
 ### 2. Learning outcomes
 
