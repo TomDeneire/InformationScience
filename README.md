@@ -1,5 +1,7 @@
 # Information Science (2020-2021)
 
+This document describes the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
+
 ## Course details
 
 . | .
@@ -29,24 +31,23 @@ At the start of this course the student should have acquired the following compe
 
 ### 2. Learning outcomes
 
+This course should provide a working knowledge of information science and information retrieval, with a special focus on data queries, text searching and library systems.
 
 ### 3. Course contents
-
-This section describes the provisional content of the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
-
 
 #### 1: Introduction, data and queries
 - Course information
 - Definition, history, ethics, goals
 - Information models
 - Database models
-- Query languages
+- Query languages (e.g. XQuery, SQL, SPARQL, ...)
 - *Exercise*: Python JSON metadata-harvester (e.g. Europeana)
 
 #### 2: Metadata
 - Ontology
 - Thesauri
 - Standards (MARC, EAD, Dublin Core)
+- Metadata harvesting
 - *Exercise*: Python XML metadata-converter (e.g. MARC from/to MODS)
 
 #### 3: Text I
@@ -67,20 +68,20 @@ This section describes the provisional content of the course "Information Scienc
 
 ### 4. International dimension*
 
-
+...
 
 ### 5. Teaching method and planned learning activities
 
-
+This course will be taught in blocks of 3 hours, half of which will be a theoretical lecture, while the other half will be spent introducing a practical exercise. Students are required to finish the exercise at home,  as well as read the required study material (cf. infra).
 
 
 ### 6. Assessment method and criteria
 
-
+This course will be assessed based through a coding project, which will be announced towards the end of the course. Students will be required to finish the project in a certain timeframe.
 
 ### 7. Study material *
 
-
+Study material will be provided in various forms (slides, Jupyter Notebooks, ...) by the lecturer.
 
 #### 7.1. Required reading
 
@@ -94,8 +95,18 @@ The following chapters are mandatory reading:
 
 #### 7.2. Optional reading
 
-The following study material can be studied voluntarily:
+The following study material can be studied voluntarily. They are all books I highly recommend:
 
+
+Information Architecture, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, [ISBN 978-1491911686](https://isbnsearch.org/isbn/9781491911686)
+
+The Myth and Magic of Library Systems, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
+
+A Librarian's Guide to Graphs, Data and the Semantic Web, By James Powell, [ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)
+
+SQL in a Nutshell, 3rd Edition, By Kevin Kline, [ISBN 978-0596518844](https://isbnsearch.org/isbn/9780596518844)
+
+Apprenticeship Patterns, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
 
 
 ### 8. Contact information
