@@ -3,9 +3,9 @@
 ## Course details
 
 Course Code | 2005FLWDTA
-Study domain  | Linguistics and Proficiency
-Academic year  | 2020-2021
-Semester  | 1st semester
+Study domain | Linguistics and Proficiency
+Academic year | 2020-2021
+Semester | 1st semester
 Credits | 3
 Contract restrictions | No contract restriction
 Language of instruction | English
