@@ -22,9 +22,8 @@ At the start of this course the student should have acquired the following compe
 
 2. Learning outcomes
 
----
 
-3. ## Course contents
+3. Course contents
 
 This section describes the provisional content of the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
 
@@ -61,20 +60,20 @@ This section describes the provisional content of the course "Information Scienc
 
 4. International dimension*
 
----
+
 
 5. Teaching method and planned learning activities
 
----
+
 
 
 6. Assessment method and criteria
 
----
+
 
 7. Study material *
 
----
+
 
 7.1. Required reading
 
@@ -90,7 +89,7 @@ The following chapters are mandatory reading:
 
 The following study material can be studied voluntarily:
 
----
+
 
 8. Contact information
 
