@@ -51,9 +51,9 @@ This course should provide a working knowledge of information science and inform
 - *Exercise*: Python XML metadata-converter (e.g. MARC from/to MODS)
 
 #### 3: Text I
+- Searching (regexes, ...)
 - Indexing
-- Searching
-- *Exercise*: Lucene (PyLucene, lupyne, …)
+- *Exercise*: Lucene (PyLucene, lupyne, ...)
 
 #### 4: Text II
 - Evaluation
@@ -61,8 +61,8 @@ This course should provide a working knowledge of information science and inform
 - *Exercise*: ranking algorithms for discovery service
 
 #### 5: Library systems
-- General conceps (LMS, ILS, OPAC, digital library, …)
-- Brocade architecture (servers, software repository, database, backup, …)
+- General conceps (LMS, ILS, OPAC, digital library, ...)
+- Brocade architecture (servers, software repository, database, backup, ...)
 - *Exercise*: YottaDB Acculturation Workshop
 
 
@@ -98,15 +98,15 @@ The following chapters are mandatory reading:
 The following study material can be studied voluntarily. They are all books I highly recommend:
 
 
-Information Architecture, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, [ISBN 978-1491911686](https://isbnsearch.org/isbn/9781491911686)
+- Information Architecture, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, [ISBN 978-1491911686](https://isbnsearch.org/isbn/9781491911686)
 
-The Myth and Magic of Library Systems, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
+- The Myth and Magic of Library Systems, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
 
-A Librarian's Guide to Graphs, Data and the Semantic Web, By James Powell, [ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)
+- A Librarian's Guide to Graphs, Data and the Semantic Web, By James Powell, [ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)
 
-SQL in a Nutshell, 3rd Edition, By Kevin Kline, [ISBN 978-0596518844](https://isbnsearch.org/isbn/9780596518844)
+- SQL in a Nutshell, 3rd Edition, By Kevin Kline, [ISBN 978-0596518844](https://isbnsearch.org/isbn/9780596518844)
 
-Apprenticeship Patterns, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
+- Apprenticeship Patterns, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
 
 
 ### 8. Contact information
