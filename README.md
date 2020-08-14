@@ -17,7 +17,7 @@ Exam period | exam in the 1st semester
 
 ## Course schedule
 
-During the academic year 2020-2021, the course "Information Science" (1st semester) will take place of Fridays, from 9h30 to 12h30, in room C.203, during weeks 9-13.
+During the academic year 2020-2021, the course "Information Science" (1st semester) will take place on Fridays, from 9h30 to 12h30, in room C.203, during weeks 9-13.
 
 ## Course description
 
@@ -72,12 +72,12 @@ This course should provide a working knowledge of information science and inform
 
 ### 5. Teaching method and planned learning activities
 
-This course will be taught in blocks of 3 hours, half of which will be a theoretical lecture, while the other half will be spent introducing a practical exercise. Students are required to finish the exercise at home,  as well as read the required study material (cf. infra).
+Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a coding **assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours.
 
 
 ### 6. Assessment method and criteria
 
-This course will be assessed based through a coding project, which will be announced towards the end of the course. Students will be required to finish the project in a certain timeframe.
+The aforementioned assignments lead up to a project assignment which will serve as the exam for this course. The project assignment will be introduced during the final course. Students who have succesfully completed the previous course assignments should have no trouble submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
 
 ### 7. Study material *
 
@@ -117,9 +117,3 @@ Anet - Ve35.304
 Venusstraat 35
 2000 Antwerp
 tom.deneire@uantwerpen.be
-
-
-
-## Technical instructions
-
-tba
