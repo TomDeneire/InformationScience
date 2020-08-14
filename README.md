@@ -36,7 +36,7 @@ This course should provide a working knowledge of information science and inform
 ### 3. Course contents
 
 #### 1: Introduction, data and queries
-- Course information
+- Course information, setup
 - Definition, history, ethics, goals
 - Information models
 - Database models
