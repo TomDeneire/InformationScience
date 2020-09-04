@@ -37,33 +37,34 @@ This course should provide a working knowledge of information science and inform
 
 #### 1: Introduction, data and queries
 - Course information, setup
-- Definition, history, ethics, goals
-- Information models
+- Definition, history, ethics
+- Getting started
+- *Assignment*: Onegram viewer
 - Database models
-- Query languages (e.g. XQuery, SQL, SPARQL, ...)
-- *Exercise*: Python JSON metadata-harvester (e.g. Europeana)
+- XML, JSON, SQL
+- *Assignment*: Python JSON metadata-harvester (e.g. Europeana)
 
 #### 2: Metadata
 - Ontology
 - Thesauri
 - Standards (MARC, EAD, Dublin Core)
 - Metadata harvesting
-- *Exercise*: Python XML metadata-converter (e.g. MARC from/to MODS)
+- *Assignment*: Python XML metadata-converter (e.g. MARC from/to MODS)
 
 #### 3: Text I
 - Searching (regexes, ...)
 - Indexing
-- *Exercise*: Lucene (PyLucene, lupyne, ...)
+- *Assignment*: Lucene (PyLucene, lupyne, ...)
 
 #### 4: Text II
 - Evaluation
 - Ranking
-- *Exercise*: ranking algorithms for discovery service
+- *Assignment*: ranking algorithms for discovery service
 
 #### 5: Library systems
 - General conceps (LMS, ILS, OPAC, digital library, ...)
 - Brocade architecture (servers, software repository, database, backup, ...)
-- *Exercise*: YottaDB Acculturation Workshop
+- *Assignment*: YottaDB Acculturation Workshop
 
 
 ### 4. International dimension*
