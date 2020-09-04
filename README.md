@@ -35,13 +35,13 @@ This course should provide a working knowledge of information science and inform
 
 ### 3. Course contents
 
-#### 1: Introduction, data and queries
+#### 1: Introduction, databases and queries
 - Course information, setup
 - Definition, history, ethics
 - Getting started
 - *Assignment*: Onegram viewer
 - Database models
-- XML, JSON, SQL
+- Queries: XML, JSON, SQL
 - *Assignment*: Python JSON metadata-harvester (e.g. Europeana)
 
 #### 2: Metadata
