@@ -54,7 +54,7 @@ This course should provide a working knowledge of information science and inform
 #### 3: Text I
 - Searching (regexes, ...)
 - Indexing
-- *Assignment*: Lucene (PyLucene, lupyne, ...)
+- *Assignment*: Whoosh
 
 #### 4: Text II
 - Evaluation
