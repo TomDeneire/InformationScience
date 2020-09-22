@@ -41,9 +41,9 @@ This course should provide a working knowledge of information science and inform
 
 ###### Who am I and why does that matter?
 
-####### Who am I?
+- Who am I?
 
-####### Why does that matter?
+- Why does that matter?
 
 ###### Technical setup
 
@@ -61,13 +61,13 @@ This course should provide a working knowledge of information science and inform
 
 ###### Definition
 
-####### Information Science, Retrieval or Theory?
+- Information Science, Retrieval or Theory?
 
-######## Information Theory
+* Information Theory
 
-######## Information Retrieval
+* Information Retrieval
 
-######## Information Science
+* Information Science
 
 ###### History
 
@@ -89,29 +89,29 @@ This course should provide a working knowledge of information science and inform
 
 ###### Databases
 
-####### Database models
+- Database models
 
-######## Navigational
+* Navigational
 
-######## Relational/SQL
+* Relational/SQL
 
-######## Post-relational
+* Post-relational
 
-####### Databases as Linked Data
+- Databases as Linked Data
 
 ###### Query Languages
 
-####### CQL
+- CQL
 
-####### XML
+- XML
 
-####### SQL
+- SQL
 
 ###### Assignment: JSON metadata harvester
 
-####### JSON
+- JSON
 
-####### Some tips:
+- Some tips
 
 ##### Chapter 5: metadata
 
@@ -121,21 +121,21 @@ This course should provide a working knowledge of information science and inform
 
 ###### Metadata 101
 
-####### Cataloguing standards
+- Cataloguing standards
 
-####### Metadata standards
+- Metadata standards
 
-####### Exports
+- Exports
 
-######## Examples for book history
+* Examples for book history
 
 ###### Excursus: DH example
 
-####### Disclaimer
+- Disclaimer
 
 ###### Assignment: MARC21 to Dublin Core for OAI
 
-####### Tips
+- Tips
 
 ##### Chapter 6: Indexing
 
