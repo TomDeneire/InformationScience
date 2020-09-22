@@ -35,33 +35,124 @@ This course should provide a working knowledge of information science and inform
 
 ### 3. Course contents
 
-#### 1: Introduction, databases and queries
-- Course information, setup
-- Definition, history, ethics
-- Getting started
-- *Assignment*: Onegram viewer
-- Database models
-- Queries: XML, JSON, SQL
-- *Assignment*: Python JSON metadata-harvester (e.g. Europeana)
+#### Chapter 1: Setup
 
-#### 2: Metadata
-- Ontology
-- Thesauri
-- Standards (MARC, EAD, Dublin Core)
-- Metadata harvesting
-- *Assignment*: Python XML metadata-converter (e.g. MARC from/to MODS)
+###### Welcome
 
-#### 3: Text I
-- Searching (regexes, ...)
-- Indexing
-- *Assignment*: Whoosh
+###### Who am I and why does that matter?
 
-#### 4: Text II
-- Evaluation
-- Ranking
-- *Assignment*: ranking algorithms for discovery service
+####### Who am I?
 
-#### 5: Library systems
+####### Why does that matter?
+
+###### Technical setup
+
+###### Course and assignments
+
+###### Exam: Project assignment
+
+###### Required reading
+
+###### Things you might find interesting
+
+###### Students
+
+##### Chapter 2: Definition
+
+###### Definition
+
+####### Information Science, Retrieval or Theory?
+
+######## Information Theory
+
+######## Information Retrieval
+
+######## Information Science
+
+###### History
+
+###### Ethics
+
+##### Chapter 3: Getting started\n"
+
+###### Getting started
+
+###### Manipulating Information
+
+###### Example: sorting strings
+
+###### Assignment: Onegram Viewer
+
+##### Chapter 4: Databases
+
+###### Information vs Database Models
+
+###### Databases
+
+####### Database models
+
+######## Navigational
+
+######## Relational/SQL
+
+######## Post-relational
+
+####### Databases as Linked Data
+
+###### Query Languages
+
+####### CQL
+
+####### XML
+
+####### SQL
+
+###### Assignment: JSON metadata harvester
+
+####### JSON
+
+####### Some tips:
+
+##### Chapter 5: metadata
+
+###### Metadata
+
+###### It's complicated
+
+###### Metadata 101
+
+####### Cataloguing standards
+
+####### Metadata standards
+
+####### Exports
+
+######## Examples for book history
+
+###### Excursus: DH example
+
+####### Disclaimer
+
+###### Assignment: MARC21 to Dublin Core for OAI
+
+####### Tips
+
+##### Chapter 6: Indexing
+
+###### Searching
+
+###### Indexing
+
+###### Excursus: Bitmap indexing
+
+###### Lucene
+
+###### Whoosh
+
+###### Assignment: Morphology tool
+
+
+#### Chapter 7: Library systems
 - General conceps (LMS, ILS, OPAC, digital library, ...)
 - Brocade architecture (servers, software repository, database, backup, ...)
 - *Assignment*: YottaDB Acculturation Workshop
