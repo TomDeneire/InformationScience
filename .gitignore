@@ -3,4 +3,4 @@ project.*
 project/
 test/
 stuff/
-course_materials/chapter03/Information_Architecture_c1.pdf
+chapters/__*
