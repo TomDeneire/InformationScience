@@ -3,5 +3,5 @@ project.*
 project/
 test/
 stuff/
-chapters/__*
-chapters/index
+course/__*
+course/index
