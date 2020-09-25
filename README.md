@@ -35,7 +35,7 @@ This course should provide a working knowledge of information science and inform
 
 ### 3. Course contents
 
-https://github.com/TomDeneire/InformationScience/tree/master/chapters
+[Course contents](https://github.com/TomDeneire/InformationScience/tree/master/chapters/table_of_contents.ipynb)
 
 
 ### 4. International dimension*
