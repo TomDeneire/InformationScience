@@ -61,7 +61,7 @@ Study material will be provided in various forms (slides, Jupyter Notebooks, ...
 
 #### 7.2. Optional reading
 
-- *Handbook of Information Science*, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), [ISBN 978-3110234992]((https://isbnsearch.org/isbn/9783110234992), https://doi.org/10.1515/9783110235005
+- *Handbook of Information Science*, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), [ISBN 978-3110234992](https://isbnsearch.org/isbn/9783110234992), https://doi.org/10.1515/9783110235005
 
 - *The Myth and Magic of Library Systems*, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
 
