@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Information Science (2020-2021) &#8212; Information Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Information Science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01.html">
+   Chapter 1: Welcome
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02.html">
+   Chapter 2: Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03.html">
+   Chapter 3: Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04.html">
+   Chapter 4: Databases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter05.html">
+   Chapter 5: Metadata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06.html">
+   Chapter 6: Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07.html">
+   Chapter 7: Searching, Evaluation, Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08.html">
+   Chapter 8: Library Management Systems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/coursedetails.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-details">
+   Course details
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-schedule">
+   Course schedule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-description">
+   Course description
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prerequisites">
+     1. Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-outcomes">
+     2. Learning outcomes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-contents">
+     3. Course contents
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#international-dimension">
+     4. International dimension*
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teaching-method-and-planned-learning-activities">
+     5. Teaching method and planned learning activities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessment-method-and-criteria">
+     6. Assessment method and criteria
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#study-material">
+     7. Study material *
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#required-reading">
+       7.1. Required reading
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-reading">
+       7.2. Optional reading
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contact-information">
+     8. Contact information
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="information-science-2020-2021">
+<h1>Information Science (2020-2021)<a class="headerlink" href="#information-science-2020-2021" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the course “Information Science” for the University of Antwerp <a class="reference external" href="https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/">Master of Linguistics</a> (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
+<div class="section" id="course-details">
+<h2>Course details<a class="headerlink" href="#course-details" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>.</p></th>
+<th class="head"><p>.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Course Code</p></td>
+<td><p>2005FLWDTA</p></td>
+</tr>
+<tr class="row-odd"><td><p>Study domain</p></td>
+<td><p>Linguistics and Proficiency</p></td>
+</tr>
+<tr class="row-even"><td><p>Academic year</p></td>
+<td><p>2020-2021</p></td>
+</tr>
+<tr class="row-odd"><td><p>Semester</p></td>
+<td><p>1st semester</p></td>
+</tr>
+<tr class="row-even"><td><p>Credits</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Contract restrictions</p></td>
+<td><p>No contract restriction</p></td>
+</tr>
+<tr class="row-even"><td><p>Language of instruction</p></td>
+<td><p>English</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exam period</p></td>
+<td><p>exam in the 1st semester</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="course-schedule">
+<h2>Course schedule<a class="headerlink" href="#course-schedule" title="Permalink to this headline">¶</a></h2>
+<p>During the academic year 2020-2021, the course “Information Science” (1st semester) will take place on Fridays, from 9h30 to 12h30, in room C.203, during weeks 9-13.</p>
+</div>
+<div class="section" id="course-description">
+<h2>Course description<a class="headerlink" href="#course-description" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prerequisites">
+<h3>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>At the start of this course the student should have acquired the following competences:</p>
+<ul class="simple">
+<li><p>An academic background in the humanities (broadly speaking)</p></li>
+<li><p>A good working knowledge of Python</p></li>
+<li><p>Basic understanding of Git</p></li>
+</ul>
+</div>
+<div class="section" id="learning-outcomes">
+<h3>2. Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h3>
+<p>This course should provide a working knowledge of information science and information retrieval, with a special focus on data queries, text searching and library systems.</p>
+</div>
+<div class="section" id="course-contents">
+<h3>3. Course contents<a class="headerlink" href="#course-contents" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/master/course/00_table_of_contents.ipynb">Course contents</a></p>
+</div>
+<div class="section" id="international-dimension">
+<h3>4. International dimension*<a class="headerlink" href="#international-dimension" title="Permalink to this headline">¶</a></h3>
+<p>…</p>
+</div>
+<div class="section" id="teaching-method-and-planned-learning-activities">
+<h3>5. Teaching method and planned learning activities<a class="headerlink" href="#teaching-method-and-planned-learning-activities" title="Permalink to this headline">¶</a></h3>
+<p>Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a coding <strong>assignment</strong>, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours.</p>
+</div>
+<div class="section" id="assessment-method-and-criteria">
+<h3>6. Assessment method and criteria<a class="headerlink" href="#assessment-method-and-criteria" title="Permalink to this headline">¶</a></h3>
+<p>The aforementioned assignments lead up to a project assignment which will serve as the exam for this course. The project assignment will be introduced during the final course. Students who have succesfully completed the previous course assignments should have no trouble submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.</p>
+</div>
+<div class="section" id="study-material">
+<h3>7. Study material *<a class="headerlink" href="#study-material" title="Permalink to this headline">¶</a></h3>
+<p>Study material will be provided in various forms (slides, Jupyter Notebooks, …) by the lecturer.</p>
+<div class="section" id="required-reading">
+<h4>7.1. Required reading<a class="headerlink" href="#required-reading" title="Permalink to this headline">¶</a></h4>
+<p>[to be decided]</p>
+</div>
+<div class="section" id="optional-reading">
+<h4>7.2. Optional reading<a class="headerlink" href="#optional-reading" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><em>Handbook of Information Science</em>, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), <a class="reference external" href="https://isbnsearch.org/isbn/9783110234992">ISBN 978-3110234992</a>, https://doi.org/10.1515/9783110235005</p></li>
+<li><p><em>The Myth and Magic of Library Systems</em>, By Keith J. Kelley, <a class="reference external" href="https://isbnsearch.org/isbn/9780081000762">ISBN 978-0081000762</a></p></li>
+<li><p><em>A Librarian’s Guide to Graphs, Data and the Semantic Web</em>, By James Powell, <a class="reference external" href="https://isbnsearch.org/isbn/9781843347538">ISBN 978-1843347538</a></p></li>
+<li><p><em>SQL in a Nutshell</em>, 3rd Edition, By Kevin Kline, <a class="reference external" href="https://isbnsearch.org/isbn/9780596518844">ISBN 978-0596518844</a></p></li>
+<li><p><em>Modern Information Retrieval: The Concepts and Technology behind Search</em>, By Ricardo Baeza-Yates, Berthier Ribeiro-Neto, Second edition (Harlow e.a.: Addison-Wesley, 2011), <a class="reference external" href="https://isbnsearch.org/isbn/9780321416919">ISBN 978-0-321-41691-9</a></p></li>
+<li><p><em>Information Architecture</em>, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, <a class="reference external" href="https://isbnsearch.org/isbn/9781491911686">ISBN 978-1491911686</a></p></li>
+<li><p><em>Apprenticeship Patterns</em>, By Dave Hoover, Adewale Oshineye, <a class="reference external" href="https://isbnsearch.org/isbn/9780596518387">ISBN 978-0596518387</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="contact-information">
+<h3>8. Contact information<a class="headerlink" href="#contact-information" title="Permalink to this headline">¶</a></h3>
+<p>Dr. Tom Deneire
+Antwerp University Library
+Anet - Ve35.304
+Venusstraat 35
+2000 Antwerp
+tom.deneire&#64;uantwerpen.be</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tom Deneire<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
