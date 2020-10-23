@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 5: Metadata &#8212; Information Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 6: Indexing" href="chapter06.html" />
+    <link rel="prev" title="Chapter 4: Databases" href="chapter04.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Information Science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01.html">
+   Chapter 1: Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02.html">
+   Chapter 2: Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03.html">
+   Chapter 3: Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04.html">
+   Chapter 4: Databases
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 5: Metadata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06.html">
+   Chapter 6: Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07.html">
+   Chapter 7: Searching, Evaluation, Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08.html">
+   Chapter 8: Library Management Systems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter05.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metadata">
+   Metadata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metadata-is-important">
+   Metadata is important!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-s-complicated">
+   It’s complicated
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metadata-101">
+   Metadata 101
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cataloguing-standards">
+     Cataloguing standards
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metadata-standards">
+     Metadata standards
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exports">
+     Exports
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples-for-book-history">
+       Examples for book history
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#excursus-dh-example">
+   Excursus: DH example
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disclaimer">
+     Disclaimer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-marc21-to-dublin-core-for-oai">
+   Assignment: MARC21 to Dublin Core for OAI
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tips">
+     Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-5-metadata">
+<h1>Chapter 5: Metadata<a class="headerlink" href="#chapter-5-metadata" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/metadata.png" /></p>
+<p>Credit: <a class="reference external" href="http://swilsonhistory.com/2020/02/27/lets-talk-about-metadata/">Shelby HIST 390 blog</a></p>
+<div class="section" id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter I consciously steered the discussion away from information models to data models. Now, we are going to do the same with information and data, or better said, metadata. A lot of what happens in information science does not have to do with information, but information <em>about</em> information, or metadata:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Metadata">Wikipedia</a> says:</p>
+<blockquote>
+<div><p>Metadata is “data that provides information about other data”. In other words, it is “data about data.” Many distinct types of metadata exist, including descriptive metadata, structural metadata, (…)</p>
+</div></blockquote>
+<p>Descriptive metadata, for instance, is descriptive information about a resource. It is used for discovery and identification. If we think about books, for example, descriptive metadata would include elements such as title, author, date of publication, etcetera. Or, Exif (Exchangeable image file format) is a metadata standard that specifies the formats for images, sound, and ancillary tags used by digital cameras (including smartphones), scanners and other systems handling image and sound files recorded by digital cameras.</p>
+</div>
+<div class="section" id="metadata-is-important">
+<h2>Metadata is important!<a class="headerlink" href="#metadata-is-important" title="Permalink to this headline">¶</a></h2>
+<p>Metadata might seem trivial – in fact, I don’t like the word <em>ancillary</em> in the previous paragraph – or non-essential. However, metadata performs a huge and crucial role in information science and software development as a whole. As a rule, applications will strictly separate the business logic of the application (e.g. invoice system) and the metadata the application uses (e.g. database of clients, suppliers, etc.), but without the latter, the former is doomed.</p>
+<p>Consider, as an illustration, this story about the <a class="reference external" href="https://www.theregister.com/2020/07/18/samsung_bluray_mass_dieoff_explained/">Samsung Blu Ray player</a>!</p>
+</div>
+<div class="section" id="it-s-complicated">
+<h2>It’s complicated<a class="headerlink" href="#it-s-complicated" title="Permalink to this headline">¶</a></h2>
+<p>However, this definition of metadata as “data about data” somewhat misses the mark. In order to illustrate that, we need to take a look at a concrete example of metadata.</p>
+<p>Have a look at this title page:</p>
+<p><img alt="" src="_images/Lipsius.jpg" /></p>
+<p>Credit: photo: <a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:7081813/E">STCV catalogue</a>, copy: <a class="reference external" href="https://anet.be/record/opacuantwerpen/c:lvd:452568/E">UA-CST MAG-P 13.74</a> (f. *1 recto)</p>
+<p>The STCV catalogue, which we have already mentioned a few times, catalogues this book as follows (<a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:7081813/E">permalink</a>):</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Metadata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Title</p></td>
+<td><p>Title page: Poliorceticωn sive De machinis. Tormentis. Telis. Libri qvinqve</p></td>
+</tr>
+<tr class="row-odd"><td><p>Author</p></td>
+<td><p>Title page: Ivstus Lipsius [Lipsius, Justus]</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>External: van Veen, Otto [Illustrator]</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>External: van der Borcht, Pieter I [Illustrator]</p></td>
+</tr>
+<tr class="row-even"><td><p>Publication</p></td>
+<td><p>Title page: ex officina Plantiniana, apud viduam, &amp; Ioannem Moretum [Rivière, Jeanne &amp; Jan I Moretus]</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>Title page: Antverpiæ [Antwerp]</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>1596</p></td>
+</tr>
+<tr class="row-odd"><td><p>Language</p></td>
+<td><p>Latin [Target language]</p></td>
+</tr>
+</tbody>
+</table>
+<p>Now let’s compare this to the title page.</p>
+<ul class="simple">
+<li><p>For instance, we see that the difference between lower case, upper case and small caps has disappeared. This might seem trivial, but did you realise that in Renaissance Latin a capitalized final “I” stands for “ii”? So the full title is actually, “Ivsti Lipsii…” Or, suppose that someone is studying the use of capitalization in title layout as a marketing means. This is vital information that is missing.</p></li>
+<li><p>Moreover, when we focus on the title, we see small changes. Whereas the title page does not have a space between “Tormentis.Telis”, the transcription does. And it also leaves out the italic parts (another piece of layout info missing!) “Ad Historiarum lucem” (In light of History) and “Cum Privilegiis Caesareo &amp; Regio” (With Imperial and Royal Privilege). Again, such information could be very interesting to book historians.</p></li>
+<li><p>Also, when we look at the date, we notice this has been interpreted rather than transcribed. The Roman numeral (with the typical dots) has been silently turned into ‘1596’.</p></li>
+<li><p>Furthermore, we see that copy specific information, such as the stamp in the upper right corner and the pasted on inscription on the bottom have also been left out.</p></li>
+<li><p>On the other hand, there is also more information in the descriptive metadata than is on the title page. The names of the illustrators, for instance, and the name of Christopher Plantin’s widow are added.</p></li>
+</ul>
+<p>Let’s compare this with the entry in <a class="reference external" href="http://www.worldcat.org/oclc/79260741">Worldcat</a>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Metadata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Title</p></td>
+<td><p>Ivsti LipsI Poliorcetic[o]n, sive, De machinis, tormentis, telis, libri qvinqve : ad historiarum lucem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Author</p></td>
+<td><p>Justus Lipsius; Petrus van der Borcht</p></td>
+</tr>
+<tr class="row-even"><td><p>Publisher</p></td>
+<td><p>Antverpiæ : Ex Officina Plantiniana, apud Viduam, &amp; Ioannem Moretum, M.D. XCVI [1596]</p></td>
+</tr>
+</tbody>
+</table>
+<p>The information is pretty similar, but now that we are tuned into some of the subtleties we notice the differences. “Ad historiarum lucem” is present, for instance. On the other hand, Worldcat has different capitalization and provides only one illustrator, without specifying that this is external information (i.e. not included in the title page).</p>
+<p>This example shows that different catalogues adhere to different cataloguing rules. It is impossible to simply catalogue at book title (or indeed any item, be it physical or digital) “as is”. However diplomatic and inclusive you try to be when cataloguing, you will always have to make hard decisions about how to handle layout, how to transcribe characters, whether or not to standardize spelling, punctuation, etcetera.</p>
+<p>All of this is perfectly understandable and in general (good) catalogues will be explicit and very scrupulous in the cataloguing rules they follow. The danger is that when we leave the cataloguing context and, for instance, acquire catalogue information in a data dump (STCV is freely available <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">here</a>) we tend to forget this and take the metadata at face value.</p>
+<p>Imagine, for a minute, that you hadn’t seen the above title page, but merely got the STCV metadata from a SQL query. How accurate would your understanding of this title page actually be? And what happens when, as good DH research is bound to do, you break open metadata containers and aggregate metadata, for instance merging several of the national “short-title catalogue” initiatives (STCV, STCN, ESTC, USTC, …), which all adhere to different rules?</p>
+<p>To make matters worse, our example was a very simple one really. There are many, many more complex metadata problems. Just to give you a taste:</p>
+<ul class="simple">
+<li><p>How would you catalogue one of those toddler squeeky books that feature not a single word of text?</p></li>
+<li><p>When in 1993 Princed changed his stage name to the unpronounceable symbol <img alt="Prince" src="_images/prince.png" /> (known to fans as the “Love Symbol”), and was sometimes referred to as the Artist Formerly Known as Prince or simply the Artist, how were record shops supposed to catalogue his albums? Remember, in those days, most people would go up to the “P” section and browse for “Prince”!</p></li>
+<li><p>Or what about the IMDB website listing the actors of the Blair Witch Project as “missing, presumed dead” in the first year of the film’s availability (see <a class="reference external" href="https://web.archive.org/web/20170109185339/http://www.telegraph.co.uk/films/2016/07/25/why-did-the-world-think-the-blair-witch-project-really-happened/">this</a> article)?</p></li>
+</ul>
+</div>
+<div class="section" id="metadata-101">
+<h2>Metadata 101<a class="headerlink" href="#metadata-101" title="Permalink to this headline">¶</a></h2>
+<p>We now have a better understanding of metadat. As a former student of mine <span class="xref myst">&#64;Karolingva</span> once tweeted from a <a class="reference external" href="https://www.rightscon.org/">RightsCon</a> conference: metadata is not data about data, but</p>
+<ul class="simple">
+<li><p>created data about data</p></li>
+<li><p>by humans</p></li>
+<li><p>with a purpose</p></li>
+<li><p>according to certain standards</p></li>
+</ul>
+<p>This means than when working with metadata we need to be acutely aware of this context.</p>
+<p>In short, that means having an understanding of cataloguing standards, metadata standards and exports.</p>
+<div class="section" id="cataloguing-standards">
+<h3>Cataloguing standards<a class="headerlink" href="#cataloguing-standards" title="Permalink to this headline">¶</a></h3>
+<p>As we saw in the case of STCV or WorldCat books were catalogued following certain rules. The same holds true for all sorts of physical or digital items. So if you are working with metadata you’ll do well to have at least a basic understanding of the cataloguing standards that were used to create this metadata.</p>
+<p>As for <a class="reference external" href="https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards">book cataloguing standards</a>, for instance, we can mention</p>
+<ol class="simple">
+<li><p>RDA (Resource Description and Access)</p></li>
+</ol>
+<ul class="simple">
+<li><p>http://access.rdatoolkit.org/ (subscription needed)</p></li>
+<li><p>E.g. Names with articles = ‘The Hague’ NOT ‘Hague, the’</p></li>
+</ul>
+<ol class="simple">
+<li><p>DCRM(B) (Descriptive Cataloging of Rare Materials - Books)</p></li>
+</ol>
+<ul class="simple">
+<li><p>http://rbms.info/dcrm/dcrmb/ (open source)</p></li>
+<li><p>E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem…’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’</p></li>
+</ul>
+</div>
+<div class="section" id="metadata-standards">
+<h3>Metadata standards<a class="headerlink" href="#metadata-standards" title="Permalink to this headline">¶</a></h3>
+<p>Once metadata has been produced according to certain cataloguing rules, we can also define a <a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_standard">metadata standard</a>, i.e.</p>
+<blockquote>
+<div><p>a requirement which is intended to establish a common understanding of the meaning or semantics of the data, to ensure correct and proper use and interpretation of the data by its owners and users.</p>
+</div></blockquote>
+<p>Some of the most common metadata standards in the world of <a class="reference external" href="https://en.wikipedia.org/wiki/GLAM_(industry_sector)">GLAM</a> (galleries, libraries, archives, and museums) are:</p>
+<ol class="simple">
+<li><p>Books: MARC</p></li>
+</ol>
+<ul class="simple">
+<li><p>Machine-Readable Cataloging (MARC21)</p></li>
+<li><p>https://www.loc.gov/marc/</p></li>
+<li><p>e.g. field 245 = title</p></li>
+</ul>
+<ol class="simple">
+<li><p>Archives: EAD</p></li>
+</ol>
+<ul class="simple">
+<li><p>Encoded Archival Description (XML standard)</p></li>
+<li><p>http://www.loc.gov/ead/</p></li>
+</ul>
+<ol class="simple">
+<li><p>Objects: Dublin Core</p></li>
+</ol>
+<ul class="simple">
+<li><p>Dublin Core Metadata Initiative</p></li>
+<li><p>http://www.dublincore.org/</p></li>
+</ul>
+</div>
+<div class="section" id="exports">
+<h3>Exports<a class="headerlink" href="#exports" title="Permalink to this headline">¶</a></h3>
+<p>Working with metadata one is quickly faced with the issue of data or <a class="reference external" href="https://en.wikipedia.org/wiki/Information_silo">information silos</a>:</p>
+<blockquote>
+<div><p>an insular management system in which one information system or subsystem is incapable of reciprocal operation with others that are, or should be, related. Thus information is not adequately shared but rather remains sequestered within each system or subsystem, figuratively trapped within a container like grain is trapped within a silo: there may be much of it, and it may be stacked quite high and freely available within those limits, but it has no effect outside those limits. Such data silos are proving to be an obstacle for businesses wishing to use data mining to make productive use of their data.</p>
+</div></blockquote>
+<p>Luckily many information systems, for instance for GLAM institutions, are paying increasing attention to providing open access metadata exports, which in turn allows to aggregate it (for further information retrieval, research purposes, etcetera).</p>
+<p>Such exports will make metadata available in all sorts of standards (see above) and formats, such as data dumps in .txt or .tab, structured formats like .csv, document databases like .xml or .json, or linked data. As we have seen in chapter 04 with Europeana, some institutions even provide an API.</p>
+<div class="section" id="examples-for-book-history">
+<h4>Examples for book history<a class="headerlink" href="#examples-for-book-history" title="Permalink to this headline">¶</a></h4>
+<p>Some time ago I collected some examples of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.</p>
+<ol class="simple">
+<li><p>Biographic databases</p></li>
+</ol>
+<ul class="simple">
+<li><p><a class="reference external" href="https://platform.worldcat.org/api-explorer/apis/VIAF">VIAF</a> (Virtual International Authority File) (SRU protocol)</p></li>
+<li><p><a class="reference external" href="https://wiki.dbpedia.org/OnlineAccess">DBpedia</a> (SPARQL endpoint, REST API, Lookup API)</p></li>
+<li><p><a class="reference external" href="https://data.cerl.org/thesaurus/_sru">CERL thesaurus</a> (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)</p></li>
+<li><p><a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities</a> (named entities) (API)</p></li>
+<li><p><a class="reference external" href="https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists">RKDArtists</a> (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)</p></li>
+</ul>
+<ol class="simple">
+<li><p>Bibliographic databases</p></li>
+</ol>
+<ul class="simple">
+<li><p><a class="reference external" href="https://platform.worldcat.org/api-explorer/apis">Worldcat</a> (wide range of exports, plugins, APIs)</p></li>
+<li><p><a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet open data</a> (including STCV, downloads in MARXML or SQLite)</p></li>
+<li><p><a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB</a> (paywall) (SRU)</p></li>
+<li><p><a class="reference external" href="http://tw.staatsbibliothek-berlin.de/">TW</a> (Typenrepertorium der Wiegendrucke) (XML exports)</p></li>
+<li><p><a class="reference external" href="http://www.gateway-bayern.de/index_vd16.html">VD16/VD17</a> (download up to 999 records as CSV and HTML)</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="excursus-dh-example">
+<h2>Excursus: DH example<a class="headerlink" href="#excursus-dh-example" title="Permalink to this headline">¶</a></h2>
+<p>As an example of the kind of DH research you could do using library metadata, I refer to a proof-of-concept paper of mine on <a class="reference external" href="https://arxiv.org/abs/1706.09406v2">arXive</a>:</p>
+<p><a class="reference external" href="https://arxiv.org/abs/1706.09406v2">A Datamining Approach to the Short Title Catalogue Flanders: the Case of Early Modern Quiring Practices</a>, submitted on 28 Jun 2017 (v1), last revised 19 Nov 2018 (v2).</p>
+<p>This paper contains a data mining approach to the Short Title Catalogue Flanders, which aims to record all books printed in Flanders up to 1801 (24.850 editions, per 31/08/2018). More specifically, it aims to analyse the Early Modern practice of ‘quiring’ gatherings in handpress book production</p>
+<div class="section" id="disclaimer">
+<h3>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h3>
+<p>This research was done well before my days as a professional software engineer. So while you may find the research and its results interesting, I’m sure the code itself leaves a lot to be desired!</p>
+</div>
+</div>
+<div class="section" id="assignment-marc21-to-dublin-core-for-oai">
+<h2>Assignment: MARC21 to Dublin Core for OAI<a class="headerlink" href="#assignment-marc21-to-dublin-core-for-oai" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a> or OAI for short:</p>
+<blockquote>
+<div><p>is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.</p>
+</div></blockquote>
+<p>At Anet, for instance, we provide full OAI access to our complete database of books. Like so:</p>
+<p>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=marc21&amp;identifier=c:lvd:123456 (MARC21)</p>
+<p>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=mods&amp;identifier=c:lvd:123456 (<a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema">MODS</a>)</p>
+<p>In these examples, the trailing “c:lvd:” number is a unique Library Object Identifier (LOI) used by <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a></p>
+<p>Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.</p>
+<p>According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
+<div class="section" id="tips">
+<h3>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You can use the Library of Congress <a class="reference external" href="https://www.loc.gov/marc/marc2dc.html">MARC to Dublin Core Crosswalk</a>. You can limit yourself to the fields mentioned in the “unqualified” table and skip the “Leader” field. You will find the meaning of the various codes (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, etcetera) in the MARC specification, but you can limit yourself to code <code class="docutils literal notranslate"><span class="pre">a</span></code>, unless the crosswalk explicitly mentions other codes (e.g. <code class="docutils literal notranslate"><span class="pre">260</span></code> = <code class="docutils literal notranslate"><span class="pre">Publisher</span></code>)</p></li>
+<li><p>The Python <code class="docutils literal notranslate"><span class="pre">lxml</span></code> library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.</p></li>
+<li><p>Read about XML namespaces: https://www.w3schools.com/xml/xml_namespaces.asp and https://lxml.de/tutorial.html#namespaces</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter04.html" title="previous page">Chapter 4: Databases</a>
+    <a class='right-next' id="next-link" href="chapter06.html" title="next page">Chapter 6: Indexing</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tom Deneire<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
