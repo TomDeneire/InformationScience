@@ -35,12 +35,8 @@ This course should provide a working knowledge of information science and inform
 
 ### 3. Course contents
 
-[Course contents](https://github.com/TomDeneire/InformationScience/tree/master/course/00_table_of_contents.ipynb)
-
 
 ### 4. International dimension*
-
-...
 
 ### 5. Teaching method and planned learning activities
 
@@ -56,8 +52,6 @@ The aforementioned assignments lead up to a project assignment which will serve 
 Study material will be provided in various forms (slides, Jupyter Notebooks, ...) by the lecturer.
 
 #### 7.1. Required reading
-
-[to be decided]
 
 #### 7.2. Optional reading
 
