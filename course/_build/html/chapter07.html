@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 7: Searching, Evaluation, Ranking &#8212; Information Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 8: Library Management Systems" href="chapter08.html" />
+    <link rel="prev" title="Chapter 6: Indexing" href="chapter06.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Information Science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01.html">
+   Chapter 1: Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02.html">
+   Chapter 2: Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03.html">
+   Chapter 3: Getting started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04.html">
+   Chapter 4: Databases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter05.html">
+   Chapter 5: Metadata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06.html">
+   Chapter 6: Indexing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 7: Searching, Evaluation, Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08.html">
+   Chapter 8: Library Management Systems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter07.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#searching">
+   Searching
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regular-expressions">
+     Regular expressions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fuzzy-searching">
+     Fuzzy searching
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#string-metrics">
+       String metrics
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation-and-ranking">
+   Evaluation and ranking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-spelling-checker">
+   Assignment: Spelling checker
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-7-searching-evaluation-ranking">
+<h1>Chapter 7: Searching, Evaluation, Ranking<a class="headerlink" href="#chapter-7-searching-evaluation-ranking" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent (relevance) ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
+<blockquote>
+<div><p>Retrieval &gt; Searching &gt; Evaluation &gt; Ranking</p>
+</div></blockquote>
+<p>Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in <em>Modern Information Retrieval</em>). Indeed, we will focus on text exclusively here.</p>
+</div>
+<div class="section" id="searching">
+<h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
+<p>We have already seen that searching text is rarely as easy as string.find(substring). Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
+<div class="section" id="regular-expressions">
+<h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
+<div>
+<img src="images/regex.png"/>
+</div>
+<p>Credit: <a class="reference external" href="https://xkcd.com/1171/">xkcd.com</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol we used is actually part of a separate programming language, called <strong>regular expressions</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a> says:</p>
+<blockquote>
+<div><p>A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for “find” or “find and replace” operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.</p>
+</div></blockquote>
+<blockquote>
+<div><p>The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities. Different syntaxes for writing regular expressions have existed since the 1980s, one being the POSIX standard and another, widely used, being the Perl syntax.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.</p>
+</div></blockquote>
+<p>Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Python, Ruby, Microsoft’s .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX <code class="docutils literal notranslate"><span class="pre">grep</span></code> command.</p>
+<p>Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a <em>write only</em> programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases.</p>
+<p>Consider this example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">rhyme</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\Dar&#39;</span><span class="p">)</span>
+<span class="n">my_text</span> <span class="o">=</span> <span class="s2">&quot;Let&#39;s look at the words bar, car, tar, mar and far&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">my_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bar&#39;, &#39;car&#39;, &#39;tar&#39;, &#39;mar&#39;, &#39;far&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So I’m looking for potential rhymes on “bar” and have written a regex that looks for one letter character <code class="docutils literal notranslate"><span class="pre">\D</span></code> followed by <code class="docutils literal notranslate"><span class="pre">ar</span></code>. However, when you apply this to one of the paragraphs you quickly see some mismatches, as we forgot to specify that the pattern can only occur at the end of a word.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">paragraph</span> <span class="o">=</span> <span class="s2">&quot;Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a write only programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">paragraph</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;lar&#39;, &#39; ar&#39;, &#39;car&#39;, &#39;lar&#39;, &#39; ar&#39;, &#39;har&#39;, &#39;lar&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use <code class="docutils literal notranslate"><span class="pre">.isinstance()</span></code>), reconsider!</p>
+<p>The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at <a class="reference external" href="https://www.w3schools.com/python/python_regex.asp">w3schools</a>) and there are also handy regex testers where you can immediately check your regex, like <a class="reference external" href="https://regexr.com/">regexr</a>. For a good Python cheat sheet, see this <a class="reference external" href="https://link.medium.com/BYkb73meJab">Medium post</a>.</p>
+<p>A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in <a class="reference external" href="https://tools.ietf.org/html/rfc5322">RFC 5322</a>. For a (more readable) summary, see <a class="reference external" href="https://en.wikipedia.org/wiki/Email_address#Syntax">Wikipedia</a>.</p>
+<p>In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
+<span class="n">test</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># valid addresses</span>
+    <span class="s2">&quot;simple@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;very.common@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;disposable.style.email.with+symbol@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;other.email-with-hyphen@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;x@example.com (one-letter local-part)&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;admin@mailserver1&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># local domain name with no TLD, although ICANN highly discourages dotless email addresses</span>
+    <span class="c1"># invalid_addresses</span>
+    <span class="s2">&quot;Abc.example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># no @ character</span>
+    <span class="s2">&quot;A@b@c@example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># only one @ is allowed outside quotation marks</span>
+    <span class="s2">&quot;1234567890123456789012345678901234567890123456789012345678901234+x@example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
+    <span class="s2">&quot;i_like_underscore@but_its_not_allow_in_this_part.example.com&quot;</span><span class="p">:</span> <span class="kc">False</span>  <span class="c1"># underscore is not allowed in domain part</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">email_regex</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="c1"># expand test</span>
+    <span class="k">if</span> <span class="n">address</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">email_regex</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="o">==</span> <span class="n">test</span><span class="p">[</span><span class="n">case</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test failed on </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">. Expected = </span><span class="si">{</span><span class="n">test</span><span class="p">[</span><span class="n">case</span><span class="p">]</span><span class="si">}</span><span class="s2">. Result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test failed on 1234567890123456789012345678901234567890123456789012345678901234+x@example.com. Expected = False. Result = True
+Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Expected = False. Result = True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fuzzy-searching">
+<h3>Fuzzy searching<a class="headerlink" href="#fuzzy-searching" title="Permalink to this headline">¶</a></h3>
+<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia</a> explains:</p>
+<blockquote>
+<div><p>The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>insertion: cot → co<strong>a</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>deletion: co<strong>a</strong>t → cot</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>substitution: co<strong>a</strong>t → co<strong>s</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>These three operations may be generalized as forms of substitution by adding a NULL character (here symbolized by <code class="docutils literal notranslate"><span class="pre">*</span></code>) wherever a character has been deleted or inserted:</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>insertion: co*<strong><strong>t → co</strong>a</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>deletion: co<strong>a</strong>t → co*****t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>substitution: co<strong>a</strong>t → co<strong>s</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>Some approximate matchers also treat transposition, in which the positions of two letters in the string are swapped, to be a primitive operation.</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>transposition: co<strong>st</strong> → co<strong>ts</strong></p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>Different approximate matchers impose different constraints. Some matchers use a single global unweighted cost, that is, the total number of primitive operations necessary to convert the match to the pattern. For example, if the pattern is coil, foil differs by one substitution, coils by one insertion, oil by one deletion, and foal by two substitutions. If all operations count as a single unit of cost and the limit is set to one, foil, coils, and oil will count as matches while foal will not.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.</p>
+</div></blockquote>
+<div class="section" id="string-metrics">
+<h4>String metrics<a class="headerlink" href="#string-metrics" title="Permalink to this headline">¶</a></h4>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <span class="xref myst">Levenshtein distance</span> (also known as edit distance). Another is the <a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="evaluation-and-ranking">
+<h2>Evaluation and ranking<a class="headerlink" href="#evaluation-and-ranking" title="Permalink to this headline">¶</a></h2>
+<p>With string metrics we have arrived in the territory of search evaluation: so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)">evaluation measures</a> offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display.</p>
+</div>
+<div class="section" id="assignment-spelling-checker">
+<h2>Assignment: Spelling checker<a class="headerlink" href="#assignment-spelling-checker" title="Permalink to this headline">¶</a></h2>
+<p>One very practical application of string metrics, search evaluation and ranking is a spelling checker. I’m not going to reveal too much of the solution here, but what I can say is that you’ll definitely need two things:</p>
+<ol class="simple">
+<li><p>A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it’ll do for now.</p></li>
+<li><p>A string metric. For this, you can use the Jaro-Winkler metric, which you do not have to implement yourself. Instead just use the code supplied in <code class="docutils literal notranslate"><span class="pre">jarowinkler.py</span></code> as shown below.</p></li>
+</ol>
+<p>Your application should do two things:</p>
+<ol class="simple">
+<li><p>Build the dictionary and save it in some form so it does not have to be rebuilt every time when the application is used.</p></li>
+<li><p>Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.</p></li>
+</ol>
+<p>As a final tip, maybe you can reuse some of your code from chapter 3 for this application…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jarowinkler</span> <span class="kn">import</span> <span class="n">jaro_winkler</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jaro_winkler</span><span class="p">(</span><span class="s2">&quot;coat&quot;</span><span class="p">,</span> <span class="s2">&quot;cot&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "Python 3.8.5 64-bit"
+        },
+        kernelOptions: {
+            kernelName: "Python 3.8.5 64-bit",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'Python 3.8.5 64-bit'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter06.html" title="previous page">Chapter 6: Indexing</a>
+    <a class='right-next' id="next-link" href="chapter08.html" title="next page">Chapter 8: Library Management Systems</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tom Deneire<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

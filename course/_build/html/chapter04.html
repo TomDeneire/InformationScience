@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 4: Databases &#8212; Information Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 5: Metadata" href="chapter05.html" />
+    <link rel="prev" title="Chapter 3: Getting started" href="chapter03.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Information Science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01.html">
+   Chapter 1: Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02.html">
+   Chapter 2: Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03.html">
+   Chapter 3: Getting started
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 4: Databases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter05.html">
+   Chapter 5: Metadata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06.html">
+   Chapter 6: Indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07.html">
+   Chapter 7: Searching, Evaluation, Ranking
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08.html">
+   Chapter 8: Library Management Systems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter04.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter04.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter04.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-vs-database-models">
+   Information vs Database Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#databases">
+   Databases
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#database-models">
+     Database models
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#navigational">
+       Navigational
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#relational-sql">
+       Relational/SQL
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#post-relational">
+       Post-relational
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#databases-as-linked-data">
+     Databases as Linked Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-languages">
+   Query Languages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cql">
+     CQL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xml">
+     XML
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql">
+     SQL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-json-metadata-harvester">
+   Assignment: JSON metadata harvester
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json">
+     JSON
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-tips">
+     Some tips:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-4-databases">
+<h1>Chapter 4: Databases<a class="headerlink" href="#chapter-4-databases" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/data.jpeg" /></p>
+<p>Credit: unknown</p>
+<div class="section" id="information-vs-database-models">
+<h2>Information vs Database Models<a class="headerlink" href="#information-vs-database-models" title="Permalink to this headline">¶</a></h2>
+<p>Formal discussions of the concept “information” might start with a treatment of different information models, as does chapter 3 of <em>Modern Information Retrieval</em> (see course description):</p>
+<blockquote>
+<div><p>Modeling in IR is a complex process aimed at producing a ranking function, i.e., a function that assigns scores to documents with regard to a given query. This process consists of two main tasks: (a) the conception of a logical framework for representing documents and queries and (b) the definition of a ranking function that computes a rank for each document with regard to a given query.</p>
+</div></blockquote>
+<p>While IR models are obviously very interesting, the discussion is also highly theoretical and requires no small amount of mathematics (set theory, algebra, probability theory, …). Therefore, it seems more practical and applicable to talk about databases instead as different “models” of information. Indeed, in most real-world applications of information science, you will most likely have to deal with information stored in a database.</p>
+</div>
+<div class="section" id="databases">
+<h2>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Database">Wikipedia</a> defines a database as a “an organized collection of data, generally stored and accessed electronically from a computer system”. Such a broad definition allows for many different kinds of databases, ranging from a single text file (e.g. the line <code class="docutils literal notranslate"><span class="pre">apples,oranges,grapes</span></code> is a database) to complex database management systems (DBMS) like MySQL that operate on large data structures.</p>
+<div class="section" id="database-models">
+<h3>Database models<a class="headerlink" href="#database-models" title="Permalink to this headline">¶</a></h3>
+<p>The classification of databases is a topic for a course on its own. For now, it will suffice to say that the development of database technology can be divided into three eras based on data model or structure: navigational, relational/SQL, and post-relational.</p>
+<div class="section" id="navigational">
+<h4>Navigational<a class="headerlink" href="#navigational" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Navigational_database">Wikipedia</a> says</p>
+<blockquote>
+<div><p>A navigational database is a type of database in which records or objects are found primarily by following references from other objects. The term was popularized by the title of Charles Bachman’s 1973 Turing Award paper, The Programmer as Navigator. This paper emphasized the fact that the new disk-based database systems allowed the programmer to choose arbitrary navigational routes following relationships from record to record, contrasting this with the constraints of earlier magnetic-tape and punched card systems where data access was strictly sequential.</p>
+</div></blockquote>
+<p>(…)</p>
+<blockquote>
+<div><p>Although Bachman described the concept of navigation in abstract terms, the idea of navigational access came to be associated strongly with the procedural design of the CODASYL Data Manipulation Language. Writing in 1982, for example, Tsichritzis and Lochovsky state that “The notion of currency is central to the concept of navigation.” By the notion of currency, they refer to the idea that a program maintains (explicitly or implicitly) a current position in any sequence of records that it is processing, and that operations such as <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">NEXT</span></code> and <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">PRIOR</span></code> retrieve records relative to this current position, while also changing the current position to the record that is retrieved.</p>
+</div></blockquote>
+</div>
+<div class="section" id="relational-sql">
+<h4>Relational/SQL<a class="headerlink" href="#relational-sql" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Relational_model">Wikipedia1</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Database">Wikipedia2</a> say:</p>
+<blockquote>
+<div><p>The relational model (…) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all data is represented in terms of tuples, grouped into relations. (…) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (…), Codd’s idea was to organise the data as a number of “tables”, each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each “fact” was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.</p>
+</div></blockquote>
+<blockquote>
+<div><p>The purpose of the relational model is to provide a declarative method for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Most relational databases use the SQL data definition and query language; these systems implement what can be regarded as an engineering approximation to the relational model.</p>
+</div></blockquote>
+</div>
+<div class="section" id="post-relational">
+<h4>Post-relational<a class="headerlink" href="#post-relational" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/NoSQL">Wikipedia</a> says:</p>
+<blockquote>
+<div><p>A NoSQL (originally referring to “non-SQL” or “non-relational”) database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases. Such databases have existed since the late 1960s, but the name “NoSQL” was only coined in the early 21st century (…) NoSQL databases are increasingly used in big data and real-time web applications. NoSQL systems are also sometimes called “Not only SQL” to emphasize that they may support SQL-like query languages or sit alongside SQL databases in polyglot-persistent architectures.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Motivations for this approach include: simplicity of design, simpler “horizontal” scaling to clusters of machines (which is a problem for relational databases), finer control over availability and limiting the object-relational impedance mismatch. The data structures used by NoSQL databases (e.g. key–value pair, wide column, graph, or document) are different from those used by default in relational databases, making some operations faster in NoSQL. The particular suitability of a given NoSQL database depends on the problem it must solve. Sometimes the data structures used by NoSQL databases are also viewed as “more flexible” than relational database tables.</p>
+</div></blockquote>
+<p>Categories of post-relational databases include:</p>
+<ul class="simple">
+<li><p><strong>key-value stores</strong>, such as the MUMPS database by YottaDB that we use for Brocade, the University of Antwerp’s Library Management System</p></li>
+<li><p><strong>document stores</strong>, such as XML or JSON</p></li>
+<li><p><strong>triple stores</strong>, such as RDF</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="databases-as-linked-data">
+<h3>Databases as Linked Data<a class="headerlink" href="#databases-as-linked-data" title="Permalink to this headline">¶</a></h3>
+<p>Another interesting way to think about databases is to consider them from the view point of Linked (open) Data.</p>
+<p>At <a class="reference external" href="https://www.w3.org/2011/gld/wiki/5_Star_Linked_Data">w3.org</a> we read:</p>
+<blockquote>
+<div><p>Tim Berners-Lee, the inventor of the Web and initiator of the Linked Data project, suggested a 5 star deployment scheme for Linked Data. The 5 Star Linked Data system is cumulative. Each additional star presumes the data meets the criteria of the previous step(s).</p>
+</div></blockquote>
+<blockquote>
+<div><p>☆ Data is available on the Web, in whatever format.</p>
+</div></blockquote>
+<blockquote>
+<div><p>☆☆ Available as machine-readable structured data, (i.e., not a scanned image).</p>
+</div></blockquote>
+<blockquote>
+<div><p>☆☆☆ Available in a non-proprietary format, (i.e, CSV, not Microsoft Excel).</p>
+</div></blockquote>
+<blockquote>
+<div><p>☆☆☆☆ Published using open standards from the W3C (RDF and SPARQL).</p>
+</div></blockquote>
+<blockquote>
+<div><p>☆☆☆☆☆ All of the above and links to other Linked Open Data.</p>
+</div></blockquote>
+<p>In this way, we can organize different database types into a data hierarchy like such:</p>
+<p><img alt="" src="_images/5-star-steps-open-data-5-star-model.png" /></p>
+<ul class="simple">
+<li><p>OL: Open License</p></li>
+<li><p>RE: Readable</p></li>
+<li><p>OF: Open format</p></li>
+<li><p>URI: Uniform Resource Identifier</p></li>
+<li><p>LD: Linked Data</p></li>
+</ul>
+<p>For a good description of this summary, see <a class="reference external" href="https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/">this article</a>.</p>
+</div>
+</div>
+<div class="section" id="query-languages">
+<h2>Query Languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
+<p>When trying to retrieve information, we are obviously primarily interested in querying information, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
+<p>Formally, query languages can be classified according to whether they are <strong>database query languages</strong> or <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
+<p>For the former we will discuss XML and SQL; for the latter CQL.</p>
+<div class="section" id="cql">
+<h3>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start with an example of an information retrieval query language: contextual query language:</p>
+<blockquote>
+<div><p>Contextual Query Language (CQL), previously known as Common Query Language, is a formal language for representing queries to information retrieval systems such as search engines, bibliographic catalogs and museum collection information. Based on the semantics of Z39.50, its design objective is that queries be human readable and writable, and that the language be intuitive while maintaining the expressiveness of more complex query languages. It is being developed and maintained by the Z39.50 Maintenance Agency, part of the Library of Congress.</p>
+</div></blockquote>
+<p>Querying with CQL operates via SRU - Search/Retrieve via URL, which is a standard XML-based protocol for search queries.</p>
+<p>You can find the <a class="reference external" href="http://www.loc.gov/standards/sru/index.html">SRU</a> and <a class="reference external" href="https://www.loc.gov/standards/sru/cql/spec.html">CQL</a> specifications at the Library of Congress website.</p>
+<p>A fun API that support SRU/CQL is offered by the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
+<p>To use this API you just send a web request to <code class="docutils literal notranslate"><span class="pre">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=</span></code> followed by your CQL query in double quotes (or rather: <code class="docutils literal notranslate"><span class="pre">%22</span></code> which is the URL-safe encoding of <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>), for instance: https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=%22Erasmus%22</p>
+<p>The response will be an XML document (database) containing the relevant CERL thesaurus entries for this query.</p>
+</div>
+<div class="section" id="xml">
+<h3>XML<a class="headerlink" href="#xml" title="Permalink to this headline">¶</a></h3>
+<p>XML is something most of you are already familiar with, as it is a recurring technology in digital text analysis. In fact, XML is ubiquitous in the information world. It is very actively used in the library world. Another example is invoicing; for instance, the Government of Flanders has been asking for XML e-invoices from its suppliers for all contracts since 2017.</p>
+<p>If you need to brush up your understanding of XML, <a class="reference external" href="https://www.w3schools.com/xml/">w3schools</a> is a good place to start. Here we will briefly return to the matter of <strong>parsing XML</strong>, which is the process of analyzing XML documents to extract their information.</p>
+<p>For Python, two XML libraries are highly recommended:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup</a></p></li>
+<li><p><a class="reference external" href="https://lxml.de/">lxml</a></p></li>
+</ul>
+<p>Both turn XML’s hierarchical structure into a parse tree, which behaves like a Pythonic object that you can then iterate over.</p>
+</div>
+<div class="section" id="sql">
+<h3>SQL<a class="headerlink" href="#sql" title="Permalink to this headline">¶</a></h3>
+<p>Unlike XML, SQL is a technology that is probably new to most of you. Therefore, we will spend some more time discussing it in this <a class="reference external" href="https://docs.google.com/presentation/d/1hLpHtKFs79QJYS0NpN9u4RG_hNwqScwoLgObFJKmvy8/edit?usp=sharing">presentation</a></p>
+<p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which allows a SQL interface to a database.</p>
+<p>For example, let’s launch some SQL queries on a sqlite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A recent version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># To use the module, you must first create a Connection object that represents the database</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
+<span class="c1"># Once you have a Connection, you create a Cursor object</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="c1"># To perform SQL commands you call the Cursor object&#39;s excute() method</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        select distinct author_zvwr, title_ti, impressum_ju1sv from author</span>
+<span class="s2">        join title on author.cloi = title.cloi</span>
+<span class="s2">        join impressum on title.cloi = impressum.cloi</span>
+<span class="s2">        group by author_zvwr</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Call fetchall() to get a list of the matching rows</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">60</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># Close the connection when you&#39;re done</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;A.E.J.D.&#39;, &#39;Exhibitio sacrorum canonum circa ius regvlarium ecclesiarvm, quoad prædicationem divini Verbi&#39;, &#39;1674&#39;)
+(&#39;A.F.&#39;, &quot;Histoire de l&#39;empereur Charles V.&quot;, &#39;1663&#39;)
+(&#39;A.F. Wouthers&#39;, &#39;Civilia busta Philippi ofte De borgerlycke uytvaert over Philippus den Vierden coninck van Spanien [...] gedaen door de overheyt ende het volck van Antwerpen [...] den 17. dagh der wintermaendt 1665&#39;, &#39;1666&#39;)
+(&#39;A.F., Theophilus&#39;, &quot;Het noodeloos tegen-venyn van een stuck sermoons door christelycke liefde van bitterheyt gesuyvert en wederleyt door&#39;t gesagh van d&#39;algemeyne kerck-vergaderingen en van d&#39;heylige vaders dienende tot vastigheyt van ons out geloof&quot;, &#39;1718&#39;)
+(&#39;A.G.&#39;, &#39;Maria het huys des heeren ghebouwt op seven colomnen, te weten op de dry goddelijcke deughden, ende de vier hooft-deughden&#39;, &#39;1683&#39;)
+(&#39;A.H.&#39;, &quot;Entretiens de devotion sur le S. sacrement de l&#39;autel&quot;, &#39;1722&#39;)
+(&#39;A.H.G.H.V.C. Romanum&#39;, &#39;Historia avgvsta, sive Imperatorvm cæsarvmq. Romanorvm vitae et res gestae ex antiquis inscriptionibus collecta&#39;, &#39;1602&#39;)
+(&#39;A.H.v.G.&#39;, &#39;Getuige der waerheid in de leere van Gods eeuwige verkiezinge, van de genade des zaligmakers, en van den vryewil der menschen&#39;, &#39;1689&#39;)
+(&#39;A.I.v.K.P.&#39;, &#39;Opgang, voortgang, en nedergang, der ketteryen deser eeuwe&#39;, &#39;1690&#39;)
+(&#39;A.J. Charles&#39;, &#39;Het leven van de H. moeder Begga fondateuresse van de beggynen&#39;, &#39;1760&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="assignment-json-metadata-harvester">
+<h2>Assignment: JSON metadata harvester<a class="headerlink" href="#assignment-json-metadata-harvester" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="json">
+<h3>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h3>
+<p>One (document) database technology which we have not discussed yet, is <a class="reference external" href="https://www.json.org/json-en.html">JSON</a>. If you need to brush up on your JSON skills, <a class="reference external" href="https://www.w3schools.com/js/js_json_intro.asp">w3schools</a> is again a good starting point.</p>
+<p>However, JSON is much easier to work with than XML. Basically, you can just think about it as a dictionary and Python, for instance, allows you to access it just so, using the <code class="docutils literal notranslate"><span class="pre">json</span></code> library:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span><span class="p">,</span><span class="n">dumps</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">{</span>
+<span class="s2">	&quot;1&quot;: {</span>
+<span class="s2">		&quot;lastname&quot;: &quot;Doe&quot;,</span>
+<span class="s2">		&quot;firstname&quot;: &quot;John&quot;</span>
+<span class="s2">	},</span>
+<span class="s2">	&quot;2&quot;: {</span>
+<span class="s2">		&quot;lastname&quot;: &quot;Doe&quot;,</span>
+<span class="s2">		&quot;firstname&quot;: &quot;Jane&quot;</span>
+<span class="s2">	}</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="c1"># Turn JSON into dict with loads()</span>
+<span class="n">contacts_dict</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span>
+<span class="c1"># Turn dict into JSON with dumps()</span>
+<span class="n">contacts_dict</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Eyre&quot;</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doe
+{&quot;1&quot;: {&quot;lastname&quot;: &quot;Doe&quot;, &quot;firstname&quot;: &quot;John&quot;}, &quot;2&quot;: {&quot;lastname&quot;: &quot;Eyre&quot;, &quot;firstname&quot;: &quot;Jane&quot;}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>For your assignement you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, Dbpedia and Wikidata. It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
+<p>Your assignement is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
+</div>
+<div class="section" id="some-tips">
+<h3>Some tips:<a class="headerlink" href="#some-tips" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">wskey=apidemo</span></code> for your API request.</p></li>
+<li><p>A good Python library to access URLs is <code class="docutils literal notranslate"><span class="pre">urllib</span></code>.</p></li>
+<li><p>Think about what we have seen already about standardizing/normalizing search strings, but take this to the next level.</p></li>
+<li><p>Try to anticipate what can go wrong.</p></li>
+<li><p>Test your application with the following search strings: <code class="docutils literal notranslate"><span class="pre">Erasmus</span></code>, <code class="docutils literal notranslate"><span class="pre">Justus</span> <span class="pre">Lipsius</span></code> and <code class="docutils literal notranslate"><span class="pre">Django</span> <span class="pre">Spirelli</span></code>.</p></li>
+</ul>
+<p>If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "Python 3.8.2 64-bit"
+        },
+        kernelOptions: {
+            kernelName: "Python 3.8.2 64-bit",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'Python 3.8.2 64-bit'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter03.html" title="previous page">Chapter 3: Getting started</a>
+    <a class='right-next' id="next-link" href="chapter05.html" title="next page">Chapter 5: Metadata</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tom Deneire<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
