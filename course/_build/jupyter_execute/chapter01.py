@@ -32,7 +32,13 @@ The aim of this course is to provide you with enough theoretical knowledge and e
 
 I have prepared this course as a series of Jupyter Notebooks in my editor VS Code (which is [free](https://code.visualstudio.com/)!, if you're looking for an excellent editor) and published on the GitHub repo for this course: https://github.com/TomDeneire/InformationScience. 
 
-I have chosen Jupyter Notebooks because they offer a way to teach both in a classroom and online (should COVID-19 regulations prohibit live teaching). You can choose how you view these notebooks and execute their code: either in an editor such as VS code, in your browser through Jupyter (Lab or Notebook) (https://jupyter.org/install). If you don't want to install Jupyter on your machine, you can view the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code is not guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
+I have chosen Jupyter Notebooks because they offer a way to teach both in a classroom and online (should COVID-19 regulations prohibit live teaching). You can choose how you view these notebooks and execute their code: 
+
+1. in an editor such as VS code
+2. in your browser through Jupyter (Lab or Notebook) (https://jupyter.org/install)
+3. as a Jupyter Book at https://tomdeneire.github.io/InformationScience
+
+If you don't want to install Jupyter on your machine, you can view the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code is not guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
 
 In order to obtain these course materials and to participate with the course, please do the following:
 
