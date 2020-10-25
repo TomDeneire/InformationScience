@@ -1,10 +1,6 @@
 # Chapter 3: Getting started
 
 
-![](images/data_to_conspiracy.jpeg)
-
-Credit: unknown
-
 ## Getting started
 
 A good scholarly way to get started is reading the introductions to some of the books mentioned in the course description - especially *Handbook of Information Science*, but also *Modern Information Retrieval* or *Information Architecture*.
