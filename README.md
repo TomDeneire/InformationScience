@@ -1,6 +1,6 @@
 # Information Science
 
-This repository pertains the course "Information Science" for the University of Antwerp [Master of Linguistics](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/) (from 2021-2022 onwards: "Master of Digital Text Analysis").
+This repository is for the course "Information Science" for the University of Antwerp [Master of Linguistics](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/) (from 2021-2022 onwards: "Master of Digital Text Analysis").
 
 ## Course Book
 
