@@ -4,8 +4,8 @@ This repository pertains the course "Information Science" for the University of 
 
 ## Course Book
 
-The course itself is also available as a [Jupyter Book](https://tomdeneire.github.io/InformationScience)
+The course itself is also available as a [Jupyter Book](https://tomdeneire.github.io/InformationScience).
 
 ## Course Details
 
-For the course details, please visit [this page](https://tomdeneire.github.io/InformationScience/coursedetails.html)
+For the course details, please visit [this page](https://tomdeneire.github.io/InformationScience/coursedetails.html).
