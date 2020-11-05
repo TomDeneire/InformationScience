@@ -1,6 +1,11 @@
 # Chapter 3: Getting started
 
 
+![](images/Hello_World_Brainfuck.png)
+
+"Hello world" program in __[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)__
+
+
 ## Getting started
 
 A good scholarly way to get started is reading the introductions to some of the books mentioned in the course description - especially *Handbook of Information Science*, but also *Modern Information Retrieval* or *Information Architecture*.

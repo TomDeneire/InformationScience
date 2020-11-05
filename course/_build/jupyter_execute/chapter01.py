@@ -41,7 +41,7 @@ I have chosen Jupyter Notebooks because they offer a way to teach both in a clas
 To view the content and execute the code, you can:
 
 1. use an editor with a Jupyter Notebook extension, such as VS code
-2. install [Jupyter](https://jupyter.org/install) (Lab or Notebook) locally and open the notebooks in your browser
+2. install __[Jupyter](https://jupyter.org/install)__ (Lab or Notebook) locally and open the notebooks in your browser
 
 If you don't want to install Jupyter on your machine, you can open the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code is always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
 
@@ -69,7 +69,24 @@ To be sure everyone is setup okay, please do the following:
 
 During the academic year 2020-2021, the course will take place on Fridays, from 9h30 to 12h30, in room C.203, during weeks 9-13.
 
-Each course will feature about 1,5 to 2 hours of theory and about 1 hour of practice. Most courses will feature a coding **assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours.
+Each course will feature about 1,5 to 2 hours of theory and about 1 hour of practice. Most courses will feature a coding **assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours. 
+
+Model solutions for the assignments will be made available in the repository with a few weeks delay.
+
+### !Covid-19 update (5 November 2020)
+
+The University of Antwerp has decided to switch to online teaching only, at least until 30 November. 
+
+For this course this will be organized as follows:
+
+1. At least one week before the course time, students will receive a Vimeo link where they can view a recording of the week's course (+/- 1 hour).
+2. Students watch the recording in their own time (+/- 1 hour) and also start implementing the coding assignment (+/- 0,5 hours).
+3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment.
+
+I hope that this online method can provide the hands-on mix of theory and practice I had hoped to achieve in person, without putting any additional strain on the students.
+
+If there are any changes to this MO, I will let the students know ASAP.
+
 
 ## Exam: Project assignment
 
@@ -86,6 +103,7 @@ The following links are reading material *ad libitum*. While I certainly do not 
 As a general note: you'll notice that I often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
 
 - Book recommendations for Python on [Medium](https://towardsdatascience.com/python-books-you-must-read-in-2020-a0fc33798bb)
+- A fantastic Python [cheat sheet](https://gto76.github.io/python-cheatsheet/)
 - [Computational Humanities Research](https://discourse.computational-humanities-research.org/), a platform for discussion on digital humanities, where you can also ask help with technical questions (code, tools, ...)
 
 ## Students
