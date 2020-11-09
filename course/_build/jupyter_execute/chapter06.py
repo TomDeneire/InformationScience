@@ -1,5 +1,11 @@
 # Chapter 6: Indexing
 
+![](images/tablet.jpg)
+
+[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)
+
+Credit: __[Wikimedia Commons](https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg)__
+
 ## Searching
 
 Very simply said, working with information often boils down to "searching stuff". Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.
