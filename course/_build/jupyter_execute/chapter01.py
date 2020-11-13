@@ -14,21 +14,21 @@ Welcome to the course "Information Science" for the University of Antwerp [Maste
 
 My name is Tom Deneire, I hold a PhD in Classics from the Katholieke Universiteit Leuven (2009). 
 
-From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. __[Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)__).
+From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. [Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)).
 
 In 2013 I moved to the University Library of Antwerp as **Curator of the Special Collections**, where I became increasingly interested in digitization and data science. I started studying  XML, SQL and Python, and using these digital tools to aggregate and research library metadata.
 
-In 2018 this lead to a switch from the Special Collections to the University Library's software department __[Anet](https://www.uantwerpen.be/nl/projecten/anet/__), where I have been  working since then as a **software engineer** for __[Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. My main coding languages are Python and especially __[MUMPS](https://en.wikipedia.org/wiki/MUMPS__), the language for our database engine (GT.M, provided by __[YottaDB](https://yottadb.com/__)). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux Mint as OS.
+In 2018 this lead to a switch from the Special Collections to the University Library's software department [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been  working since then as a **software engineer** for [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services). My main languages are Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux as OS (esp. the [Linux Mint](https://linuxmint.com/) distro).
 
-(More information about me and links at __[https://tomdeneire.github.io/](https://tomdeneire.github.io/)__).
+(More information about me and links at [https://tomdeneire.github.io/](https://tomdeneire.github.io/)).
 
 ### Why does that matter?
 
-The above should make clear that I am not a Computer Science major, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I should really be teaching this course! So be warned that I will certainly not have all the answers in this course. On the other hand, my own profile is very kindred to that of my intended audience: humanities students looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
+The above should make clear that I am not a Computer Science major, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I should really be teaching this course! So be warned that I will certainly not have all the answers in this course. On the other hand, my own profile is very kindred to that of my intended audience: humanities majros looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
 
 ## Course contents and learning outcomes
 
-My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, I think there is enough scholarly information out there to get by. Instead what is offered here is a very hands-on introduction into library science and the technologies used in the field. Indeed, I am not exaggerating when I claim that in my professional activities developing library software, I will use each and every one of the topics dealt with in this course on an almost daily basis.
+My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, I think there is enough scholarly literature out there to get by. Instead what is offered here is a very hands-on introduction into library science and the technologies used in the field. Indeed, I am not exaggerating when I claim that in my professional activities developing library software, I will use each and every one of the topics dealt with in this course on an almost daily basis.
 
 The aim of this course is to provide you with enough theoretical knowledge and especially practical experience to use these technologies in the field.
 
@@ -62,8 +62,8 @@ If you're unsure how to do all of this, [this](https://guides.github.com/activit
 
 To be sure everyone is setup okay, please do the following:
 
-1. put some test code in `test.py`, commit and push these changes to your fork
-2. add your name to this notebook (see "Students" section below) through a pull request
+1. create a new folder "assignments"
+2. put some test code in there (e.g. "test.py"), commit and push these changes to your fork
 
 ## Course and assignments
 
@@ -90,15 +90,13 @@ If there are any changes to this MO, I will let the students know ASAP.
 
 ## Exam: Project assignment
 
-The aforementioned assignments lead up to a **project assignment** which will serve as the exam for this course. The project assignment will be introduced during the final course. Students who have succesfully completed the previous course assignments should have no trouble submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
-
-## Required reading
-
-[to be decided]
+The aforementioned assignments lead up to a **project assignment** which will serve as the exam for this course. The project assignment will be introduced during the final course. The course coding assignments are not part of the course evaluation, but students who have succesfully completed the previous course assignments will be excellently prepared for submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
 
 ## Things you might find interesting
 
 The following links are reading material *ad libitum*. While I certainly do not expect you to read them, you might find them interesting. In any case, I did!
+
+Please feel free to send me suggestions too!
 
 As a general note: you'll notice that I often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
 
@@ -106,12 +104,6 @@ As a general note: you'll notice that I often refer to [Medium](https://medium.c
 - A fantastic Python __[cheat sheet](https://gto76.github.io/python-cheatsheet/)__
 - A GitHub repo of __[free programming books](https://github.com/EbookFoundation/free-programming-books)__
 - __[Computational Humanities Research](https://discourse.computational-humanities-research.org/)__, a platform for discussion on digital humanities, where you can also ask help with technical questions (code, tools, ...)
-
-## Students
-
-(*please provide first and last name, an email address and the operating system you use*)
-
-1. ...
 
 
 ```{toctree}
