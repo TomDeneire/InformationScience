@@ -14,9 +14,7 @@ We have already seen that searching text is rarely as easy as string.find(substr
 
 ### Regular expressions
 
-<div>
-<img src="images/regex.png"/>
-</div>
+![](images/regex.png)
 
 Credit: [xkcd.com](https://xkcd.com/1171/)
 

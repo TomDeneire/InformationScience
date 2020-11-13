@@ -14,13 +14,13 @@ Welcome to the course "Information Science" for the University of Antwerp [Maste
 
 My name is Tom Deneire, I hold a PhD in Classics from the Katholieke Universiteit Leuven (2009). 
 
-From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. [Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)).
+From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. __[Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)__).
 
 In 2013 I moved to the University Library of Antwerp as **Curator of the Special Collections**, where I became increasingly interested in digitization and data science. I started studying  XML, SQL and Python, and using these digital tools to aggregate and research library metadata.
 
-In 2018 this lead to a switch from the Special Collections to the University Library's software department [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been  working since then as a **software engineer** for [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services). My main coding languages are Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux Mint as OS.
+In 2018 this lead to a switch from the Special Collections to the University Library's software department __[Anet](https://www.uantwerpen.be/nl/projecten/anet/__), where I have been  working since then as a **software engineer** for __[Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. My main coding languages are Python and especially __[MUMPS](https://en.wikipedia.org/wiki/MUMPS__), the language for our database engine (GT.M, provided by __[YottaDB](https://yottadb.com/__)). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux Mint as OS.
 
-(More information about me and links at https://tomdeneire.github.io/).
+(More information about me and links at __[https://tomdeneire.github.io/](https://tomdeneire.github.io/)__).
 
 ### Why does that matter?
 
@@ -102,9 +102,10 @@ The following links are reading material *ad libitum*. While I certainly do not 
 
 As a general note: you'll notice that I often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
 
-- Book recommendations for Python on [Medium](https://towardsdatascience.com/python-books-you-must-read-in-2020-a0fc33798bb)
-- A fantastic Python [cheat sheet](https://gto76.github.io/python-cheatsheet/)
-- [Computational Humanities Research](https://discourse.computational-humanities-research.org/), a platform for discussion on digital humanities, where you can also ask help with technical questions (code, tools, ...)
+- Book recommendations for Python on __[Medium](https://towardsdatascience.com/python-books-you-must-read-in-2020-a0fc33798bb)__
+- A fantastic Python __[cheat sheet](https://gto76.github.io/python-cheatsheet/)__
+- A GitHub repo of __[free programming books](https://github.com/EbookFoundation/free-programming-books)__
+- __[Computational Humanities Research](https://discourse.computational-humanities-research.org/)__, a platform for discussion on digital humanities, where you can also ask help with technical questions (code, tools, ...)
 
 ## Students
 
