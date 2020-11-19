@@ -379,9 +379,34 @@ e = 101
 </div>
 </div>
 </div>
-<p>And, by the way, do you know the encoding of the strings the list will contain? And why does that matter?</p>
-<p>(If you’re not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: <strong><a class="reference external" href="https://link.medium.com/XW8PnuiLtbb">A Guide to Unicode, UTF-8 and Strings in Python</a></strong> by Sanket Gupta.</p>
-<p>You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We’ve gone from Paul Otlet’s grand visions of the future to the bare bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
+<p>And, by the way, do you know the encoding of the strings the list will contain? And why does that matter? It matters, because the editor you use to read the strings (e.g. VS code) and the programming language you use often work with default encodings. For instance, Python3 (not Python2) is default UTF8. So if you receive strings in a different encoding, you’ll have to decode them to render your results properly.</p>
+<p>(If you’re not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: <strong><a class="reference external" href="https://link.medium.com/XW8PnuiLtbb">A Guide to Unicode, UTF-8 and Strings in Python</a></strong> by Sanket Gupta).</p>
+<p>Let’s simulate what would happen if you were working with non-UTF8 encoded strings in Python3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_accent_aigue</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">233</span><span class="p">)</span>  <span class="c1"># unicode code point for é character</span>
+<span class="k">for</span> <span class="n">encoding</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="s1">&#39;latin1&#39;</span><span class="p">,</span> <span class="s1">&#39;ibm850&#39;</span><span class="p">]:</span>
+    <span class="n">bytes_string</span> <span class="o">=</span> <span class="n">e_accent_aigue</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">bytes_string</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bytes_string</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to print bytes </span><span class="si">{</span><span class="n">bytes_string</span><span class="si">}</span><span class="s2"> in UTF8&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xc3\xa9&#39;
+é
+b&#39;\xe9&#39;
+Unable to print bytes b&#39;\xe9&#39; in UTF8
+b&#39;\x82&#39;
+Unable to print bytes b&#39;\x82&#39; in UTF8
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list,really are. We’ve gone from Paul Otlet’s grand visions of the future to the bare bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
 </div>
 </div>
 <div class="section" id="assignment-onegram-counter">
