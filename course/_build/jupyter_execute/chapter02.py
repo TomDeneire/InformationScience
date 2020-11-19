@@ -23,6 +23,8 @@ __[Wikipedia](https://en.wikipedia.org/wiki/Information_theory)__ says:
 
 >A key measure in information theory is entropy. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (with two equally likely outcomes) provides less information (lower entropy) than specifying the outcome from a roll of a die (with six equally likely outcomes). Some other important measures in information theory are mutual information, channel capacity, error exponents, and relative entropy.
 
+(By the way, the entropy example is already a very nice illustration of the difference between information and knowledge)
+
 #### Information Retrieval
 
 Information Retrieval relies on information theory for its methods, but it is a much more applied discipline. __[Wikipedia](https://en.wikipedia.org/wiki/Information_retrieval)__ says: 

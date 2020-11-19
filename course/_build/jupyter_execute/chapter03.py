@@ -81,11 +81,22 @@ print("\n")
 for char in "Etienne".lower():
     print(char + " = " + str(ord(char)))
 
-And, by the way, do you know the encoding of the strings the list will contain? And why does that matter?
+And, by the way, do you know the encoding of the strings the list will contain? And why does that matter? It matters, because the editor you use to read the strings (e.g. VS code) and the programming language you use often work with default encodings. For instance, Python3 (not Python2) is default UTF8. So if you receive strings in a different encoding, you'll have to decode them to render your results properly.
 
-(If you're not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: __[A Guide to Unicode, UTF-8 and Strings in Python](https://link.medium.com/XW8PnuiLtbb)__ by Sanket Gupta.
+(If you're not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: __[A Guide to Unicode, UTF-8 and Strings in Python](https://link.medium.com/XW8PnuiLtbb)__ by Sanket Gupta).
 
-You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We've gone from Paul Otlet's grand visions of the future to the bare bits and bytes, one of the most fundamental concepts in computer science, really quickly.
+Let's simulate what would happen if you were working with non-UTF8 encoded strings in Python3:
+
+e_accent_aigue = chr(233)  # unicode code point for é character
+for encoding in ['utf8', 'latin1', 'ibm850']:
+    bytes_string = e_accent_aigue.encode(encoding)
+    print(bytes_string)
+    try:
+        print(bytes_string.decode('utf8'))
+    except UnicodeDecodeError:
+        print(f"Unable to print bytes {bytes_string} in UTF8")
+
+You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list,really are. We've gone from Paul Otlet's grand visions of the future to the bare bits and bytes, one of the most fundamental concepts in computer science, really quickly.
 
 ## Assignment: Onegram Counter
 
