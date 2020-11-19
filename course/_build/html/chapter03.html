@@ -248,15 +248,15 @@
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>A good scholarly way to get started is reading the introductions to some of the books mentioned in the course description - especially <em>Handbook of Information Science</em>, but also <em>Modern Information Retrieval</em> or <em>Information Architecture</em>.</p>
-<p>But let’s open up things a bit more anecdotally, with the story of <a class="reference external" href="https://daily.jstor.org/internet-before-internet-paul-otlet/">Paul Otlet and the Internet before the Internet</a>…</p>
+<p>But let’s open up things a bit more anecdotally, with the story of <strong><a class="reference external" href="https://daily.jstor.org/internet-before-internet-paul-otlet/">Paul Otlet and the Internet before the Internet</a></strong>…</p>
 </div>
 <div class="section" id="manipulating-information">
 <h2>Manipulating Information<a class="headerlink" href="#manipulating-information" title="Permalink to this headline">¶</a></h2>
-<p>The case of Otlet shows several things, but above all it makes it clear that information (or metadata in this case) never just <em>is</em>. It is <em>always already</em> manipulated in order to present it in a certain way (Derrida pun intended). So we could say that at the heart of information retrieval is <strong>manipulating information</strong>, i.e. selecting, grouping, filtering, ordering, sorting, ranking. (For those of you who know <a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a>, notice how this resembles the <code class="docutils literal notranslate"><span class="pre">select</span></code> statement? For those of you who don’t, don’t worry, we’ll look into it later on.)</p>
-<p>In programming terms, most of this boils down to string operations, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
+<p>The case of Otlet shows several things, but above all it makes it clear that information (or metadata in this case) never just <em>is</em>. It is <em>always already</em> manipulated in order to present it in a certain way (Derrida pun intended). So we could say that at the heart of information retrieval is <strong>manipulating information</strong>, i.e. selecting, grouping, filtering, ordering, sorting, ranking. (For those of you who know <strong><a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a></strong>, notice how this resembles the syntax of a <code class="docutils literal notranslate"><span class="pre">select</span></code> statement? For those of you who don’t, don’t worry, we’ll look into it later on.)</p>
+<p>In programming terms, you would be surprised to see how much of this comes down to string operations, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
 <div class="section" id="example-sorting-strings">
 <h3>Example: sorting strings<a class="headerlink" href="#example-sorting-strings" title="Permalink to this headline">¶</a></h3>
-<p>Let’s look at the example of sorting strings. Suppose our task is presenting an alphabetized list of contact persons. The alphabet is a recognizable and expected key for such a list, so that makes sense.</p>
+<p>Let’s look at the example of sorting strings. Suppose our task is presenting an alphabetized list of contact persons. The alphabet is a recognizable and expected key for such a list, so that makes sense from an information retrieval perspective.</p>
 <p>Of course, in Python you can just do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -289,8 +289,8 @@
 </div>
 </div>
 </div>
-<p>Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) bubble sort. For some Python implementations, see this <a class="reference external" href="https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm">Tutorialspoint article</a>.</p>
-<p>But if you have never studied it, writing your own sort for the first time will not be an easy exercise. I challenge you, if you’ve never done it. For a bit of fun, here’s another kind of sort I recently implemented in Python: <em>random sort</em>. Very time-inefficient, but perfectly functional!</p>
+<p>Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) bubble sort. For some Python implementations, see this <strong><a class="reference external" href="https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm">Tutorialspoint article</a></strong>.</p>
+<p>But if you have never studied it, writing your own sort for the first time will not be an easy exercise. I challenge you, it’s good fun to try. For a bit of fun, here’s another kind of sort I recently implemented in Python: <em>random sort</em>. Very time-inefficient, but perfectly functional!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_sort</span><span class="p">(</span><span class="n">InputList</span><span class="p">):</span>
@@ -308,7 +308,7 @@
             <span class="n">test</span> <span class="o">=</span> <span class="n">unsorted</span>
     <span class="k">return</span> <span class="n">InputList</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">random_sort</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">random_sort</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -319,7 +319,7 @@
 </div>
 </div>
 <p>And that’s only the first part of the problem: sorting a list of numbers. Now try to think how this would help to sort lists of strings. First of all, how would you translate characters to numbers?</p>
-<p>One way is to use <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code points for numbers:</p>
+<p>One way is to use <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Unicode">Unicode</a></strong> code points for numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">&quot;Doe, John&quot;</span><span class="p">:</span>
@@ -381,12 +381,12 @@ e = 101
 </div>
 <p>And, by the way, do you know the encoding of the strings the list will contain? And why does that matter?</p>
 <p>(If you’re not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: <strong><a class="reference external" href="https://link.medium.com/XW8PnuiLtbb">A Guide to Unicode, UTF-8 and Strings in Python</a></strong> by Sanket Gupta.</p>
-<p>You can see how complex seemingly trivial tasks of information retrieval, like alphabetizing a list, really are. We’ve gone from iTunes to bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
+<p>You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We’ve gone from Paul Otlet’s grand visions of the future to the bare bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
 </div>
 </div>
 <div class="section" id="assignment-onegram-counter">
 <h2>Assignment: Onegram Counter<a class="headerlink" href="#assignment-onegram-counter" title="Permalink to this headline">¶</a></h2>
-<p>You probably know about Google Book’s <a class="reference external" href="https://books.google.com/ngrams">Ngram Viewer</a>: when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g., “British English”, “English Fiction”, “French”) over the selected years.</p>
+<p>You probably know about Google Book’s <strong><a class="reference external" href="https://books.google.com/ngrams">Ngram Viewer</a></strong>: when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g., “British English”, “English Fiction”, “French”) over the selected years.</p>
 <p>Your assignment for this course is something similar: build a Python function that can take the file <code class="docutils literal notranslate"><span class="pre">data/corpus.txt</span></code> (UTF-8 encoded) from this repo as an argument and print a count of the 100 most frequent 1-grams (i.e. <em>single words</em>).</p>
 <p>In essence the job is to do this:</p>
 <div class="cell docutils container">
@@ -415,7 +415,9 @@ e = 101
 </div>
 </div>
 </div>
-<p>However, you can’t use the <code class="docutils literal notranslate"><span class="pre">collections</span></code> library. Moreover, try to think about what else may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the <code class="docutils literal notranslate"><span class="pre">read()</span></code> method). What would happen if we tried this on a really big text file? <strong>Most importantly, the count is also wrong</strong>. Check by counting in an editor, for instance, and try to find out why.</p>
+<p>However, you can’t use the <code class="docutils literal notranslate"><span class="pre">collections</span></code> library. :-)</p>
+<p>Moreover, try to think about what else may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the <code class="docutils literal notranslate"><span class="pre">read()</span></code> method). What would happen if we tried this on a really big text file?</p>
+<p><strong>Most importantly, the count is also wrong</strong>. Check by counting in an editor, for instance, and try to find out why.</p>
 <p>If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.</p>
 </div>
 </div>
@@ -429,16 +431,16 @@ e = 101
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "Python 3.8.2 64-bit"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "Python 3.8.2 64-bit",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'Python 3.8.2 64-bit'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

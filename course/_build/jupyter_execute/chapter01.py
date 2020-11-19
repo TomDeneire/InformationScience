@@ -6,7 +6,7 @@ Credit: unknown
 
 ## Welcome
 
-Welcome to the course "Information Science" for the University of Antwerp [Master of Linguistics](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/) (from 2021-2022 onwards: "Master of Digital Text Analysis")!
+Welcome to the course "Information Science" for the University of Antwerp __[Master of Linguistics](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/)__ (from 2021-2022 onwards: "Master of Digital Text Analysis")!
 
 ## Who am I and why does that matter?
 
@@ -18,7 +18,7 @@ From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and
 
 In 2013 I moved to the University Library of Antwerp as **Curator of the Special Collections**, where I became increasingly interested in library metadata and data science. I started studying  XML, SQL and Python, and using these digital tools to research and aggregate library metadata.
 
-In 2018 this lead to a switch from the Special Collections to the University Library's software department [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been  working since then as a **software engineer** for __[Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. My main languages are Python and especially __[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__, the language for our database engine (GT.M, provided by __[YottaDB](https://yottadb.com/)__). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux as OS (esp. the __[Linux Mint](https://linuxmint.com/)__ distro).
+In 2018 this lead to a switch from the Special Collections to the University Library's software department __[Anet](https://www.uantwerpen.be/nl/projecten/anet/)__, where I have been  working since then as a **software engineer** for __[Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. My main languages are Python and especially __[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__, the language for our database engine (GT.M, provided by __[YottaDB](https://yottadb.com/)__). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux as OS (esp. the __[Linux Mint](https://linuxmint.com/)__ distro).
 
 (More information about me and links at __[https://tomdeneire.github.io/](https://tomdeneire.github.io/)__).
 
@@ -34,7 +34,7 @@ The aim of this course is to provide you with enough theoretical knowledge and e
 
 ## Technical setup
 
-I have prepared this course as a series of Jupyter Notebooks and published on the GitHub repo for this course: https://github.com/TomDeneire/InformationScience. 
+I have prepared this course as a series of Jupyter Notebooks and published on the __[GitHub repo](https://github.com/TomDeneire/InformationScience)__ for this course. 
 
 I have chosen Jupyter Notebooks because they offer a way to teach both in a classroom and online (should COVID-19 regulations prohibit live teaching). You can choose how you interact with these notebooks.
 
@@ -81,7 +81,7 @@ For this course this will be organized as follows:
 
 1. At least one week before the course time, students will receive a Vimeo link where they can view a recording of the week's course (+/- 1 hour).
 2. Students watch the recording in their own time (+/- 1 hour) and also start implementing the coding assignment (+/- 0,5 hours).
-3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment.
+3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment. This session will also be recorded and uploaded to Vimeo.
 
 I hope that this online method can provide the hands-on mix of theory and practice I had hoped to achieve in person, without putting any additional strain on the students.
 
@@ -96,7 +96,7 @@ The aforementioned assignments lead up to a **project assignment** which will se
 
 The following links are reading material *ad libitum*. While I certainly do not expect you to read them, you might find them interesting. In any case, I did! Please feel free to send me suggestions too!
 
-As a general note: you'll notice that I often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
+As a general note: you'll notice that I often refer to __[Medium](https://medium.com/)__, an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
 
 - Book recommendations for Python on __[Medium](https://towardsdatascience.com/python-books-you-must-read-in-2020-a0fc33798bb)__
 - A fantastic Python __[cheat sheet](https://gto76.github.io/python-cheatsheet/)__
