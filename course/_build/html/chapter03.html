@@ -253,7 +253,7 @@
 <div class="section" id="manipulating-information">
 <h2>Manipulating Information<a class="headerlink" href="#manipulating-information" title="Permalink to this headline">¶</a></h2>
 <p>The case of Otlet shows several things, but above all it makes it clear that information (or metadata in this case) never just <em>is</em>. It is <em>always already</em> manipulated in order to present it in a certain way (Derrida pun intended). So we could say that at the heart of information retrieval is <strong>manipulating information</strong>, i.e. selecting, grouping, filtering, ordering, sorting, ranking. (For those of you who know <strong><a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a></strong>, notice how this resembles the syntax of a <code class="docutils literal notranslate"><span class="pre">select</span></code> statement? For those of you who don’t, don’t worry, we’ll look into it later on.)</p>
-<p>In programming terms, you would be surprised to see how much of this comes down to string operations, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
+<p>In programming terms, you would be surprised to see how much of this comes down to basic <strong>string operations</strong>, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
 <div class="section" id="example-sorting-strings">
 <h3>Example: sorting strings<a class="headerlink" href="#example-sorting-strings" title="Permalink to this headline">¶</a></h3>
 <p>Let’s look at the example of sorting strings. Suppose our task is presenting an alphabetized list of contact persons. The alphabet is a recognizable and expected key for such a list, so that makes sense from an information retrieval perspective.</p>
@@ -289,7 +289,7 @@
 </div>
 </div>
 </div>
-<p>Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) bubble sort. For some Python implementations, see this <strong><a class="reference external" href="https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm">Tutorialspoint article</a></strong>.</p>
+<p>Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort</a></strong>. For some Python implementations, see this <strong><a class="reference external" href="https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm">Tutorialspoint article</a></strong>.</p>
 <p>But if you have never studied it, writing your own sort for the first time will not be an easy exercise. I challenge you, it’s good fun to try. For a bit of fun, here’s another kind of sort I recently implemented in Python: <em>random sort</em>. Very time-inefficient, but perfectly functional!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -347,7 +347,7 @@
 </div>
 </div>
 </div>
-<p>You can account for that by converting all strings to lower case first, but what happens in the case of <code class="docutils literal notranslate"><span class="pre">Étienne</span></code> versus <code class="docutils literal notranslate"><span class="pre">Etienne</span></code>, which are usually interchangeable?</p>
+<p>You can account for that by converting all strings to lower case first, but what happens in the case of <code class="docutils literal notranslate"><span class="pre">Étienne</span></code> versus <code class="docutils literal notranslate"><span class="pre">Etienne</span></code>, which you would want to be sorted close to each other and are, in fact, used interchangeably?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">&quot;Étienne&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
@@ -379,6 +379,22 @@ e = 101
 </div>
 </div>
 </div>
+<p>We can complicate matters even more:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">197</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="mi">8491</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Å
+Å
+</pre></div>
+</div>
+</div>
+</div>
+<p>So even Unicode code points don’t offer a unique mapping of characters to numbers. (To solve this, there is luckily something called <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization">Unicode normalization</a></strong>)</p>
 <p>And, by the way, do you know the encoding of the strings the list will contain? And why does that matter? It matters, because the editor you use to read the strings (e.g. VS code) and the programming language you use often work with default encodings. For instance, Python3 (not Python2) is default UTF8. So if you receive strings in a different encoding, you’ll have to decode them to render your results properly.</p>
 <p>(If you’re not comfortable with the difference between text and bytes, and the notion of encoding/decoding, this article is a good starting point: <strong><a class="reference external" href="https://link.medium.com/XW8PnuiLtbb">A Guide to Unicode, UTF-8 and Strings in Python</a></strong> by Sanket Gupta).</p>
 <p>Let’s simulate what would happen if you were working with non-UTF8 encoded strings in Python3:</p>
@@ -440,7 +456,7 @@ Unable to print bytes b&#39;\x82&#39; in UTF8
 </div>
 </div>
 </div>
-<p>However, you can’t use the <code class="docutils literal notranslate"><span class="pre">collections</span></code> library. :-)</p>
+<p>However, there is a twist: you can’t use the <code class="docutils literal notranslate"><span class="pre">collections</span></code> library…</p>
 <p>Moreover, try to think about what else may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the <code class="docutils literal notranslate"><span class="pre">read()</span></code> method). What would happen if we tried this on a really big text file?</p>
 <p><strong>Most importantly, the count is also wrong</strong>. Check by counting in an editor, for instance, and try to find out why.</p>
 <p>If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.</p>

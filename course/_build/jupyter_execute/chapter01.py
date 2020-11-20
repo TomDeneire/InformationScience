@@ -24,11 +24,11 @@ In 2018 this lead to a switch from the Special Collections to the University Lib
 
 ### Why does that matter?
 
-The above should make clear that I am not an expert in Information Science, nor a Computer Science major, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I should really be teaching this course! So be warned that I will certainly not have all the answers in this course. On the other hand, my own profile is very kindred to that of my intended audience: humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
+The above should make clear that I am not an expert in Information Science, nor a Computer Science major, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I should really be teaching this course! So be warned that I will certainly not have all the answers in this course. On the other hand, my own profile is very kindred to that of my **intended audience**: humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
 
 ## Course contents and learning outcomes
 
-My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, I think there is enough scholarly literature out there to get by. Instead what is offered here is a very hands-on introduction into library science and the technologies used in the field. Indeed, I am not exaggerating if I claim that in my professional activities developing library software, I will use each and every one of the topics dealt with in this course on an almost daily basis.
+My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, I think there is enough scholarly literature out there to get by. Instead what is offered here is a very hands-on introduction into library science and the technologies used in the field. Indeed, I am not exaggerating if I claim that in my professional activities developing library software, I will use each and every one of the topics dealt with in this course on an almost **daily basis**.
 
 The aim of this course is to provide you with enough theoretical knowledge and especially practical experience to use these technologies in the field.
 
@@ -79,7 +79,7 @@ The University of Antwerp has decided to switch to online teaching only, at leas
 
 For this course this will be organized as follows:
 
-1. At least one week before the course time, students will receive a Vimeo link where they can view a recording of the week's course (+/- 1 hour).
+1. About one week before the course takes place, students will receive a Vimeo link where they can view a recording of the week's course (+/- 1 hour).
 2. Students watch the recording in their own time (+/- 1 hour) and also start implementing the coding assignment (+/- 0,5 hours).
 3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment. This session will also be recorded and uploaded to Vimeo.
 

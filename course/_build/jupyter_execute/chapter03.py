@@ -17,7 +17,7 @@ But let's open up things a bit more anecdotally, with the story of __[Paul Otlet
 
 The case of Otlet shows several things, but above all it makes it clear that information (or metadata in this case) never just *is*. It is *always already* manipulated in order to present it in a certain way (Derrida pun intended). So we could say that at the heart of information retrieval is **manipulating information**, i.e. selecting, grouping, filtering, ordering, sorting, ranking. (For those of you who know __[SQL](https://en.wikipedia.org/wiki/SQL)__, notice how this resembles the syntax of a `select` statement? For those of you who don't, don't worry, we'll look into it later on.)
 
-In programming terms, you would be surprised to see how much of this comes down to string operations, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.
+In programming terms, you would be surprised to see how much of this comes down to basic **string operations**, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.
 
 ### Example: sorting strings
 
@@ -39,7 +39,7 @@ numbers = [7, 8, 1, 7, 2]
 sorted_numbers = sorted(numbers)
 print(sorted_numbers)
 
-Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) bubble sort. For some Python implementations, see this __[Tutorialspoint article](https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm)__.
+Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) __[bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)__. For some Python implementations, see this __[Tutorialspoint article](https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm)__.
 
 But if you have never studied it, writing your own sort for the first time will not be an easy exercise. I challenge you, it's good fun to try. For a bit of fun, here's another kind of sort I recently implemented in Python: *random sort*. Very time-inefficient, but perfectly functional!
 
@@ -73,13 +73,20 @@ But of course when the case changes, the numbers will also change:
 for char in "doe, john":
     print(ord(char),end=",")
 
-You can account for that by converting all strings to lower case first, but what happens in the case of `Étienne` versus `Etienne`, which are usually interchangeable?
+You can account for that by converting all strings to lower case first, but what happens in the case of `Étienne` versus `Etienne`, which you would want to be sorted close to each other and are, in fact, used interchangeably?
 
 for char in "Étienne".lower():
     print(char + " = " + str(ord(char)))
 print("\n")
 for char in "Etienne".lower():
     print(char + " = " + str(ord(char)))
+
+We can complicate matters even more:
+
+print(chr(197))
+print(chr(8491))
+
+So even Unicode code points don't offer a unique mapping of characters to numbers. (To solve this, there is luckily something called __[Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization)__)
 
 And, by the way, do you know the encoding of the strings the list will contain? And why does that matter? It matters, because the editor you use to read the strings (e.g. VS code) and the programming language you use often work with default encodings. For instance, Python3 (not Python2) is default UTF8. So if you receive strings in a different encoding, you'll have to decode them to render your results properly.
 
@@ -122,7 +129,7 @@ def onegrams(file):
 ngram_viewer = onegrams(os.path.join('data', 'corpus.txt'))
 print(ngram_viewer.most_common(100))
 
-However, you can't use the `collections` library. :-)
+However, there is a twist: you can't use the `collections` library...
 
 Moreover, try to think about what else may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the `read()` method). What would happen if we tried this on a really big text file? 
 
