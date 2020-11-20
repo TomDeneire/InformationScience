@@ -83,8 +83,9 @@ for char in "Etienne".lower():
 
 We can complicate matters even more:
 
-print(chr(197))
-print(chr(8491))
+print('\u00C5')
+print('\u212B')
+print('\u0041\u030A')
 
 So even Unicode code points don't offer a unique mapping of characters to numbers. (To solve this, there is luckily something called __[Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization)__)
 

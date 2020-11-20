@@ -299,7 +299,7 @@ Use Whoosh to teach English morphology with examples from a given corpus. For in
 
 Forms like `put` and `do` illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding 'ed', 'ing', etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.
 
-Whoosh has a particular feature to deal with this. Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus (folder `corpus_of_british_fiction` in this repo) that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.
+Whoosh has a particular feature to deal with this. Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus (folder `corpus_of_british_fiction` in this repo, which I owe to __[Maciej Eder](http://maciejeder.org/)__) that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.
 
 Also, try to display the results nicely, i.e. without the markup tags we saw in the above example. Maybe you can even print the matched word in bold?
 
