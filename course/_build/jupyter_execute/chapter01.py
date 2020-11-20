@@ -79,9 +79,9 @@ The University of Antwerp has decided to switch to online teaching only, at leas
 
 For this course this will be organized as follows:
 
-1. About one week before the course takes place, students will receive a Vimeo link where they can view a recording of the week's course (+/- 1 hour).
+1. About one week before the course takes place, students will receive a Google Drive link where they can view a recording of the week's course (+/- 1 hour).
 2. Students watch the recording in their own time (+/- 1 hour) and also start implementing the coding assignment (+/- 0,5 hours).
-3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment. This session will also be recorded and uploaded to Vimeo.
+3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment. This session will also be recorded and uploaded to Google Drive.
 
 I hope that this online method can provide the hands-on mix of theory and practice I had hoped to achieve in person, without putting any additional strain on the students.
 
