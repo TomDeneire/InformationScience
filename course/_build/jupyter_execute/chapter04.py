@@ -130,9 +130,19 @@ The core concept of the triplestore and the underlying Linked Data principle is 
 <?xml version="1.0"?>
     <rdf:Description rdf:about="http://www.wikidata.org/entity/Q90">
         <wdt:P1376 rdf:resource="http://www.wikidata.org/entity/Q142"/>
+    </rdf:Description>
 ```
 
 This is a triple expressing the fact that "Paris" (subject) "is the capital of" (predicate) "France" (object). To express this three URIs are used: `Q90` (Paris), `P1376` (property "is capital of") and `Q142` (France). The makes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and linked: all elements of the triple are linked up to other data, e.g. `Q142` which was the object in this statement, will be the subject of others.
+
+Consider the difference with non-RDF XML where resources are not identified with URIs and data is not linked and the model not open:
+
+```xml
+<?xml version="1.0"?>
+    <Description>Paris
+        <isCapitalof>France</isCapitalof>
+    </Description>
+```
 
 RDF and especially Linked Open Data are undoubtedly part of the future for information science. If you're interested to know more or need to work with RDF and Linked Data in practice, I highly recommend reading *A Librarian's Guide to Graphs, Data and the Semantic Web*, By James Powell, __[ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)__.
 

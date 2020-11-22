@@ -442,9 +442,17 @@
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
     <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">&quot;http://www.wikidata.org/entity/Q90&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;wdt:P1376</span> <span class="na">rdf:resource=</span><span class="s">&quot;http://www.wikidata.org/entity/Q142&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/rdf:Description&gt;</span>
 </pre></div>
 </div>
 <p>This is a triple expressing the fact that “Paris” (subject) “is the capital of” (predicate) “France” (object). To express this three URIs are used: <code class="docutils literal notranslate"><span class="pre">Q90</span></code> (Paris), <code class="docutils literal notranslate"><span class="pre">P1376</span></code> (property “is capital of”) and <code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France). The makes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and linked: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
+<p>Consider the difference with non-RDF XML where resources are not identified with URIs and data is not linked and the model not open:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+    <span class="nt">&lt;Description&gt;</span>Paris
+        <span class="nt">&lt;isCapitalof&gt;</span>France<span class="nt">&lt;/isCapitalof&gt;</span>
+    <span class="nt">&lt;/Description&gt;</span>
+</pre></div>
+</div>
 <p>RDF and especially Linked Open Data are undoubtedly part of the future for information science. If you’re interested to know more or need to work with RDF and Linked Data in practice, I highly recommend reading <em>A Librarian’s Guide to Graphs, Data and the Semantic Web</em>, By James Powell, <strong><a class="reference external" href="https://isbnsearch.org/isbn/9781843347538">ISBN 978-1843347538</a></strong>.</p>
 </div>
 </div>
