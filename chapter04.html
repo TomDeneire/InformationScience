@@ -246,6 +246,11 @@
      Databases as Linked Data
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rdf">
+     RDF
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -261,11 +266,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#xml">
      XML
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#excursus-rdf">
-     Excursus: RDF
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -374,6 +374,22 @@
 <li><p><strong>document stores</strong>, such as XML or JSON</p></li>
 <li><p><strong>triple stores</strong>, such as RDF</p></li>
 </ul>
+<p>The important thing to realize here is that post-relational databases can express things that relational databases can’t. For instance, how would you translate this JSON (postrelational) to a spreadsheet (relational)?</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+	<span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+		<span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Tom Deneire&quot;</span><span class="p">,</span>
+		<span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;39&quot;</span>
+	<span class="p">},</span>
+	<span class="nt">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span>
+		<span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gandalf&quot;</span><span class="p">,</span>
+		<span class="nt">&quot;bio&quot;</span><span class="p">:</span> <span class="p">{</span>
+			<span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+			<span class="nt">&quot;occupation&quot;</span><span class="p">:</span> <span class="s2">&quot;wizard&quot;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="databases-as-linked-data">
@@ -408,6 +424,28 @@
 <li><p>LD: Linked Data</p></li>
 </ul>
 <p>For a good description of this summary, see <strong><a class="reference external" href="https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/">this article</a></strong>.</p>
+</div>
+<div class="section" id="rdf">
+<h3>RDF<a class="headerlink" href="#rdf" title="Permalink to this headline">¶</a></h3>
+<p>Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a data model, not a data serialization model, such as XML or JSON - in fact, both can be used to express RDF data.</p>
+<p>A quick summary from <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Wikipedia</a></strong>:</p>
+<blockquote>
+<div><p>The RDF data model is similar to classical conceptual modeling approaches (such as entity–relationship or class diagrams). It is based on the idea of making statements about resources (in particular web resources) in expressions of the form <strong>subject–predicate–object, known as triples</strong>. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.</p>
+</div></blockquote>
+<blockquote>
+<div><p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a subject denoting “the sky”, a predicate denoting “has the color”, and an object denoting “blue”. Therefore, RDF uses subject instead of object (or entity) in contrast to the typical approach of an entity–attribute–value model in object-oriented design: entity (sky), attribute (color), and value (blue).</p>
+</div></blockquote>
+<blockquote>
+<div><p>RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.</p>
+</div></blockquote>
+<p>The core concept of the triplestore and the underlying Linked Data principle is the Uniform Resource Identifier (URI), a unique and unambiguous ID for all things linked. Optimally linked data uses URIs for all three elements of the triple, subject, predicate and verb. To illustrate how this works, let’s look at the (abbreviated) RDF/XML for the Wikidata entry <strong><a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a></strong>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+    <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">&quot;http://www.wikidata.org/entity/Q90&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;wdt:P1376</span> <span class="na">rdf:resource=</span><span class="s">&quot;http://www.wikidata.org/entity/Q142&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>This is a triple expressing the fact that “Paris” (subject) “is the capital of” (predicate) “France” (object). To express this three URIs are used: <code class="docutils literal notranslate"><span class="pre">Q90</span></code> (Paris), <code class="docutils literal notranslate"><span class="pre">P1376</span></code> (property “is capital of”) and <code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France). The makes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and linked: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
+<p>RDF and especially Linked Open Data are undoubtedly part of the future for information science. If you’re interested to know more or need to work with RDF and Linked Data in practice, I highly recommend reading <em>A Librarian’s Guide to Graphs, Data and the Semantic Web</em>, By James Powell, <strong><a class="reference external" href="https://isbnsearch.org/isbn/9781843347538">ISBN 978-1843347538</a></strong>.</p>
 </div>
 </div>
 <div class="section" id="query-languages">
@@ -444,21 +482,6 @@
 <li><p><strong><a class="reference external" href="https://lxml.de/">lxml</a></strong></p></li>
 </ul>
 <p>Both turn XML’s hierarchical structure into a parse tree, which behaves like a Pythonic object that you can then iterate over. Chapter 5 will feature a coding assignment that involves parsing and building XML, so it’s recommended to refamiliarize yourself with either or both of these libraries.</p>
-</div>
-<div class="section" id="excursus-rdf">
-<h3>Excursus: RDF<a class="headerlink" href="#excursus-rdf" title="Permalink to this headline">¶</a></h3>
-<p>Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a data model, not a data serialization model, such as XML or JSON - in fact, both can be used to express RDF data.</p>
-<p>A quick summary from <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Wikipedia</a></strong>:</p>
-<blockquote>
-<div><p>The RDF data model is similar to classical conceptual modeling approaches (such as entity–relationship or class diagrams). It is based on the idea of making statements about resources (in particular web resources) in expressions of the form subject–predicate–object, known as triples. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.</p>
-</div></blockquote>
-<blockquote>
-<div><p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a subject denoting “the sky”, a predicate denoting “has the color”, and an object denoting “blue”. Therefore, RDF uses subject instead of object (or entity) in contrast to the typical approach of an entity–attribute–value model in object-oriented design: entity (sky), attribute (color), and value (blue).</p>
-</div></blockquote>
-<blockquote>
-<div><p>RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.</p>
-</div></blockquote>
-<p>RDF and especially Linked Open Data are undoubtedly part of the future for information science. If you’re interested to know more or need to work with RDF and Linked Data in practice, I highly recommend reading <em>A Librarian’s Guide to Graphs, Data and the Semantic Web</em>, By James Powell, <strong><a class="reference external" href="https://isbnsearch.org/isbn/9781843347538">ISBN 978-1843347538</a></strong>.</p>
 </div>
 <div class="section" id="sql-sqlite">
 <h3>SQL/SQLite<a class="headerlink" href="#sql-sqlite" title="Permalink to this headline">¶</a></h3>
