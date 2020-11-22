@@ -213,12 +213,10 @@ query = """
         group by author_zvwr
         """
 c.execute(query)
-data = []
 # Call fetchall() to get a list of the matching rows
-for x in c.fetchall():
-    data.append(x)
-for result in data[50:60]:
-    print(result)
+data = [row for row in c.fetchall()]
+for row in data[50:60]:
+    print(row)
 # Close the connection when you're done
 conn.close()
 
@@ -253,14 +251,14 @@ print(contacts)
 
 For your assignement you will be using the JSON data made available through the __[Europeana Entities API](https://pro.europeana.eu/page/entity)__, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API's __[documentation](https://pro.europeana.eu/page/entity)__ first.
 
-Your assignement is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.
+Your assignement is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output. 
 
 ### Some tips:
 
-- You can use `wskey=apidemo` for your API request.
+- You can use the key `wskey=apidemo` for your API request.
 - A good Python library to access URLs is `urllib`.
 - Think about what we have seen already about standardizing/normalizing search strings, but take this to the next level.
-- Try to anticipate what can go wrong. 
+- Try to anticipate what can go wrong so the program doesn't crash in unexpected situations.
 - Test your application with the following search strings: `Erasmus`, `Justus Lipsius` and `Django Spirelli`.
 
 If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite. 
