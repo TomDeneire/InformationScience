@@ -13,6 +13,7 @@ def clean(to_clean: str) -> str:
         e.g. "Dora's book" -> "Dora's" should not be become: "Dora" + "s"
     but "he said: 'Captain, ..." -> "'Captain" should become "Captain"!
     Therefore we deal with the apostrophe in the split() function.
+    We keep numbers and such, this is also debatable.
     """
     for punc in "!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\n":
         # checking for efficiency
@@ -102,6 +103,9 @@ Some points to take away from this assignment:
     1. As pointed out in chapter03, handling data, including text, is always
     manipulating it and involves choices. So be careful and above all,
     be aware of this and (esp. in research) communicate about this manipulation!
+    This exercise was not so much about getting the count right (which is
+    debatable anyway, see the apostrophe question) but about questioning how
+    to treat text when extracting words.
 
     2. Write clean code: use descriptive variable names (not `for x in ...`),
     break up your code into functions, use code comments, ...
