@@ -39,7 +39,7 @@ numbers = [7, 8, 1, 7, 2]
 sorted_numbers = sorted(numbers)
 print(sorted_numbers)
 
-Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) __[bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)__. For some Python implementations, see this __[Tutorialspoint article](https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm)__.
+Of course, the sorting algorithm is a well-known chapter in Computer Science. Some of you might be familiar with different kinds of sorts, like merge sort, insertion sort or (my favourite) __[bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)__. For some Python implementations, see this __[Tutorialspoint article](https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm)__ or for a general discussie, see this __[Medium article](https://medium.com/better-programming/5-basic-sorting-algorithms-you-must-know-9ef5b1f3949c?_branch_match_id=730721907169511509)__.
 
 But if you have never studied it, writing your own sort for the first time will not be an easy exercise. I challenge you, it's good fun to try. For a bit of fun, here's another kind of sort I recently implemented in Python: *random sort*. Very time-inefficient, but perfectly functional!
 

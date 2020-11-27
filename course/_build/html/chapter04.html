@@ -291,9 +291,21 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-tips">
-     Some tips:
+    <a class="reference internal nav-link" href="#what-is-an-api">
+     What is an API?
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment">
+     Assignment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#some-tips">
+       Some tips:
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -519,6 +531,7 @@
 <span class="s2">        &quot;&quot;&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="c1"># Call fetchall() to get a list of the matching rows</span>
+<span class="c1"># Using list comprehension, explanation at https://medium.com/techtofreedom/8-levels-of-using-list-comprehension-in-python-efc3c339a1f0</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">60</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
@@ -549,10 +562,46 @@
 <div class="section" id="json">
 <h3>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h3>
 <p>One (document) database technology which we have not discussed yet, is <strong><a class="reference external" href="https://www.json.org/json-en.html">JSON</a></strong>. If you need to brush up on your JSON skills, <strong><a class="reference external" href="https://www.w3schools.com/js/js_json_intro.asp">w3schools</a></strong> is again a good starting point.</p>
-<p>However, JSON is much easier to work with than XML. Whereas XML needs to be parsed or queried through <strong><a class="reference external" href="https://www.w3schools.com/xml/xpath_intro.asp">XPath</a></strong>, which is not an easy technology to master, basically, you can just think about JSON as a Python dictionary. In fact, Python allows you to access it just so, using the <code class="docutils literal notranslate"><span class="pre">json</span></code> library:</p>
+<p>However, JSON is much easier to work with than XML. Whereas XML needs to be parsed or queried through <strong><a class="reference external" href="https://www.w3schools.com/xml/xpath_intro.asp">XPath</a></strong>, which is not an easy technology to master, basically, you can just think about JSON as a “string” version (it is a <em>document</em> database) of a Python dictionary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span><span class="p">,</span><span class="n">dumps</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">{</span>
+<span class="s1">	&quot;name&quot;: &quot;Deneire&quot;,</span>
+<span class="s1">	&quot;age&quot;: 39,</span>
+<span class="s1">	&quot;initials&quot;: [&quot;T&quot;, &quot;B&quot;]</span>
+<span class="s1">}</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">json_string</span><span class="p">))</span>
+
+<span class="n">python_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
+<span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">39</span>
+<span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;initials&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">python_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">python_dict</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;name&quot;: &quot;Deneire&quot;,
+	&quot;age&quot;: 39,
+	&quot;initials&quot;: [&quot;T&quot;, &quot;B&quot;]
+}
+
+&lt;class &#39;str&#39;&gt;
+{&#39;name&#39;: &#39;Deneire&#39;, &#39;age&#39;: 39, &#39;initials&#39;: [&#39;T&#39;, &#39;B&#39;]}
+&lt;class &#39;dict&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact, Python allows you to access JSON just like a database, using the <code class="docutils literal notranslate"><span class="pre">json</span></code> library to either turn JSON into a dict (<code class="docutils literal notranslate"><span class="pre">loads()</span></code> ) or to turn a dict into JSON (<code class="docutils literal notranslate"><span class="pre">dumps()</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span><span class="p">,</span> <span class="n">dumps</span>
 <span class="n">contacts</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">{</span>
 <span class="s2">	&quot;1&quot;: {</span>
@@ -582,19 +631,29 @@
 </div>
 </div>
 </div>
-<p>For your assignement you will be using the JSON data made available through the <strong><a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a></strong>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API’s <strong><a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a></strong> first.</p>
-<p>Your assignement is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
 </div>
+<div class="section" id="what-is-an-api">
+<h3>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h3>
+<p>For your assignment you will be using the JSON data made available through the <strong><a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a></strong>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API’s <strong><a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a></strong> first.</p>
+<p>A quick word in general about an <strong><a class="reference external" href="https://en.wikipedia.org/wiki/API">API</a></strong>, or Application Programming Interface.</p>
+<p>Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at a SQLite database) or on the web (e.g. you use Wikidata’s web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python’s <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> module) or remote (e.g. <strong><a class="reference external" href="https://query.wikidata.org/">Wikidata’s Query Service</a></strong>) API to get this data in a way that can be easily handled by computers.</p>
+<p>In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn’t it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but _<em><a class="reference external" href="https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa">API architectures</a></em> are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don’t have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before.</p>
+<p>There are lots of free web APIs out there. The <strong><a class="reference external" href="https://api.nasa.gov/">NASA API</a></strong>, for instance, is quite incredible. Or this <strong><a class="reference external" href="https://evilinsult.com/generate_insult.php?lang=en&amp;type=json">Evil Insult Generator</a></strong>, if you want to have some fun!</p>
+</div>
+<div class="section" id="assignment">
+<h3>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h3>
+<p>Your assignment is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
 <div class="section" id="some-tips">
-<h3>Some tips:<a class="headerlink" href="#some-tips" title="Permalink to this headline">¶</a></h3>
+<h4>Some tips:<a class="headerlink" href="#some-tips" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>You can use the key <code class="docutils literal notranslate"><span class="pre">wskey=apidemo</span></code> for your API request.</p></li>
-<li><p>A good Python library to access URLs is <code class="docutils literal notranslate"><span class="pre">urllib</span></code>.</p></li>
+<li><p>A good Python library to access URLs is <code class="docutils literal notranslate"><span class="pre">urllib</span></code>, an alternative (which is not in the standard library) is <code class="docutils literal notranslate"><span class="pre">requests</span></code>.</p></li>
 <li><p>Think about what we have seen already about standardizing/normalizing search strings, but take this to the next level.</p></li>
 <li><p>Try to anticipate what can go wrong so the program doesn’t crash in unexpected situations.</p></li>
 <li><p>Test your application with the following search strings: <code class="docutils literal notranslate"><span class="pre">Erasmus</span></code>, <code class="docutils literal notranslate"><span class="pre">Justus</span> <span class="pre">Lipsius</span></code> and <code class="docutils literal notranslate"><span class="pre">Django</span> <span class="pre">Spirelli</span></code>.</p></li>
 </ul>
 <p>If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite.</p>
+</div>
 </div>
 </div>
 </div>

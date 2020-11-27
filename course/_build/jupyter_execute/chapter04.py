@@ -224,6 +224,7 @@ query = """
         """
 c.execute(query)
 # Call fetchall() to get a list of the matching rows
+# Using list comprehension, explanation at https://medium.com/techtofreedom/8-levels-of-using-list-comprehension-in-python-efc3c339a1f0
 data = [row for row in c.fetchall()]
 for row in data[50:60]:
     print(row)
@@ -236,9 +237,29 @@ conn.close()
 
 One (document) database technology which we have not discussed yet, is __[JSON](https://www.json.org/json-en.html)__. If you need to brush up on your JSON skills, __[w3schools](https://www.w3schools.com/js/js_json_intro.asp)__ is again a good starting point. 
 
-However, JSON is much easier to work with than XML. Whereas XML needs to be parsed or queried through __[XPath](https://www.w3schools.com/xml/xpath_intro.asp)__, which is not an easy technology to master, basically, you can just think about JSON as a Python dictionary. In fact, Python allows you to access it just so, using the `json` library: 
+However, JSON is much easier to work with than XML. Whereas XML needs to be parsed or queried through __[XPath](https://www.w3schools.com/xml/xpath_intro.asp)__, which is not an easy technology to master, basically, you can just think about JSON as a "string" version (it is a *document* database) of a Python dictionary:
+ 
 
-from json import loads,dumps
+json_string = '''
+{
+	"name": "Deneire",
+	"age": 39,
+	"initials": ["T", "B"]
+}
+'''
+print(json_string)
+print(type(json_string))
+
+python_dict = {}
+python_dict["name"] = "Deneire"
+python_dict["age"] = 39
+python_dict["initials"] = ["T", "B"]
+print(python_dict)
+print(type(python_dict))
+
+In fact, Python allows you to access JSON just like a database, using the `json` library to either turn JSON into a dict (`loads()` ) or to turn a dict into JSON (`dumps()`):
+
+from json import loads, dumps
 contacts = """
 {
 	"1": {
@@ -259,16 +280,31 @@ contacts_dict["2"]["lastname"] = "Eyre"
 contacts = dumps(contacts_dict)
 print(contacts)
 
-For your assignement you will be using the JSON data made available through the __[Europeana Entities API](https://pro.europeana.eu/page/entity)__, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API's __[documentation](https://pro.europeana.eu/page/entity)__ first.
+### What is an API?
 
-Your assignement is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output. 
+For your assignment you will be using the JSON data made available through the __[Europeana Entities API](https://pro.europeana.eu/page/entity)__, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API's __[documentation](https://pro.europeana.eu/page/entity)__ first.
 
-### Some tips:
+A quick word in general about an __[API](https://en.wikipedia.org/wiki/API)__, or Application Programming Interface.
+
+Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at a SQLite database) or on the web (e.g. you use Wikidata's web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python's `sqlite3` module) or remote (e.g. __[Wikidata's Query Service](https://query.wikidata.org/)__) API to get this data in a way that can be easily handled by computers.
+
+In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn't it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but __[API architectures](https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa)_ are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don't have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before. 
+
+There are lots of free web APIs out there. The __[NASA API](https://api.nasa.gov/)__, for instance, is quite incredible. Or this __[Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json)__, if you want to have some fun!
+ 
+
+### Assignment
+
+Your assignment is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.
+
+#### Some tips:
 
 - You can use the key `wskey=apidemo` for your API request.
-- A good Python library to access URLs is `urllib`.
+- A good Python library to access URLs is `urllib`, an alternative (which is not in the standard library) is `requests`.
 - Think about what we have seen already about standardizing/normalizing search strings, but take this to the next level.
 - Try to anticipate what can go wrong so the program doesn't crash in unexpected situations.
 - Test your application with the following search strings: `Erasmus`, `Justus Lipsius` and `Django Spirelli`.
 
 If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite. 
+
+
