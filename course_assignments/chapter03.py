@@ -114,4 +114,9 @@ Some points to take away from this assignment:
     5. You can also use regular expressions to solve this, but remember that
     regular expressions are slow and often do not do quite what you want or
     expect. We will talk about regular expressions later on.
+
+    6. Python is very versatile which means there are always several ways to
+    implement something. Sometimes one way is better than other, sometimes it
+    is equivalent. A lot of the times it will depend on your purpose (quick
+    code, easy to write code, easy to read code, ...)
 """
