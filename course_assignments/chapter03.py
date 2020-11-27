@@ -72,8 +72,8 @@ def onegrams(file: str) -> dict:
     return dict_of_onegrams
 
 
-def show_100_most_common(onegrams: dict) -> None:
-    """Print 100 most common entries from dictionary of onegrams"""
+def show_most_common(onegrams: dict, count: int) -> None:
+    """Print x most common entries from dictionary of onegrams"""
     # lambda function sorts objects using the object's indices
     # you can choose the variable name (e.g. x: x[1], item: item[1], etc.)
     # alternatively, you can use itemgetter() from the operator module
@@ -81,7 +81,7 @@ def show_100_most_common(onegrams: dict) -> None:
                              key=lambda item: item[1], reverse=True)
     # sorted() always returns list!
     for index, item in enumerate(onegrams_sorted):
-        if index < 100:
+        if index < count:
             print(index + 1, item)
 
 
@@ -89,7 +89,7 @@ def show_100_most_common(onegrams: dict) -> None:
 # https://www.freecodecamp.org/news/if-name-main-python-example/
 if __name__ == "__main__":
     dict_of_onegrams = onegrams('/home/tdeneire/projects/InformationScience/course/data/corpus.txt')
-    show_100_most_common(dict_of_onegrams)
+    show_most_common(dict_of_onegrams, 100)
 
 
 """
