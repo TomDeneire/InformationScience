@@ -40,7 +40,11 @@ def split(line: str) -> list:
     for word in line.split(' '):
         # Account for multiple spaces
         if word not in ["", " "]:
-            # Account for ' apostrophe at the start of a word
+            # Account for ' apostrophe, but not perfectly:
+            # remove at the start of word (e.g. he said: 'Captain,)
+            #   however: 'tis -> should actually be kept
+            # leave it elsewhere (e.g. goin', I'm, or genitive: students')
+            #   however: closing single quote should actually be kept
             # Comment this code out and look at the difference for "the"
             if word[0] == "'":
                 word = word.strip("'")
