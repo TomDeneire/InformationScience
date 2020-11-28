@@ -396,19 +396,19 @@
 <div class="section" id="cataloguing-standards">
 <h3>Cataloguing standards<a class="headerlink" href="#cataloguing-standards" title="Permalink to this headline">¶</a></h3>
 <p>As we saw in the case of STCV or WorldCat book titles were catalogued following certain rules. The same holds true for all sorts of physical or digital items. So if you are working with metadata you’ll do well to have at least a basic understanding of the cataloguing standards that were used to create the metadata.</p>
-<p>As for <a class="reference external" href="https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards">book cataloguing standards</a>, for instance, we can mention</p>
+<p>As for <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards">book cataloguing standards</a></strong>, for instance, we can mention</p>
 <ol class="simple">
-<li><p>RDA (Resource Description and Access)</p></li>
+<li><p><strong><a class="reference external" href="http://access.rdatoolkit.org/">RDA</a></strong> (Resource Description and Access)</p></li>
 </ol>
 <ul class="simple">
-<li><p>http://access.rdatoolkit.org/ (subscription needed)</p></li>
+<li><p>(subscription needed)</p></li>
 <li><p>E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’</p></li>
 </ul>
 <ol class="simple">
-<li><p>DCRM(B) (Descriptive Cataloging of Rare Materials - Books)</p></li>
+<li><p><strong><a class="reference external" href="http://rbms.info/dcrm/dcrmb/">DCRM(B)</a></strong> (Descriptive Cataloging of Rare Materials - Books)</p></li>
 </ol>
 <ul class="simple">
-<li><p>http://rbms.info/dcrm/dcrmb/ (open source)</p></li>
+<li><p>(open source)</p></li>
 <li><p>E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem…’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’</p></li>
 </ul>
 </div>
@@ -420,26 +420,23 @@
 </div></blockquote>
 <p>Some of the most common metadata standards in the world of <a class="reference external" href="https://en.wikipedia.org/wiki/GLAM_(industry_sector)">GLAM</a> (galleries, libraries, archives, and museums) are:</p>
 <ol class="simple">
-<li><p>Books: MARC</p></li>
+<li><p>Books: <strong><a class="reference external" href="https://www.loc.gov/marc/">MARC</a></strong></p></li>
 </ol>
 <ul class="simple">
 <li><p>Machine-Readable Cataloging (MARC21)</p></li>
-<li><p>https://www.loc.gov/marc/</p></li>
 <li><p>e.g. field 245 = title</p></li>
 </ul>
 <ol class="simple">
-<li><p>Archives: EAD</p></li>
+<li><p>Archives: <strong><a class="reference external" href="http://www.loc.gov/ead/">EAD</a></strong></p></li>
 </ol>
 <ul class="simple">
 <li><p>Encoded Archival Description (XML standard)</p></li>
-<li><p>http://www.loc.gov/ead/</p></li>
 </ul>
 <ol class="simple">
-<li><p>Objects: Dublin Core</p></li>
+<li><p>Objects: <strong><a class="reference external" href="http://www.dublincore.org/">Dublin Core</a></strong></p></li>
 </ol>
 <ul class="simple">
 <li><p>Dublin Core Metadata Initiative</p></li>
-<li><p>http://www.dublincore.org/</p></li>
 </ul>
 <p>If you’re interested to know more about metadata standards, good starting points <a class="reference external" href="https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx">this page</a> by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and <strong><a class="reference external" href="https://bartoc.org/">BARTOC</a></strong>, the Basic Register of Thesauri, Ontologies &amp; Classifications.</p>
 </div>
@@ -484,14 +481,14 @@
 </div>
 <div class="section" id="assignment-marc21-to-dublin-core-conversion-for-oai">
 <h2>Assignment: MARC21 to Dublin Core conversion for OAI<a class="headerlink" href="#assignment-marc21-to-dublin-core-conversion-for-oai" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a> or OAI for short:</p>
+<p><strong><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a></strong> or OAI for short:</p>
 <blockquote>
 <div><p>is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.</p>
 </div></blockquote>
 <p>At Anet, for instance, we provide full OAI access to our complete database of books. Like so:</p>
-<p>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=marc21&amp;identifier=c:lvd:123456 (MARC21)</p>
-<p>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=mods&amp;identifier=c:lvd:123456 (<a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema">MODS</a>)</p>
-<p>In these examples, the trailing <code class="docutils literal notranslate"><span class="pre">c:lvd:</span></code> number is a unique Library Object Identifier (LOI) used by our LMS <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a></p>
+<p><strong>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=marc21&amp;identifier=c:lvd:123456</strong> (MARC21)</p>
+<p><strong>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=mods&amp;identifier=c:lvd:123456</strong> (<strong><a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema">MODS</a></strong>)</p>
+<p>In these examples, the trailing <code class="docutils literal notranslate"><span class="pre">c:lvd:</span></code> number is a unique Library Object Identifier (LOI) used by our LMS <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a></strong>.</p>
 <p>Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.</p>
 <p>According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
 <div class="section" id="tips">
