@@ -34,7 +34,7 @@ Credit: photo: __[STCV catalogue](https://anet.be/record/stcvopac/c:stcv:7081813
 
 ### STCV
 
-The STCV catalogue, which we have already mentioned a few times, catalogues this book __[as follows](https://anet.be/record/stcvopac/c:stcv:7081813/E)__:
+The STCV catalogue, which we have already mentioned a few times, catalogues this book's title* __[as follows](https://anet.be/record/stcvopac/c:stcv:7081813/E)__:
 
 Category | Metadata
 --- | ---
@@ -46,6 +46,8 @@ Publication	| Title page: ex officina Plantiniana, apud viduam, & Ioannem Moretu
 . | Title page: Antverpiæ \[Antwerp]
 . | 1596
 Language | Latin \[Target language]
+
+(* There are also other sections of information, such as analytical bibliography, keywords, etc.)
 
 Now let's compare this to the title page.
 
@@ -89,7 +91,7 @@ To make matters worse, our example was a very simple one really. There are many,
 
 ## Metadata 101
 
-We now have a better understanding of metadata. We know know that, as a former student of mine [@Karolingva]() once tweeted from a __[RightsCon](https://www.rightscon.org/)__ conference: metadata is not data about data, but
+We now have a better understanding of metadata. We know know that, as a former student of mine __[@Karolingva](https://twitter.com/karolingva)__ once tweeted from a __[RightsCon](https://www.rightscon.org/)__ conference: metadata is not data about data, but
 
 - created data about data
 - by humans
@@ -119,11 +121,11 @@ As for __[book cataloguing standards](https://en.wikipedia.org/wiki/Cataloging#C
 
 ### Metadata standards
 
-Once metadata has been produced according to certain cataloguing rules, we can also define a [metadata standard](https://en.wikipedia.org/wiki/Metadata_standard), i.e. 
+Once metadata has been produced according to certain cataloguing rules, we can also define a __[metadata standard](https://en.wikipedia.org/wiki/Metadata_standard)__, i.e. 
 
 > a requirement which is intended to establish a common understanding of the meaning or semantics of the data, to ensure correct and proper use and interpretation of the data by its owners and users.
 
-Some of the most common metadata standards in the world of [GLAM](https://en.wikipedia.org/wiki/GLAM_(industry_sector)) (galleries, libraries, archives, and museums) are:
+Some of the most common metadata standards in the world of __[GLAM](https://en.wikipedia.org/wiki/GLAM_(industry_sector))__ (galleries, libraries, archives, and museums) are:
 
 1. Books: __[MARC](https://www.loc.gov/marc/)__
 
@@ -156,30 +158,30 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
 
 1. Biographic databases
 
-- [VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF) (Virtual International Authority File) (SRU protocol)
+- __[VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF)__ (Virtual International Authority File) (SRU protocol)
 
-- [DBpedia](https://wiki.dbpedia.org/OnlineAccess) (SPARQL endpoint, REST API, Lookup API)
+- __[DBpedia](https://wiki.dbpedia.org/OnlineAccess)__ (SPARQL endpoint, REST API, Lookup API)
 
-- [CERL thesaurus](https://data.cerl.org/thesaurus/_sru) (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)
+- __[CERL thesaurus](https://data.cerl.org/thesaurus/_sru)__ (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)
 
-- [Europeana APIs](https://pro.europeana.eu/page/apis) (SPARQL endpoint, REST API, ...)
+- __[Europeana APIs](https://pro.europeana.eu/page/apis)__ (SPARQL endpoint, REST API, ...)
 
-- [RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists) (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
+- __[RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists)__ (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
 
 
 2. Bibliographic databases
 
-- [Worldcat](https://platform.worldcat.org/api-explorer/apis) (wide range of exports, plugins, APIs)
+- __[Worldcat](https://platform.worldcat.org/api-explorer/apis)__ (wide range of exports, plugins, APIs)
 
-- [Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/) (including STCV, downloads in MARXML or SQLite)
+- __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
 
-- [STCN](http://openvirtuoso.kbresearch.nl/sparql) (SPARQL endpoint)
+- __[STCN](http://openvirtuoso.kbresearch.nl/sparql)__ (SPARQL endpoint)
 
-- [ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md) (R toolkit)
+- __[ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md)__ (R toolkit)
 
-- [HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database) (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) (paywall) (SRU)
+- __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) (paywall) (SRU)
 
-- [TW](http://tw.staatsbibliothek-berlin.de/) (Typenrepertorium der Wiegendrucke) (XML exports)
+- __[TW](http://tw.staatsbibliothek-berlin.de/)__ (Typenrepertorium der Wiegendrucke) (XML exports)
 
 ## Excursus: DH example
 
@@ -193,11 +195,20 @@ __[The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)](http
 
 At Anet, for instance, we provide full OAI access to our complete database of books. Like so:
 
-__https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=marc21&identifier=c:lvd:123456__ (MARC21)
+(MARC21)
 
-__https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=mods&identifier=c:lvd:123456__ (__[MODS](https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema)__)
+```
+https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=marc21&identifier=c:lvd:123456 
+```
 
-In these examples, the trailing `c:lvd:` number is a unique Library Object Identifier (LOI) used by our LMS __[Brocade](https://en.wikipedia.org/wiki/Brocade_Library_Services)__.
+
+(__[MODS](https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema)__)
+
+```
+https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=mods&identifier=c:lvd:123456
+```
+
+In these examples, the trailing `c:lvd:` number is a unique Library Object Identifier (LOI) used by our LMS __[Brocade](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. You can substitute it for any LOI you find in our __[OPAC](https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E)__.
 
 Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.
 
