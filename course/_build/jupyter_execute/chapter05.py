@@ -218,4 +218,4 @@ According to the standards specifications, all implementations of OAI-PMH must s
 
 - You can use the Library of Congress __[MARC to Dublin Core Crosswalk](https://www.loc.gov/marc/marc2dc.html)__. You may limit yourself to the fields mentioned in the "unqualified" table and skip the "Leader" field. You will find the meaning of the various codes (`a`, `c`, etcetera) in the MARC specification, but you can limit yourself to code `a`, unless the crosswalk explicitly mentions other codes (e.g. `260` = `Publisher`).
 - The Python `lxml` library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.
-- If you don't already, you will need to know about XML namespaces. This __[tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp and https://lxml.de/tutorial.html#namespaces)__ is a good starting point.
+- If you don't already, you will need to know about XML namespaces. This __[tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp)__ and the info from the __[lxml module](https://lxml.de/tutorial.html#namespaces)__ are good starting points.
