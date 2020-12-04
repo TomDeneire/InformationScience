@@ -144,7 +144,7 @@ If you're interested to know more about metadata standards, good starting points
 
 ### Exports
 
-Working with metadata one is quickly faced with the issue of data being locked away in a so-called [information silo](https://en.wikipedia.org/wiki/Information_silo):
+Working with metadata one is quickly faced with the issue of data being locked away in a so-called __[information silo](https://en.wikipedia.org/wiki/Information_silo)__:
 
 >  an insular management system in which one information system or subsystem is incapable of reciprocal operation with others that are, or should be, related. Thus information is not adequately shared but rather remains sequestered within each system or subsystem, figuratively trapped within a container like grain is trapped within a silo: there may be much of it, and it may be stacked quite high and freely available within those limits, but it has no effect outside those limits. Such data silos are proving to be an obstacle for businesses wishing to use data mining to make productive use of their data.
 
