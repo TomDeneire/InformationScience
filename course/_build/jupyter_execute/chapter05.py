@@ -109,12 +109,12 @@ As we saw in the case of STCV or WorldCat book titles were catalogued following 
 As for __[book cataloguing standards](https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards)__, for instance, we can mention
 
 1. __[RDA](http://access.rdatoolkit.org/)__ (Resource Description and Access)
-- (subscription needed)
-- E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’
+    - (subscription needed)
+    - E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’
 
 2. __[DCRM(B)](http://rbms.info/dcrm/dcrmb/)__ (Descriptive Cataloging of Rare Materials - Books)
-- (open source)
-- E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem...’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’
+    - (open source)
+    - E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem...’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’
 
 
 ### Metadata standards
