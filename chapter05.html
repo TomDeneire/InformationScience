@@ -178,6 +178,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter05.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter05.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -262,6 +284,33 @@
     <a class="reference internal nav-link" href="#tips">
      Tips
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-and-dirty-lxml-tutorial">
+     Quick and dirty lxml tutorial
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-lxml">
+       Install lxml
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reading-xml">
+       Reading XML
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parsing-xml">
+       Parsing XML
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#writing-xml">
+       Writing XML
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -467,7 +516,7 @@
 <li><p><strong><a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet open data</a></strong> (including STCV, downloads in MARXML or SQLite)</p></li>
 <li><p><strong><a class="reference external" href="http://openvirtuoso.kbresearch.nl/sparql">STCN</a></strong> (SPARQL endpoint)</p></li>
 <li><p><strong><a class="reference external" href="https://rdrr.io/github/COMHIS/estc/f/README.md">ESTC</a></strong> (R toolkit)</p></li>
-<li><p><strong><a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB</a></strong> (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) SRU)</p></li>
+<li><p><strong><a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB</a></strong> (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) SRU)</p></li>
 <li><p><strong><a class="reference external" href="http://tw.staatsbibliothek-berlin.de/">TW</a></strong> (Typenrepertorium der Wiegendrucke) (XML exports)</p></li>
 </ul>
 </li>
@@ -504,6 +553,136 @@
 <li><p>The Python <code class="docutils literal notranslate"><span class="pre">lxml</span></code> library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.</p></li>
 <li><p>If you don’t already, you will need to know about XML namespaces. This <strong><a class="reference external" href="https://www.w3schools.com/xml/xml_namespaces.asp">tutorial from w3schools</a></strong> and the info from the <strong><a class="reference external" href="https://lxml.de/tutorial.html#namespaces">lxml module</a></strong> are good starting points.</p></li>
 </ul>
+</div>
+<div class="section" id="quick-and-dirty-lxml-tutorial">
+<h3>Quick and dirty lxml tutorial<a class="headerlink" href="#quick-and-dirty-lxml-tutorial" title="Permalink to this headline">¶</a></h3>
+<p>As many of you are unfamiliar with reading, parsing and building XML, the following is a very quick tutorial about how to accomplish this with the <code class="docutils literal notranslate"><span class="pre">lxml</span></code> library.</p>
+<div class="section" id="install-lxml">
+<h4>Install lxml<a class="headerlink" href="#install-lxml" title="Permalink to this headline">¶</a></h4>
+<p>Depending on your OS, you might first need to install lxml. For more instructions on this, go visit the <strong><a class="reference external" href="https://lxml.de/installation.html">documentation</a></strong>.</p>
+</div>
+<div class="section" id="reading-xml">
+<h4>Reading XML<a class="headerlink" href="#reading-xml" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lxml.etree</span>
+
+<span class="n">xml_string</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">&lt;database&gt;</span>
+<span class="s1">    &lt;record nr=&quot;1&quot;&gt;</span>
+<span class="s1">        &lt;name type=&quot;last&quot;&gt;Deneire&lt;/name&gt;</span>
+<span class="s1">        &lt;name type=&quot;first&quot;&gt;Tom&lt;/name&gt;</span>
+<span class="s1">    &lt;/record&gt;</span>
+<span class="s1">    &lt;record nr=&quot;2&quot;&gt;</span>
+<span class="s1">        &lt;name type=&quot;last&quot;&gt;Lipsius&lt;/name&gt;</span>
+<span class="s1">        &lt;name type=&quot;first&quot;&gt;Justus&lt;/name&gt;</span>
+<span class="s1">    &lt;/record&gt;</span>
+<span class="s1">&lt;/database&gt;</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="c1"># turn the XML string into an `etree` object</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml_string</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="c1"># show the methods that this object allows</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7efe362de280&gt;
+[&#39;__bool__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__copy__&#39;, &#39;__deepcopy__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_init&#39;, &#39;addnext&#39;, &#39;addprevious&#39;, &#39;append&#39;, &#39;attrib&#39;, &#39;base&#39;, &#39;clear&#39;, &#39;cssselect&#39;, &#39;extend&#39;, &#39;find&#39;, &#39;findall&#39;, &#39;findtext&#39;, &#39;get&#39;, &#39;getchildren&#39;, &#39;getiterator&#39;, &#39;getnext&#39;, &#39;getparent&#39;, &#39;getprevious&#39;, &#39;getroottree&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;items&#39;, &#39;iter&#39;, &#39;iterancestors&#39;, &#39;iterchildren&#39;, &#39;iterdescendants&#39;, &#39;iterfind&#39;, &#39;itersiblings&#39;, &#39;itertext&#39;, &#39;keys&#39;, &#39;makeelement&#39;, &#39;nsmap&#39;, &#39;prefix&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;set&#39;, &#39;sourceline&#39;, &#39;tag&#39;, &#39;tail&#39;, &#39;text&#39;, &#39;values&#39;, &#39;xpath&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="parsing-xml">
+<h4>Parsing XML<a class="headerlink" href="#parsing-xml" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over the &quot;record&quot; elements</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;record&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element record at 0x7efe362da6c0&gt;
+&lt;Element record at 0x7efe36282d40&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over the &quot;name&quot; elements</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element name at 0x7efe355ebc00&gt;
+&lt;Element name at 0x7efe35651340&gt;
+&lt;Element name at 0x7efe362da6c0&gt;
+&lt;Element name at 0x7efe36282d40&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># access the &quot;name&quot; elements</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
+    <span class="c1"># XML attributes are dicts</span>
+    <span class="k">for</span> <span class="n">attribute_name</span><span class="p">,</span> <span class="n">attribute_value</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">attribute_value</span><span class="p">)</span>
+        <span class="c1"># get text with .text() method of element</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>type : last
+Deneire
+type : first
+Tom
+type : last
+Lipsius
+type : first
+Justus
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="writing-xml">
+<h4>Writing XML<a class="headerlink" href="#writing-xml" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing the aforementioned XML string</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">)</span>
+<span class="n">record1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="n">name1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">name1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
+<span class="n">name2</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
+<span class="n">name2</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Tom&quot;</span>
+<span class="n">record2</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<span class="n">name3</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">name3</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Lipsius&quot;</span>
+<span class="n">name4</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
+<span class="n">name4</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Justus&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;database&gt;&lt;record nr=&quot;1&quot;&gt;&lt;name type=&quot;last&quot;&gt;Deneire&lt;/name&gt;&lt;name type=&quot;first&quot;&gt;Tom&lt;/name&gt;&lt;/record&gt;&lt;record nr=&quot;2&quot;&gt;&lt;name type=&quot;last&quot;&gt;Lipsius&lt;/name&gt;&lt;name type=&quot;first&quot;&gt;Justus&lt;/name&gt;&lt;/record&gt;&lt;/database&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
