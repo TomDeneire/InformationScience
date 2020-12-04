@@ -4,5 +4,6 @@ project/
 test/
 stuff/
 course/__*
+course_assignments/__*
 course/index
 students/
