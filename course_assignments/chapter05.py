@@ -118,7 +118,7 @@ if __name__ == "__main__":
 Some points to take away from this assignment:
 
     1. Refactoring code is important to keep things manageable. In this example,
-    we refactored the crosswalk to a different file and use it as a module.
+    we refactored the crosswalk to a different file and used it as a module.
     This makes the code more readable. By importing it as a constant in the
     main scope and not in a function scope, we avoid having to create the table
     with each conversion request.
