@@ -40,6 +40,7 @@ def parse(oai: bytes) -> dict:
     index = 0
     # iter() method to iterate over elements
     for datafield in root.iter(f"{OAI_XML_NS}datafield"):
+        print(datafield)
         # XML attributes are dicts
         for key, value in datafield.items():
             if key == "tag":
