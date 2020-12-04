@@ -164,7 +164,7 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
     - __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
     - __[STCN](http://openvirtuoso.kbresearch.nl/sparql)__ (SPARQL endpoint)
     - __[ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md)__ (R toolkit)
-    - __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) SRU)
+    - __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) SRU)
     - __[TW](http://tw.staatsbibliothek-berlin.de/)__ (Typenrepertorium der Wiegendrucke) (XML exports)
 
 ## Excursus: DH example
@@ -203,3 +203,71 @@ According to the standards specifications, all implementations of OAI-PMH must s
 - You can use the Library of Congress __[MARC to Dublin Core Crosswalk](https://www.loc.gov/marc/marc2dc.html)__. You may limit yourself to the fields mentioned in the "unqualified" table and skip the "Leader" field. You will find the meaning of the various codes (`a`, `c`, etcetera) in the MARC specification, but you can limit yourself to code `a`, unless the crosswalk explicitly mentions other codes (e.g. `260` = `Publisher`).
 - The Python `lxml` library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.
 - If you don't already, you will need to know about XML namespaces. This __[tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp)__ and the info from the __[lxml module](https://lxml.de/tutorial.html#namespaces)__ are good starting points.
+
+
+### Quick and dirty lxml tutorial
+
+As many of you are unfamiliar with reading, parsing and building XML, the following is a very quick tutorial about how to accomplish this with the `lxml` library.
+
+#### Install lxml
+
+Depending on your OS, you might first need to install lxml. For more instructions on this, go visit the __[documentation](https://lxml.de/installation.html)__.
+
+#### Reading XML
+
+import lxml.etree
+
+xml_string = b'''
+<database>
+    <record nr="1">
+        <name type="last">Deneire</name>
+        <name type="first">Tom</name>
+    </record>
+    <record nr="2">
+        <name type="last">Lipsius</name>
+        <name type="first">Justus</name>
+    </record>
+</database>
+'''
+# turn the XML string into an `etree` object
+tree = lxml.etree.fromstring(xml_string)
+print(tree)
+# show the methods that this object allows
+print(dir(tree))
+
+#### Parsing XML
+
+# iterate over the "record" elements
+for element in tree.iter("record"):
+    print(element)
+
+# iterate over the "name" elements
+for element in tree.iter("name"):
+    print(element)
+
+# access the "name" elements
+for element in tree.iter("name"):
+    # XML attributes are dicts
+    for attribute_name, attribute_value in element.items():
+        print(attribute_name, ":", attribute_value)
+        # get text with .text() method of element
+        print(element.text)
+
+
+#### Writing XML
+
+# Constructing the aforementioned XML string
+
+root = lxml.etree.Element("database")
+record1 = lxml.etree.SubElement(root, "record", nr="1")
+name1 = lxml.etree.SubElement(record1, "name", type="last")
+name1.text = "Deneire"
+name2 = lxml.etree.SubElement(record1, "name", type="first")
+name2.text = "Tom"
+record2 = lxml.etree.SubElement(root, "record", nr="2")
+name3 = lxml.etree.SubElement(record2, "name", type="last")
+name3.text = "Lipsius"
+name4 = lxml.etree.SubElement(record2, "name", type="first")
+name4.text = "Justus"
+print(lxml.etree.tostring(root))
+
