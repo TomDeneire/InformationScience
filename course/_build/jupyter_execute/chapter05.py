@@ -126,14 +126,14 @@ Once metadata has been produced according to certain cataloguing rules, we can a
 Some of the most common metadata standards in the world of __[GLAM](https://en.wikipedia.org/wiki/GLAM_(industry_sector))__ (galleries, libraries, archives, and museums) are:
 
 1. Books: __[MARC](https://www.loc.gov/marc/)__
-- Machine-Readable Cataloging (MARC21)
-- e.g. field 245 = title
+    - Machine-Readable Cataloging (MARC21)
+    - e.g. field 245 = title
 
 2. Archives: __[EAD](http://www.loc.gov/ead/)__
-- Encoded Archival Description (XML standard) 
+    - Encoded Archival Description (XML standard) 
 
 3. Objects: __[Dublin Core](http://www.dublincore.org/)__
-- Dublin Core Metadata Initiative 
+    - Dublin Core Metadata Initiative 
 
 If you're interested to know more about metadata standards, good starting points [this page](https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx) by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and __[BARTOC](https://bartoc.org/)__, the Basic Register of Thesauri, Ontologies & Classifications.
 
@@ -152,29 +152,20 @@ Such exports will make metadata available in all sorts of standards (see above) 
 Some time ago I made a very incomplete of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.
 
 1. Biographic databases
-- __[VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF)__ (Virtual International Authority File) (SRU protocol)
-
-- __[DBpedia](https://wiki.dbpedia.org/OnlineAccess)__ (SPARQL endpoint, REST API, Lookup API)
-
-- __[CERL thesaurus](https://data.cerl.org/thesaurus/_sru)__ (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)
-
-- __[Europeana APIs](https://pro.europeana.eu/page/apis)__ (SPARQL endpoint, REST API, ...)
-
-- __[RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists)__ (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
+    - __[VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF)__ (Virtual International Authority File) (SRU protocol)
+    - __[DBpedia](https://wiki.dbpedia.org/OnlineAccess)__ (SPARQL endpoint, REST API, Lookup API)
+    - __[CERL thesaurus](https://data.cerl.org/thesaurus/_sru)__ (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)
+    - __[Europeana APIs](https://pro.europeana.eu/page/apis)__ (SPARQL endpoint, REST API, ...)
+    - __[RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists)__ (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
 
 
 2. Bibliographic databases
-- __[Worldcat](https://platform.worldcat.org/api-explorer/apis)__ (wide range of exports, plugins, APIs)
-
-- __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
-
-- __[STCN](http://openvirtuoso.kbresearch.nl/sparql)__ (SPARQL endpoint)
-
-- __[ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md)__ (R toolkit)
-
-- __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) (paywall) (SRU)
-
-- __[TW](http://tw.staatsbibliothek-berlin.de/)__ (Typenrepertorium der Wiegendrucke) (XML exports)
+    - __[Worldcat](https://platform.worldcat.org/api-explorer/apis)__ (wide range of exports, plugins, APIs)
+    - __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
+    - __[STCN](http://openvirtuoso.kbresearch.nl/sparql)__ (SPARQL endpoint)
+    - __[ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md)__ (R toolkit)
+    - __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period (c.1455-c.1830)) SRU)
+    - __[TW](http://tw.staatsbibliothek-berlin.de/)__ (Typenrepertorium der Wiegendrucke) (XML exports)
 
 ## Excursus: DH example
 
