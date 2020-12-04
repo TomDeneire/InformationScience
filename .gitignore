@@ -1,6 +1,7 @@
 publish.py
 project.*
 project/
+project2/
 test/
 stuff/
 course/__*
