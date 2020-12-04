@@ -109,12 +109,10 @@ As we saw in the case of STCV or WorldCat book titles were catalogued following 
 As for __[book cataloguing standards](https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards)__, for instance, we can mention
 
 1. __[RDA](http://access.rdatoolkit.org/)__ (Resource Description and Access)
-
 - (subscription needed)
 - E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’
 
 2. __[DCRM(B)](http://rbms.info/dcrm/dcrmb/)__ (Descriptive Cataloging of Rare Materials - Books)
-
 - (open source)
 - E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem...’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’
 
@@ -128,16 +126,13 @@ Once metadata has been produced according to certain cataloguing rules, we can a
 Some of the most common metadata standards in the world of __[GLAM](https://en.wikipedia.org/wiki/GLAM_(industry_sector))__ (galleries, libraries, archives, and museums) are:
 
 1. Books: __[MARC](https://www.loc.gov/marc/)__
-
 - Machine-Readable Cataloging (MARC21)
 - e.g. field 245 = title
 
 2. Archives: __[EAD](http://www.loc.gov/ead/)__
-
 - Encoded Archival Description (XML standard) 
 
 3. Objects: __[Dublin Core](http://www.dublincore.org/)__
-
 - Dublin Core Metadata Initiative 
 
 If you're interested to know more about metadata standards, good starting points [this page](https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx) by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and __[BARTOC](https://bartoc.org/)__, the Basic Register of Thesauri, Ontologies & Classifications.
@@ -157,7 +152,6 @@ Such exports will make metadata available in all sorts of standards (see above) 
 Some time ago I made a very incomplete of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.
 
 1. Biographic databases
-
 - __[VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF)__ (Virtual International Authority File) (SRU protocol)
 
 - __[DBpedia](https://wiki.dbpedia.org/OnlineAccess)__ (SPARQL endpoint, REST API, Lookup API)
@@ -170,7 +164,6 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
 
 
 2. Bibliographic databases
-
 - __[Worldcat](https://platform.worldcat.org/api-explorer/apis)__ (wide range of exports, plugins, APIs)
 
 - __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
