@@ -40,6 +40,7 @@ def convert_xml_to_dict(XML: bytes) -> dict:
     Parse XML database and convert it to a Python dictionary
     """
     dictionary = {}
+    # your code
     return dictionary
 
 
@@ -48,6 +49,7 @@ def convert_dict_to_JSON(dictionary: dict) -> str:
     Convert Python dictionary to JSON string
     """
     JSON = ""
+    # your code
     return JSON
 
 
