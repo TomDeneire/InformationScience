@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent (relevance) ranking of the search results. Indeed, the very basic Information Retrieval model is:
+In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:
 
 > Retrieval > Searching > Evaluation > Ranking
 
@@ -10,7 +10,7 @@ Having already discussed some of the aspects of retrieval (e.g. querying), in th
 
 ## Searching
 
-We have already seen that searching text is rarely as easy as string.find(substring). Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
+We have already seen that searching text is rarely as easy as `string.find(substring)`. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
 
 ### Regular expressions
 
@@ -52,8 +52,8 @@ A good and certainly not trivial exercise would be to write a regex that can det
 
 In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?
 
-# examples from https://en.wikipedia.org/wiki/Email_address#Examples
-test = {
+# Examples from https://en.wikipedia.org/wiki/Email_address#Examples
+TEST = {
     # valid addresses
     "simple@example.com": True, 
     "very.common@example.com": True, 
@@ -75,16 +75,16 @@ def email_regex(address: str) -> bool:
     else:
         return False
 
-for case in test:
+for case in TEST:
     result = email_regex(case)
-    if not result == test[case]:
-        print(f"Test failed on {case}. Expected = {test[case]}. Result = {result}")
+    if not result == TEST[case]:
+        print(f"Test failed on {case}. Expected = {TEST[case]}. Result = {result}")
     
 
 
 ### Fuzzy searching
 
-Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. [Wikipedia](https://en.wikipedia.org/wiki/Approximate_string_matching) explains:
+Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. __[Wikipedia](https://en.wikipedia.org/wiki/Approximate_string_matching)__ explains:
 
 > The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:
 
@@ -112,15 +112,17 @@ Regular expressions can also be used to illustrate the concept of fuzzy searchin
 
 #### String metrics
 
-A [string metric](https://en.wikipedia.org/wiki/String_metric) (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the [Levenshtein distance]() (also known as edit distance). Another is the [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).
+A __[string metric](https://en.wikipedia.org/wiki/String_metric)__ (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the __[Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)__ (also known as edit distance). Another is the __[Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)__.
 
 ## Evaluation and ranking
 
-With string metrics we have arrived in the territory of search evaluation: so-called [evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)) offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. 
+With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)__) offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
 
 ## Assignment: Spelling checker
 
-One very practical application of string metrics, search evaluation and ranking is a spelling checker. I'm not going to reveal too much of the solution here, but what I can say is that you'll definitely need two things:
+One very practical application of string metrics, search evaluation and ranking is writing a spelling checker. 
+
+I'm not going to reveal too much of the solution here, but what I can say is that you'll definitely need two things:
 
 1. A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it'll do for now.
 
@@ -132,7 +134,7 @@ Your application should do two things:
 
 2. Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.
 
-As a final tip, maybe you can reuse some of your code from chapter 3 for this application...
+As a final tip, you should consider reusing some of your code from chapter 3 for this application...
 
 
 from jarowinkler import jaro_winkler

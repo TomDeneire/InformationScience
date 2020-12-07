@@ -262,7 +262,7 @@
 <h1>Chapter 7: Searching, Evaluation, Ranking<a class="headerlink" href="#chapter-7-searching-evaluation-ranking" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent (relevance) ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
+<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
 <blockquote>
 <div><p>Retrieval &gt; Searching &gt; Evaluation &gt; Ranking</p>
 </div></blockquote>
@@ -270,7 +270,7 @@
 </div>
 <div class="section" id="searching">
 <h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
-<p>We have already seen that searching text is rarely as easy as string.find(substring). Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
+<p>We have already seen that searching text is rarely as easy as <code class="docutils literal notranslate"><span class="pre">string.find(substring)</span></code>. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
 <div class="section" id="regular-expressions">
 <h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
 <p><img alt="" src="_images/regex.png" /></p>
@@ -324,8 +324,8 @@
 <p>In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
-<span class="n">test</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
+<span class="n">TEST</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># valid addresses</span>
     <span class="s2">&quot;simple@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
     <span class="s2">&quot;very.common@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
@@ -347,10 +347,10 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-<span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">TEST</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">email_regex</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="o">==</span> <span class="n">test</span><span class="p">[</span><span class="n">case</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test failed on </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">. Expected = </span><span class="si">{</span><span class="n">test</span><span class="p">[</span><span class="n">case</span><span class="p">]</span><span class="si">}</span><span class="s2">. Result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="o">==</span> <span class="n">TEST</span><span class="p">[</span><span class="n">case</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test failed on </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">. Expected = </span><span class="si">{</span><span class="n">TEST</span><span class="p">[</span><span class="n">case</span><span class="p">]</span><span class="si">}</span><span class="s2">. Result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     
 </pre></div>
 </div>
@@ -365,7 +365,7 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
 </div>
 <div class="section" id="fuzzy-searching">
 <h3>Fuzzy searching<a class="headerlink" href="#fuzzy-searching" title="Permalink to this headline">¶</a></h3>
-<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia</a> explains:</p>
+<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia</a></strong> explains:</p>
 <blockquote>
 <div><p>The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:</p>
 </div></blockquote>
@@ -418,17 +418,18 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
 </div></blockquote>
 <div class="section" id="string-metrics">
 <h4>String metrics<a class="headerlink" href="#string-metrics" title="Permalink to this headline">¶</a></h4>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <span class="xref myst">Levenshtein distance</span> (also known as edit distance). Another is the <a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a>.</p>
+<p>A <strong><a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a></strong> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></strong> (also known as edit distance). Another is the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a></strong>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="evaluation-and-ranking">
 <h2>Evaluation and ranking<a class="headerlink" href="#evaluation-and-ranking" title="Permalink to this headline">¶</a></h2>
-<p>With string metrics we have arrived in the territory of search evaluation: so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)">evaluation measures</a> offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display.</p>
+<p>With string metrics we have arrived in the territory of search evaluation: so-called __<a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)__">evaluation measures</a> offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.</p>
 </div>
 <div class="section" id="assignment-spelling-checker">
 <h2>Assignment: Spelling checker<a class="headerlink" href="#assignment-spelling-checker" title="Permalink to this headline">¶</a></h2>
-<p>One very practical application of string metrics, search evaluation and ranking is a spelling checker. I’m not going to reveal too much of the solution here, but what I can say is that you’ll definitely need two things:</p>
+<p>One very practical application of string metrics, search evaluation and ranking is writing a spelling checker.</p>
+<p>I’m not going to reveal too much of the solution here, but what I can say is that you’ll definitely need two things:</p>
 <ol class="simple">
 <li><p>A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it’ll do for now.</p></li>
 <li><p>A string metric. For this, you can use the Jaro-Winkler metric, which you do not have to implement yourself. Instead just use the code supplied in <code class="docutils literal notranslate"><span class="pre">jarowinkler.py</span></code> as shown below.</p></li>
@@ -438,7 +439,7 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
 <li><p>Build the dictionary and save it in some form so it does not have to be rebuilt every time when the application is used.</p></li>
 <li><p>Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.</p></li>
 </ol>
-<p>As a final tip, maybe you can reuse some of your code from chapter 3 for this application…</p>
+<p>As a final tip, you should consider reusing some of your code from chapter 3 for this application…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jarowinkler</span> <span class="kn">import</span> <span class="n">jaro_winkler</span>
@@ -464,16 +465,16 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "Python 3.8.5 64-bit"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "Python 3.8.5 64-bit",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'Python 3.8.5 64-bit'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
