@@ -2,7 +2,7 @@
 
 ![](images/tablet.jpg)
 
-[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)
+__[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)__
 
 Credit: __[Wikimedia Commons](https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg)__
 
