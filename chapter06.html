@@ -256,26 +256,29 @@
 <p>Credit: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg">Wikimedia Commons</a></strong></p>
 <div class="section" id="searching">
 <h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
-<p>Very simply said, working with information often boils down to “searching stuff”. Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.</p>
-<p>Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth’s monumental *The Art of Computer Programming” devotes an entire volume (3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
+<p>In all of our discussions about information we have so far neglected perhaps the most important aspect of it: <strong>searching</strong>. Indeed, you could say that the only difference between data and information, is that “information is data that we are looking for”. Ergo, very simply said, working with information often boils down to “searching stuff”. Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.</p>
+<p>Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth’s monumental <em>The Art of Computer Programming</em> devotes an entire volume (i.e. vol. 3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
 <p>At face value searching might seem easy. Let’s look at finding a substring in a string. In Python, for instance, offers several ways to check for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;Hello world, this is me&quot;</span>
-<span class="n">my_search</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MY_STRING</span> <span class="o">=</span> <span class="s2">&quot;Hello world, this is me&quot;</span>
+<span class="n">MY_SEARCH</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span>
+
 <span class="c1"># one way</span>
-<span class="k">if</span> <span class="n">my_search</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">MY_SEARCH</span> <span class="ow">in</span> <span class="n">MY_STRING</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found&quot;</span><span class="p">)</span>
+
 <span class="c1"># another way</span>
-<span class="k">if</span> <span class="n">my_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">my_search</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">MY_STRING</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">MY_SEARCH</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found!&quot;</span><span class="p">)</span>
+
 <span class="c1"># third way</span>
 <span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">search</span>
-<span class="k">if</span> <span class="n">search</span><span class="p">(</span><span class="n">my_search</span><span class="p">,</span> <span class="n">my_string</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">search</span><span class="p">(</span><span class="n">MY_SEARCH</span><span class="p">,</span> <span class="n">MY_STRING</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found!&quot;</span><span class="p">)</span>
@@ -290,43 +293,47 @@ Found!
 </div>
 </div>
 </div>
-<p>However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching for text millions of books (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a>), or searching in huge metadata containers (e.g. <a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.">Spotify contains &gt;50.000.000 songs</a>).</p>
+<p>However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a></strong>) or huge metadata containers (e.g. <strong><a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.">Spotify contains &gt;50.000.000 songs</a></strong>).</p>
 </div>
 <div class="section" id="indexing">
 <h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
-<p>One way to deal with his issue is indexing. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure.</p>
-<p>Consider the following example. Let’s say we have a large list of book titles and want to search them on a specific term.</p>
+<p>One way to deal with his issue is <strong>indexing</strong>. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure.</p>
+<p>Consider the following example. Let’s say we have a large list of book titles and want to search them for a specific term.</p>
 <p>Let’s first use SQL and the STCV database from chapter 04 to make such a list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select distinct title_ti from title&quot;&quot;&quot;</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select distinct title_ti from title&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="n">BOOK_TITLES</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-    <span class="c1"># *title = unpacking the tuple</span>
-    <span class="n">BOOK_TITLES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">title</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">),</span> <span class="s2">&quot;titles&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">110</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">number</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    <span class="n">BOOK_TITLES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># * = unpacking the tuple `title`</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1"># length of list</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="s2">&quot;titles, e.g.:&quot;</span><span class="p">)</span>
+<span class="c1"># some examples</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26153 titles
-100 = Den mensch van smerten, oft Jesus Christus lydende ende stervende gedurigh voor de menschen
-101 = L&#39;homme de douleurs
-102 = Ghewichtighe waerschouwinge voor de jonghmans, in het ghene raeckt hunne besondere plicht om christelijck te leven
-103 = Gheestelycke middelen voor de suyverheydt en remedien teghen de bekoringhen
-104 = Den gheestelijcken schildt aller katholiicken
-105 = Den gheestelycken schildt aller katholycken
-106 = Vlaemsch recht dat is Costumen ende wetten [...] van Vlaenderen
-107 = Vlaems recht dat is Costvmen ende wetten [...] van Vlaenderen
-108 = Ghebeden onder het H. sacrificie der misse
-109 = Generaele kronycke van Vlaenderen
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26153 titles, e.g.:
+- Pharmacopoea Bruxellensis senatûs authoritate munita
+- Den devoten pelgrim reysende naer diversche miraculeuse beelden van de H. maghet Maria, soo in Brabandt, als andere om-ligghende plaetsen
+- Cort begryp van alderley onderwijsinghen [...] tot een godtvruchtigh christelijck leven: ende [...] bereydt te zijn om [...] te sterven
+- Introduction à l&#39;amour de Dieu
+- Oratio funebris in exequiis reverendi admodum, amplissimique domini, D: Alexandri Adriaensens in celeberrimo S. Bernardi ad Scaldim monasterio [...] abbatis [...] dicta [...] die 2. mensis januarii 1741
+- Officivm B. Mariæ virginis, juxta ritum sacri ordinis fratrum prædicatorum
+- Catalogus in omni facultate librorum [...] quos reliquit admodum reverendus dominus D. Joannes Franc. van Ey, dum viveret, ecclesiæ cathedralis B.M.V. canonicus et plebanus; quorum publica auctio fiet [...] in camera gildæ, dictæ den ouden voet-booghe die 30. novembris &amp; seq. 1762
+- Proclamation et advertence de la part du commandement général de l&#39;armée de sa majesté apostolique aux Pays-Bas autrichiens
+- Den H. Franciscvs de Borgia in&#39;t hof vanden keyser [...] sal vertoont vvorden door de ionckheyt der scholen vande societeyt Iesu tot Brugghe den 9. 10. ende 11. septembris M.DC.LXXI
+- Declaratie van den keyzer end konink van den 24. mey 1787. Zyne majesteyt vernomen hebbende [...] dat&#39;er zoude questie zyn van [...] in-te-voeren eenen tax van veertig par cent [...] heeft goet-gevonden kenbaer te maeken [...] dat de zelve tegenstrijdig zyn aen zyne [...] intentien
 </pre></div>
 </div>
 </div>
@@ -334,49 +341,50 @@ Found!
 <p>Now let’s consider the difference between searching for the word <code class="docutils literal notranslate"><span class="pre">English</span></code> with and without an index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_word_index</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">to_split</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">to_split</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_word_index</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
     <span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
             <span class="n">index</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">[])</span>
             <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">index</span>
 
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">search_string</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-    <span class="c1"># Note: global scoping can be dangerous!</span>
-    <span class="c1"># Perhaps there are cleaner solutions than this?</span>
-    <span class="k">global</span> <span class="n">BOOK_TITLES</span>
-    <span class="k">global</span> <span class="n">BOOK_TITLES_INDEX</span>
-    <span class="k">if</span> <span class="n">index</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">BOOK_TITLES_INDEX</span><span class="p">[</span><span class="n">search_string</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">BOOK_TITLES</span><span class="p">:</span>
-            <span class="n">words</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">search_string</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span>
+<span class="k">def</span> <span class="nf">search_with_index</span><span class="p">(</span><span class="n">search_string</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">search_string</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">search_without_index</span><span class="p">(</span><span class="n">search_string</span><span class="p">,</span> <span class="n">list_to_search</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">list_to_search</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">search_string</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
 
 <span class="n">BOOK_TITLES_INDEX</span> <span class="o">=</span> <span class="n">make_word_index</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
-<span class="n">result_no_index</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">result_index</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">result_no_index</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES_INDEX</span><span class="p">)</span>
+<span class="n">result_index</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result_index</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result_no_index</span> <span class="o">==</span> <span class="n">result_index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>English books to be sold by auction Catalogue d&#39;une tres-belle collection de livres en tous genres et langages [...] dont la vente se fera en argent de change, jeudi 18 Frimaire an 11, 9 decembre 1802, et jours suivans, chez Jacques Laureys au Marché aux herbes à Malines
-A new pocket dictionary and vocabulary of the Flemish, English and French languages
-A daily exercise, and devotions, for the young ladies, and gentlewomen pensioners at the monastery of the English canonesses regulars of the holy order of S. Augustin at Bruges
-A brieff apologie, or defence of the catholike ecclesiastical hierarchie, &amp; subordination in England, erected these later yeares by our holy father pope Clement the eyght; and impugned by certayne libels printed &amp; published of late both in Latyn &amp; English
-An appendix to the Apologie, lately set forth, for defence of the hierarchie, and subordination of the English catholike church, impugned by certaine discontented priestes
-A relation of the solemnetie wherewith the catholike princes K. Phillip the III. and quene Margaret were receyed in the English colledge of Valladolid the 22. of August. 1600
-A restitvtion of decayed intelligence: in antiquities. Concerning the most noble and renovvmed English nation
-Dottrina del ben morire. English
-Oratio Petri Frarini quod male reformandae religionis nomine arma sumpserunt sectarii nostri temporis habita. English
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- English books to be sold by auction Catalogue d&#39;une tres-belle collection de livres en tous genres et langages [...] dont la vente se fera en argent de change, jeudi 18 Frimaire an 11, 9 decembre 1802, et jours suivans, chez Jacques Laureys au Marché aux herbes à Malines
+- A new pocket dictionary and vocabulary of the Flemish, English and French languages
+- A daily exercise, and devotions, for the young ladies, and gentlewomen pensioners at the monastery of the English canonesses regulars of the holy order of S. Augustin at Bruges
+- A brieff apologie, or defence of the catholike ecclesiastical hierarchie, &amp; subordination in England, erected these later yeares by our holy father pope Clement the eyght; and impugned by certayne libels printed &amp; published of late both in Latyn &amp; English
+- An appendix to the Apologie, lately set forth, for defence of the hierarchie, and subordination of the English catholike church, impugned by certaine discontented priestes
+- A relation of the solemnetie wherewith the catholike princes K. Phillip the III. and quene Margaret were receyed in the English colledge of Valladolid the 22. of August. 1600
+- A restitvtion of decayed intelligence: in antiquities. Concerning the most noble and renovvmed English nation
+- Dottrina del ben morire. English
+- Oratio Petri Frarini quod male reformandae religionis nomine arma sumpserunt sectarii nostri temporis habita. English
 True
 </pre></div>
 </div>
@@ -385,35 +393,36 @@ True
 <p>Obviously, the results of searching with and without a word index are the same. But what about the efficiency of the search? For this we can use Jupyter’s handy feature <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> search(&quot;English&quot;, False)
-<span class="o">%</span><span class="k">timeit</span> search(&quot;English&quot;, True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> search_with_index(&quot;English&quot;, BOOK_TITLES_INDEX)
+<span class="o">%</span><span class="k">timeit</span> search_without_index(&quot;English&quot;, BOOK_TITLES)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>47.5 ms ± 3.21 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
-109 ns ± 3.34 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>199 ns ± 17.8 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+105 ms ± 21.2 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The difference is as large as microseconds versus nanoseconds! Remember, with STCV we are only search about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
+<p>The difference is as large as microseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
 <p>And of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.</p>
 <p>For instance, titles like “The Art of Computer Programming” and “Zen and the Art of Motorcycle Maintanance” could be turned into an AND-index like so:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">dumps</span>
-<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The Art of Computer Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Zen and the Art of Motorcycle Maintanance&quot;</span><span class="p">]</span>
-<span class="n">AND_INDEX</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">titles</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">TITLES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The Art of Computer Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Zen and the Art of Motorcycle Maintanance&quot;</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">TITLES</span><span class="p">:</span>
     <span class="n">clean_title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">clean_title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">AND_INDEX</span><span class="p">:</span>
-            <span class="n">AND_INDEX</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">clean_title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="o">==</span> <span class="n">next_word</span><span class="p">:</span>
-                <span class="n">AND_INDEX</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">next_word</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dumps</span><span class="p">(</span><span class="n">AND_INDEX</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">clean_title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+            <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
+                <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">next_word</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -501,7 +510,7 @@ True
 <p>In this way, searching with <code class="docutils literal notranslate"><span class="pre">AND</span></code> becomes easy in this index, e.g. books that combine “art” and “computer”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">AND_INDEX</span><span class="p">[</span><span class="s2">&quot;art&quot;</span><span class="p">][</span><span class="s2">&quot;computer&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="s2">&quot;art&quot;</span><span class="p">][</span><span class="s2">&quot;computer&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -515,11 +524,11 @@ True
 <div class="section" id="excursus-bitmap-indexing">
 <h2>Excursus: Bitmap indexing<a class="headerlink" href="#excursus-bitmap-indexing" title="Permalink to this headline">¶</a></h2>
 <p>A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.</p>
-<p>One interesting technique to avoid such problems is bitmap indexing. <a class="reference external" href="https://en.wikipedia.org/wiki/Bitmap">Wikipedia</a> says:</p>
+<p>One interesting technique to avoid such problems is bitmap indexing. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bitmap">Wikipedia</a></strong> says:</p>
 <blockquote>
 <div><p>In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits</p>
 </div></blockquote>
-<p>Let’s say you are a button factory and have produced 10,000,000 buttons of a certain type. Now you want to keep track of which buttons have been sold by recording their serial numbers. For instance:</p>
+<p>Let’s say you are a button factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getsizeof</span>
@@ -542,6 +551,7 @@ True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
+<span class="c1"># converting bytes to megabytes</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
 </pre></div>
@@ -553,10 +563,10 @@ True
 </div>
 </div>
 </div>
-<p>So you see, things can get out of hand quickly. But if you use a bitmapping system, things are radically different:</p>
+<p>So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># setting a bit array here with array (https://docs.python.org/3/library/array.html)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting a bit array here with array (https://docs.python.org/3/library/array.html)</span>
 <span class="c1"># in real applications you should use https://pypi.org/project/bitmap/</span>
 
 <span class="kn">import</span> <span class="nn">array</span>
@@ -581,22 +591,20 @@ True
 </div>
 <div class="section" id="lucene">
 <h2>Lucene<a class="headerlink" href="#lucene" title="Permalink to this headline">¶</a></h2>
-<p>The leading software for indexing and searching text is definitely <a class="reference external" href="https://lucene.apache.org/">Lucene</a>. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course).</p>
-<p>There is a Python extension for accessing Java Lucene, called <a class="reference external" href="https://lucene.apache.org/pylucene/">PyLucene</a>. Its goal is to allow you to use Lucene’s text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene <strong>port</strong> but a Python <strong>wrapper</strong> around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU <code class="docutils literal notranslate"><span class="pre">Make</span></code>, a C++ compiler, etc.).</p>
+<p>The leading software for indexing and searching text is definitely <strong><a class="reference external" href="https://lucene.apache.org/">Lucene</a></strong>. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course).</p>
+<p>There is a Python extension for accessing Java Lucene, called <strong><a class="reference external" href="https://lucene.apache.org/pylucene/">PyLucene</a></strong>. Its goal is to allow you to use Lucene’s text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene <strong>port</strong> but a Python <strong>wrapper</strong> around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU <code class="docutils literal notranslate"><span class="pre">Make</span></code>, a C++ compiler, …).</p>
 </div>
 <div class="section" id="whoosh">
 <h2>Whoosh<a class="headerlink" href="#whoosh" title="Permalink to this headline">¶</a></h2>
 <p>As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software.</p>
-<p>One of these is <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/index.html">Whoosh</a>, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, still works fine for Python 3 and can easily be installed through <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Whoosh</span></code>.</p>
+<p>One of these is <strong><a class="reference external" href="https://whoosh.readthedocs.io/en/latest/index.html">Whoosh</a></strong>, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Whoosh</span></code>.</p>
 <p>In the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/intro.html">Whoosh introduction</a> we read:</p>
 <blockquote>
 <div><p><strong>About Whoosh</strong></p>
 <ul class="simple">
 <li><p>Whoosh is fast, but uses only pure Python, so it will run anywhere Python runs, without requiring a compiler.</p></li>
-<li><p>By default, Whoosh uses the Okapi BM25F ranking function, but like most things the ranking function can be easily customized.</p></li>
 <li><p>Whoosh creates fairly small indexes compared to many other search libraries.</p></li>
 <li><p>All indexed text in Whoosh must be unicode.</p></li>
-<li><p>Whoosh lets you store arbitrary Python objects with indexed documents.</p></li>
 </ul>
 </div></blockquote>
 <blockquote>
@@ -614,20 +622,20 @@ True
 <blockquote>
 <div><p>Practically no important behavior of Whoosh is hard-coded. Indexing of text, the level of information stored for each term in each field, parsing of search queries, the types of queries allowed, scoring algorithms, etc. are all customizable, replaceable, and extensible.</p>
 </div></blockquote>
-<p>Indeed, Whoosh is quite similar to Lucene, including its query language. It lets you connect terms with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, eleminate terms with <code class="docutils literal notranslate"><span class="pre">NOT</span></code>, group terms together into clauses with parentheses, do range, prefix, and wilcard queries, and specify different fields to search. By default it joins clauses together with <code class="docutils literal notranslate"><span class="pre">AND</span></code> (so by default, all terms you specify must be in the document for the document to match)</p>
+<p>Indeed, Whoosh is quite similar to Lucene, including its query language. It lets you connect terms with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, eliminate terms with <code class="docutils literal notranslate"><span class="pre">NOT</span></code>, group terms together into clauses with parentheses, do range, prefix, and wilcard queries, and specify different fields to search.</p>
 <p>The following code shows you how to create and search a basic Whoosh index. For more information, see the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/quickstart.html">Whoosh quick start</a> and documentation on the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/querylang.html">query language</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Whoosh quick start</span>
-<span class="sd">Source: https://whoosh.readthedocs.io/en/latest/quickstart.html</span>
+<span class="sd">https://whoosh.readthedocs.io/en/latest/quickstart.html</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">whoosh</span> <span class="kn">import</span> <span class="n">highlight</span>
-<span class="kn">from</span> <span class="nn">whoosh.index</span> <span class="kn">import</span> <span class="n">open_dir</span><span class="p">,</span> <span class="n">create_in</span>
-<span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">STORED</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">KEYWORD</span><span class="p">,</span> <span class="n">TEXT</span>
+<span class="kn">from</span> <span class="nn">whoosh.index</span> <span class="kn">import</span> <span class="n">create_in</span>
+<span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">TEXT</span>
 <span class="kn">from</span> <span class="nn">whoosh.qparser</span> <span class="kn">import</span> <span class="n">QueryParser</span>
 <span class="kn">from</span> <span class="nn">whoosh.query</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -647,7 +655,7 @@ True
 <span class="c1"># Create index</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Once you have the schema, you can create an index.</span>
-<span class="sd">At a low level, this creates a Storage object to contain the index.</span>
+<span class="sd">At a low level, this creates a Storage object to contains the index.</span>
 <span class="sd">A Storage object represents that medium in which the index will be stored.</span>
 <span class="sd">Usually this will be FileStorage, which stores the index as a set of files</span>
 <span class="sd">in a directory.</span>
@@ -655,78 +663,103 @@ True
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
-<span class="n">ix</span> <span class="o">=</span> <span class="n">create_in</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+<span class="n">my_index</span> <span class="o">=</span> <span class="n">create_in</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
 
 <span class="c1"># Add documents</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">OK, so we’ve got an Index object, now we can start adding documents.</span>
 <span class="sd">The writer() method of the Index object returns an IndexWriter object that</span>
-<span class="sd">lets you add documents to the index. The IndexWriter’s add_document(**kwargs)</span>
+<span class="sd">lets you add documents to the index. The IndexWriter’s add_document</span>
 <span class="sd">method accepts keyword arguments where the field name is mapped to a value.</span>
+<span class="sd">Once you have finished with the writer, you need to commit it.</span>
 
 <span class="sd">The documents we add, a small corpus of British fiction, are part of</span>
-<span class="sd">the chapter06 repo.</span>
+<span class="sd">the course repo.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">OS_SEP</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>  <span class="c1"># take care, different OS use different filepath separators!</span>
 
-<span class="n">writer</span> <span class="o">=</span> <span class="n">ix</span><span class="o">.</span><span class="n">writer</span><span class="p">()</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">my_index</span><span class="o">.</span><span class="n">writer</span><span class="p">()</span>
 
+<span class="c1"># Corpus courtesy of Maciej Eder (http://maciejeder.org/)</span>
 <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
         <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
-                            <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
+                                       <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
 <span class="n">writer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
 
 <span class="c1"># Parse a query string</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Woosh&#39;s Searcher (cf.infra) takes a Query object. You can construct query</span>
+<span class="sd">Woosh&#39;s Searcher (cf. infra) takes a Query object. You can construct query</span>
 <span class="sd">objects directly or use a query parser to parse a query string.</span>
 <span class="sd">To parse a query string, you can use the default query parser in the qparser</span>
 <span class="sd">module. The first argument to the QueryParser constructor is the default field</span>
-<span class="sd">to search. This is usually the &quot;body text&quot; field. The second optional argument</span>
-<span class="sd">is a schema to use to understand how to parse the fields.</span>
+<span class="sd">to search. This is usually the &quot;body text&quot; field. The second (optional) argument</span>
+<span class="sd">is a schema to use to understand how to parse the fields. The argument of</span>
+<span class="sd">the .parse() method is a query in Whoosh query language (similar to Lucene):</span>
+<span class="sd">https://whoosh.readthedocs.io/en/latest/querylang.html</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">myquery</span> <span class="o">=</span> <span class="n">QueryParser</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="n">ix</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;smattering&#39;</span><span class="p">)</span>
+
+<span class="n">myquery</span> <span class="o">=</span> <span class="n">QueryParser</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="n">my_index</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;smattering&#39;</span><span class="p">)</span>
+<span class="c1"># compare results for:</span>
+<span class="c1"># myquery = QueryParser(&quot;content&quot;, my_index.schema).parse(&#39;smattering in surgery&#39;)</span>
+<span class="c1"># myquery = QueryParser(&quot;content&quot;, my_index.schema).parse(&#39;smattering NOT surgery&#39;)</span>
+
 
 <span class="c1"># Search documents</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Once you have a Searcher and a query object, you can use the Searcher&#39;s</span>
-<span class="sd">search() method to run the query and get a Results object. You can use the</span>
-<span class="sd">highlights() method on the whoosh.searching.Hit object to get highlighted</span>
-<span class="sd">snippets from the document containing the search terms.</span>
+<span class="sd">search() method to run the query and get a Results object.</span>
+<span class="sd">You can use the highlights() method on the whoosh.searching.Hit object</span>
+<span class="sd">to get highlighted snippets from the document containing the search terms.</span>
+<span class="sd">To limit the text displayed, you use a Fragmenter. More information at:</span>
+<span class="sd">https://whoosh.readthedocs.io/en/latest/searching.html</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="k">with</span> <span class="n">ix</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">my_index</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
+    <span class="c1"># Search</span>
+    <span class="c1"># limit=None -&gt; search all documents in index</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="c1"># https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span><span class="o">.</span><span class="n">charlimit</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="c1"># Print paths that match</span>
     <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">hit</span><span class="o">.</span><span class="n">highlights</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>and customs,
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0006950820002202818&gt;
+Thackeray_Barry.txt
+Fielding_Joseph.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">my_index</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># Print examples of matching text with highlights and fragmenter</span>
+    <span class="c1"># Use (default) context fragmenter</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span><span class="o">.</span><span class="n">charlimit</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span> <span class="o">=</span> <span class="n">highlight</span><span class="o">.</span><span class="n">ContextFragmenter</span><span class="p">(</span><span class="n">charlimit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">hit</span><span class="o">.</span><span class="n">highlights</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">77</span><span class="n">ff43a15ab8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">with</span> <span class="n">my_index</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="c1"># Print examples of matching text with highlights and fragmenter</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="c1"># Use (default) context fragmenter</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span><span class="o">.</span><span class="n">charlimit</span> <span class="o">=</span> <span class="kc">None</span>
 
-	and a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of the language...that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
-
-	chemistry...of tune. She had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of half-
-
-	a-dozen...to me;
-
-	for I had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of French--and
-and politics, hath a
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in law and divinity...I have
-
-	a small &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in surgery,&quot; answered...the gentleman.--&quot;A
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt;--ho, ho, ho!&quot; said...I believe it is a
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; indeed.&quot;
-
-	The company
+<span class="ne">NameError</span>: name &#39;my_index&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -734,17 +767,17 @@ and politics, hath a
 </div>
 <div class="section" id="assignment-morphology-tool">
 <h2>Assignment: Morphology tool<a class="headerlink" href="#assignment-morphology-tool" title="Permalink to this headline">¶</a></h2>
-<p>Use Whoosh to teach English morphology with examples from a given corpus. For instance, through the rules of morphology verbs can take different forms or be used to form nouns, adjectives and such, like:</p>
+<p>Use Whoosh to illustrate English morphology with examples from a given corpus. For instance, the rules of morphology dictate verbs can take different forms or be used to form nouns, adjectives and such, like:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">render</span></code>: ‘renders’, ‘rendered’, ‘rendering’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">think</span></code>: ‘thinks’, ‘thought’, ‘thinking’, ‘thinker’, ‘thinkers’, ‘thinkable’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">put</span></code>: ‘puts’, ‘putting’, ‘putter’</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">do</span></code>: ‘does’, ‘did’, ‘done’, ‘doing’, ‘doings’, ‘doer’, ‘doers’</p></li>
 </ul>
-<p>Forms like <code class="docutils literal notranslate"><span class="pre">put</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code> illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding ‘ed’, ‘ing’, etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.</p>
-<p>Whoosh has a particular feature to deal with this. Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus (folder <code class="docutils literal notranslate"><span class="pre">corpus_of_british_fiction</span></code> in this repo, which I owe to <strong><a class="reference external" href="http://maciejeder.org/">Maciej Eder</a></strong>) that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.</p>
-<p>Also, try to display the results nicely, i.e. without the markup tags we saw in the above example. Maybe you can even print the matched word in bold?</p>
-<p>If this is an easy task for you, try to convert this approach to look for examples of phrasal verbs, i.e. “to put off” (variant forms ‘put off’, ‘puts off’, ‘putting off’, etcetera)</p>
+<p>Forms like <code class="docutils literal notranslate"><span class="pre">think</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code> illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding ‘ed’, ‘ing’, etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.</p>
+<p>Whoosh has a particular feature to deal with this. Look through the documentation and you’ll find it easily.</p>
+<p>Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.</p>
+<p>Also, try to display the results nicely, i.e. without the markup tags and whitespace (line breaks, etc.) we saw in the above example. Maybe you can even print the matched word in bold?</p>
 </div>
 </div>
 
@@ -757,16 +790,16 @@ and politics, hath a
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "Python 3.8.2 64-bit"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "Python 3.8.2 64-bit",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'Python 3.8.2 64-bit'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
