@@ -98,7 +98,7 @@ Regular expressions can also be used to illustrate the concept of fuzzy searchin
 
 > > insertion: co*****t → co**a**t
 
-> > deletion: co**a**t → co*****t
+> > deletion: co**a**t → co\*t
 
 > > substitution: co**a**t → co**s**t
 
