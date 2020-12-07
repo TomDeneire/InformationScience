@@ -19,7 +19,7 @@ database = b'''
                 </teacher>
                 </teachers>
                 <students>
-                <student nr="1" nationality="international">
+                <student nr="1" nationality="American">
                     <name type="last">Modrall Sperling</name>
                     <name type="first">Dorothy</name>
                 </student>
