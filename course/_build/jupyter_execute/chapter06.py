@@ -94,8 +94,8 @@ def search_without_index(search_string, list_to_search):
 
 
 BOOK_TITLES_INDEX = make_word_index(BOOK_TITLES)
-result_no_index = search("English", BOOK_TITLES_INDEX)
-result_index = search("English", BOOK_TITLES)
+result_no_index = search_without_index("English", BOOK_TITLES)
+result_index = search_with_index("English", BOOK_TITLES_INDEX)
 for item in result_index:
     print("-", item)
 print(result_no_index == result_index)
