@@ -124,7 +124,10 @@ for title in TITLES:
             index[word] = {}
         for next_word in words:
             if not next_word == word:
-                index[word].update({next_word: title})
+                if not next_word in index[word]:
+                    index[word][next_word] = [title]
+                else:
+                    index[word][next_word].append(title)
 print(json.dumps(index, indent=4))
 
 

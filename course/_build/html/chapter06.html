@@ -421,7 +421,10 @@ True
             <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
-                <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">next_word</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]:</span>
+                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -429,78 +432,196 @@ True
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
     &quot;the&quot;: {
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;computer&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;programming&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;art&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;computer&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;programming&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;art&quot;: {
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;computer&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;programming&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;the&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;computer&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;programming&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;of&quot;: {
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;computer&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;programming&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;the&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;The Art of Computer Programming&quot;,
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;computer&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;programming&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;computer&quot;: {
-        &quot;the&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;art&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;of&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;programming&quot;: &quot;The Art of Computer Programming&quot;
+        &quot;the&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;programming&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ]
     },
     &quot;programming&quot;: {
-        &quot;the&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;art&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;of&quot;: &quot;The Art of Computer Programming&quot;,
-        &quot;computer&quot;: &quot;The Art of Computer Programming&quot;
+        &quot;the&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ],
+        &quot;computer&quot;: [
+            &quot;The Art of Computer Programming&quot;
+        ]
     },
     &quot;zen&quot;: {
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;the&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;and&quot;: {
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;the&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;motorcycle&quot;: {
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;maintanance&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;the&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;maintanance&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     },
     &quot;maintanance&quot;: {
-        &quot;zen&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;and&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;the&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;art&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;of&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;,
-        &quot;motorcycle&quot;: &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        &quot;zen&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;and&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;the&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;art&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;of&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ],
+        &quot;motorcycle&quot;: [
+            &quot;Zen and the Art of Motorcycle Maintanance&quot;
+        ]
     }
 }
 </pre></div>
@@ -515,7 +636,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Art of Computer Programming
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;The Art of Computer Programming&#39;]
 </pre></div>
 </div>
 </div>
