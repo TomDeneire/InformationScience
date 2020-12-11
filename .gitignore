@@ -7,5 +7,6 @@ test/
 stuff/
 course/__*
 course_assignments/__*
+course_assignments/index
 course/index
 students/
