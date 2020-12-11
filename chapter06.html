@@ -218,6 +218,25 @@
   <a class="reference internal nav-link" href="#indexing">
    Indexing
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-searches">
+     Simple searches
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#excursus-time-complexity">
+       Excursus: time complexity
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complex-searches">
+     Complex searches
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#excursus-bitmap-indexing">
@@ -298,6 +317,8 @@ Found!
 <div class="section" id="indexing">
 <h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
 <p>One way to deal with his issue is <strong>indexing</strong>. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure.</p>
+<div class="section" id="simple-searches">
+<h3>Simple searches<a class="headerlink" href="#simple-searches" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following example. Let’s say we have a large list of book titles and want to search them for a specific term.</p>
 <p>Let’s first use SQL and the STCV database from chapter 04 to make such a list.</p>
 <div class="cell docutils container">
@@ -324,16 +345,16 @@ Found!
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26153 titles, e.g.:
-- Iacobi Latomi theologiae professoris Libellus de fide &amp; operibus, &amp; de votis atque institutis monasticis
-- Rampzaligen ondergang van den vreeden ende opgeblaesen keyzer Neronis, Galba ende Vissilius Otho waer naer volgt den voorspoedigen opgang van Vespasianus. Ende zynen zone Titus [...]. Zal speelwys verthoond worden [...] op den 5, 8, 12, 13 en 19 september. en den derden october
-- Prognosticatie ofte Voorsegginghe vande revolutie des iaers
-- Die vier oeffeninge[n]
-- Tijdinghen wt Vranckrijck en[de] Duytslandt van t&#39;ghene daer passeert. Met tydinghen vvt Hollant
-- De sacra antiquitate ordinis B. Mariae de monte Carmelo
-- Ordonnantie van den keyzer ende koning, raekende de begunstigers der Fransche regérings-form. Den 4 april 1794
-- Catechismus oft christelycke leeringhe gedeylt in vyf deelen ende een-en-veertigh lessen
-- Aflaten ghejont aen het broederschap vande seven ween opgerecht inde parochiale kercke van Ronsele verleent by zijne heyligheyt Clemens den X. paus van Romen
-- Acta et decreta synodalia ecclesiæ Leodiensis
+- Gheestelicken schat vande derde ordre S. Dominici
+- Het tweede deel der meditatien
+- Reghelen end oeffeninghen voor de gheestelycke dochters vanden H. Franciscus de Sales
+- Translaet van het reglement raeckende d&#39;appellatien, oft ander belagh vande ordonnantien van commissarissen tot auditie, ende recoulement vande rekeninghen vande publicque lasten, ende penninghen
+- Decret rendu au conseil souverain de Brabant. Le 20 septembre 1791
+- Copye van den circulairen brief, gheschreven inghevolge de orders van sijne catholiecke majesteyt, door den secretaris van de universeele depesche, aen alle sijne ambassadeurs inde uyt-heemsche hoven
+- Nieuwe lijste van consumptie, [...] omme ghelicht ende ontfanghen te worden binnen den zeluen lande van Vlaendre: daermede te nieten ghedaen worden diuersche voorghaende lijsten
+- Missæ propriæ sanctorum ecclesiæ cathedralis, et diœcesis Antverpiensis
+- Maria Theresia [...]. Op de menighvuldige clachten [...] dat de heirbaenen, publiecke wegen, ende straeten in de seven quartieren van Antwerpen, ende in den byvanck van Lier soodaenigh verhindert, belemmert, ende buyten staet gestelt zijn, dat het [...] niet mogelijck en is [...] van d&#39;eene plaetse tot d&#39;andere te geraecken
+- Interpretation et esclaircissement de certaines dovbtes et difficultez qui se sont recontrées [!] en l&#39;Ordonnance &amp; edict perpetuel [...] du xij. de iuillet de cest an 1611
 </pre></div>
 </div>
 </div>
@@ -399,14 +420,22 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>139 ns ± 24.1 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
-38.8 ms ± 1.44 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>127 ns ± 7.83 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+49.9 ms ± 3.59 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The difference is as large as microseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
-<p>And of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.</p>
+<p>The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
+<div class="section" id="excursus-time-complexity">
+<h4>Excursus: time complexity<a class="headerlink" href="#excursus-time-complexity" title="Permalink to this headline">¶</a></h4>
+<p>In essence and, what we have just done boils down to changing the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a></strong> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
+<p>Optimizing searches by reducing the time complexity of one’s search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.</p>
+</div>
+</div>
+<div class="section" id="complex-searches">
+<h3>Complex searches<a class="headerlink" href="#complex-searches" title="Permalink to this headline">¶</a></h3>
+<p>Of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.</p>
 <p>For instance, titles like “The Art of Computer Programming” and “Zen and the Art of Motorcycle Maintanance” could be turned into an AND-index like so:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,6 +671,7 @@ True
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="excursus-bitmap-indexing">
 <h2>Excursus: Bitmap indexing<a class="headerlink" href="#excursus-bitmap-indexing" title="Permalink to this headline">¶</a></h2>
 <p>A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.</p>
@@ -649,7 +679,7 @@ True
 <blockquote>
 <div><p>In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits</p>
 </div></blockquote>
-<p>Let’s say you are a button factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:</p>
+<p>Let’s say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getsizeof</span>
@@ -668,7 +698,7 @@ True
 </div>
 </div>
 </div>
-<p>So you need 67 bytes to store this information as a Python array. By the time all buttons have been sold the list will be this large:</p>
+<p>So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
@@ -849,7 +879,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0007918329999938578&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0008145450001393328&gt;
 Thackeray_Barry.txt
 Fielding_Joseph.txt
 </pre></div>
@@ -862,7 +892,6 @@ Fielding_Joseph.txt
     <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="c1"># Print examples of matching text with highlights and fragmenter</span>
     <span class="c1"># Use (default) context fragmenter</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span><span class="o">.</span><span class="n">charlimit</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit</span>
     <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span> <span class="o">=</span> <span class="n">highlight</span><span class="o">.</span><span class="n">ContextFragmenter</span><span class="p">(</span><span class="n">charlimit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
@@ -871,16 +900,16 @@ Fielding_Joseph.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Thackeray_Barry.txt = that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Thackeray_Barry.txt = and customs,
+
+	and a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of the language...that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
 
 	chemistry...of tune. She had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of half-
 
-	a-dozen...to me;
+	a-dozen
+2 Fielding_Joseph.txt = and politics, hath a
 
-	for I had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of French--and
-2 Fielding_Joseph.txt = I have
-
-	a small &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in surgery,&quot; answered...the gentleman.--&quot;A
+	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in law and divinity...the gentleman.--&quot;A
 
 	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt;--ho, ho, ho!&quot; said...I believe it is a
 
