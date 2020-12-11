@@ -16,8 +16,9 @@ def build_dictionary(folder: str, dict_file: str) -> None:
     """
     dict_of_onegrams = {}
     for document in os.listdir(folder):
-        words = onegrams(os.path.join(folder, document))
-        dict_of_onegrams.update(words)
+        if document.endswith(".txt"):
+            words = onegrams(os.path.join(folder, document))
+            dict_of_onegrams.update(words)
     with open(dict_file, 'w') as dictionary:
         dictionary.write(json.dumps(dict_of_onegrams))
 

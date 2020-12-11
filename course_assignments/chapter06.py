@@ -30,10 +30,11 @@ def make_index(documents_dir: str) -> Index:
     # Add documents
     writer = index_of_documents.writer()
     for document in os.listdir(documents_dir):
-        with open(os.path.join(documents_dir, document), 'r') as text:
-            writer.add_document(title=document,
-                                content=text.read(),
-                                path=document)
+        if document.endswith(".txt"):
+            with open(os.path.join(documents_dir, document), 'r') as text:
+                writer.add_document(title=document,
+                                    content=text.read(),
+                                    path=document)
     writer.commit()
     print("Index finished")
     return index_of_documents
