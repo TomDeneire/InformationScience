@@ -9,7 +9,7 @@ from typing import Iterator
 
 from whoosh import highlight
 from whoosh.index import create_in, Index
-from whoosh.lang.morph_en import variations
+from whoosh.lang import morph_en
 from whoosh.fields import Schema, ID, TEXT
 from whoosh.qparser import QueryParser
 
@@ -100,7 +100,7 @@ if __name__ == "__main__":
         if my_query == 'q:':
             exit()
         else:
-            for variation in variations(my_query):
+            for variation in morph_en.variations(my_query):
                 for title, sentences in query_index(variation, INDEX):
                     for sentence in sentences:
                         sentence = pretty(sentence, variation)

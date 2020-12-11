@@ -74,4 +74,7 @@ Some points to take away from this assignment:
     files. This is why refactoring is so important. It follows the UNIX
     philosophy of building simple, short, clear, modular, and extensible code
     that does one thing and does one thing well.
+
+    2. Because of the compatibility JSON <-> Python dict, JSON is a good choice
+    for reading/writing a small database of permanent data in Python.
 """
