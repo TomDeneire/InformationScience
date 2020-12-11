@@ -4,4 +4,3 @@
 
 
 
-## Assignment: YottaDB Acculturation Workshop
