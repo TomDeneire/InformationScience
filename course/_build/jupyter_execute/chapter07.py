@@ -26,7 +26,7 @@ The `*` symbol we used is actually part of a separate programming language, call
 
 > Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.
 
-Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Python, Ruby, Microsoft's .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX `grep` command.
+Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Ruby, Microsoft's .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX `grep` command.
 
 Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a *write only* programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases. 
 

@@ -43,6 +43,8 @@ However, search operations can soon become complicated and especially time-consu
 
 One way to deal with his issue is **indexing**. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure. 
 
+### Simple searches
+
 Consider the following example. Let's say we have a large list of book titles and want to search them for a specific term.
 
 Let's first use SQL and the STCV database from chapter 04 to make such a list.
@@ -107,9 +109,17 @@ Obviously, the results of searching with and without a word index are the same. 
 %timeit search_without_index("English", BOOK_TITLES)
 
 
-The difference is as large as microseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items... 
+The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items... 
 
-And of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.
+#### Excursus: time complexity
+
+In essence and, what we have just done boils down to changing the __[time complexity](https://en.wikipedia.org/wiki/Time_complexity)__ of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
+
+Optimizing searches by reducing the time complexity of one's search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.
+
+### Complex searches
+
+Of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.
 
 For instance, titles like "The Art of Computer Programming" and "Zen and the Art of Motorcycle Maintanance" could be turned into an AND-index like so:
 
@@ -143,7 +153,7 @@ One interesting technique to avoid such problems is bitmap indexing. __[Wikipedi
 
 > In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits
 
-Let's say you are a button factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:
+Let's say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:
 
 from sys import getsizeof
 import array
@@ -154,7 +164,7 @@ pens_sold = array.array('B', [1, 5, 10])
 print(getsizeof(pens_sold), 'bytes')
 
 
-So you need 67 bytes to store this information as a Python array. By the time all buttons have been sold the list will be this large:
+So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
 
 all_pens_sold = array.array('L', [i for i in range(1,10000000)])
 # converting bytes to megabytes
@@ -317,7 +327,6 @@ with my_index.searcher() as searcher:
     results = searcher.search(myquery, limit=None)
     # Print examples of matching text with highlights and fragmenter
     # Use (default) context fragmenter
-    results.fragmenter.charlimit = None
     # https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit
     results.fragmenter = highlight.ContextFragmenter(charlimit=None)
     for index, hit in enumerate(results):
