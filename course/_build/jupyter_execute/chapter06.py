@@ -281,9 +281,10 @@ writer = my_index.writer()
 
 # Corpus courtesy of Maciej Eder (http://maciejeder.org/)
 for document in os.listdir("corpus_of_british_fiction"):
-    with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
-        writer.add_document(title=document, content=str(text.read()),
-                                       path=document)
+    if document.endswith(".txt"):
+        with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
+            writer.add_document(title=document, content=str(text.read()),
+                                        path=document)
 writer.commit()
 
 

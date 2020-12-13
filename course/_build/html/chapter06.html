@@ -834,9 +834,10 @@ True
 
 <span class="c1"># Corpus courtesy of Maciej Eder (http://maciejeder.org/)</span>
 <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
-        <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
-                                       <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">document</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
+                                        <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
 <span class="n">writer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
 

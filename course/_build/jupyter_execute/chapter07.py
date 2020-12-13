@@ -46,9 +46,9 @@ print(re.findall(rhyme, paragraph))
 
 So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use `.isinstance()`), reconsider!
 
-The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at [w3schools](https://www.w3schools.com/python/python_regex.asp)) and there are also handy regex testers where you can immediately check your regex, like [regexr](https://regexr.com/). For a good Python cheat sheet, see this [Medium post](https://link.medium.com/BYkb73meJab).
+The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at __[w3schools](https://www.w3schools.com/python/python_regex.asp)__) and there are also handy regex testers where you can immediately check your regex, like __[regexr](https://regexr.com/)__. For a good Python cheat sheet, see this __[Medium post](https://link.medium.com/BYkb73meJab)__.
 
-A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in [RFC 5322](https://tools.ietf.org/html/rfc5322). For a (more readable) summary, see [Wikipedia](https://en.wikipedia.org/wiki/Email_address#Syntax).
+A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in __[RFC 5322](https://tools.ietf.org/html/rfc5322)__. For a (more readable) summary, see __[Wikipedia](https://en.wikipedia.org/wiki/Email_address#Syntax)__.
 
 In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?
 
@@ -116,7 +116,7 @@ A __[string metric](https://en.wikipedia.org/wiki/String_metric)__ (also known a
 
 ## Evaluation and ranking
 
-With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)__) offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
+With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))__ offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
 
 ## Assignment: Spelling checker
 

@@ -178,6 +178,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter08.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter08.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -186,7 +208,83 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brocade-library-services">
+   Brocade Library Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server">
+   Server
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mumps">
+     MUMPS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apache-and-php">
+     Apache and PHP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-software">
+     Other software
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qtech">
+   Qtech
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#registry">
+     Registry
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#macros-d-files">
+     Macros (.d files)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#screens-x-files">
+     Screens (.x files)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#language-codes-l-files">
+     Language codes (.l files)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metainformation-b-files">
+     Metainformation (.b files)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#production-server">
+   Production server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-ydb-acculturation-workshop">
+   Optional: YDB Acculturation Workshop
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -197,6 +295,179 @@
                 
   <div class="section" id="chapter-8-library-management-systems">
 <h1>Chapter 8: Library Management Systems<a class="headerlink" href="#chapter-8-library-management-systems" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/Brocade.png" /></p>
+<p><strong><a class="reference external" href="https://anet.be/visualisering/project/hierarchical-edge-bundling.htm">Brocade software visualization</a></strong></p>
+<p>In this chapter about the Brocade library management system (LMS) we will try to tie the previous chapters together. Above all, the aim is the illustrate the overall <strong>architecture</strong> of an information system, i.e. how different technologies come together to make up a system.</p>
+<div class="section" id="brocade-library-services">
+<h2>Brocade Library Services<a class="headerlink" href="#brocade-library-services" title="Permalink to this headline">¶</a></h2>
+<p>(source: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Wikipedia</a></strong>)</p>
+<p>Brocade, in full “Brocade Library Services” is a web-based library information management system developed by the University of Antwerp (UAntwerp) in 1998 by a section of the University Library called <strong>Anet</strong>. Brocade is designed as a web-based application, sold via a cloud license model. The system is multilingual and uses open source components.</p>
+<p>Brocade offers library and archival institutions a complete suite of <strong>applications</strong> allowing them to:</p>
+<ul class="simple">
+<li><p>create, maintain and publish bibliographical, archival and documentary databases;</p></li>
+<li><p>automate all back-office tasks in a library (cataloguing, authority control and thesaurus management, patron administration, circulation, ordering, subscription control, electronic resource management, interlibrary lending and document delivery) and an archival institution (ISAAR authorities, archival acquisitions, ISAD descriptions, descriptions of objects such as manuscripts, photos, letters, …)</p></li>
+<li><p>offer electronic services to the library end-users (online public access catalogue, SMS services, personalized MyLib-environment, document requests, alerting service, self-renewal, …)</p></li>
+</ul>
+<p>The networked topology of the application lets libraries work together, share information, share catalogues, while still keeping their own identity and independency when it comes to typical local functions such as acquisition and circulation.</p>
+<p>Brocade is a completely <strong>web-based</strong> application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.</p>
+<p>Target <strong>customers</strong> for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.</p>
+</div>
+<div class="section" id="server">
+<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
+<p>It all starts with a server, a physical machine located in the University of Antwerp’s server farm. It currently runs Red Hat OS and uses <strong><a class="reference external" href="https://www.ansible.com/">Ansible</a></strong> for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, …)</p>
+<p>The following components are key parts of our server infrastructure:</p>
+<div class="section" id="mumps">
+<h3>MUMPS<a class="headerlink" href="#mumps" title="Permalink to this headline">¶</a></h3>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a></strong> (or “M”) is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:</p>
+<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s ^USERS(1,&quot;first&quot;)=&quot;Tom&quot;
+s ^USERS(1,&quot;last&quot;)=&quot;Deneire&quot;
+s ^USERS(1,&quot;email&quot;)=&quot;deneiretom@gmail.com&quot;
+</pre></div>
+</div>
+<p>This instruction tells the database to define a <strong>global variable</strong> (the <code class="docutils literal notranslate"><span class="pre">^</span></code> caret sign makes it a global), which will be available both during the program’s runtime and which will be saved to an area of physical disk space designated for these globals, making it effectively a database.</p>
+<p>The structure is that of a subscripted array, which is equivalent to this in JSON</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;USERS&quot;</span><span class="p">:</span>
+	<span class="p">{</span>
+		<span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+			<span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;deneiretom@gmail.com&quot;</span><span class="p">,</span>
+			<span class="nt">&quot;first&quot;</span><span class="p">:</span> <span class="s2">&quot;Tom&quot;</span><span class="p">,</span>
+			<span class="nt">&quot;last&quot;</span><span class="p">:</span> <span class="s2">&quot;Deneire&quot;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Of course, you can also run code from files in MUMPS. These have extension <code class="docutils literal notranslate"><span class="pre">.m</span></code> and need to be installed in a designated <code class="docutils literal notranslate"><span class="pre">r</span></code> folder (e.g. <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>).</p>
+<p>There are now, and have always been, several <strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS#History">MUMPS implementations</a></strong> one of which is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GT.M">G.TM</a></strong>. G.TM is now open source, which allows a company called <strong><a class="reference external" href="https://yottadb.com/">YottaDB</a></strong> to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.</p>
+<p>YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is an old language and has a pretty <strong><a class="reference external" href="https://thedailywtf.com/articles/A_Case_of_the_MUMPS">bad reputation</a></strong>, not completely undeservedly to be frank. On the other hand, MUMPS is very simple, quite fast and we love it.</p>
+<p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter05 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
+<div class="highlight-mumps notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apache-and-php">
+<h3>Apache and PHP<a class="headerlink" href="#apache-and-php" title="Permalink to this headline">¶</a></h3>
+<p>Our server uses Apache webserver to host a website with a URL that ends in <code class="docutils literal notranslate"><span class="pre">?brocade.phtml</span></code>. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">p</span></code> in <code class="docutils literal notranslate"><span class="pre">brocade.phtml</span></code> stands for PHP, it is a HTML file with can also execute PHP code. PHP (unlike Javascript) runs <em>server side</em> which means it can access the server’s shell. The shell can then start a MUMPS process that the input HTML (e.g. username and password), processes this HTML (e.g. lookup access rights in the database) and the produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.</p>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>Our server also has a Python installation, in fact: we still need both Python2 and Python3. In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
+<p>Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.</p>
+<p>Some examples include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mutil</span></code>: maintenance of MUMPS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crunch</span></code>: storage monitoring (disk space, database regions, …)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">musqet</span></code>: export of MUMPS data to <code class="docutils literal notranslate"><span class="pre">.sqlite</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docman</span></code>: file storage, e.g. images, PDFs, …</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lucene</span></code>: our Python wrapper (using <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>) for Lucene</p></li>
+</ul>
+<p>So if a user uses Brocade to export a dataset in .sqlite, what happens under the hood is that MUMPS goes to the shell to trigger a <code class="docutils literal notranslate"><span class="pre">musqet</span></code> command. This is then executed with Python and the result is stored on the server with <code class="docutils literal notranslate"><span class="pre">docman</span></code>. The result is offered to the user as a download link.</p>
+<p>Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.</p>
+</div>
+<div class="section" id="other-software">
+<h3>Other software<a class="headerlink" href="#other-software" title="Permalink to this headline">¶</a></h3>
+<p>Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning <code class="docutils literal notranslate"><span class="pre">/library/tmp</span></code>) and Lucene for indexing.</p>
+</div>
+</div>
+<div class="section" id="qtech">
+<h2>Qtech<a class="headerlink" href="#qtech" title="Permalink to this headline">¶</a></h2>
+<p>All Brocade software, whether it is MUMPS, Python or what have you, is maintained in a software repository on the server (<code class="docutils literal notranslate"><span class="pre">library/software</span></code>). However, when a developer wants to interact with this repository, for instance to add or edit a file, this is not done on the server directly. There are many reasons for this. For one, this would be impractical, as it would mean that developers could not use their own tools (e.g. code editor) but whatever is present on the server (e.g. <code class="docutils literal notranslate"><span class="pre">vi</span></code>), and that all developers would be working on the same files. Secondly, it was also be dangerous, as removing the wrong file with the wrong command could result in a permanent loss of the software.</p>
+<p>Instead local developers get a copy of the software repository on their local machine, very much like a clone from GitHub, and work on that. When they want to push their changes to the server repository, they use a toolcat application with GUI called <code class="docutils literal notranslate"><span class="pre">Qtech</span></code>. This takes care of version control, of copying the local files to their remote controle, and also of installing the software. For instance, in order to be executable by MUMPS <code class="docutils literal notranslate"><span class="pre">.m</span></code> files need to be put in a designated directory (<code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>), which is also done by Qtech. Or, when a developer makes a new toolcat application, it needs to be available in the <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> environment variable on the server. Again this is handled by Qtech.</p>
+<div class="section" id="registry">
+<h3>Registry<a class="headerlink" href="#registry" title="Permalink to this headline">¶</a></h3>
+<p>To do that in a clean and permanent way, we use a JSON file called <code class="docutils literal notranslate"><span class="pre">registry.json</span></code>. This file then contains keys like, <code class="docutils literal notranslate"><span class="pre">GTM-rou-dir</span></code> when stands for <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>. By using not the path itself, but calling the appropriate key from <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> in our software, we make sure that should YottaDB ever change the location of the designated folder for M routines, we only need to change the registry key and all depending software would still run correctly.</p>
+<p>There is also a version of <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> on our local machines, which is important because of keys like <code class="docutils literal notranslate"><span class="pre">os-sep</span></code>. Sometimes Qtech or another toolcat application needs to perform a local operation on our machine (e.g. install an extension for Visual Studio Code), and in those cases it is important to know the appropriate separator for that local machine.</p>
+</div>
+<div class="section" id="macros-d-files">
+<h3>Macros (.d files)<a class="headerlink" href="#macros-d-files" title="Permalink to this headline">¶</a></h3>
+<p>Standard MUMPS code (MUMPS has an ISO standard) is kind of hardcore and limited. We code in a kind of upgrade <code class="docutils literal notranslate"><span class="pre">.m</span></code> files which are a superset of the .m files YottaDB/G.TM work with. However, in order for YottaDB/GTM to be able to compile them, they need to be translated to standard M code. For instance, one thing that needs to be translated are our <strong>macros</strong> (defined in <code class="docutils literal notranslate"><span class="pre">.d</span></code> files).</p>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Macro_(computer_science)">Macros</a></strong> are patterns that specify how a certain input should be mapped to a replacement output. They are used to make it easy to invoke common command sequences. You see, MUMPS, being quite a minimal language, has no clean way to organize code in libraries or modules. Of course, it is possible to call code that performs, for instance, a <code class="docutils literal notranslate"><span class="pre">split</span></code> operation on a string from a MUMPS routine, but this would look like this:</p>
+<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s string=&quot;Hello world&quot;
+s RAresult=&quot;&quot;
+d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
+</pre></div>
+</div>
+<p>This is not very readable and it means you need to memorize the appropriate MUMPS routine (<code class="docutils literal notranslate"><span class="pre">stdstring.m</span></code>) and the appropriate code label (<code class="docutils literal notranslate"><span class="pre">%Split</span></code>).</p>
+<p>With macros, however, we can use this, which is much easier to use and therefore promotes code reuse.</p>
+<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>m4_strStrip($target=RAresult, $source=&quot;string&quot;, $chars=&quot; &quot;, $clean=1)
+</pre></div>
+</div>
+<p>Qtech then translates this macro to the ‘pure’ MUMPS version before installing the routine in the designated folder. (By the way, the <code class="docutils literal notranslate"><span class="pre">m4</span></code> in the macro name is a wink to the legendary <strong><a class="reference external" href="https://en.wikipedia.org/wiki/M4_(computer_language)">m4 macro processor</a></strong> that is part of the POSIX standard.)</p>
+</div>
+<div class="section" id="screens-x-files">
+<h3>Screens (.x files)<a class="headerlink" href="#screens-x-files" title="Permalink to this headline">¶</a></h3>
+<p>Sending HTML as a string from MUMPS over stdout to the webserver probably sounds quite “bare metal”, and of course it kind of is. Therefore, we have set up a few things which make frontend development much easier.</p>
+<p>Instead of have to cobble together pieces of html in our MUMPS routines, we use <strong>.x files</strong> with which our .m files communicate with macros. These .x files are a superset of HTML which allows you to treat them like regular HTML files. Additionaly they grant access to the session’s MUMPS variables, and also allow to interact with our own templating system.</p>
+<p>e.g. (MUMPS session has variable <code class="docutils literal notranslate"><span class="pre">UDuser=&quot;tdeneire&quot;</span></code>)</p>
+<p>xfile:</p>
+<div class="highlight-X notranslate"><div class="highlight"><pre><span></span>{tdeneire|staff}
+</pre></div>
+</div>
+<p>produces this HTML:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:tom.deneire@uantwerpen.be&quot;</span><span class="p">&gt;</span>Tom Deneire<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Again it is Qtech that translates these .x files to proper HTML to send to Apache.</p>
+</div>
+<div class="section" id="language-codes-l-files">
+<h3>Language codes (.l files)<a class="headerlink" href="#language-codes-l-files" title="Permalink to this headline">¶</a></h3>
+<p>Another example of Qtech’s role is the way it helps Brocade to function in a multilingual environment. You see, every time we need to display information that is language-dependent, for instance, the word “Title” (which would be “Titel” in a Dutch Brocade, “Titre” in a French one, …), we do not use the term itself, but refer to a language code that is described in an <strong>.l file</strong>. For instance, in <code class="docutils literal notranslate"><span class="pre">catalografie.l</span></code></p>
+<div class="highlight-l notranslate"><div class="highlight"><pre><span></span>lgcode Titel:
+    N: «Titel»
+    E: «Title»
+    F: «Titre»
+</pre></div>
+</div>
+<p>This is then translated appropriately by Qtech using the Brocade system’s language setting.</p>
+</div>
+<div class="section" id="metainformation-b-files">
+<h3>Metainformation (.b files)<a class="headerlink" href="#metainformation-b-files" title="Permalink to this headline">¶</a></h3>
+<p>One final important aspect of what makes Brocade tick is what we call <strong>metainformation</strong>, recorded in .b files.</p>
+<p>We use this word for software metadata. Good software is as generic as possible, which means that it is often better not to hard-code specific metadata in your application, but to build a metadata framework that you can address from your application.</p>
+<p>For instance, when building an application to catalogue books you not only want to record a book’s title, but also it’s specific title type, e.g. main title, subtitle, genre title (e.g. the Bible), parallel title (e.g. bilingual titles), incipit, … Now you could make a HTML select element in your form and hardcode these title types, but that’s a bad idea. For instance, when you want to add a title, you have to go back to the code (perhaps in several applications!) and change the HTML. Or, when you distribute your software to serveral libraries and library A wants title types 1-5, but library B only wants title types 1-3, you need to complicate matters even more.</p>
+<p>The correct solution is to register this metadata of title types in a database and then call that metadata from the application. That way, you can organize this information in one place and one place only. So, in Brocade, you have metainformation for title types (<code class="docutils literal notranslate"><span class="pre">menu/titlety</span></code>), recorded in the MUMPS database, but if necessary, also available for other environments (e.g. Python, Go), through regular conversion to JSON (<code class="docutils literal notranslate"><span class="pre">library/meta/json</span></code>)</p>
+<p>So, in our software, we have a macro which constructs HTML select options with all concrete instances of this metatype for title types.</p>
+<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>m4_selectMeta(select, $type=&quot;titlety&quot;, $template=&quot;say&quot;,$default=&quot;&quot;, $lg=&quot;E&quot;, $cgonly=1)
+w select
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cb&#39;</span><span class="p">&gt;</span>Biomed title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ch&#39;</span><span class="p">&gt;</span>Titel Harvard Law Review<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ci&#39;</span><span class="p">&gt;</span>Title Index Medicus<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cj&#39;</span><span class="p">&gt;</span>Title Judit<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cs&#39;</span><span class="p">&gt;</span>Citeertitel ISI<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;e&#39;</span><span class="p">&gt;</span>Multiple title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;h&#39;</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ko&#39;</span><span class="p">&gt;</span>Portion of title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">&gt;</span>Uniform title (musical works)<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;nr&#39;</span><span class="p">&gt;</span>Opus title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">&gt;</span>Original title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;p&#39;</span><span class="p">&gt;</span>Parallel title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;rec&#39;</span><span class="p">&gt;</span>Reviewed title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;s&#39;</span><span class="p">&gt;</span>Filing title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;tc&#39;</span><span class="p">&gt;</span>Collocation title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;u&#39;</span><span class="p">&gt;</span>Uniform title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;va&#39;</span><span class="p">&gt;</span>Other title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>By combining metainformation you can then further customize your application. For instance, if you make metainformation for catalography forms and record there which title types a form offers, you can make one application that offers multiple libraries their own unique way of doing catalography.</p>
+<p>The role of Qtech in this final type of Brocade object files (.[dxlb] files) is to take the metainformation out of the .b file representation and make it available in MUMPS and in the aforementioned JSON format.</p>
+<p>We also have special VScode extensions to format these Brocade object files.</p>
+</div>
+</div>
+<div class="section" id="production-server">
+<h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>
+<p>So far we’ve been speaking about ‘the’ server, but there are in fact several.</p>
+<p>The one mentioned was actually the <em>development</em> server (we call it “presto”), as of course we don’t code on the <em>production</em> server (“moto”). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)</p>
+<p>This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath <code class="docutils literal notranslate"><span class="pre">library/software</span></code>) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath <code class="docutils literal notranslate"><span class="pre">library/database</span></code>). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.</p>
+</div>
+<div class="section" id="optional-ydb-acculturation-workshop">
+<h2>Optional: YDB Acculturation Workshop<a class="headerlink" href="#optional-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
+<p>If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
+<p>However, for a first acquaintance it’s probably better to take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
