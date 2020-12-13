@@ -1,6 +1,6 @@
 # Chapter 8: Library Management Systems
 
-![](images/Brocade.jpg)
+![](images/Brocade.png)
 
 __[Brocade software visualization](https://anet.be/visualisering/project/hierarchical-edge-bundling.htm)__
 
