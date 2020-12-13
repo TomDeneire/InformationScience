@@ -65,6 +65,36 @@ YottaDB also provide a C and Go wrapper, so you can access the MUMPS database wi
 In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book `c:lvd:123456` which we used as an example in chapter05 is stored in our database, in global `^BCAT`:
 
 ```mumps
+^BCAT("lvd",123456)="^UA-CST^53320,52220^tdeneire^65512,39826^^^"
+^BCAT("lvd",123456,"au",1)="aut^0^oip^Sassen^Ferdinand^^nd"
+^BCAT("lvd",123456,"co",1)="190 p.^^^^^oip^nd^normal^^^^^^^"
+^BCAT("lvd",123456,"dr","paper")=""
+^BCAT("lvd",123456,"ed",1)="oip^2 ed.^nd"
+^BCAT("lvd",123456,"im",1)="Antwerpen^0^nd^YYYY^1932^^YYYY^^^pbl^0^Standaard^oip^nd^normal"
+^BCAT("lvd",123456,"lg",1)="dut^dt"
+^BCAT("lvd",123456,"lm","zebra")=""
+^BCAT("lvd",123456,"nr",1)="co^0^1.248929^oip^nd^"
+^BCAT("lvd",123456,"nr",2)="oclcwork^0^48674539^oip^^"
+^BCAT("lvd",123456,"nr",3)="oclc^0^781576701^oip^nd^"
+^BCAT("lvd",123456,"opac","cat.all","*")=""
+^BCAT("lvd",123456,"opac","cat.anet","*")=""
+^BCAT("lvd",123456,"opac","cat.ua","*")=""
+^BCAT("lvd",123456,"pk","TPC")=""
+^BCAT("lvd",123456,"pk","TPC","p:lvd:5554031")="^LZ 10/3/12^more-l^^^^^^^^^^^"
+^BCAT("lvd",123456,"pk","UA-CST")=""
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824")="^MAG-Coll 113.1/2^mag-o^^^^^^^0^^^^"
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824","vo","-")=""
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824","vo","-","o:lvd:261838")=""
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825")="^FILO 19 A-SASS 32^filo-a^^^^^^^^^^^"
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825","vo","-")=""
+^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825","vo","-","o:lvd:261839")=""
+^BCAT("lvd",123456,"re","lw")="1^1"
+^BCAT("lvd",123456,"re","lw"," ","c:work:45740")=""
+^BCAT("lvd",123456,"re","vnr")="1^1"
+^BCAT("lvd",123456,"re","vnr"," 1932: 4","c:lvd:222144")=""
+^BCAT("lvd",123456,"su","a::19:1")=""
+^BCAT("lvd",123456,"su","a::93.001:1")=""
+^BCAT("lvd",123456,"ti",1)="h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp"
 ```
 
 ### Apache and PHP
@@ -107,7 +137,11 @@ To do that in a clean and permanent way, we use a JSON file called `registry.jso
 
 There is also a version of `registry.json` on our local machines, which is important because of keys like `os-sep`. Sometimes Qtech or another toolcat application needs to perform a local operation on our machine (e.g. install an extension for Visual Studio Code), and in those cases it is important to know the appropriate separator for that local machine.
 
-### Macros (.d files)
+### Brocade object files
+
+One of Qtech's main functions is to translate the bespoke Brocade object files we use to help our development. 
+
+#### Macros (.d files)
 
 Standard MUMPS code (MUMPS has an ISO standard) is kind of hardcore and limited. We code in a kind of upgrade `.m` files which are a superset of the .m files YottaDB/G.TM work with. However, in order for YottaDB/GTM to be able to compile them, they need to be translated to standard M code. For instance, one thing that needs to be translated are our **macros** (defined in `.d` files).
 
@@ -129,7 +163,7 @@ m4_strStrip($target=RAresult, $source="string", $chars=" ", $clean=1)
 
 Qtech then translates this macro to the 'pure' MUMPS version before installing the routine in the designated folder. (By the way, the `m4` in the macro name is a wink to the legendary __[m4 macro processor](https://en.wikipedia.org/wiki/M4_(computer_language))__ that is part of the POSIX standard.)
 
-### Screens (.x files)
+#### Screens (.x files)
 
 Sending HTML as a string from MUMPS over stdout to the webserver probably sounds quite "bare metal", and of course it kind of is. Therefore, we have set up a few things which make frontend development much easier.
 
@@ -150,7 +184,7 @@ produces this HTML:
 
 Again it is Qtech that translates these .x files to proper HTML to send to Apache.
 
-### Language codes (.l files)
+#### Language codes (.l files)
 
 Another example of Qtech's role is the way it helps Brocade to function in a multilingual environment. You see, every time we need to display information that is language-dependent, for instance, the word "Title" (which would be "Titel" in a Dutch Brocade, "Titre" in a French one, ...), we do not use the term itself, but refer to a language code that is described in an **.l file**. For instance, in `catalografie.l`
 
@@ -163,7 +197,7 @@ lgcode Titel:
 
 This is then translated appropriately by Qtech using the Brocade system's language setting.
 
-### Metainformation (.b files)
+#### Metainformation (.b files)
 
 One final important aspect of what makes Brocade tick is what we call **metainformation**, recorded in .b files.
 

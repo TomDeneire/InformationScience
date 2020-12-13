@@ -252,24 +252,31 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#macros-d-files">
-     Macros (.d files)
+    <a class="reference internal nav-link" href="#brocade-object-files">
+     Brocade object files
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#screens-x-files">
-     Screens (.x files)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#language-codes-l-files">
-     Language codes (.l files)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metainformation-b-files">
-     Metainformation (.b files)
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#macros-d-files">
+       Macros (.d files)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#screens-x-files">
+       Screens (.x files)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#language-codes-l-files">
+       Language codes (.l files)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metainformation-b-files">
+       Metainformation (.b files)
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -341,7 +348,36 @@ s ^USERS(1,&quot;email&quot;)=&quot;deneiretom@gmail.com&quot;
 <p>There are now, and have always been, several <strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS#History">MUMPS implementations</a></strong> one of which is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GT.M">G.TM</a></strong>. G.TM is now open source, which allows a company called <strong><a class="reference external" href="https://yottadb.com/">YottaDB</a></strong> to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.</p>
 <p>YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is an old language and has a pretty <strong><a class="reference external" href="https://thedailywtf.com/articles/A_Case_of_the_MUMPS">bad reputation</a></strong>, not completely undeservedly to be frank. On the other hand, MUMPS is very simple, quite fast and we love it.</p>
 <p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter05 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
-<div class="highlight-mumps notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-mumps notranslate"><div class="highlight"><pre><span></span>^BCAT(&quot;lvd&quot;,123456)=&quot;^UA-CST^53320,52220^tdeneire^65512,39826^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;au&quot;,1)=&quot;aut^0^oip^Sassen^Ferdinand^^nd&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;co&quot;,1)=&quot;190 p.^^^^^oip^nd^normal^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;dr&quot;,&quot;paper&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;ed&quot;,1)=&quot;oip^2 ed.^nd&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;im&quot;,1)=&quot;Antwerpen^0^nd^YYYY^1932^^YYYY^^^pbl^0^Standaard^oip^nd^normal&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;lg&quot;,1)=&quot;dut^dt&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;lm&quot;,&quot;zebra&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,1)=&quot;co^0^1.248929^oip^nd^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,2)=&quot;oclcwork^0^48674539^oip^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,3)=&quot;oclc^0^781576701^oip^nd^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.all&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.anet&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.ua&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;,&quot;p:lvd:5554031&quot;)=&quot;^LZ 10/3/12^more-l^^^^^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;)=&quot;^MAG-Coll 113.1/2^mag-o^^^^^^^0^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261838&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;)=&quot;^FILO 19 A-SASS 32^filo-a^^^^^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261839&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;)=&quot;1^1&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;,&quot; &quot;,&quot;c:work:45740&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;)=&quot;1^1&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;,&quot; 1932: 4&quot;,&quot;c:lvd:222144&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::19:1&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::93.001:1&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;ti&quot;,1)=&quot;h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp&quot;
 </pre></div>
 </div>
 </div>
@@ -379,8 +415,11 @@ s ^USERS(1,&quot;email&quot;)=&quot;deneiretom@gmail.com&quot;
 <p>To do that in a clean and permanent way, we use a JSON file called <code class="docutils literal notranslate"><span class="pre">registry.json</span></code>. This file then contains keys like, <code class="docutils literal notranslate"><span class="pre">GTM-rou-dir</span></code> when stands for <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>. By using not the path itself, but calling the appropriate key from <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> in our software, we make sure that should YottaDB ever change the location of the designated folder for M routines, we only need to change the registry key and all depending software would still run correctly.</p>
 <p>There is also a version of <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> on our local machines, which is important because of keys like <code class="docutils literal notranslate"><span class="pre">os-sep</span></code>. Sometimes Qtech or another toolcat application needs to perform a local operation on our machine (e.g. install an extension for Visual Studio Code), and in those cases it is important to know the appropriate separator for that local machine.</p>
 </div>
+<div class="section" id="brocade-object-files">
+<h3>Brocade object files<a class="headerlink" href="#brocade-object-files" title="Permalink to this headline">¶</a></h3>
+<p>One of Qtech’s main functions is to translate the bespoke Brocade object files we use to help our development.</p>
 <div class="section" id="macros-d-files">
-<h3>Macros (.d files)<a class="headerlink" href="#macros-d-files" title="Permalink to this headline">¶</a></h3>
+<h4>Macros (.d files)<a class="headerlink" href="#macros-d-files" title="Permalink to this headline">¶</a></h4>
 <p>Standard MUMPS code (MUMPS has an ISO standard) is kind of hardcore and limited. We code in a kind of upgrade <code class="docutils literal notranslate"><span class="pre">.m</span></code> files which are a superset of the .m files YottaDB/G.TM work with. However, in order for YottaDB/GTM to be able to compile them, they need to be translated to standard M code. For instance, one thing that needs to be translated are our <strong>macros</strong> (defined in <code class="docutils literal notranslate"><span class="pre">.d</span></code> files).</p>
 <p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Macro_(computer_science)">Macros</a></strong> are patterns that specify how a certain input should be mapped to a replacement output. They are used to make it easy to invoke common command sequences. You see, MUMPS, being quite a minimal language, has no clean way to organize code in libraries or modules. Of course, it is possible to call code that performs, for instance, a <code class="docutils literal notranslate"><span class="pre">split</span></code> operation on a string from a MUMPS routine, but this would look like this:</p>
 <div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s string=&quot;Hello world&quot;
@@ -396,7 +435,7 @@ d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
 <p>Qtech then translates this macro to the ‘pure’ MUMPS version before installing the routine in the designated folder. (By the way, the <code class="docutils literal notranslate"><span class="pre">m4</span></code> in the macro name is a wink to the legendary <strong><a class="reference external" href="https://en.wikipedia.org/wiki/M4_(computer_language)">m4 macro processor</a></strong> that is part of the POSIX standard.)</p>
 </div>
 <div class="section" id="screens-x-files">
-<h3>Screens (.x files)<a class="headerlink" href="#screens-x-files" title="Permalink to this headline">¶</a></h3>
+<h4>Screens (.x files)<a class="headerlink" href="#screens-x-files" title="Permalink to this headline">¶</a></h4>
 <p>Sending HTML as a string from MUMPS over stdout to the webserver probably sounds quite “bare metal”, and of course it kind of is. Therefore, we have set up a few things which make frontend development much easier.</p>
 <p>Instead of have to cobble together pieces of html in our MUMPS routines, we use <strong>.x files</strong> with which our .m files communicate with macros. These .x files are a superset of HTML which allows you to treat them like regular HTML files. Additionaly they grant access to the session’s MUMPS variables, and also allow to interact with our own templating system.</p>
 <p>e.g. (MUMPS session has variable <code class="docutils literal notranslate"><span class="pre">UDuser=&quot;tdeneire&quot;</span></code>)</p>
@@ -411,7 +450,7 @@ d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
 <p>Again it is Qtech that translates these .x files to proper HTML to send to Apache.</p>
 </div>
 <div class="section" id="language-codes-l-files">
-<h3>Language codes (.l files)<a class="headerlink" href="#language-codes-l-files" title="Permalink to this headline">¶</a></h3>
+<h4>Language codes (.l files)<a class="headerlink" href="#language-codes-l-files" title="Permalink to this headline">¶</a></h4>
 <p>Another example of Qtech’s role is the way it helps Brocade to function in a multilingual environment. You see, every time we need to display information that is language-dependent, for instance, the word “Title” (which would be “Titel” in a Dutch Brocade, “Titre” in a French one, …), we do not use the term itself, but refer to a language code that is described in an <strong>.l file</strong>. For instance, in <code class="docutils literal notranslate"><span class="pre">catalografie.l</span></code></p>
 <div class="highlight-l notranslate"><div class="highlight"><pre><span></span>lgcode Titel:
     N: «Titel»
@@ -422,7 +461,7 @@ d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
 <p>This is then translated appropriately by Qtech using the Brocade system’s language setting.</p>
 </div>
 <div class="section" id="metainformation-b-files">
-<h3>Metainformation (.b files)<a class="headerlink" href="#metainformation-b-files" title="Permalink to this headline">¶</a></h3>
+<h4>Metainformation (.b files)<a class="headerlink" href="#metainformation-b-files" title="Permalink to this headline">¶</a></h4>
 <p>One final important aspect of what makes Brocade tick is what we call <strong>metainformation</strong>, recorded in .b files.</p>
 <p>We use this word for software metadata. Good software is as generic as possible, which means that it is often better not to hard-code specific metadata in your application, but to build a metadata framework that you can address from your application.</p>
 <p>For instance, when building an application to catalogue books you not only want to record a book’s title, but also it’s specific title type, e.g. main title, subtitle, genre title (e.g. the Bible), parallel title (e.g. bilingual titles), incipit, … Now you could make a HTML select element in your form and hardcode these title types, but that’s a bad idea. For instance, when you want to add a title, you have to go back to the code (perhaps in several applications!) and change the HTML. Or, when you distribute your software to serveral libraries and library A wants title types 1-5, but library B only wants title types 1-3, you need to complicate matters even more.</p>
@@ -455,6 +494,7 @@ w select
 <p>By combining metainformation you can then further customize your application. For instance, if you make metainformation for catalography forms and record there which title types a form offers, you can make one application that offers multiple libraries their own unique way of doing catalography.</p>
 <p>The role of Qtech in this final type of Brocade object files (.[dxlb] files) is to take the metainformation out of the .b file representation and make it available in MUMPS and in the aforementioned JSON format.</p>
 <p>We also have special VScode extensions to format these Brocade object files.</p>
+</div>
 </div>
 </div>
 <div class="section" id="production-server">
