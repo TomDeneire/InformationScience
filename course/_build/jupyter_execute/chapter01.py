@@ -1,6 +1,6 @@
 # Chapter 1: Welcome
 
-![](images/data_to_conspiracy.jpeg)
+![](images/data_to_conspiracy.jpg)
 
 Credit: unknown
 
