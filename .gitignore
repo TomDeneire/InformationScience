@@ -1,8 +1,5 @@
 publish.py
-project.*
 recordings/
-project/
-project2/
 test/
 stuff/
 course/__*
