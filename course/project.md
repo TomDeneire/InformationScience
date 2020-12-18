@@ -62,7 +62,7 @@ The following will make your project exceptional:
 - Your own creativity is more than welcome!
 
 
-## Other tips
+## Tips
 
 - **Start with the basics**: read book input from notebook, make the API call, print the result. Only then try to make that better by adding metadata or improving the layout.
 
