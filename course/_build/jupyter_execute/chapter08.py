@@ -176,7 +176,7 @@ e.g. (MUMPS session has variable `UDuser="tdeneire"`)
 xfile:
 
 ```X
-{tdeneire|staff}
+{UDuser|staff}
 ```
 
 produces this HTML:

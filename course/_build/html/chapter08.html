@@ -445,7 +445,7 @@ d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
 <p>Instead of have to cobble together pieces of html in our MUMPS routines, we use <strong>.x files</strong> with which our .m files communicate with macros. These .x files are a superset of HTML which allows you to treat them like regular HTML files. Additionaly they grant access to the session’s MUMPS variables, and also allow to interact with our own templating system.</p>
 <p>e.g. (MUMPS session has variable <code class="docutils literal notranslate"><span class="pre">UDuser=&quot;tdeneire&quot;</span></code>)</p>
 <p>xfile:</p>
-<div class="highlight-X notranslate"><div class="highlight"><pre><span></span>{tdeneire|staff}
+<div class="highlight-X notranslate"><div class="highlight"><pre><span></span>{UDuser|staff}
 </pre></div>
 </div>
 <p>produces this HTML:</p>
