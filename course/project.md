@@ -10,11 +10,11 @@ This document describes the exam project for the course "Information Science" fo
 
 This task contains (at least) the following components:
 
-- Build a Jupyter Notebook that accepts user input of a book title, such as "Moby Dick", "To Kill a Mockingbird", "The Origin of Species", ...
+- Build a Jupyter Notebook that accepts user input of a book title, such as "To Kill a Mockingbird", "The Origin of Species", ...
 
-- Make a call to the [DBpedia lookup API](https://github.com/dbpedia/lookup) (prefix `https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=`). (Don't be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).
+- Make a call to the [DBpedia lookup API](https://github.com/dbpedia/lookup) (prefix `https://lookup.dbpedia.org/api/prefix?query=`). (Don't be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).
 
-- The API response, see e.g. `https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=mockingbird`, will be XML which refers to the ontology of each result. For books look for `http://dbpedia.org/ontology/Book`
+- The API response, see e.g. `https://lookup.dbpedia.org/api/prefix?query=mockingbird`, will be XML which refers to the ontology of each result. For books look for `http://dbpedia.org/ontology/Book`
 
 - Parse the XML response and extract the result you need. If there are several, allow the user to pick a choice before you continue to the resource itself, e.g. `http://dbpedia.org/resource/To_Kill_a_Mockingbird`
 
@@ -66,11 +66,11 @@ The following will make your project exceptional:
 
 - **Start with the basics**: read book input from notebook, make the API call, print the result. Only then try to make that better by adding metadata or improving the layout.
 
-- **Test your application with many examples**, e.g. "The Hobbit", "The Origin of Species", "War and Peace", "Alice in Wonderland", etc. Also test it with invalid input: empty strings, characters that are unsafe for URLs, integers, etcetera.
+- **Test your application with many examples**, e.g. The Origin of Species", "War and Peace", "Alice in Wonderland", "Silmarillion", etc. Also test it with invalid input: empty strings, characters that are unsafe for URLs, integers, etcetera.
 
 - **Avoid local operations** so the code only runs in Jupyter Notebook. By the way, this will make for a nice online portfolio project!
 
-- **Refactor** every self-contained unit of code to a function or class. Think of your project as a long line of pipes. If you can't see the bigger picture, work from the bottom up: one function at a time. E.g.: a function that takes user input string (e.g. "Moby Dick") and returns a DBPedia API URL, or: a function that takes a resource URL and turns that into the matching JSON URL (see above).
+- **Refactor** every self-contained unit of code to a function or class. Think of your project as a long line of pipes. If you can't see the bigger picture, work from the bottom up: one function at a time. E.g.: a function that takes user input string (e.g. "Ulysses") and returns a DBPedia API URL, or: a function that takes a resource URL and turns that into the matching JSON URL (see above).
 
 
 ## Consultation
