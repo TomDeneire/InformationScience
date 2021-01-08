@@ -60,7 +60,7 @@ The following is required to pass the exam:
 
 - Upload **functional** code to your GitHub repository. If the Notebook doesn't work when I try to run its code, I will try to debug your code, but of course, this drastically reduces your chances to pass this course. I would rather have functional code that does one thing, than code that tries to do ten things but doesn't run.
 
-- Put the code in a new repository, outside of `Information Science`. Push your last update by **Wednesday 20 January 00:00 hours**.
+- Put the code in a new repository, outside of `Information Science`. Push your last update by **Wednesday 20 January 00:01 hours**.
 
 - Add a short ``README.md`` that describes your application, any necessary dependencies (third-party libraries, ...), etcetera. However, please take care to use only the Python standard library and/or the third-party libraries we used in the course itself. This will greatly reduce the chances of your code breaking because of dependency issues.
 
