@@ -8,13 +8,39 @@ This document describes the exam project for the course "Information Science" fo
 
 **Use the DBpedia lookup API to build a public access catalogue for the Great Books.**
 
+Note: determine `{prefix}` like so:
+
+```python
+import urllib.request
+import urllib.response
+
+
+def getAPIprefix() -> str:
+    """
+    Detect functioning DBpedia lookup API
+    """
+    prefixes = ["https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=",
+                "http://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=",
+                "https://lookup.dbpedia.org/api/prefix?query=",
+                "http://lookup.dbpedia.org/api/prefix?query=",
+                "http://akswnc7.informatik.uni-leipzig.de/lookup/api/search?query="]
+    for prefix in prefixes:
+        with urllib.request.urlopen(prefix + "Antwerp") as test:
+            if test.status == 200:
+                return prefix
+    sys.exit("No functioning DBpedia lookup API found!")
+
+
+DBPEDIA_PREFIX = getAPIprefix()
+```
+
 This task contains (at least) the following components:
 
 - Build a Jupyter Notebook that accepts user input of a book title, such as "To Kill a Mockingbird", "The Origin of Species", ...
 
-- Make a call to the [DBpedia lookup API](https://github.com/dbpedia/lookup) (prefix `https://lookup.dbpedia.org/api/prefix?query=`). (Don't be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).
+- Make a call to the [DBpedia lookup API](https://github.com/dbpedia/lookup). (Don't be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).
 
-- The API response, see e.g. `https://lookup.dbpedia.org/api/prefix?query=mockingbird`, will be XML which refers to the ontology of each result. For books look for `http://dbpedia.org/ontology/Book`
+- The API response, see e.g. `{prefix}mockingbird`, will be XML which refers to the ontology of each result. For books look for `http://dbpedia.org/ontology/Book`
 
 - Parse the XML response and extract the result you need. If there are several, allow the user to pick a choice before you continue to the resource itself, e.g. `http://dbpedia.org/resource/To_Kill_a_Mockingbird`
 
