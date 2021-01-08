@@ -245,11 +245,35 @@
 <div class="section" id="task">
 <h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <p><strong>Use the DBpedia lookup API to build a public access catalogue for the Great Books.</strong></p>
+<p>Note: determine <code class="docutils literal notranslate"><span class="pre">{prefix}</span></code> like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">urllib.response</span>
+
+
+<span class="k">def</span> <span class="nf">getAPIprefix</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Detect functioning DBpedia lookup API</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prefixes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;http://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;https://lookup.dbpedia.org/api/prefix?query=&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;http://lookup.dbpedia.org/api/prefix?query=&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;http://akswnc7.informatik.uni-leipzig.de/lookup/api/search?query=&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">prefixes</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;Antwerp&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">test</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">prefix</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;No functioning DBpedia lookup API found!&quot;</span><span class="p">)</span>
+
+
+<span class="n">DBPEDIA_PREFIX</span> <span class="o">=</span> <span class="n">getAPIprefix</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>This task contains (at least) the following components:</p>
 <ul class="simple">
 <li><p>Build a Jupyter Notebook that accepts user input of a book title, such as “To Kill a Mockingbird”, “The Origin of Species”, …</p></li>
-<li><p>Make a call to the <a class="reference external" href="https://github.com/dbpedia/lookup">DBpedia lookup API</a> (prefix <code class="docutils literal notranslate"><span class="pre">https://lookup.dbpedia.org/api/prefix?query=</span></code>). (Don’t be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).</p></li>
-<li><p>The API response, see e.g. <code class="docutils literal notranslate"><span class="pre">https://lookup.dbpedia.org/api/prefix?query=mockingbird</span></code>, will be XML which refers to the ontology of each result. For books look for <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/ontology/Book</span></code></p></li>
+<li><p>Make a call to the <a class="reference external" href="https://github.com/dbpedia/lookup">DBpedia lookup API</a>. (Don’t be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).</p></li>
+<li><p>The API response, see e.g. <code class="docutils literal notranslate"><span class="pre">{prefix}mockingbird</span></code>, will be XML which refers to the ontology of each result. For books look for <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/ontology/Book</span></code></p></li>
 <li><p>Parse the XML response and extract the result you need. If there are several, allow the user to pick a choice before you continue to the resource itself, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/resource/To_Kill_a_Mockingbird</span></code></p></li>
 <li><p>The resource itself can be rendered in different formats, but JSON is the easiest to work with, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/data/To_Kill_a_Mockingbird.json</span></code> (notice the structural differences in the URL!). Parse this JSON and extract the metadata you need.</p></li>
 <li><p>This RDF-JSON of the resource contains a lot of metadata about the book, but also its author. As this is Linked Data, many metadata elements again refer to other DBpedia resources, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/resource/Harper_Lee</span></code>, which you can use to further enrich your result.</p></li>
