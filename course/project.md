@@ -18,6 +18,7 @@ import urllib.response
 def getAPIprefix() -> str:
     """
     Detect functioning DBpedia lookup API
+    see https://forum.dbpedia.org/t/dbpedia-lookup-api/872
     """
     prefixes = ["https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=",
                 "http://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=",
