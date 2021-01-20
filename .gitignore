@@ -2,6 +2,7 @@ publish.py
 recordings/
 test/
 stuff/
+local/
 examprojects/
 course/__*
 course_assignments/__*
