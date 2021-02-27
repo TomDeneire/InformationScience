@@ -1,8 +1,8 @@
 # Chapter 5: Metadata
 
-![](images/metadata.png)
+![](images/metadata.jpg)
 
-Credit: __[Shelby HIST 390 blog](http://swilsonhistory.com/2020/02/27/lets-talk-about-metadata/)__
+Credit: unknown
 
 ## Metadata
 
