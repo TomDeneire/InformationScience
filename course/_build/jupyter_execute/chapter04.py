@@ -290,7 +290,7 @@ Non-technical users mostly interact with data through a GUI or Graphical User In
 
 In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn't it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but __[API architectures](https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa)__ are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don't have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before. 
 
-There are lots of free web APIs out there. The __[NASA API](https://api.nasa.gov/)__, for instance, is quite incredible. Or this __[Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json)__, if you want to have some fun!
+There are lots of free web APIs out there. The __[NASA API](https://api.nasa.gov/)__, for instance, is quite incredible. Or this __[Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json)__, if you want to have some fun! You can find an extensive list of free APIs __[here](https://github.com/public-apis/public-apis).
  
 
 ### Assignment

@@ -198,7 +198,7 @@ There is a Python extension for accessing Java Lucene, called __[PyLucene](https
 
 ## Whoosh
 
-As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software.
+As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __[tutorial](https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/) for building a Python full-text search engine!)
 
 One of these is __[Whoosh](https://whoosh.readthedocs.io/en/latest/index.html)__, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through `pip install Whoosh`.
 
