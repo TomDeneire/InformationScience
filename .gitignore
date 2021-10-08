@@ -1,11 +1,5 @@
-publish.py
-recordings/
-test/
-stuff/
 local/
-examprojects/
-course/__*
-course_assignments/__*
-course_assignments/index
-course/index
 students/
+course/__*
+course/index
+
