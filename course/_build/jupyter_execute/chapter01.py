@@ -6,102 +6,96 @@ Credit: unknown
 
 ## Welcome
 
-Welcome to the course "Information Science" for the University of Antwerp __[Master of Linguistics](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/)__ (from 2021-2022 onwards: "Master of Digital Text Analysis")!
+Welcome to the course "Information Science" for the University of Antwerp [Master of Digital Text Analysis](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/)!
 
 ## Who am I and why does that matter?
 
 ### Who am I?
 
-My name is Tom Deneire, I hold a PhD in Classics from the Katholieke Universiteit Leuven (2009). 
+My name is Tom Deneire and I am a professional **software engineer**.
 
-From 2009-2013 I worked as a **postdoctoral researcher** (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. __[Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)__).
+However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in the humanities for quite some time.
 
-In 2013 I moved to the University Library of Antwerp as **Curator of the Special Collections**, where I became increasingly interested in library metadata and data science. I started studying  XML, SQL and Python, and using these digital tools to research and aggregate library metadata.
+From 2009-2013 I worked in **academia** as a postdoctoral researcher (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. [Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)).
 
-In 2018 this lead to a switch from the Special Collections to the University Library's software department __[Anet](https://www.uantwerpen.be/nl/projecten/anet/)__, where I have been  working since then as a **software engineer** for __[Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. My main languages are Python and especially __[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__, the language for our database engine (GT.M, provided by __[YottaDB](https://yottadb.com/)__). My current project is a complete rewrite and integration of the library's double module for authority files. Occasionally, I also use SQL, Golang, PHP, Javascript and HTML/CSS. I use Linux as OS (esp. the __[Linux Mint](https://linuxmint.com/)__ distro).
+In 2013 I moved to the **library world** (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.
 
-(More information about me and links at __[https://tomdeneire.github.io/](https://tomdeneire.github.io/)__).
+In 2018 this lead to a switch from the Special Collections to the library's **software department** [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been working since on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services). My technology stack mainly includes Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). My current project is a complete rewrite and integration of the library's two modules for authority control. Occasionally, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro).
+
+(More information about me and links at [https://tomdeneire.github.io/](https://tomdeneire.github.io/)).
 
 ### Why does that matter?
 
-The above should make clear that I am not an expert in Information Science, nor a Computer Science major, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I should really be teaching this course! So be warned that I will certainly not have all the answers in this course. On the other hand, my own profile is very kindred to that of my **intended audience**: humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
+This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I was the best person to teach this course! So it goes without saying that I will certainly not have all the answers in this course. 
 
-## Course contents and learning outcomes
+On the other hand, my profile is very kindred to that of my **intended audience**, which I think of as humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
 
-My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, I think there is enough scholarly literature out there to get by. Instead what is offered here is a very hands-on introduction into library science and the technologies used in the field. Indeed, I am not exaggerating if I claim that in my professional activities developing library software, I will use each and every one of the topics dealt with in this course on an almost **daily basis**.
+## Contents and learning outcomes
 
-The aim of this course is to provide you with enough theoretical knowledge and especially practical experience to use these technologies in the field.
+My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, there is enough  literature out there to acquire this knowledge by yourself. 
 
-## Technical setup
+Instead what is offered here is a very **hands-on introduction** into information science and the technologies used in the field. Think of this class as an internship with an information systems company, rather than an academic course! The aim of this course is to provide you with a minimum of theoretical knowledge, but a maximum of practical experience.
 
-I have prepared this course as a series of Jupyter Notebooks and published on the __[GitHub repo](https://github.com/TomDeneire/InformationScience)__ for this course. 
+The course will discuss the following topics:
 
-I have chosen Jupyter Notebooks because they offer a way to teach both in a classroom and online (should COVID-19 regulations prohibit live teaching). You can choose how you interact with these notebooks.
+1. Definition, history, ethics
+2. Encoding
+3. Databases
+4. Metadata
+5. Indexing
+6. Searching
+7. Library Management Systems
+
+In line with the hands-on nature of this course, most chapters will end with a **coding assignment**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
+
+## Reading
+
+Given the very applied nature of this course, it is probably a good idea to supplement this course with some additional reading. I have included several suggestions for optional reading in the [course details](https://tomdeneire.github.io/InformationScience/coursedetails.html), one of which I highly recommend, namely **Foundations of Information**, by Amy J. Ko (2021), available as a free [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub repository](https://github.com/amyjko/foundations-of-information). Whereas this course focuses on the practical side of things, this book is an exemplary theoretical (but very readable!) introduction into the topic of information.   
+
+Aside from that, I also often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.
+
+
+## Technical requirements
+
+This course is available as a series of Jupyter Notebooks and published on the [GitHub repository](https://github.com/TomDeneire/InformationScience) for this course. 
 
 To view the content **with code execution**, you can:
 
-1. use an editor with a Jupyter Notebook extension, such as __[VS Code](https://code.visualstudio.com/)__
-2. install __[Jupyter](https://jupyter.org/install)__ (Lab or Notebook) locally and open the notebooks in your browser
+1. Use an editor with a Jupyter Notebook extension, such as [VS Code](https://code.visualstudio.com/)
+2. Install [Jupyter](https://jupyter.org/install) (Lab or Notebook) locally and open the notebooks in your browser
 
-If you don't want to install Jupyter on your machine, you can open the notebooks with __[Google Colab](https://colab.research.google.com/notebooks/)__, but executing the code isn't always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
+If you don't want to install Jupyter on your machine, you can open the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code isn't always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
 
 To view the content **without code execution**, you can:
 
-1. read the notebooks in this __[GitHub repository](https://github.com/TomDeneire/InformationScience/tree/main/course)__
-2. read the notebooks as a Jupyter Book hosted on __[GitHub Pages](https://tomdeneire.github.io/InformationScience)__
+1. Read the notebooks in the [GitHub repository](https://github.com/TomDeneire/InformationScience/tree/main/course)
+2. Read the notebooks as a Jupyter Book hosted on [GitHub Pages](https://tomdeneire.github.io/InformationScience)
 
-In order to obtain these course materials and to participate with the course, please do the following:
+The best way to obtain these course materials on your local machine and to participate with the course, is to:
 
-1. fork this repo to your own GitHub account
-2. clone it to your local machine
-3. make and push changes 
+1. Get a GitHub account (if you don't already have one)
+2. Fork this repo to your own GitHub account
+3. Clone the repo to your local machine
+4. Make a new folder in the repo and push changes 
 
-The third step especially applies to the coding assignments (see below). By commiting and pushing your changes I will be able to see them by going through the different forks to my repo. And of course if you find errors in the other course materials or want to propose changes, you can also make pull requests.
+The fourth step especially applies to the coding assignments, so to be sure you are set up okay, please do the following:
 
-If you're unsure how to do all of this, this __[GitHub guide](https://guides.github.com/activities/forking/)__ will help. (Other interesting sources on Git are this __[Medium article](https://link.medium.com/w1ShAzxQE9)__ and Atlassian's __[tutorial](https://www.atlassian.com/git/tutorials/what-is-git)__). This __[Medium article](https://link.medium.com/NdBy7ILHIbb)__ contains even more references to cheatsheets, tutorials, etc.
+1. Create a new folder `assignments`
+2. Put an empty file `test.py` in it ")
+3. Add the new folder to the repo
+4. Commit and push these changes to your fork 
 
-To be sure everyone is setup okay, please do the following:
+And of course if you find errors in the other course materials or want to propose changes or additions, I am very open to pull requests.
 
-1. create a new folder "assignments"
-2. put some test code in there (e.g. "test.py"), commit and push these changes to your fork
+### Help!
 
-## Course and assignments
+If you're unsure how to do all of this, this [GitHub guide](https://guides.github.com/activities/forking/) will help. 
 
-During the academic year 2020-2021, the course will take place on Fridays, from 9h30 to 12h30, in room C.203, during weeks 9-13.
+Other interesting sources on Git are this [Medium article](https://link.medium.com/w1ShAzxQE9) and Atlassian's [tutorial](https://www.atlassian.com/git/tutorials/what-is-git). This [Medium article](https://link.medium.com/NdBy7ILHIbb) contains even more references to cheatsheets, tutorials, etc.
 
-Each course will feature about 1,5 to 2 hours of theory and about 1 hour of practice. Most courses will feature a **coding assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours. 
-
-Model solutions for the assignments will be made available in the repository with a few weeks delay.
-
-### !Covid-19 update (5 November 2020)
-
-The University of Antwerp has decided to switch to online teaching only, at least until 30 November. 
-
-For this course this will be organized as follows:
-
-1. About one week before the course takes place, students will receive a Google Drive link where they can view a recording of the week's course (+/- 1 hour).
-2. Students watch the recording in their own time (+/- 1 hour) and also start implementing the coding assignment (+/- 0,5 hours).
-3. On Fridays, from 9h30 to 11h (+/- 1,5 hours) we will meet in a Jitsi meeting room (link will be emailed) to discuss the course recording and the coding assignment. This session will also be recorded and uploaded to Google Drive.
-
-I hope that this online method can provide the hands-on mix of theory and practice I had hoped to achieve in person, without putting any additional strain on the students.
-
-If there are any changes to this MO, I will let the students know ASAP.
+Bear in mind that you can use Git from the command line (which I would always advise in the learning stages), but that there are also desktop applications, such as [GitHub Desktop](https://desktop.github.com/) or integrations for your editor, such as [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) for VSCode.
 
 
-## Exam: Project assignment
-
-The aforementioned assignments lead up to a **project assignment** which will serve as the exam for this course. The project assignment will be introduced during the final course. The course coding assignments are not part of the course evaluation, but students who have succesfully completed the previous course assignments will be excellently prepared for submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
-
-## Things you might find interesting
-
-The following links are reading material *ad libitum*. While I certainly do not expect you to read them, you might find them interesting. In any case, I did! Please feel free to send me suggestions too!
-
-As a general note: you'll notice that I often refer to __[Medium](https://medium.com/)__, an online publishing platform for blogs dealing with just about anything. Medium lets you configure your interests so you get a personalized list of reading suggestions. Medium allows you to read upto 3 premium articles for free every month, but I find a paying membership more than worthwile.
-
-- Book recommendations for Python on __[Medium](https://towardsdatascience.com/python-books-you-must-read-in-2020-a0fc33798bb)__
-- A fantastic Python __[cheat sheet](https://gto76.github.io/python-cheatsheet/)__
-- A GitHub repo of __[free programming books](https://github.com/EbookFoundation/free-programming-books)__
-- __[Computational Humanities Research](https://discourse.computational-humanities-research.org/)__, a platform for discussion on digital humanities, where you can also ask help with technical questions (code, tools, ...)
 
 
 ```{toctree}

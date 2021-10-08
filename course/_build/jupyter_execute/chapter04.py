@@ -199,7 +199,7 @@ Unlike XML, SQL is a technology that is probably new to most of you. Unlike RDF,
 
 SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or Oracle. However, there is also a very good standalone alternative, called __[SQLite](https://en.wikipedia.org/wiki/SQLite)__. Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.
 
-So let's dive in with this Google Slides __[presentation](https://docs.google.com/presentation/d/1hLpHtKFs79QJYS0NpN9u4RG_hNwqScwoLgObFJKmvy8/edit?usp=sharing)__.
+So let's dive in with this Google Slides __[presentation](https://docs.google.com/presentation/d/1hLpHtKFs79QJYS0NpN9u4RG_hNwqScwoLgObFJKmvy8/edit?usp=sharing)__. Alternatively, there is this single _[SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf)__  that will already take you a long way.
 
 ### sqlite3
 

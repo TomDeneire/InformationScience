@@ -1,4 +1,4 @@
-# Chapter 3: Getting started
+# Chapter 3: Encoding
 
 
 ![](images/Hello_World_Brainfuck.png)
@@ -137,3 +137,5 @@ Moreover, try to think about what else may be suboptimal in this example. For in
 **Most importantly, the count is also wrong**. Check by counting in an editor, for instance, and try to find out why.
 
 If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.
+
+Finally, if you want to get a really good idea of how complex counting words can get, you can read this blog post __[Performance comparison: counting words in Python, Go, C++, C, AWK, Forth, and Rust](https://benhoyt.com/writings/count-words/)__.

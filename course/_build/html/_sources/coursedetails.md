@@ -42,10 +42,14 @@ This course should provide a working knowledge of information science and inform
 
 Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a coding **assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours.
 
+Model solutions for the assignments will be made available in the repository with a few weeks delay.
+
 
 ### 6. Assessment method and criteria
 
 The aforementioned assignments lead up to a project assignment which will serve as the exam for this course. The project assignment will be introduced during the final course. Students who have succesfully completed the previous course assignments should have no trouble submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
+
+
 
 ### 7. Study material *
 
@@ -54,6 +58,8 @@ Study material will be provided in various forms (slides, Jupyter Notebooks, ...
 #### 7.1. Required reading
 
 #### 7.2. Optional reading
+
+- *Foundations of Information*, By Amy J. Ko (2021) [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub](https://github.com/amyjko/foundations-of-information)
 
 - *Handbook of Information Science*, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), [ISBN 978-3110234992](https://isbnsearch.org/isbn/9783110234992), https://doi.org/10.1515/9783110235005
 
