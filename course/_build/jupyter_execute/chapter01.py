@@ -1,8 +1,6 @@
 # Chapter 1: Welcome
 
-![](images/data_to_conspiracy.jpg)
-
-Credit: unknown
+to do: image
 
 ## Welcome
 
@@ -12,7 +10,7 @@ Welcome to the course "Information Science" for the University of Antwerp [Maste
 
 ### Who am I?
 
-My name is Tom Deneire and I am a professional **software engineer**.
+My name is [Tom Deneire](https://tomdeneire.github.io/) and I am a professional **software engineer**.
 
 However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in the humanities for quite some time.
 
@@ -21,8 +19,6 @@ From 2009-2013 I worked in **academia** as a postdoctoral researcher (Neo-Latin 
 In 2013 I moved to the **library world** (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.
 
 In 2018 this lead to a switch from the Special Collections to the library's **software department** [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been working since on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services). My technology stack mainly includes Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). My current project is a complete rewrite and integration of the library's two modules for authority control. Occasionally, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro).
-
-(More information about me and links at [https://tomdeneire.github.io/](https://tomdeneire.github.io/)).
 
 ### Why does that matter?
 
@@ -41,18 +37,49 @@ The course will discuss the following topics:
 1. Definition, history, ethics
 2. Encoding
 3. Databases
-4. Metadata
-5. Indexing
-6. Searching
-7. Library Management Systems
+4. Querying
+5. Metadata
+6. Indexing
+7. Searching
 
-In line with the hands-on nature of this course, most chapters will end with a **coding assignment**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
+In line with the hands-on nature of this course, most chapters will feature a **coding assignment**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
 
 ## Reading
 
-Given the very applied nature of this course, it is probably a good idea to supplement this course with some additional reading. I have included several suggestions for optional reading in the [course details](https://tomdeneire.github.io/InformationScience/coursedetails.html), one of which I highly recommend, namely **Foundations of Information**, by Amy J. Ko (2021), available as a free [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub repository](https://github.com/amyjko/foundations-of-information). Whereas this course focuses on the practical side of things, this book is an exemplary theoretical (but very readable!) introduction into the topic of information.   
+### Required
 
-Aside from that, I also often refer to [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.
+Given the very applied nature of this course, I feel it is necessary to supplement it with a brief theoretical introduction to the topic of information. To meet that goal, this course requires reading chapters 1-7 of this highly readable book:
+
+**Foundations of Information**, by Amy J. Ko (2021), available as a free [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub repository](https://github.com/amyjko/foundations-of-information) 
+  
+
+### Optional
+
+If a subject of this course is of particular interest to you, you can find more information about the various topics in the following publications:
+
+- *Handbook of Information Science*, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), [ISBN 978-3110234992](https://isbnsearch.org/isbn/9783110234992), https://doi.org/10.1515/9783110235005
+
+- *The Myth and Magic of Library Systems*, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
+
+- *Modern Information Retrieval: The Concepts and Technology behind Search*, By Ricardo Baeza-Yates, Berthier Ribeiro-Neto, Second edition (Harlow e.a.: Addison-Wesley, 2011), [ISBN 978-0-321-41691-9](https://isbnsearch.org/isbn/9780321416919)
+
+- *Information Architecture*, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, [ISBN 978-1491911686](https://isbnsearch.org/isbn/9781491911686)
+
+- *A Librarian's Guide to Graphs, Data and the Semantic Web*, By James Powell, [ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)
+
+- *Apprenticeship Patterns*, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
+
+### Other resources
+
+While this course is designed for beginners, it may still be possible that you feel your knowledge about a certain topic is lacking, especially when it comes to certain technological concepts. If so, the Internet offers a vast array of resources designed to help your learning process.
+
+For me, one of the best resources for self-improvement is [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.
+
+Other free resources include:
+
+- Tutorialspoint
+- Hashnode
+- ...
 
 
 ## Technical requirements
@@ -81,7 +108,7 @@ The best way to obtain these course materials on your local machine and to parti
 The fourth step especially applies to the coding assignments, so to be sure you are set up okay, please do the following:
 
 1. Create a new folder `assignments`
-2. Put an empty file `test.py` in it ")
+2. Create an empty file `test.py` in it
 3. Add the new folder to the repo
 4. Commit and push these changes to your fork 
 

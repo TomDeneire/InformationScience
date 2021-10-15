@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 6: Indexing &#8212; Information Science</title>
+    <title>Chapter 5: Metadata &#8212; Information Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -35,8 +35,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 7: Searching, Evaluation, Ranking" href="chapter07.html" />
-    <link rel="prev" title="Chapter 5: Metadata" href="chapter05.html" />
+    <link rel="next" title="Chapter 6: Indexing" href="chapter07.html" />
+    <link rel="prev" title="Querying data" href="chapter05.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -94,17 +94,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Chapter 5: Metadata
+   Querying data
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 6: Indexing
+   Chapter 5: Metadata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 7: Searching, Evaluation, Ranking
+   Chapter 6: Indexing
   </a>
  </li>
  <li class="toctree-l1">
@@ -215,53 +215,82 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#searching">
-   Searching
+  <a class="reference internal nav-link" href="#metadata">
+   Metadata
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indexing">
-   Indexing
+  <a class="reference internal nav-link" href="#metadata-is-important">
+   Metadata is important!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-s-complicated">
+   It’s complicated
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-searches">
-     Simple searches
+    <a class="reference internal nav-link" href="#stcv">
+     STCV
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#excursus-time-complexity">
-       Excursus: time complexity
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complex-searches">
-     Complex searches
+    <a class="reference internal nav-link" href="#worldcat">
+     Worldcat
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     Discussion
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#excursus-bitmap-indexing">
-   Excursus: Bitmap indexing
+  <a class="reference internal nav-link" href="#metadata-101">
+   Metadata 101
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cataloguing-standards">
+     Cataloguing standards
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metadata-standards">
+     Metadata standards
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exports">
+     Exports
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples-for-book-history">
+       Examples for book history
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#excursus-dh-example">
+   Excursus: DH example
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lucene">
-   Lucene
+  <a class="reference internal nav-link" href="#assignment-marc21-to-dublin-core-conversion-for-oai">
+   Assignment: MARC21 to Dublin Core conversion for OAI
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#whoosh">
-   Whoosh
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignment-morphology-tool">
-   Assignment: Morphology tool
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tips">
+     Tips
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -273,673 +302,236 @@
         
               <div>
                 
-  <div class="section" id="chapter-6-indexing">
-<h1>Chapter 6: Indexing<a class="headerlink" href="#chapter-6-indexing" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/tablet.jpg" /></p>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Salamis_Tablet">Salamis tablet</a></strong></p>
-<p>Credit: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg">Wikimedia Commons</a></strong></p>
-<div class="section" id="searching">
-<h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
-<p>In all of our discussions about information we have so far neglected perhaps the most important aspect of it: <strong>searching</strong>. Indeed, you could say that the only difference between data and information, is that “information is data that we are looking for”. Ergo, very simply said, working with information often boils down to “searching stuff”. Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.</p>
-<p>Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth’s monumental <em>The Art of Computer Programming</em> devotes an entire volume (i.e. vol. 3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
-<p>At face value searching might seem easy. Let’s look at finding a substring in a string. In Python, for instance, offers several ways to check for this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MY_STRING</span> <span class="o">=</span> <span class="s2">&quot;Hello world, this is me&quot;</span>
-<span class="n">MY_SEARCH</span> <span class="o">=</span> <span class="s2">&quot;me&quot;</span>
-
-<span class="c1"># one way</span>
-<span class="k">if</span> <span class="n">MY_SEARCH</span> <span class="ow">in</span> <span class="n">MY_STRING</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found&quot;</span><span class="p">)</span>
-
-<span class="c1"># another way</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">MY_STRING</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">MY_SEARCH</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found!&quot;</span><span class="p">)</span>
-
-<span class="c1"># third way</span>
-<span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">search</span>
-<span class="k">if</span> <span class="n">search</span><span class="p">(</span><span class="n">MY_SEARCH</span><span class="p">,</span> <span class="n">MY_STRING</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found!&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not found!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found!
-Found!
-Found!
-</pre></div>
-</div>
-</div>
-</div>
-<p>However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a></strong>) or huge metadata containers (e.g. <strong><a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.">Spotify contains &gt;50.000.000 songs</a></strong>).</p>
-</div>
-<div class="section" id="indexing">
-<h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
-<p>One way to deal with his issue is <strong>indexing</strong>. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure.</p>
-<div class="section" id="simple-searches">
-<h3>Simple searches<a class="headerlink" href="#simple-searches" title="Permalink to this headline">¶</a></h3>
-<p>Consider the following example. Let’s say we have a large list of book titles and want to search them for a specific term.</p>
-<p>Let’s first use SQL and the STCV database from chapter 04 to make such a list.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select distinct title_ti from title&quot;</span>
-<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<span class="n">BOOK_TITLES</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-    <span class="n">BOOK_TITLES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># * = unpacking the tuple `title`</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="c1"># length of list</span>
-<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="s2">&quot;titles, e.g.:&quot;</span><span class="p">)</span>
-<span class="c1"># some examples</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">)])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26153 titles, e.g.:
-- Gheestelicken schat vande derde ordre S. Dominici
-- Het tweede deel der meditatien
-- Reghelen end oeffeninghen voor de gheestelycke dochters vanden H. Franciscus de Sales
-- Translaet van het reglement raeckende d&#39;appellatien, oft ander belagh vande ordonnantien van commissarissen tot auditie, ende recoulement vande rekeninghen vande publicque lasten, ende penninghen
-- Decret rendu au conseil souverain de Brabant. Le 20 septembre 1791
-- Copye van den circulairen brief, gheschreven inghevolge de orders van sijne catholiecke majesteyt, door den secretaris van de universeele depesche, aen alle sijne ambassadeurs inde uyt-heemsche hoven
-- Nieuwe lijste van consumptie, [...] omme ghelicht ende ontfanghen te worden binnen den zeluen lande van Vlaendre: daermede te nieten ghedaen worden diuersche voorghaende lijsten
-- Missæ propriæ sanctorum ecclesiæ cathedralis, et diœcesis Antverpiensis
-- Maria Theresia [...]. Op de menighvuldige clachten [...] dat de heirbaenen, publiecke wegen, ende straeten in de seven quartieren van Antwerpen, ende in den byvanck van Lier soodaenigh verhindert, belemmert, ende buyten staet gestelt zijn, dat het [...] niet mogelijck en is [...] van d&#39;eene plaetse tot d&#39;andere te geraecken
-- Interpretation et esclaircissement de certaines dovbtes et difficultez qui se sont recontrées [!] en l&#39;Ordonnance &amp; edict perpetuel [...] du xij. de iuillet de cest an 1611
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now let’s consider the difference between searching for the word <code class="docutils literal notranslate"><span class="pre">English</span></code> with and without an index.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="n">to_split</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">to_split</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">make_word_index</span><span class="p">(</span><span class="n">corpus</span><span class="p">):</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-            <span class="n">index</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">[])</span>
-            <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">index</span>
-
-<span class="k">def</span> <span class="nf">search_with_index</span><span class="p">(</span><span class="n">search_string</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">index</span><span class="p">[</span><span class="n">search_string</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">search_without_index</span><span class="p">(</span><span class="n">search_string</span><span class="p">,</span> <span class="n">list_to_search</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">list_to_search</span><span class="p">:</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">search_string</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">result</span>
-
-
-<span class="n">BOOK_TITLES_INDEX</span> <span class="o">=</span> <span class="n">make_word_index</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
-<span class="n">result_no_index</span> <span class="o">=</span> <span class="n">search_without_index</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES</span><span class="p">)</span>
-<span class="n">result_index</span> <span class="o">=</span> <span class="n">search_with_index</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES_INDEX</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result_index</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result_no_index</span> <span class="o">==</span> <span class="n">result_index</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- English books to be sold by auction Catalogue d&#39;une tres-belle collection de livres en tous genres et langages [...] dont la vente se fera en argent de change, jeudi 18 Frimaire an 11, 9 decembre 1802, et jours suivans, chez Jacques Laureys au Marché aux herbes à Malines
-- A new pocket dictionary and vocabulary of the Flemish, English and French languages
-- A daily exercise, and devotions, for the young ladies, and gentlewomen pensioners at the monastery of the English canonesses regulars of the holy order of S. Augustin at Bruges
-- A brieff apologie, or defence of the catholike ecclesiastical hierarchie, &amp; subordination in England, erected these later yeares by our holy father pope Clement the eyght; and impugned by certayne libels printed &amp; published of late both in Latyn &amp; English
-- An appendix to the Apologie, lately set forth, for defence of the hierarchie, and subordination of the English catholike church, impugned by certaine discontented priestes
-- A relation of the solemnetie wherewith the catholike princes K. Phillip the III. and quene Margaret were receyed in the English colledge of Valladolid the 22. of August. 1600
-- A restitvtion of decayed intelligence: in antiquities. Concerning the most noble and renovvmed English nation
-- Dottrina del ben morire. English
-- Oratio Petri Frarini quod male reformandae religionis nomine arma sumpserunt sectarii nostri temporis habita. English
-True
-</pre></div>
-</div>
-</div>
-</div>
-<p>Obviously, the results of searching with and without a word index are the same. But what about the efficiency of the search? For this we can use Jupyter’s handy feature <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> search_with_index(&quot;English&quot;, BOOK_TITLES_INDEX)
-<span class="o">%</span><span class="k">timeit</span> search_without_index(&quot;English&quot;, BOOK_TITLES)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>127 ns ± 7.83 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
-49.9 ms ± 3.59 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
-<div class="section" id="excursus-time-complexity">
-<h4>Excursus: time complexity<a class="headerlink" href="#excursus-time-complexity" title="Permalink to this headline">¶</a></h4>
-<p>In essence and, what we have just done boils down to changing the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a></strong> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
-<p>Optimizing searches by reducing the time complexity of one’s search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.</p>
-</div>
-</div>
-<div class="section" id="complex-searches">
-<h3>Complex searches<a class="headerlink" href="#complex-searches" title="Permalink to this headline">¶</a></h3>
-<p>Of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.</p>
-<p>For instance, titles like “The Art of Computer Programming” and “Zen and the Art of Motorcycle Maintanance” could be turned into an AND-index like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="n">TITLES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The Art of Computer Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Zen and the Art of Motorcycle Maintanance&quot;</span><span class="p">]</span>
-<span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">TITLES</span><span class="p">:</span>
-    <span class="n">clean_title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">clean_title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
-            <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]:</span>
-                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-    &quot;the&quot;: {
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;art&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;of&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;computer&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ]
-    },
-    &quot;programming&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ]
-    },
-    &quot;zen&quot;: {
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;and&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;motorcycle&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;maintanance&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    }
-}
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this way, searching with <code class="docutils literal notranslate"><span class="pre">AND</span></code> becomes easy in this index, e.g. books that combine “art” and “computer”:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="s2">&quot;art&quot;</span><span class="p">][</span><span class="s2">&quot;computer&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;The Art of Computer Programming&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="excursus-bitmap-indexing">
-<h2>Excursus: Bitmap indexing<a class="headerlink" href="#excursus-bitmap-indexing" title="Permalink to this headline">¶</a></h2>
-<p>A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.</p>
-<p>One interesting technique to avoid such problems is bitmap indexing. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bitmap">Wikipedia</a></strong> says:</p>
+  <div class="section" id="chapter-5-metadata">
+<h1>Chapter 5: Metadata<a class="headerlink" href="#chapter-5-metadata" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/metadata.jpg" /></p>
+<p>Credit: unknown</p>
+<div class="section" id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter we saw how, from a practical point of view it makes more sense to talk about <em>data</em> models instead of <em>information</em> models. In this chapter, we are going to do the same with information itself. Indeed, a lot of what happens in information science does not have to do with information <em>per se</em>, but with information <em>about</em> information, also known as <strong>metadata</strong>:</p>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Metadata">Wikipedia</a></strong> says:</p>
 <blockquote>
-<div><p>In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits</p>
+<div><p>Metadata is “data that provides information about other data”. In other words, it is “data about data.” Many distinct types of metadata exist, including descriptive metadata, structural metadata, administrative metadata, reference metadata and statistical metadata.</p>
 </div></blockquote>
-<p>Let’s say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getsizeof</span>
-<span class="kn">import</span> <span class="nn">array</span>
-
-<span class="c1"># using arrays which is more memory-efficient than lists</span>
-<span class="c1"># https://docs.python.org/3/library/array.html</span>
-<span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">),</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
-</pre></div>
+<p>In this discussion, we will focus especially on <strong>descriptive metadata</strong>, i.e. descriptive information about a resource.</p>
+<p>Descriptive metadata is used for discovery and identification. If we think about books, for example, descriptive metadata would include elements such as title, author, date of publication, etcetera. Or, <code class="docutils literal notranslate"><span class="pre">Exif</span></code> (Exchangeable image file format) is a metadata standard that specifies the formats for images, sound, and ancillary tags used by digital cameras (including smartphones), scanners and other systems handling image and sound files recorded by digital cameras.</p>
 </div>
+<div class="section" id="metadata-is-important">
+<h2>Metadata is important!<a class="headerlink" href="#metadata-is-important" title="Permalink to this headline">¶</a></h2>
+<p>Metadata might seem trivial – in fact, I don’t like the word <em>ancillary</em> (inspired by Wikipedia) in the previous paragraph – or non-essential. However, metadata performs a huge and crucial role in information science and software development as a whole. As a rule, applications will strictly separate the business logic of the application (e.g. invoice system) and the metadata the application uses (e.g. database of clients, suppliers, etc.), in order to keep their software as generic as possible, but without the latter, the former is just an empty shell.</p>
+<p>Consider, as an illustration, this story about a bug in the <strong><a class="reference external" href="https://www.theregister.com/2020/07/18/samsung_bluray_mass_dieoff_explained/">Samsung Blu Ray player</a></strong>!</p>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>67 bytes
-</pre></div>
-</div>
-</div>
-</div>
-<p>So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
-<span class="c1"># converting bytes to megabytes</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76.29399900576193 megabytes
-</pre></div>
-</div>
-</div>
-</div>
-<p>So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting a bit array here with array (https://docs.python.org/3/library/array.html)</span>
-<span class="c1"># in real applications you should use https://pypi.org/project/bitmap/</span>
-
-<span class="kn">import</span> <span class="nn">array</span>
-
-<span class="c1"># a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)</span>
-<span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">),</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
-
-<span class="n">bitmap_of_all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
-<span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">bitmap_of_all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>74 bytes
-9.536803281482161 megabytes
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="lucene">
-<h2>Lucene<a class="headerlink" href="#lucene" title="Permalink to this headline">¶</a></h2>
-<p>The leading software for indexing and searching text is definitely <strong><a class="reference external" href="https://lucene.apache.org/">Lucene</a></strong>. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course).</p>
-<p>There is a Python extension for accessing Java Lucene, called <strong><a class="reference external" href="https://lucene.apache.org/pylucene/">PyLucene</a></strong>. Its goal is to allow you to use Lucene’s text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene <strong>port</strong> but a Python <strong>wrapper</strong> around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU <code class="docutils literal notranslate"><span class="pre">Make</span></code>, a C++ compiler, …).</p>
-</div>
-<div class="section" id="whoosh">
-<h2>Whoosh<a class="headerlink" href="#whoosh" title="Permalink to this headline">¶</a></h2>
-<p>As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __<a class="reference external" href="https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/">tutorial</a> for building a Python full-text search engine!)</p>
-<p>One of these is <strong><a class="reference external" href="https://whoosh.readthedocs.io/en/latest/index.html">Whoosh</a></strong>, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Whoosh</span></code>.</p>
-<p>In the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/intro.html">Whoosh introduction</a> we read:</p>
-<blockquote>
-<div><p><strong>About Whoosh</strong></p>
+<div class="section" id="it-s-complicated">
+<h2>It’s complicated<a class="headerlink" href="#it-s-complicated" title="Permalink to this headline">¶</a></h2>
+<p>The definition of metadata as “data about data” somewhat misses the mark. In order to illustrate that, we need to take a look at a concrete example of metadata.</p>
+<p>Have a look at this title page:</p>
+<p><img alt="" src="_images/Lipsius.jpg" /></p>
+<p>Credit: photo: <strong><a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:7081813/E">STCV catalogue</a></strong>, copy: <strong><a class="reference external" href="https://anet.be/record/opacuantwerpen/c:lvd:452568/E">UA-CST MAG-P 13.74</a></strong> (f. *1 recto)</p>
+<div class="section" id="stcv">
+<h3>STCV<a class="headerlink" href="#stcv" title="Permalink to this headline">¶</a></h3>
+<p>The STCV catalogue, which we have already mentioned a few times, catalogues this book’s title* <strong><a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:7081813/E">as follows</a></strong>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Metadata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Title</p></td>
+<td><p>Title page: Poliorceticωn sive De machinis. Tormentis. Telis. Libri qvinqve</p></td>
+</tr>
+<tr class="row-odd"><td><p>Author</p></td>
+<td><p>Title page: Ivstus Lipsius [Lipsius, Justus]</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>External: van Veen, Otto [Illustrator]</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>External: van der Borcht, Pieter I [Illustrator]</p></td>
+</tr>
+<tr class="row-even"><td><p>Publication</p></td>
+<td><p>Title page: ex officina Plantiniana, apud viduam, &amp; Ioannem Moretum [Rivière, Jeanne &amp; Jan I Moretus]</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>Title page: Antverpiæ [Antwerp]</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>1596</p></td>
+</tr>
+<tr class="row-odd"><td><p>Language</p></td>
+<td><p>Latin [Target language]</p></td>
+</tr>
+</tbody>
+</table>
+<p>(* There are also other sections of information, such as analytical bibliography, keywords, etc.)</p>
+<p>Now let’s compare this to the title page.</p>
 <ul class="simple">
-<li><p>Whoosh is fast, but uses only pure Python, so it will run anywhere Python runs, without requiring a compiler.</p></li>
-<li><p>Whoosh creates fairly small indexes compared to many other search libraries.</p></li>
-<li><p>All indexed text in Whoosh must be unicode.</p></li>
+<li><p>For instance, we see that the difference between lower case, upper case and small caps has disappeared. This might seem trivial, but did you realise that in Renaissance Latin a capitalized final “I” stands for “ii”? So the full title is actually, “Ivsti Lipsii…” Or, suppose that someone is studying the use of capitalization in title layout as a marketing means. This is vital information that is missing.</p></li>
+<li><p>Moreover, when we focus on the title, we see small changes. Whereas the title page does not have a space between “Tormentis.Telis”, the transcription does. And it also leaves out the italic parts <em>Ad Historiarum lucem</em> (In light of History) and <em>Cum Privilegiis Caesareo &amp; Regio</em> (With Imperial and Royal Privilege). Again, such information could be very interesting to book historians, including the fact that italic type is used on the front page (again a matter of layout which could be construed as visual marketing).</p></li>
+<li><p>Also, when we look at the date, we notice this has been interpreted rather than transcribed. The Roman numeral (with the typical dots) has been silently turned into ‘1596’. This does injustice to the fact that humanists like Lipsius used Roman numerals on their title pages as a conscious imitation of ancient Roman epigraphy. The same goes for the line breaks.</p></li>
+<li><p>Furthermore, we see that copy specific information, such as the stamp in the upper right corner and the pasted on inscription on the bottom have also been left out.</p></li>
+<li><p>On the other hand, there is also more information in the descriptive metadata than is on the title page. The names of the illustrators, for instance, and the name of Christopher Plantin’s widow are added.</p></li>
 </ul>
-</div></blockquote>
-<blockquote>
-<div><p><strong>What is Woosh</strong></p>
-</div></blockquote>
-<blockquote>
-<div><p>Whoosh is a fast, pure Python search engine library.</p>
-</div></blockquote>
-<blockquote>
-<div><p>The primary design impetus of Whoosh is that it is pure Python. You should be able to use Whoosh anywhere you can use Python, no compiler or Java required.</p>
-</div></blockquote>
-<blockquote>
-<div><p>Like one of its ancestors, Lucene, Whoosh is not really a search engine, it’s a programmer library for creating a search engine.</p>
-</div></blockquote>
-<blockquote>
-<div><p>Practically no important behavior of Whoosh is hard-coded. Indexing of text, the level of information stored for each term in each field, parsing of search queries, the types of queries allowed, scoring algorithms, etc. are all customizable, replaceable, and extensible.</p>
-</div></blockquote>
-<p>Indeed, Whoosh is quite similar to Lucene, including its query language. It lets you connect terms with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, eliminate terms with <code class="docutils literal notranslate"><span class="pre">NOT</span></code>, group terms together into clauses with parentheses, do range, prefix, and wilcard queries, and specify different fields to search.</p>
-<p>The following code shows you how to create and search a basic Whoosh index. For more information, see the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/quickstart.html">Whoosh quick start</a> and documentation on the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/querylang.html">query language</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Whoosh quick start</span>
-<span class="sd">https://whoosh.readthedocs.io/en/latest/quickstart.html</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="kn">from</span> <span class="nn">whoosh</span> <span class="kn">import</span> <span class="n">highlight</span>
-<span class="kn">from</span> <span class="nn">whoosh.index</span> <span class="kn">import</span> <span class="n">create_in</span>
-<span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">TEXT</span>
-<span class="kn">from</span> <span class="nn">whoosh.qparser</span> <span class="kn">import</span> <span class="n">QueryParser</span>
-<span class="kn">from</span> <span class="nn">whoosh.query</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="c1"># Create schema</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">To begin using Whoosh, you need an index object. The first time you create</span>
-<span class="sd">an index, you must define the index’s schema. The schema lists the fields in</span>
-<span class="sd">the index. A field is a piece of information for each document in the index,</span>
-<span class="sd">such as its title or text content. A field can be indexed (meaning it can be</span>
-<span class="sd">searched) and/or stored (meaning the value that gets indexed is returned with</span>
-<span class="sd">the results; this is useful for fields such as the title).</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">content</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-                <span class="n">path</span><span class="o">=</span><span class="n">ID</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-<span class="c1"># Create index</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Once you have the schema, you can create an index.</span>
-<span class="sd">At a low level, this creates a Storage object to contains the index.</span>
-<span class="sd">A Storage object represents that medium in which the index will be stored.</span>
-<span class="sd">Usually this will be FileStorage, which stores the index as a set of files</span>
-<span class="sd">in a directory.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">)</span>
-<span class="n">my_index</span> <span class="o">=</span> <span class="n">create_in</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
-
-<span class="c1"># Add documents</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">OK, so we’ve got an Index object, now we can start adding documents.</span>
-<span class="sd">The writer() method of the Index object returns an IndexWriter object that</span>
-<span class="sd">lets you add documents to the index. The IndexWriter’s add_document</span>
-<span class="sd">method accepts keyword arguments where the field name is mapped to a value.</span>
-<span class="sd">Once you have finished with the writer, you need to commit it.</span>
-
-<span class="sd">The documents we add, a small corpus of British fiction, are part of</span>
-<span class="sd">the course repo.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">OS_SEP</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>  <span class="c1"># take care, different OS use different filepath separators!</span>
-
-<span class="n">writer</span> <span class="o">=</span> <span class="n">my_index</span><span class="o">.</span><span class="n">writer</span><span class="p">()</span>
-
-<span class="c1"># Corpus courtesy of Maciej Eder (http://maciejeder.org/)</span>
-<span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">document</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
-            <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
-                                        <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
-<span class="n">writer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-
-
-<span class="c1"># Parse a query string</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Woosh&#39;s Searcher (cf. infra) takes a Query object. You can construct query</span>
-<span class="sd">objects directly or use a query parser to parse a query string.</span>
-<span class="sd">To parse a query string, you can use the default query parser in the qparser</span>
-<span class="sd">module. The first argument to the QueryParser constructor is the default field</span>
-<span class="sd">to search. This is usually the &quot;body text&quot; field. The second (optional) argument</span>
-<span class="sd">is a schema to use to understand how to parse the fields. The argument of</span>
-<span class="sd">the .parse() method is a query in Whoosh query language (similar to Lucene):</span>
-<span class="sd">https://whoosh.readthedocs.io/en/latest/querylang.html</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="n">myquery</span> <span class="o">=</span> <span class="n">QueryParser</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="n">my_index</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;smattering&#39;</span><span class="p">)</span>
-<span class="c1"># compare results for:</span>
-<span class="c1"># myquery = QueryParser(&quot;content&quot;, my_index.schema).parse(&#39;smattering in surgery&#39;)</span>
-<span class="c1"># myquery = QueryParser(&quot;content&quot;, my_index.schema).parse(&#39;smattering NOT surgery&#39;)</span>
-
-
-<span class="c1"># Search documents</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Once you have a Searcher and a query object, you can use the Searcher&#39;s</span>
-<span class="sd">search() method to run the query and get a Results object.</span>
-<span class="sd">You can use the highlights() method on the whoosh.searching.Hit object</span>
-<span class="sd">to get highlighted snippets from the document containing the search terms.</span>
-<span class="sd">To limit the text displayed, you use a Fragmenter. More information at:</span>
-<span class="sd">https://whoosh.readthedocs.io/en/latest/searching.html</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="k">with</span> <span class="n">my_index</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
-    <span class="c1"># Search</span>
-    <span class="c1"># limit=None -&gt; search all documents in index</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-    <span class="c1"># Print paths that match</span>
-    <span class="k">for</span> <span class="n">hit</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">hit</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
-</pre></div>
 </div>
+<div class="section" id="worldcat">
+<h3>Worldcat<a class="headerlink" href="#worldcat" title="Permalink to this headline">¶</a></h3>
+<p>Let’s compare this with the entry for the same title in <strong><a class="reference external" href="http://www.worldcat.org/oclc/79260741">Worldcat</a></strong>, the world’s largest network of library content and services:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Metadata</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Title</p></td>
+<td><p>Ivsti LipsI Poliorcetic[o]n, sive, De machinis, tormentis, telis, libri qvinqve : ad historiarum lucem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Author</p></td>
+<td><p>Justus Lipsius; Petrus van der Borcht</p></td>
+</tr>
+<tr class="row-even"><td><p>Publisher</p></td>
+<td><p>Antverpiæ : Ex Officina Plantiniana, apud Viduam, &amp; Ioannem Moretum, M.D. XCVI [1596]</p></td>
+</tr>
+</tbody>
+</table>
+<p>The information is pretty similar, but now that we are tuned into some of the subtleties we notice the differences.</p>
+<p>“Ad historiarum lucem” is present here, for instance. On the other hand, Worldcat has different capitalization and provides only one illustrator, without specifying that this is external information (i.e. not included in the title page). Worldcat also has opts for a transliteration in Latin alphabet for Lipsius’s “macaronic” form Poliorceticωn, again a conscious effort of antiquarian <em>Spielerei</em>.</p>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0008145450001393328&gt;
-Thackeray_Barry.txt
-Fielding_Joseph.txt
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">my_index</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">myquery</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="c1"># Print examples of matching text with highlights and fragmenter</span>
-    <span class="c1"># Use (default) context fragmenter</span>
-    <span class="c1"># https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">fragmenter</span> <span class="o">=</span> <span class="n">highlight</span><span class="o">.</span><span class="n">ContextFragmenter</span><span class="p">(</span><span class="n">charlimit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">hit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">hit</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">hit</span><span class="o">.</span><span class="n">highlights</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Thackeray_Barry.txt = and customs,
-
-	and a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of the language...that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
-
-	chemistry...of tune. She had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of half-
-
-	a-dozen
-2 Fielding_Joseph.txt = and politics, hath a
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in law and divinity...the gentleman.--&quot;A
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt;--ho, ho, ho!&quot; said...I believe it is a
-
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; indeed.&quot;
-
-	The company
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="assignment-morphology-tool">
-<h2>Assignment: Morphology tool<a class="headerlink" href="#assignment-morphology-tool" title="Permalink to this headline">¶</a></h2>
-<p>Use Whoosh to illustrate English morphology with examples from a given corpus. For instance, the rules of morphology dictate verbs can take different forms or be used to form nouns, adjectives and such, like:</p>
+<div class="section" id="discussion">
+<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<p>This example shows that different catalogues adhere to different cataloguing rules. Indeed, it is impossible to simply catalogue at book title (or indeed any item, be it physical or digital) “as is”. However diplomatic and inclusive you try to be when cataloguing, you will always have to make hard decisions about how to handle layout, how to transcribe characters, whether or not to standardize spelling, punctuation, etcetera.</p>
+<p>All of this is perfectly understandable and in general (good) catalogues will be explicit and very scrupulous in the cataloguing rules they follow. The danger is that when we leave the cataloguing context and, for instance, acquire catalogue information in a data dump (STCV is freely available <strong><a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">here</a></strong>) we tend to forget this and take the metadata at face value.</p>
+<p>Imagine for a minute that you hadn’t seen the above title page, but merely got the STCV metadata from a SQL query. How accurate would your understanding of this title page actually be? And what happens when, as good DH research is bound to do, you break open metadata containers and aggregate metadata, for instance merging several of the national “short-title catalogue” initiatives (STCV, <strong><a class="reference external" href="https://www.kb.nl/en/organisation/research-expertise/for-libraries/short-title-catalogue-netherlands-stcn">STCN</a></strong>, <strong><a class="reference external" href="http://estc.bl.uk/">ESTC</a></strong>, <strong><a class="reference external" href="https://www.ustc.ac.uk/">USTC</a></strong>, …), which all adhere to different rules?</p>
+<p>To make matters worse, our example was a very simple one really. There are many, many more complex metadata problems. Just to give you a taste:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">render</span></code>: ‘renders’, ‘rendered’, ‘rendering’</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">think</span></code>: ‘thinks’, ‘thought’, ‘thinking’, ‘thinker’, ‘thinkers’, ‘thinkable’</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">put</span></code>: ‘puts’, ‘putting’, ‘putter’</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">do</span></code>: ‘does’, ‘did’, ‘done’, ‘doing’, ‘doings’, ‘doer’, ‘doers’</p></li>
+<li><p>How would you catalogue one of those toddler squeeky books that feature not a single word of text?</p></li>
+<li><p>When in 1993 Prince changed his stage name to the unpronounceable symbol <img alt="Prince" src="_images/prince.png" /> (known to fans as the “Love Symbol”), and was sometimes referred to as the Artist Formerly Known as Prince or simply the Artist, how were record shops supposed to catalogue his albums? Remember, in those days, most people would go up to the “P” section and browse for “Prince”!</p></li>
+<li><p>Or what about the IMDB website listing the actors of the Blair Witch Project as “missing, presumed dead” in the first year of the film’s availability (see <strong><a class="reference external" href="https://web.archive.org/web/20170109185339/http://www.telegraph.co.uk/films/2016/07/25/why-did-the-world-think-the-blair-witch-project-really-happened/">this</a></strong> article)?</p></li>
 </ul>
-<p>Forms like <code class="docutils literal notranslate"><span class="pre">think</span></code>, <code class="docutils literal notranslate"><span class="pre">put</span></code> and <code class="docutils literal notranslate"><span class="pre">do</span></code> illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding ‘ed’, ‘ing’, etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.</p>
-<p>Whoosh has a particular feature to deal with this. Look through the documentation and you’ll find it easily.</p>
-<p>Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.</p>
-<p>Also, try to display the results nicely, i.e. without the markup tags and whitespace (line breaks, etc.) we saw in the above example. Maybe you can even print the matched word in bold?</p>
+</div>
+</div>
+<div class="section" id="metadata-101">
+<h2>Metadata 101<a class="headerlink" href="#metadata-101" title="Permalink to this headline">¶</a></h2>
+<p>We now have a better understanding of metadata. We know know that, as a former student of mine <strong><a class="reference external" href="https://twitter.com/karolingva">&#64;Karolingva</a></strong> once tweeted from a <strong><a class="reference external" href="https://www.rightscon.org/">RightsCon</a></strong> conference: metadata is not data about data, but</p>
+<ul class="simple">
+<li><p>created data about data</p></li>
+<li><p>by humans</p></li>
+<li><p>with a purpose</p></li>
+<li><p>according to certain standards</p></li>
+</ul>
+<p>This means than when working with metadata we need to be acutely aware of this context.</p>
+<p>In short, that means having an understanding of cataloguing standards, metadata standards and exports.</p>
+<div class="section" id="cataloguing-standards">
+<h3>Cataloguing standards<a class="headerlink" href="#cataloguing-standards" title="Permalink to this headline">¶</a></h3>
+<p>As we saw in the case of STCV or WorldCat book titles were catalogued following certain rules. The same holds true for all sorts of physical or digital items. So if you are working with metadata you’ll do well to have at least a basic understanding of the cataloguing standards that were used to create the metadata.</p>
+<p>As for <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards">book cataloguing standards</a></strong>, for instance, we can mention</p>
+<ol class="simple">
+<li><p><strong><a class="reference external" href="http://access.rdatoolkit.org/">RDA</a></strong> (Resource Description and Access)</p>
+<ul class="simple">
+<li><p>(subscription needed)</p></li>
+<li><p>E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’</p></li>
+</ul>
+</li>
+<li><p><strong><a class="reference external" href="http://rbms.info/dcrm/dcrmb/">DCRM(B)</a></strong> (Descriptive Cataloging of Rare Materials - Books)</p>
+<ul class="simple">
+<li><p>(open source)</p></li>
+<li><p>E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem…’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="metadata-standards">
+<h3>Metadata standards<a class="headerlink" href="#metadata-standards" title="Permalink to this headline">¶</a></h3>
+<p>Once metadata has been produced according to certain cataloguing rules, we can also define a <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_standard">metadata standard</a></strong>, i.e.</p>
+<blockquote>
+<div><p>a requirement which is intended to establish a common understanding of the meaning or semantics of the data, to ensure correct and proper use and interpretation of the data by its owners and users.</p>
+</div></blockquote>
+<p>Some of the most common metadata standards in the world of <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GLAM_(industry_sector)">GLAM</a></strong> (galleries, libraries, archives, and museums) are:</p>
+<ol class="simple">
+<li><p>Books: <strong><a class="reference external" href="https://www.loc.gov/marc/">MARC</a></strong></p>
+<ul class="simple">
+<li><p>Machine-Readable Cataloging (MARC21)</p></li>
+<li><p>e.g. field 245 = title</p></li>
+</ul>
+</li>
+<li><p>Archives: <strong><a class="reference external" href="http://www.loc.gov/ead/">EAD</a></strong></p>
+<ul class="simple">
+<li><p>Encoded Archival Description (XML standard)</p></li>
+</ul>
+</li>
+<li><p>Objects: <strong><a class="reference external" href="http://www.dublincore.org/">Dublin Core</a></strong></p>
+<ul class="simple">
+<li><p>Dublin Core Metadata Initiative</p></li>
+</ul>
+</li>
+</ol>
+<p>If you’re interested to know more about metadata standards, good starting points <a class="reference external" href="https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx">this page</a> by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and <strong><a class="reference external" href="https://bartoc.org/">BARTOC</a></strong>, the Basic Register of Thesauri, Ontologies &amp; Classifications.</p>
+</div>
+<div class="section" id="exports">
+<h3>Exports<a class="headerlink" href="#exports" title="Permalink to this headline">¶</a></h3>
+<p>Working with metadata one is quickly faced with the issue of data being locked away in a so-called <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_silo">information silo</a></strong>:</p>
+<blockquote>
+<div><p>an insular management system in which one information system or subsystem is incapable of reciprocal operation with others that are, or should be, related. Thus information is not adequately shared but rather remains sequestered within each system or subsystem, figuratively trapped within a container like grain is trapped within a silo: there may be much of it, and it may be stacked quite high and freely available within those limits, but it has no effect outside those limits. Such data silos are proving to be an obstacle for businesses wishing to use data mining to make productive use of their data.</p>
+</div></blockquote>
+<p>Luckily many information systems, for instance for GLAM institutions, are paying increasing attention to providing open access metadata exports, which in turn allows to aggregate it (for further information retrieval, research purposes, etcetera).</p>
+<p>Such exports will make metadata available in all sorts of standards (see above) and formats, such as data dumps in .txt or .tab, structured formats like .csv, document databases like .xml or .json, or linked data. As we have seen in chapter 04 with CERL and Europeana, some institutions even provide an API.</p>
+<div class="section" id="examples-for-book-history">
+<h4>Examples for book history<a class="headerlink" href="#examples-for-book-history" title="Permalink to this headline">¶</a></h4>
+<p>Some time ago I made a very incomplete of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.</p>
+<ol class="simple">
+<li><p>Biographic databases</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://platform.worldcat.org/api-explorer/apis/VIAF">VIAF</a></strong> (Virtual International Authority File) (SRU protocol)</p></li>
+<li><p><strong><a class="reference external" href="https://wiki.dbpedia.org/OnlineAccess">DBpedia</a></strong> (SPARQL endpoint, REST API, Lookup API)</p></li>
+<li><p><strong><a class="reference external" href="https://data.cerl.org/thesaurus/_sru">CERL thesaurus</a></strong> (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)</p></li>
+<li><p><strong><a class="reference external" href="https://pro.europeana.eu/page/apis">Europeana APIs</a></strong> (SPARQL endpoint, REST API, …)</p></li>
+<li><p><strong><a class="reference external" href="https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists">RKDArtists</a></strong> (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)</p></li>
+</ul>
+</li>
+<li><p>Bibliographic databases</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://platform.worldcat.org/api-explorer/apis">Worldcat</a></strong> (wide range of exports, plugins, APIs)</p></li>
+<li><p><strong><a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet open data</a></strong> (including STCV, downloads in MARXML or SQLite)</p></li>
+<li><p><strong><a class="reference external" href="http://openvirtuoso.kbresearch.nl/sparql">STCN</a></strong> (SPARQL endpoint)</p></li>
+<li><p><strong><a class="reference external" href="https://rdrr.io/github/COMHIS/estc/f/README.md">ESTC</a></strong> (R toolkit)</p></li>
+<li><p><strong><a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB</a></strong> (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) SRU)</p></li>
+<li><p><strong><a class="reference external" href="http://tw.staatsbibliothek-berlin.de/">TW</a></strong> (Typenrepertorium der Wiegendrucke) (XML exports)</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="excursus-dh-example">
+<h2>Excursus: DH example<a class="headerlink" href="#excursus-dh-example" title="Permalink to this headline">¶</a></h2>
+<p>As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: <strong><a class="reference external" href="https://github.com/TomDeneire/quiring">A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices</a></strong>, which specifically aims to analyse the Early Modern practice of ‘quiring’ gatherings in handpress book production.</p>
+</div>
+<div class="section" id="assignment-marc21-to-dublin-core-conversion-for-oai">
+<h2>Assignment: MARC21 to Dublin Core conversion for OAI<a class="headerlink" href="#assignment-marc21-to-dublin-core-conversion-for-oai" title="Permalink to this headline">¶</a></h2>
+<p><strong><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a></strong> or OAI for short:</p>
+<blockquote>
+<div><p>is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.</p>
+</div></blockquote>
+<p>At Anet, for instance, we provide full OAI access to our complete database of books. Like so:</p>
+<p>(MARC21)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=marc21&amp;identifier=c:lvd:123456 
+</pre></div>
+</div>
+<p>(<strong><a class="reference external" href="https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema">MODS</a></strong>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&amp;metadataPrefix=mods&amp;identifier=c:lvd:123456
+</pre></div>
+</div>
+<p>In these examples, the trailing <code class="docutils literal notranslate"><span class="pre">c:lvd:</span></code> number is a unique Library Object Identifier (LOI) used by our LMS <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a></strong>. You can substitute it for any LOI you find in our <strong><a class="reference external" href="https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E">OPAC</a></strong>.</p>
+<p>Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.</p>
+<p>According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
+<div class="section" id="tips">
+<h3>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You can use the Library of Congress <strong><a class="reference external" href="https://www.loc.gov/marc/marc2dc.html">MARC to Dublin Core Crosswalk</a></strong>. You may limit yourself to the fields mentioned in the “unqualified” table and skip the “Leader” field. You will find the meaning of the various codes (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, etcetera) in the MARC specification, but you can limit yourself to code <code class="docutils literal notranslate"><span class="pre">a</span></code>, unless the crosswalk explicitly mentions other codes (e.g. <code class="docutils literal notranslate"><span class="pre">260</span></code> = <code class="docutils literal notranslate"><span class="pre">Publisher</span></code>).</p></li>
+<li><p>The Python <code class="docutils literal notranslate"><span class="pre">lxml</span></code> library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.</p></li>
+<li><p>If you don’t already, you will need to know about XML namespaces. This <strong><a class="reference external" href="https://www.w3schools.com/xml/xml_namespaces.asp">tutorial from w3schools</a></strong> and the info from the <strong><a class="reference external" href="https://lxml.de/tutorial.html#namespaces">lxml module</a></strong> are good starting points.</p></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -971,8 +563,8 @@ Fielding_Joseph.txt
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter05.html" title="previous page">Chapter 5: Metadata</a>
-    <a class='right-next' id="next-link" href="chapter07.html" title="next page">Chapter 7: Searching, Evaluation, Ranking</a>
+    <a class='left-prev' id="prev-link" href="chapter05.html" title="previous page">Querying data</a>
+    <a class='right-next' id="next-link" href="chapter07.html" title="next page">Chapter 6: Indexing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -981,7 +573,7 @@ Fielding_Joseph.txt
         
           By Tom Deneire<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

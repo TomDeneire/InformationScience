@@ -1,142 +1,351 @@
-# Chapter 7: Searching, Evaluation, Ranking
+# Chapter 6: Indexing
 
-## Introduction
+![](images/tablet.jpg)
 
-In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:
+__[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)__
 
-> Retrieval > Searching > Evaluation > Ranking
-
-Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in *Modern Information Retrieval*). Indeed, we will focus on text exclusively here.
+Credit: __[Wikimedia Commons](https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg)__
 
 ## Searching
 
-We have already seen that searching text is rarely as easy as `string.find(substring)`. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
+In all of our discussions about information we have so far neglected perhaps the most important aspect of it: **searching**. Indeed, you could say that the only difference between data and information, is that "information is data that we are looking for". Ergo, very simply said, working with information often boils down to "searching stuff". Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.
 
-### Regular expressions
+Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth's monumental *The Art of Computer Programming* devotes an entire volume (i.e. vol. 3) to "Sorting and Searching". This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.
 
-![](images/regex.png)
+At face value searching might seem easy. Let's look at finding a substring in a string. In Python, for instance, offers several ways to check for this:
 
-Credit: [xkcd.com](https://xkcd.com/1171/)
+MY_STRING = "Hello world, this is me"
+MY_SEARCH = "me"
 
-The `*` symbol we used is actually part of a separate programming language, called **regular expressions**. [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression) says:
+# one way
+if MY_SEARCH in MY_STRING:
+    print("Found!")
+else:
+    print("Not found")
 
-> A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for "find" or "find and replace" operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.
+# another way
+if not MY_STRING.find(MY_SEARCH) == -1:
+    print("Found!")
+else:
+    print("Not found!")
 
-> The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities. Different syntaxes for writing regular expressions have existed since the 1980s, one being the POSIX standard and another, widely used, being the Perl syntax.
-
-> Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.
-
-Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Ruby, Microsoft's .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX `grep` command.
-
-Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a *write only* programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases. 
-
-Consider this example:
-
-
-import re
-
-rhyme = re.compile(r'\Dar')
-my_text = "Let's look at the words bar, car, tar, mar and far"
-print(re.findall(rhyme, my_text))
-
-So I'm looking for potential rhymes on "bar" and have written a regex that looks for one letter character `\D` followed by `ar`. However, when you apply this to one of the paragraphs you quickly see some mismatches, as we forgot to specify that the pattern can only occur at the end of a word.
-
-paragraph = "Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a write only programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases."
-print(re.findall(rhyme, paragraph))
-
-So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use `.isinstance()`), reconsider!
-
-The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at __[w3schools](https://www.w3schools.com/python/python_regex.asp)__) and there are also handy regex testers where you can immediately check your regex, like __[regexr](https://regexr.com/)__. For a good Python cheat sheet, see this __[Medium post](https://link.medium.com/BYkb73meJab)__.
-
-A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in __[RFC 5322](https://tools.ietf.org/html/rfc5322)__. For a (more readable) summary, see __[Wikipedia](https://en.wikipedia.org/wiki/Email_address#Syntax)__.
-
-In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?
-
-# Examples from https://en.wikipedia.org/wiki/Email_address#Examples
-TEST = {
-    # valid addresses
-    "simple@example.com": True, 
-    "very.common@example.com": True, 
-    "disposable.style.email.with+symbol@example.com": True, 
-    "other.email-with-hyphen@example.com": True, 
-    "x@example.com (one-letter local-part)": True, 
-    "admin@mailserver1": True,  # local domain name with no TLD, although ICANN highly discourages dotless email addresses
-    # invalid_addresses
-    "Abc.example.com": False,  # no @ character
-    "A@b@c@example.com": False,  # only one @ is allowed outside quotation marks
-    "1234567890123456789012345678901234567890123456789012345678901234+x@example.com": False,  # local part is longer than 64 characters
-    "i_like_underscore@but_its_not_allow_in_this_part.example.com": False  # underscore is not allowed in domain part
-}
-
-def email_regex(address: str) -> bool:
-    # expand test
-    if address.count("@") == 1:
-        return True
-    else:
-        return False
-
-for case in TEST:
-    result = email_regex(case)
-    if not result == TEST[case]:
-        print(f"Test failed on {case}. Expected = {TEST[case]}. Result = {result}")
-    
+# third way
+from re import search
+if search(MY_SEARCH, MY_STRING):
+    print("Found!")
+else:
+    print("Not found!")
 
 
-### Fuzzy searching
+However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. __[Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)__) or huge metadata containers (e.g. __[Spotify contains >50.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.)__).
 
-Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. __[Wikipedia](https://en.wikipedia.org/wiki/Approximate_string_matching)__ explains:
+## Indexing
 
-> The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:
+One way to deal with his issue is **indexing**. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure. 
 
-> > insertion: cot → co**a**t
+### Simple searches
 
-> > deletion: co**a**t → cot
+Consider the following example. Let's say we have a large list of book titles and want to search them for a specific term.
 
-> > substitution: co**a**t → co**s**t
+Let's first use SQL and the STCV database from chapter 04 to make such a list.
 
->These three operations may be generalized as forms of substitution by adding a NULL character (here symbolized by `*`) wherever a character has been deleted or inserted:
-
-> > insertion: co*****t → co**a**t
-
-> > deletion: co**a**t → co\*t
-
-> > substitution: co**a**t → co**s**t
-
-> Some approximate matchers also treat transposition, in which the positions of two letters in the string are swapped, to be a primitive operation.
-
-> > transposition: co**st** → co**ts**
-
-> Different approximate matchers impose different constraints. Some matchers use a single global unweighted cost, that is, the total number of primitive operations necessary to convert the match to the pattern. For example, if the pattern is coil, foil differs by one substitution, coils by one insertion, oil by one deletion, and foal by two substitutions. If all operations count as a single unit of cost and the limit is set to one, foil, coils, and oil will count as matches while foal will not.
-
->Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.
-
-#### String metrics
-
-A __[string metric](https://en.wikipedia.org/wiki/String_metric)__ (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the __[Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)__ (also known as edit distance). Another is the __[Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)__.
-
-## Evaluation and ranking
-
-With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))__ offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
-
-## Assignment: Spelling checker
-
-One very practical application of string metrics, search evaluation and ranking is writing a spelling checker. 
-
-I'm not going to reveal too much of the solution here, but what I can say is that you'll definitely need two things:
-
-1. A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it'll do for now.
-
-2. A string metric. For this, you can use the Jaro-Winkler metric, which you do not have to implement yourself. Instead just use the code supplied in `jarowinkler.py` as shown below.
-
-Your application should do two things:
-
-1. Build the dictionary and save it in some form so it does not have to be rebuilt every time when the application is used.
-
-2. Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.
-
-As a final tip, you should consider reusing some of your code from chapter 3 for this application...
+import sqlite3
+import os.path
+import random
+conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
+c = conn.cursor()
+query = "select distinct title_ti from title"
+c.execute(query)
+BOOK_TITLES = []
+for title in c.fetchall():
+    BOOK_TITLES.append(*title)  # * = unpacking the tuple `title`
+conn.close()
+# length of list
+length = len(BOOK_TITLES)
+print(length, "titles, e.g.:")
+# some examples
+for _ in range(0,10):
+    print("-", BOOK_TITLES[random.randint(0, length)])
 
 
-from jarowinkler import jaro_winkler
-print(jaro_winkler("coat", "cot"))
+Now let's consider the difference between searching for the word `English` with and without an index.
 
+def split(to_split):
+    return to_split.split(' ')
+
+
+def make_word_index(corpus):
+    index = {}
+    for title in corpus:
+        words = split(title)
+        for word in words:
+            index.setdefault(word, [])
+            index[word].append(title)
+    return index
+
+def search_with_index(search_string, index):
+    return index[search_string]
+
+def search_without_index(search_string, list_to_search):
+    result = []
+    for title in list_to_search:
+        words = split(title)
+        if search_string in words:
+            result.append(title)
+    return result
+
+
+BOOK_TITLES_INDEX = make_word_index(BOOK_TITLES)
+result_no_index = search_without_index("English", BOOK_TITLES)
+result_index = search_with_index("English", BOOK_TITLES_INDEX)
+for item in result_index:
+    print("-", item)
+print(result_no_index == result_index)
+
+
+Obviously, the results of searching with and without a word index are the same. But what about the efficiency of the search? For this we can use Jupyter's handy feature `%timeit`: 
+
+%timeit search_with_index("English", BOOK_TITLES_INDEX)
+%timeit search_without_index("English", BOOK_TITLES)
+
+
+The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items... 
+
+#### Excursus: time complexity
+
+In essence and, what we have just done boils down to changing the __[time complexity](https://en.wikipedia.org/wiki/Time_complexity)__ of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
+
+Optimizing searches by reducing the time complexity of one's search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.
+
+### Complex searches
+
+Of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.
+
+For instance, titles like "The Art of Computer Programming" and "Zen and the Art of Motorcycle Maintanance" could be turned into an AND-index like so:
+
+import json
+TITLES = ["The Art of Computer Programming", "Zen and the Art of Motorcycle Maintanance"]
+index = {}
+for title in TITLES:
+    clean_title = title.casefold()
+    words = clean_title.split(' ')
+    for word in words:
+        if not word in index:
+            index[word] = {}
+        for next_word in words:
+            if not next_word == word:
+                if not next_word in index[word]:
+                    index[word][next_word] = [title]
+                else:
+                    index[word][next_word].append(title)
+print(json.dumps(index, indent=4))
+
+
+In this way, searching with `AND` becomes easy in this index, e.g. books that combine "art" and "computer":
+
+print(index["art"]["computer"])
+
+## Excursus: Bitmap indexing
+
+A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.
+
+One interesting technique to avoid such problems is bitmap indexing. __[Wikipedia](https://en.wikipedia.org/wiki/Bitmap)__ says:
+
+> In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits
+
+Let's say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:
+
+from sys import getsizeof
+import array
+
+# using arrays which is more memory-efficient than lists
+# https://docs.python.org/3/library/array.html
+pens_sold = array.array('B', [1, 5, 10])
+print(getsizeof(pens_sold), 'bytes')
+
+
+So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
+
+all_pens_sold = array.array('L', [i for i in range(1,10000000)])
+# converting bytes to megabytes
+size = getsizeof(all_pens_sold) * 0.00000095367432
+print(size, 'megabytes')
+
+
+So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:
+
+# Setting a bit array here with array (https://docs.python.org/3/library/array.html)
+# in real applications you should use https://pypi.org/project/bitmap/
+
+import array
+
+# a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)
+pens_sold = array.array('B', [0b1, 0b0, 0b0, 0b0, 0b1, 0b0, 0b0, 0b0, 0b0, 0b1])
+print(getsizeof(pens_sold), 'bytes')
+
+bitmap_of_all_pens_sold = array.array('B', [0b1 for i in range(1,10000000)])
+size = getsizeof(bitmap_of_all_pens_sold) * 0.00000095367432
+print(size, 'megabytes')
+
+
+## Lucene
+
+The leading software for indexing and searching text is definitely __[Lucene](https://lucene.apache.org/)__. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course). 
+
+There is a Python extension for accessing Java Lucene, called __[PyLucene](https://lucene.apache.org/pylucene/)__. Its goal is to allow you to use Lucene's text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene **port** but a Python **wrapper** around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU `Make`, a C++ compiler, ...).
+
+
+
+## Whoosh
+
+As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __[tutorial](https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/) for building a Python full-text search engine!)
+
+One of these is __[Whoosh](https://whoosh.readthedocs.io/en/latest/index.html)__, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through `pip install Whoosh`.
+
+In the [Whoosh introduction](https://whoosh.readthedocs.io/en/latest/intro.html) we read:
+
+> **About Whoosh**
+>- Whoosh is fast, but uses only pure Python, so it will run anywhere Python runs, without requiring a compiler.
+>- Whoosh creates fairly small indexes compared to many other search libraries.
+>- All indexed text in Whoosh must be unicode.
+
+> **What is Woosh**
+
+>Whoosh is a fast, pure Python search engine library.
+
+>The primary design impetus of Whoosh is that it is pure Python. You should be able to use Whoosh anywhere you can use Python, no compiler or Java required.
+
+>Like one of its ancestors, Lucene, Whoosh is not really a search engine, it’s a programmer library for creating a search engine.
+
+>Practically no important behavior of Whoosh is hard-coded. Indexing of text, the level of information stored for each term in each field, parsing of search queries, the types of queries allowed, scoring algorithms, etc. are all customizable, replaceable, and extensible.
+
+Indeed, Whoosh is quite similar to Lucene, including its query language. It lets you connect terms with `AND` or `OR`, eliminate terms with `NOT`, group terms together into clauses with parentheses, do range, prefix, and wilcard queries, and specify different fields to search. 
+
+The following code shows you how to create and search a basic Whoosh index. For more information, see the [Whoosh quick start](https://whoosh.readthedocs.io/en/latest/quickstart.html) and documentation on the [query language](https://whoosh.readthedocs.io/en/latest/querylang.html).
+
+
+"""
+Whoosh quick start
+https://whoosh.readthedocs.io/en/latest/quickstart.html
+"""
+
+import os
+
+from whoosh import highlight
+from whoosh.index import create_in
+from whoosh.fields import Schema, ID, TEXT
+from whoosh.qparser import QueryParser
+from whoosh.query import *
+
+# Create schema
+"""
+To begin using Whoosh, you need an index object. The first time you create
+an index, you must define the index’s schema. The schema lists the fields in
+the index. A field is a piece of information for each document in the index,
+such as its title or text content. A field can be indexed (meaning it can be
+searched) and/or stored (meaning the value that gets indexed is returned with
+the results; this is useful for fields such as the title).
+"""
+
+schema = Schema(title=TEXT(stored=True), content=TEXT(stored=True),
+                path=ID(stored=True))
+
+# Create index
+"""
+Once you have the schema, you can create an index.
+At a low level, this creates a Storage object to contains the index.
+A Storage object represents that medium in which the index will be stored.
+Usually this will be FileStorage, which stores the index as a set of files
+in a directory.
+"""
+
+if not os.path.exists("index"):
+    os.mkdir("index")
+my_index = create_in("index", schema)
+
+# Add documents
+"""
+OK, so we’ve got an Index object, now we can start adding documents.
+The writer() method of the Index object returns an IndexWriter object that
+lets you add documents to the index. The IndexWriter’s add_document
+method accepts keyword arguments where the field name is mapped to a value.
+Once you have finished with the writer, you need to commit it.
+
+The documents we add, a small corpus of British fiction, are part of
+the course repo.
+"""
+
+OS_SEP = os.sep  # take care, different OS use different filepath separators!
+
+writer = my_index.writer()
+
+# Corpus courtesy of Maciej Eder (http://maciejeder.org/)
+for document in os.listdir("corpus_of_british_fiction"):
+    if document.endswith(".txt"):
+        with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
+            writer.add_document(title=document, content=str(text.read()),
+                                        path=document)
+writer.commit()
+
+
+# Parse a query string
+"""
+Woosh's Searcher (cf. infra) takes a Query object. You can construct query
+objects directly or use a query parser to parse a query string.
+To parse a query string, you can use the default query parser in the qparser
+module. The first argument to the QueryParser constructor is the default field
+to search. This is usually the "body text" field. The second (optional) argument
+is a schema to use to understand how to parse the fields. The argument of
+the .parse() method is a query in Whoosh query language (similar to Lucene):
+https://whoosh.readthedocs.io/en/latest/querylang.html
+"""
+
+myquery = QueryParser("content", my_index.schema).parse('smattering')
+# compare results for:
+# myquery = QueryParser("content", my_index.schema).parse('smattering in surgery')
+# myquery = QueryParser("content", my_index.schema).parse('smattering NOT surgery')
+
+
+# Search documents
+"""
+Once you have a Searcher and a query object, you can use the Searcher's
+search() method to run the query and get a Results object.
+You can use the highlights() method on the whoosh.searching.Hit object
+to get highlighted snippets from the document containing the search terms.
+To limit the text displayed, you use a Fragmenter. More information at:
+https://whoosh.readthedocs.io/en/latest/searching.html
+"""
+with my_index.searcher() as searcher:
+    # Search
+    # limit=None -> search all documents in index
+    results = searcher.search(myquery, limit=None)
+    print(results)
+    # Print paths that match
+    for hit in results:
+        print(hit["path"])
+
+with my_index.searcher() as searcher:
+    results = searcher.search(myquery, limit=None)
+    # Print examples of matching text with highlights and fragmenter
+    # Use (default) context fragmenter
+    # https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit
+    results.fragmenter = highlight.ContextFragmenter(charlimit=None)
+    for index, hit in enumerate(results):
+        print(index+1, hit["path"], "=", hit.highlights("content"))
+
+## Assignment: Morphology tool
+
+Use Whoosh to illustrate English morphology with examples from a given corpus. For instance, the rules of morphology dictate verbs can take different forms or be used to form nouns, adjectives and such, like:
+
+- `render`: 'renders', 'rendered', 'rendering'
+- `think`: 'thinks', 'thought', 'thinking', 'thinker', 'thinkers', 'thinkable'
+- `put`: 'puts', 'putting', 'putter'
+- `do`: 'does', 'did', 'done', 'doing', 'doings', 'doer', 'doers'
+
+Forms like `think`, `put` and `do` illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding 'ed', 'ing', etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.
+
+Whoosh has a particular feature to deal with this. Look through the documentation and you'll find it easily.
+
+Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.
+
+Also, try to display the results nicely, i.e. without the markup tags and whitespace (line breaks, etc.) we saw in the above example. Maybe you can even print the matched word in bold?

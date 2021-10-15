@@ -94,17 +94,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Chapter 5: Metadata
+   Querying data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 6: Indexing
+   Chapter 5: Metadata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 7: Searching, Evaluation, Ranking
+   Chapter 6: Indexing
   </a>
  </li>
  <li class="toctree-l1">
@@ -252,6 +252,18 @@
   <a class="reference internal nav-link" href="#ethics">
    Ethics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#virtual-immortality">
+     Virtual immortality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gpt-3">
+     GPT-3
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -265,90 +277,103 @@
                 
   <div class="section" id="chapter-2-definition">
 <h1>Chapter 2: Definition<a class="headerlink" href="#chapter-2-definition" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/text_data_mining.jpg" /></p>
-<p>Credit: Davide Bonazzi</p>
+<p><img alt="" src="_images/data_to_conspiracy.jpg" /></p>
+<p>Credit: unknown</p>
+<blockquote>
+<div><p><em>TL;DR: Information Science studies ways to tackle information overload. Humanity’s most recent answer to this age-old problem is a computerized and omnipresent information system that implies both great power and great responsibility.</em></p>
+</div></blockquote>
 <div class="section" id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="information-science-retrieval-or-theory">
 <h3>Information Science, Retrieval or Theory?<a class="headerlink" href="#information-science-retrieval-or-theory" title="Permalink to this headline">¶</a></h3>
-<p>While this course is officially called Information <em>Science</em>, it was originally presented to me as Information <em>Retrieval</em>, which is rather different. And then you might also have heard about Information <em>Theory</em>. So let’s have a look at these disciplines and how they relate to each other.</p>
+<p>While this course is officially called Information <em>Science</em>, it was originally presented to me as Information <em>Retrieval</em>, which is rather different. And then you might also have heard of Information <em>Theory</em>. So let’s have a look at these disciplines and how they relate to each other.</p>
 <div class="section" id="information-theory">
 <h4>Information Theory<a class="headerlink" href="#information-theory" title="Permalink to this headline">¶</a></h4>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia</a></strong> says:</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia</a> says:</p>
 <blockquote>
-<div><p>Information theory studies the <strong>quantification, storage, and communication of information</strong>. It was originally proposed by Claude Shannon in 1948 to find fundamental limits on signal processing and communication operations such as data compression, in a landmark paper titled “A Mathematical Theory of Communication”. Its impact has been crucial to the success of the Voyager missions to deep space, the invention of the compact disc, the feasibility of mobile phones, the development of the Internet, the study of linguistics and of human perception, the understanding of black holes, and numerous other fields.</p>
+<div><p>Information theory studies the <strong>quantification, storage, and communication of information</strong>. It was originally proposed by Claude Shannon in 1948 to find fundamental limits on signal processing and communication operations such as data compression, in a landmark paper titled “A Mathematical Theory of Communication”. The field is at the intersection of mathematics, statistics, computer science, physics, neurobiology, information engineering, and electrical engineering. Its impact has been crucial to the success of the Voyager missions to deep space, the invention of the compact disc, the feasibility of mobile phones, the development of the Internet, the study of linguistics and of human perception, the understanding of black holes, and numerous other fields.</p>
 </div></blockquote>
 <blockquote>
-<div><p>The field is at the intersection of mathematics, statistics, computer science, physics, neurobiology, information engineering, and electrical engineering. The theory has also found applications in other areas, including statistical inference, natural language processing, cryptography, neurobiology, human vision, the evolution and function of molecular codes (bioinformatics), model selection in statistics, thermal physics, quantum computing, linguistics, plagiarism detection, pattern recognition, and anomaly detection. Important sub-fields of information theory include source coding, algorithmic complexity theory, algorithmic information theory, information-theoretic security, Grey system theory and measures of information.</p>
+<div><p>A well-known example of the application of information theory is <strong>data compression</strong> (both loss-less, e.g. ZIP files, and lossy, e.g. MP3s and JPEGs).</p>
 </div></blockquote>
 <blockquote>
-<div><p>Applications of fundamental topics of information theory include lossless <strong>data compression</strong> (e.g. ZIP files), lossy data compression (e.g. MP3s and JPEGs), and channel coding (e.g. for DSL). Information theory is used in information retrieval, intelligence gathering, gambling, and even in musical composition.</p>
+<div><p>A key measure in information theory is <strong>entropy</strong>. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (with two equally likely outcomes) provides less information (lower entropy) than specifying the outcome from a roll of a die (with six equally likely outcomes).</p>
 </div></blockquote>
-<blockquote>
-<div><p>A key measure in information theory is <strong>entropy</strong>. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (with two equally likely outcomes) provides less information (lower entropy) than specifying the outcome from a roll of a die (with six equally likely outcomes). Some other important measures in information theory are mutual information, channel capacity, error exponents, and relative entropy.</p>
-</div></blockquote>
-<p>(By the way, the entropy example is already a very nice illustration of the difference between information and knowledge)</p>
 </div>
 <div class="section" id="information-retrieval">
 <h4>Information Retrieval<a class="headerlink" href="#information-retrieval" title="Permalink to this headline">¶</a></h4>
-<p>Information Retrieval relies on information theory for its methods, but it is a much more applied discipline. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_retrieval">Wikipedia</a></strong> says:</p>
+<p>Information Retrieval relies on information theory for its methods, but it is a much more applied discipline. <a class="reference external" href="https://en.wikipedia.org/wiki/Information_retrieval">Wikipedia</a> says:</p>
 <blockquote>
-<div><p>Information retrieval (IR) is the activity of obtaining information system resources that are relevant to an information need from a collection of those resources. Searches can be based on full-text or other content-based indexing. Information retrieval is the science of <strong>searching for information</strong> in a document, searching for documents themselves, and also searching for the metadata that describes data, and for databases of texts, images or sounds.</p>
+<div><p>Information retrieval (IR) is the activity of obtaining information system resources that are relevant to an information need from a collection of those resources. Searches can be based on full-text or other content-based indexing. Information retrieval is the science of <strong>searching</strong> for information in a document, searching for documents themselves, and also searching for the metadata that describes data, and for databases of texts, images or sounds.</p>
 </div></blockquote>
 <blockquote>
 <div><p>Automated information retrieval systems are used to reduce what has been called information overload. An IR system is a software system that provides access to books, journals and other documents; stores and manages those documents. Web search engines are the most visible IR applications.</p>
 </div></blockquote>
 <blockquote>
-<div><p>An information retrieval process begins when a user enters a query into the system. Queries are formal statements of information needs, for example search strings in web search engines. In information retrieval a query does not uniquely identify a single object in the collection. Instead, several objects may match the query, perhaps with different degrees of relevancy.</p>
+<div><p>An information retrieval process begins when a user enters a <strong>query</strong> into the system. Queries are formal statements of information needs, for example search strings in web search engines. In information retrieval a query does not uniquely identify a single object in the collection. Instead, several objects may match the query, perhaps with different degrees of <strong>relevancy</strong>.</p>
 </div></blockquote>
 <blockquote>
-<div><p>An object is an entity that is represented by information in a content collection or database. User queries are matched against the database information. However, as opposed to classical SQL queries of a database, in information retrieval the results returned may or may not match the query, so results are typically ranked. This <strong>ranking of results</strong> is a key difference of information retrieval searching compared to database searching.</p>
+<div><p>An object is an entity that is represented by information in a content collection or database. User queries are matched against the database information. However, as opposed to classical queries of a database, in information retrieval the results returned may or may not match the query, so results are typically ranked. This <strong>ranking</strong> is a key difference of information retrieval searching compared to database searching.</p>
 </div></blockquote>
 <blockquote>
 <div><p>Depending on the application the data objects may be, for example, text documents, images, audio, mind maps or videos. Often the documents themselves are not kept or stored directly in the IR system, but are instead represented in the system by document surrogates or metadata.</p>
 </div></blockquote>
-<blockquote>
-<div><p>Most IR systems compute a numeric score on how well each object in the database matches the query, and rank the objects according to this value. The top ranking objects are then shown to the user. The process may then be iterated if the user wishes to refine the query.</p>
-</div></blockquote>
 </div>
 <div class="section" id="information-science">
 <h4>Information Science<a class="headerlink" href="#information-science" title="Permalink to this headline">¶</a></h4>
-<p>Finally, Information Science is introduced on <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_science">Wikipedia</a></strong> as:</p>
+<p>Finally, Information Science is introduced on <a class="reference external" href="https://en.wikipedia.org/wiki/Information_science">Wikipedia</a> as follows:</p>
 <blockquote>
-<div><p>Information science (also known as information studies) is an academic field which is primarily concerned with <strong>analysis, collection, classification, manipulation, storage, retrieval, movement, dissemination, and protection of information.</strong> Practitioners within and outside the field study the application and the usage of knowledge in organizations along with the interaction between people, organizations, and any existing information systems with the aim of creating, replacing, improving, or understanding information systems. Historically, information science is associated with computer science, psychology, technology and intelligence agencies. However, information science also incorporates aspects of diverse fields such as archival science, cognitive science, commerce, law, linguistics, museology, management, mathematics, philosophy, public policy, and social sciences.</p>
+<div><p>Information science (also known as information studies) is an academic field which is primarily concerned with <strong>analysis, collection, classification, manipulation, storage, retrieval, movement, dissemination, and protection of information.</strong> Practitioners within and outside the field study the application and the usage of knowledge in organizations along with the interaction between people, organizations, and any existing information systems with the aim of creating, replacing, improving, or understanding information systems.</p>
 </div></blockquote>
+<blockquote>
+<div><p>Historically, information science is associated with computer science, psychology, technology and intelligence agencies. However, information science also incorporates aspects of diverse fields such as archival science, cognitive science, commerce, law, linguistics, museology, management, mathematics, philosophy, public policy, and social sciences.</p>
+</div></blockquote>
+<p>Some key concepts of information studies, as found in Ko’s <a class="reference external" href="https://faculty.washington.edu/ajko/books/foundations-of-information/">Foundations of Information</a> include:</p>
+<ol class="simple">
+<li><p><em>information technology</em>: any technology that serves to capture, store, process, or transmit information (e.g. the printing press, photograph, …)</p></li>
+<li><p><em>information system</em>: a process that organizes people, technology, and data to allow people to create, store, manipulate, distribute, and access information (e.g. the postal services, a library, the Internet, …)</p></li>
+<li><p><em>information behaviour</em> or <em>seeking</em>: people seeking, managing, sharing, and using information across all possible contexts</p></li>
+<li><p><em>sensemaking</em>: iterative information seeking, involving not only gathering information, but making sense of it, integrating it into our understanding, and using that new understanding to shape further information seeking</p></li>
+<li><p><em>information interface</em>: the mediator between people and information systems (paper, audio, computers, …)</p></li>
+<li><p><em>information architecture</em>: the organization and structure of information interfaces, ideally optimized to help peopel use the interface to meet an information need</p></li>
+</ol>
 </div>
 </div>
 </div>
 <div class="section" id="history">
 <h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
-<p>In a way, all of these approaches are a way of dealing with <strong>information overload</strong>, which has a very long history. In a sense we might trace it back to Antiquity with Seneca the Elder (1st c. AD) who commented that “the abundance of books is distraction” or with Ecclesiastes 12:12: “of making books there is no end”. Indeed, compendia, anthologies, abbreviations and such became very popular in the Middle Ages as a way to manage information. However, with the arrival of the printing press information overload became truly problematic. We see people like Erasmus complaining about the swarms of new books and looking for ways to further organize, compile, index, … information in thesauri, encyclopaedias, etcetera. Of course, the arrival of digital carriers and finally the Internet are the apex of this evolution.</p>
-<p>If your interested in reading more about this, have a look at the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_overload">Wikipedia</a></strong> article on the topic, or for Early Modern times specifically:</p>
-<ul class="simple">
-<li><p>Ann Blair, <strong><a class="reference external" href="http://archive.boston.com/bostonglobe/ideas/articles/2010/11/28/information_overload_the_early_years/?page=full">Information overload, the early years</a></strong></p></li>
-<li><p>Ann Blair, Reading Strategies for Coping with Information Overload ca. 1550-
-1700, in: Journal of the History of Ideas, 64 (2003), 11-28.</p></li>
-</ul>
+<p>At the heart of all of these approaches is the problem of <a class="reference external" href="https://en.wikipedia.org/wiki/Information_overload">information overload</a>, which goes back a long way in intellectual history.</p>
+<p>In a sense we might trace it back to Antiquity with Seneca the Elder (1st c. AD) who commented that “the abundance of books is distraction” or with Ecclesiastes 12:12: “of making books there is no end”. Indeed, compendia, anthologies, abbreviations and such became very popular in the Middle Ages as a way to manage information. However, with the arrival of the printing press information overload became truly problematic. We see people like <a class="reference external" href="http://archive.boston.com/bostonglobe/ideas/articles/2010/11/28/information_overload_the_early_years/?page=full">Erasmus</a> complaining about the swarms of new books and looking for ways to further organize, compile, index, … information in thesauri, encyclopaedias, etcetera. And of course, the arrival of digital carriers and finally the Internet have done nothing to mitigate this issue. Quite the contrary.</p>
+<p>Although the study of humanity’s strategies to cope with information overload is well beyond the scope of this course, I would still like to indulge in one particular example, which, for us Belgians, is close to home.</p>
+<p>It is the story of <a class="reference external" href="https://daily.jstor.org/internet-before-internet-paul-otlet/">Paul Otlet and the Internet before the Internet</a>. Otlet, born in 1868, was a Belgian architect and information pioneer. In 1904, together with Henri La Fontaine, he created <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_Decimal_Classification">Universal Decimal Classification (UDC)</a>, an information system which divides all knowledge into nine categories (with a tenth held open for expansion) such as linguistics, Literature and mathematics or natural sciences, further broken down into 70,000 subdivisions. Updated and translated into 50 languages, the UDC is widely used today, especially in libraries, in 130 countries.</p>
+<p>Yet, Otlet’s vision was much larger than bibliography alone. Together with La Fontaine, in 1910 he started planning a center that would hold all the world’s information in organized an accessible form, a veritable “city of knowledge”, called the <em>Mundaneum</em>. Its catalog drawers holding over 15 million paper index cards were only the start of this “world brain”, as Otlet’s revolutionary ideas went much further than that.He planned on using microphotography techniques tto boos storage and even proposed a network of telescopes and TVs (a recent invention) in order to decentralize information access.</p>
+<p>Otlet’s end goal seems to have been the idea of univeral knowledge, leading to universal equality, and thus, universal peace. Ironically, the First World War was one of many factors that contributed to Otlet’s plans remaining largely unfinished. Sadly, Otlet is an obscure figure today, even in Belgian history, although there is a small Mundaneum museum in the Belgian city of Mons, where some tiny fraction of all the world’s knowledge still resides on old index cards stored in wooden cabinets…</p>
 </div>
 <div class="section" id="ethics">
 <h2>Ethics<a class="headerlink" href="#ethics" title="Permalink to this headline">¶</a></h2>
-<p>Something else which is beyond the scope of this course, is information ethics. Still, we cannot go by without at least briefly touching the topic.</p>
-<p>Living in the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Information_Age">Information Age</a></strong> is of course a wonderful thing. Most vital aspects of our life, health, work, communication, travel, … all rely on information. It started with newspapers, radio and TV. Then came computers, the Internet and mobile phones. Today, all of these media are interconnected in our smartphones, tablets and laptops. They are fed by big data and increasingly able through the use of artificial intelligence and machine learning.</p>
+<p>Something else which is beyond the scope of this course, is <strong>information ethics</strong>, the important question of right and wrong when it comes to information and data. Still, we cannot go by without at least briefly touching the topic.</p>
+<p>Living in the <a class="reference external" href="https://en.wikipedia.org/wiki/Information_Age">Information Age</a> is of course a wonderful thing. Most vital aspects of our life, health, work, communication, travel, … all rely on information. It started with newspapers, radio and TV. Then came computers, the Internet and mobile phones. Today, all of these media are interconnected in our smartphones, tablets and laptops. They are fed by big data and increasingly able through the use of artificial intelligence and machine learning.</p>
 <p>While the possibilities of the Information Age can be immensely empowering, it is also clear that <strong>great power comes with great responsiblity</strong>. The flipside of our dependency of information are phenomena like computer crime, digital dark age, cyberterrorism, digital divide, child pornography on the Dark Web, and many, many more.</p>
 <p>Often information technologies are very ambivalent, and it is not easy to see when they cross the line. Two examples.</p>
-<p>A. A South-Korean TV documentary gave a mother the opportunity to meet a digital version of her dead daughter after her body, voice and face were recreated using virtual reality technology. You can read more about it in these sources and also watch the footage on YouTube (which I recommend). Do you find the story beautiful or heartbreaking?</p>
+<div class="section" id="virtual-immortality">
+<h3>Virtual immortality<a class="headerlink" href="#virtual-immortality" title="Permalink to this headline">¶</a></h3>
+<p>A South-Korean TV documentary gave a mother the opportunity to meet a digital version of her dead daughter after her body, voice and face were recreated using virtual reality technology. You can read more about it in these sources and also watch the footage on YouTube (which I recommend). Do you find the story beautiful or heartbreaking?</p>
 <ul class="simple">
-<li><p><strong><a class="reference external" href="https://www.telegraph.co.uk/technology/2020/02/11/virtual-reality-used-reunite-grieving-mother-avatar-dead-child/">Telegraph</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://futurism.com/watch-mother-reunion-deceased-child-vr">Futurism.com</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://youtu.be/uflTK8c4w0c">YouTube</a></strong></p></li>
+<li><p><a class="reference external" href="https://futurism.com/watch-mother-reunion-deceased-child-vr">Futurism.com</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/uflTK8c4w0c">YouTube</a></p></li>
 </ul>
-<p>B. You probably know about <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GPT-3">GPT-3</a></strong>, Generative Pre-trained Transformer 3, which is a language model — a program that is, given an input text, trained to generate text, e.g. to predict the next word or words (thus writing a story) or to translate (just look at <strong><a class="reference external" href="https://twitter.com/sharifshameem/status/1284095222939451393?s=20">this example</a></strong>!). GPT-3 is one of the largest such models, having been trained on about 45 terabytes of text data, taken from thousands of web sites such as Wikipedia, plus online books and many other sources (definition from this <strong><a class="reference external" href="https://medium.com/&#64;melaniemitchell.me/can-gpt-3-make-analogies-16436605c446">Medium article</a></strong>). The quality of the text generated by GPT-3 is so high that it is difficult to distinguish from that written by a human, which has both benefits and risks. One of the risks is that if there is a certain bias (eurocentric, sexist, racist, …) present in the data the model is trained on, this trend will be reflected in the texts produced by the model. Some concrete examples can be found in:</p>
+</div>
+<div class="section" id="gpt-3">
+<h3>GPT-3<a class="headerlink" href="#gpt-3" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/GPT-3">GPT-3</a>, in full <em>Generative Pre-trained Transformer 3</em>, is a language model — a program that is, given an input text, trained to generate text, e.g. to predict the next word or words (thus writing a story) or to translate (just look at <a class="reference external" href="https://twitter.com/sharifshameem/status/1284095222939451393?s=20">this example</a>!). GPT-3 is one of the largest such models, having been trained on about 45 terabytes of text data, taken from thousands of web sites such as Wikipedia, plus online books and many other sources (definition from this <a class="reference external" href="https://medium.com/&#64;melaniemitchell.me/can-gpt-3-make-analogies-16436605c446">Medium article</a>).</p>
+<p>The quality of the text generated by GPT-3 is so high that it is difficult to distinguish from that written by a human, which has both benefits and risks. One of the risks is that if there is a certain bias (eurocentric, sexist, racist, …) present in the data the model is trained on, this trend will be reflected in the texts produced by the model.</p>
+<p>Some concrete examples can be found in these sources:</p>
 <ul class="simple">
-<li><p><strong><a class="reference external" href="https://techcrunch.com/2020/08/07/here-are-a-few-ways-gpt-3-can-go-wrong/">Techcrunch</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://medium.com/fair-bytes/how-biased-is-gpt-3-5b2b91f1177">Medium</a></strong></p></li>
-<li><p><strong><a class="reference external" href="https://twitter.com/Abebab/status/1309137018404958215?s=09">Twitter</a></strong></p></li>
+<li><p><a class="reference external" href="https://techcrunch.com/2020/08/07/here-are-a-few-ways-gpt-3-can-go-wrong/">Techcrunch</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/fair-bytes/how-biased-is-gpt-3-5b2b91f1177">Medium</a></p></li>
+<li><p><a class="reference external" href="https://twitter.com/Abebab/status/1309137018404958215?s=09">Twitter</a></p></li>
 </ul>
-<p>The recent Netflix documentary <strong><a class="reference external" href="https://www.netflix.com/be/title/81254224">The Social Dilemma</a></strong> undoubtedly touches this subject too, although I haven’t seen it myself yet.</p>
+</div>
 </div>
 </div>
 
@@ -390,7 +415,7 @@
         
           By Tom Deneire<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

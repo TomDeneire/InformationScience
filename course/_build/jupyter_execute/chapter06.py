@@ -1,351 +1,205 @@
-# Chapter 6: Indexing
+# Chapter 5: Metadata
 
-![](images/tablet.jpg)
+![](images/metadata.jpg)
 
-__[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)__
+Credit: unknown
 
-Credit: __[Wikimedia Commons](https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg)__
+## Metadata
 
-## Searching
+In the previous chapter we saw how, from a practical point of view it makes more sense to talk about *data* models instead of *information* models. In this chapter, we are going to do the same with information itself. Indeed, a lot of what happens in information science does not have to do with information *per se*, but with information *about* information, also known as **metadata**:
 
-In all of our discussions about information we have so far neglected perhaps the most important aspect of it: **searching**. Indeed, you could say that the only difference between data and information, is that "information is data that we are looking for". Ergo, very simply said, working with information often boils down to "searching stuff". Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.
+__[Wikipedia](https://en.wikipedia.org/wiki/Metadata)__ says:
 
-Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth's monumental *The Art of Computer Programming* devotes an entire volume (i.e. vol. 3) to "Sorting and Searching". This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.
+> Metadata is "data that provides information about other data". In other words, it is "data about data." Many distinct types of metadata exist, including descriptive metadata, structural metadata, administrative metadata, reference metadata and statistical metadata.
 
-At face value searching might seem easy. Let's look at finding a substring in a string. In Python, for instance, offers several ways to check for this:
+In this discussion, we will focus especially on **descriptive metadata**, i.e. descriptive information about a resource. 
 
-MY_STRING = "Hello world, this is me"
-MY_SEARCH = "me"
+Descriptive metadata is used for discovery and identification. If we think about books, for example, descriptive metadata would include elements such as title, author, date of publication, etcetera. Or, `Exif` (Exchangeable image file format) is a metadata standard that specifies the formats for images, sound, and ancillary tags used by digital cameras (including smartphones), scanners and other systems handling image and sound files recorded by digital cameras.
 
-# one way
-if MY_SEARCH in MY_STRING:
-    print("Found!")
-else:
-    print("Not found")
+## Metadata is important!
 
-# another way
-if not MY_STRING.find(MY_SEARCH) == -1:
-    print("Found!")
-else:
-    print("Not found!")
+Metadata might seem trivial -- in fact, I don't like the word *ancillary* (inspired by Wikipedia) in the previous paragraph -- or non-essential. However, metadata performs a huge and crucial role in information science and software development as a whole. As a rule, applications will strictly separate the business logic of the application (e.g. invoice system) and the metadata the application uses (e.g. database of clients, suppliers, etc.), in order to keep their software as generic as possible, but without the latter, the former is just an empty shell. 
 
-# third way
-from re import search
-if search(MY_SEARCH, MY_STRING):
-    print("Found!")
-else:
-    print("Not found!")
+Consider, as an illustration, this story about a bug in the __[Samsung Blu Ray player](https://www.theregister.com/2020/07/18/samsung_bluray_mass_dieoff_explained/)__!
 
+## It's complicated
 
-However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. __[Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)__) or huge metadata containers (e.g. __[Spotify contains >50.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.)__).
+The definition of metadata as "data about data" somewhat misses the mark. In order to illustrate that, we need to take a look at a concrete example of metadata.
 
-## Indexing
+Have a look at this title page:
 
-One way to deal with his issue is **indexing**. Simply said, an index is a data structure that improves the speed of data retrieval operations at the cost of additional writes and storage space to maintain the index data structure. 
+![](images/Lipsius.jpg)
 
-### Simple searches
+Credit: photo: __[STCV catalogue](https://anet.be/record/stcvopac/c:stcv:7081813/E)__, copy: __[UA-CST MAG-P 13.74](https://anet.be/record/opacuantwerpen/c:lvd:452568/E)__ (f. *1 recto)
 
-Consider the following example. Let's say we have a large list of book titles and want to search them for a specific term.
+### STCV
 
-Let's first use SQL and the STCV database from chapter 04 to make such a list.
+The STCV catalogue, which we have already mentioned a few times, catalogues this book's title* __[as follows](https://anet.be/record/stcvopac/c:stcv:7081813/E)__:
 
-import sqlite3
-import os.path
-import random
-conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
-c = conn.cursor()
-query = "select distinct title_ti from title"
-c.execute(query)
-BOOK_TITLES = []
-for title in c.fetchall():
-    BOOK_TITLES.append(*title)  # * = unpacking the tuple `title`
-conn.close()
-# length of list
-length = len(BOOK_TITLES)
-print(length, "titles, e.g.:")
-# some examples
-for _ in range(0,10):
-    print("-", BOOK_TITLES[random.randint(0, length)])
+Category | Metadata
+--- | ---
+Title |	Title page: Poliorceticωn sive De machinis. Tormentis. Telis. Libri qvinqve
+Author | Title page: Ivstus Lipsius \[Lipsius, Justus]
+. | External: van Veen, Otto \[Illustrator]
+. | External: van der Borcht, Pieter I \[Illustrator]
+Publication	| Title page: ex officina Plantiniana, apud viduam, & Ioannem Moretum \[Rivière, Jeanne & Jan I Moretus]
+. | Title page: Antverpiæ \[Antwerp]
+. | 1596
+Language | Latin \[Target language]
 
+(* There are also other sections of information, such as analytical bibliography, keywords, etc.)
 
-Now let's consider the difference between searching for the word `English` with and without an index.
+Now let's compare this to the title page.
 
-def split(to_split):
-    return to_split.split(' ')
+- For instance, we see that the difference between lower case, upper case and small caps has disappeared. This might seem trivial, but did you realise that in Renaissance Latin a capitalized final "I" stands for "ii"? So the full title is actually, "Ivsti Lipsii..." Or, suppose that someone is studying the use of capitalization in title layout as a marketing means. This is vital information that is missing.
 
+- Moreover, when we focus on the title, we see small changes. Whereas the title page does not have a space between "Tormentis.Telis", the transcription does. And it also leaves out the italic parts *Ad Historiarum lucem* (In light of History) and *Cum Privilegiis Caesareo & Regio* (With Imperial and Royal Privilege). Again, such information could be very interesting to book historians, including the fact that italic type is used on the front page (again a matter of layout which could be construed as visual marketing).
 
-def make_word_index(corpus):
-    index = {}
-    for title in corpus:
-        words = split(title)
-        for word in words:
-            index.setdefault(word, [])
-            index[word].append(title)
-    return index
+- Also, when we look at the date, we notice this has been interpreted rather than transcribed. The Roman numeral (with the typical dots) has been silently turned into '1596'. This does injustice to the fact that humanists like Lipsius used Roman numerals on their title pages as a conscious imitation of ancient Roman epigraphy. The same goes for the line breaks.
 
-def search_with_index(search_string, index):
-    return index[search_string]
+- Furthermore, we see that copy specific information, such as the stamp in the upper right corner and the pasted on inscription on the bottom have also been left out. 
 
-def search_without_index(search_string, list_to_search):
-    result = []
-    for title in list_to_search:
-        words = split(title)
-        if search_string in words:
-            result.append(title)
-    return result
+- On the other hand, there is also more information in the descriptive metadata than is on the title page. The names of the illustrators, for instance, and the name of Christopher Plantin's widow are added.
 
+### Worldcat
 
-BOOK_TITLES_INDEX = make_word_index(BOOK_TITLES)
-result_no_index = search_without_index("English", BOOK_TITLES)
-result_index = search_with_index("English", BOOK_TITLES_INDEX)
-for item in result_index:
-    print("-", item)
-print(result_no_index == result_index)
+Let's compare this with the entry for the same title in __[Worldcat](http://www.worldcat.org/oclc/79260741)__, the world's largest network of library content and services:
 
+Category | Metadata
+--- | ---
+Title | Ivsti LipsI Poliorcetic\[o]n, sive, De machinis, tormentis, telis, libri qvinqve : ad historiarum lucem.
+Author | Justus Lipsius; Petrus van der Borcht
+Publisher |	Antverpiæ : Ex Officina Plantiniana, apud Viduam, & Ioannem Moretum, M.D. XCVI \[1596]
 
-Obviously, the results of searching with and without a word index are the same. But what about the efficiency of the search? For this we can use Jupyter's handy feature `%timeit`: 
+The information is pretty similar, but now that we are tuned into some of the subtleties we notice the differences. 
 
-%timeit search_with_index("English", BOOK_TITLES_INDEX)
-%timeit search_without_index("English", BOOK_TITLES)
+"Ad historiarum lucem" is present here, for instance. On the other hand, Worldcat has different capitalization and provides only one illustrator, without specifying that this is external information (i.e. not included in the title page). Worldcat also has opts for a transliteration in Latin alphabet for Lipsius's "macaronic" form Poliorceticωn, again a conscious effort of antiquarian *Spielerei*.
 
+### Discussion
 
-The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items... 
+This example shows that different catalogues adhere to different cataloguing rules. Indeed, it is impossible to simply catalogue at book title (or indeed any item, be it physical or digital) "as is". However diplomatic and inclusive you try to be when cataloguing, you will always have to make hard decisions about how to handle layout, how to transcribe characters, whether or not to standardize spelling, punctuation, etcetera. 
 
-#### Excursus: time complexity
+All of this is perfectly understandable and in general (good) catalogues will be explicit and very scrupulous in the cataloguing rules they follow. The danger is that when we leave the cataloguing context and, for instance, acquire catalogue information in a data dump (STCV is freely available __[here](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__) we tend to forget this and take the metadata at face value.
 
-In essence and, what we have just done boils down to changing the __[time complexity](https://en.wikipedia.org/wiki/Time_complexity)__ of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
+Imagine for a minute that you hadn't seen the above title page, but merely got the STCV metadata from a SQL query. How accurate would your understanding of this title page actually be? And what happens when, as good DH research is bound to do, you break open metadata containers and aggregate metadata, for instance merging several of the national "short-title catalogue" initiatives (STCV, __[STCN](https://www.kb.nl/en/organisation/research-expertise/for-libraries/short-title-catalogue-netherlands-stcn)__, __[ESTC](http://estc.bl.uk/)__, __[USTC](https://www.ustc.ac.uk/)__, ...), which all adhere to different rules?
 
-Optimizing searches by reducing the time complexity of one's search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.
+To make matters worse, our example was a very simple one really. There are many, many more complex metadata problems. Just to give you a taste:
 
-### Complex searches
+- How would you catalogue one of those toddler squeeky books that feature not a single word of text?
+- When in 1993 Prince changed his stage name to the unpronounceable symbol ![Prince](images/prince.png) (known to fans as the "Love Symbol"), and was sometimes referred to as the Artist Formerly Known as Prince or simply the Artist, how were record shops supposed to catalogue his albums? Remember, in those days, most people would go up to the "P" section and browse for "Prince"!
+- Or what about the IMDB website listing the actors of the Blair Witch Project as "missing, presumed dead" in the first year of the film's availability (see __[this](https://web.archive.org/web/20170109185339/http://www.telegraph.co.uk/films/2016/07/25/why-did-the-world-think-the-blair-witch-project-really-happened/)__ article)?
 
-Of course, our example was only a simple one where we built an index that allowed to connect a word with a title. Real-world applications will often build several indices, cross-indices, include variant forms and allow for all kinds of complex searches such as searching with Boolean operators, proximity search, etcetera.
+## Metadata 101
 
-For instance, titles like "The Art of Computer Programming" and "Zen and the Art of Motorcycle Maintanance" could be turned into an AND-index like so:
+We now have a better understanding of metadata. We know know that, as a former student of mine __[@Karolingva](https://twitter.com/karolingva)__ once tweeted from a __[RightsCon](https://www.rightscon.org/)__ conference: metadata is not data about data, but
 
-import json
-TITLES = ["The Art of Computer Programming", "Zen and the Art of Motorcycle Maintanance"]
-index = {}
-for title in TITLES:
-    clean_title = title.casefold()
-    words = clean_title.split(' ')
-    for word in words:
-        if not word in index:
-            index[word] = {}
-        for next_word in words:
-            if not next_word == word:
-                if not next_word in index[word]:
-                    index[word][next_word] = [title]
-                else:
-                    index[word][next_word].append(title)
-print(json.dumps(index, indent=4))
+- created data about data
+- by humans
+- with a purpose
+- according to certain standards
 
+This means than when working with metadata we need to be acutely aware of this context.
 
-In this way, searching with `AND` becomes easy in this index, e.g. books that combine "art" and "computer":
+In short, that means having an understanding of cataloguing standards, metadata standards and exports.
 
-print(index["art"]["computer"])
+### Cataloguing standards
 
-## Excursus: Bitmap indexing
+As we saw in the case of STCV or WorldCat book titles were catalogued following certain rules. The same holds true for all sorts of physical or digital items. So if you are working with metadata you'll do well to have at least a basic understanding of the cataloguing standards that were used to create the metadata.
 
-A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.
+As for __[book cataloguing standards](https://en.wikipedia.org/wiki/Cataloging#Cataloging_standards)__, for instance, we can mention
 
-One interesting technique to avoid such problems is bitmap indexing. __[Wikipedia](https://en.wikipedia.org/wiki/Bitmap)__ says:
+1. __[RDA](http://access.rdatoolkit.org/)__ (Resource Description and Access)
+    - (subscription needed)
+    - E.g. names with articles = ‘The Hague’ NOT ‘Hague, the’
 
-> In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits
+2. __[DCRM(B)](http://rbms.info/dcrm/dcrmb/)__ (Descriptive Cataloging of Rare Materials - Books)
+    - (open source)
+    - E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem...’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’
 
-Let's say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:
 
-from sys import getsizeof
-import array
+### Metadata standards
 
-# using arrays which is more memory-efficient than lists
-# https://docs.python.org/3/library/array.html
-pens_sold = array.array('B', [1, 5, 10])
-print(getsizeof(pens_sold), 'bytes')
+Once metadata has been produced according to certain cataloguing rules, we can also define a __[metadata standard](https://en.wikipedia.org/wiki/Metadata_standard)__, i.e. 
 
+> a requirement which is intended to establish a common understanding of the meaning or semantics of the data, to ensure correct and proper use and interpretation of the data by its owners and users.
 
-So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
+Some of the most common metadata standards in the world of __[GLAM](https://en.wikipedia.org/wiki/GLAM_(industry_sector))__ (galleries, libraries, archives, and museums) are:
 
-all_pens_sold = array.array('L', [i for i in range(1,10000000)])
-# converting bytes to megabytes
-size = getsizeof(all_pens_sold) * 0.00000095367432
-print(size, 'megabytes')
+1. Books: __[MARC](https://www.loc.gov/marc/)__
+    - Machine-Readable Cataloging (MARC21)
+    - e.g. field 245 = title
 
+2. Archives: __[EAD](http://www.loc.gov/ead/)__
+    - Encoded Archival Description (XML standard) 
 
-So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:
+3. Objects: __[Dublin Core](http://www.dublincore.org/)__
+    - Dublin Core Metadata Initiative 
 
-# Setting a bit array here with array (https://docs.python.org/3/library/array.html)
-# in real applications you should use https://pypi.org/project/bitmap/
+If you're interested to know more about metadata standards, good starting points [this page](https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx) by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and __[BARTOC](https://bartoc.org/)__, the Basic Register of Thesauri, Ontologies & Classifications.
 
-import array
+### Exports
 
-# a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)
-pens_sold = array.array('B', [0b1, 0b0, 0b0, 0b0, 0b1, 0b0, 0b0, 0b0, 0b0, 0b1])
-print(getsizeof(pens_sold), 'bytes')
+Working with metadata one is quickly faced with the issue of data being locked away in a so-called __[information silo](https://en.wikipedia.org/wiki/Information_silo)__:
 
-bitmap_of_all_pens_sold = array.array('B', [0b1 for i in range(1,10000000)])
-size = getsizeof(bitmap_of_all_pens_sold) * 0.00000095367432
-print(size, 'megabytes')
+>  an insular management system in which one information system or subsystem is incapable of reciprocal operation with others that are, or should be, related. Thus information is not adequately shared but rather remains sequestered within each system or subsystem, figuratively trapped within a container like grain is trapped within a silo: there may be much of it, and it may be stacked quite high and freely available within those limits, but it has no effect outside those limits. Such data silos are proving to be an obstacle for businesses wishing to use data mining to make productive use of their data.
 
+Luckily many information systems, for instance for GLAM institutions, are paying increasing attention to providing open access metadata exports, which in turn allows to aggregate it (for further information retrieval, research purposes, etcetera). 
 
-## Lucene
+Such exports will make metadata available in all sorts of standards (see above) and formats, such as data dumps in .txt or .tab, structured formats like .csv, document databases like .xml or .json, or linked data. As we have seen in chapter 04 with CERL and Europeana, some institutions even provide an API.
 
-The leading software for indexing and searching text is definitely __[Lucene](https://lucene.apache.org/)__. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course). 
+#### Examples for book history
 
-There is a Python extension for accessing Java Lucene, called __[PyLucene](https://lucene.apache.org/pylucene/)__. Its goal is to allow you to use Lucene's text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene **port** but a Python **wrapper** around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU `Make`, a C++ compiler, ...).
+Some time ago I made a very incomplete of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.
 
+1. Biographic databases
+    - __[VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF)__ (Virtual International Authority File) (SRU protocol)
+    - __[DBpedia](https://wiki.dbpedia.org/OnlineAccess)__ (SPARQL endpoint, REST API, Lookup API)
+    - __[CERL thesaurus](https://data.cerl.org/thesaurus/_sru)__ (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU protocol)
+    - __[Europeana APIs](https://pro.europeana.eu/page/apis)__ (SPARQL endpoint, REST API, ...)
+    - __[RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists)__ (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
 
 
-## Whoosh
+2. Bibliographic databases
+    - __[Worldcat](https://platform.worldcat.org/api-explorer/apis)__ (wide range of exports, plugins, APIs)
+    - __[Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/)__ (including STCV, downloads in MARXML or SQLite)
+    - __[STCN](http://openvirtuoso.kbresearch.nl/sparql)__ (SPARQL endpoint)
+    - __[ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md)__ (R toolkit)
+    - __[HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database)__ (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) SRU)
+    - __[TW](http://tw.staatsbibliothek-berlin.de/)__ (Typenrepertorium der Wiegendrucke) (XML exports)
 
-As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __[tutorial](https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/) for building a Python full-text search engine!)
+## Excursus: DH example
 
-One of these is __[Whoosh](https://whoosh.readthedocs.io/en/latest/index.html)__, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through `pip install Whoosh`.
+As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: __[A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices](https://github.com/TomDeneire/quiring)__, which specifically aims to analyse the Early Modern practice of 'quiring' gatherings in handpress book production.
 
-In the [Whoosh introduction](https://whoosh.readthedocs.io/en/latest/intro.html) we read:
+## Assignment: MARC21 to Dublin Core conversion for OAI
 
-> **About Whoosh**
->- Whoosh is fast, but uses only pure Python, so it will run anywhere Python runs, without requiring a compiler.
->- Whoosh creates fairly small indexes compared to many other search libraries.
->- All indexed text in Whoosh must be unicode.
+__[The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)](https://www.openarchives.org/pmh/)__ or OAI for short:
 
-> **What is Woosh**
+> is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.
 
->Whoosh is a fast, pure Python search engine library.
+At Anet, for instance, we provide full OAI access to our complete database of books. Like so:
 
->The primary design impetus of Whoosh is that it is pure Python. You should be able to use Whoosh anywhere you can use Python, no compiler or Java required.
+(MARC21)
 
->Like one of its ancestors, Lucene, Whoosh is not really a search engine, it’s a programmer library for creating a search engine.
+```
+https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=marc21&identifier=c:lvd:123456 
+```
 
->Practically no important behavior of Whoosh is hard-coded. Indexing of text, the level of information stored for each term in each field, parsing of search queries, the types of queries allowed, scoring algorithms, etc. are all customizable, replaceable, and extensible.
 
-Indeed, Whoosh is quite similar to Lucene, including its query language. It lets you connect terms with `AND` or `OR`, eliminate terms with `NOT`, group terms together into clauses with parentheses, do range, prefix, and wilcard queries, and specify different fields to search. 
+(__[MODS](https://en.wikipedia.org/wiki/Metadata_Object_Description_Schema)__)
 
-The following code shows you how to create and search a basic Whoosh index. For more information, see the [Whoosh quick start](https://whoosh.readthedocs.io/en/latest/quickstart.html) and documentation on the [query language](https://whoosh.readthedocs.io/en/latest/querylang.html).
+```
+https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=mods&identifier=c:lvd:123456
+```
 
+In these examples, the trailing `c:lvd:` number is a unique Library Object Identifier (LOI) used by our LMS __[Brocade](https://en.wikipedia.org/wiki/Brocade_Library_Services)__. You can substitute it for any LOI you find in our __[OPAC](https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E)__.
 
-"""
-Whoosh quick start
-https://whoosh.readthedocs.io/en/latest/quickstart.html
-"""
+Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.
 
-import os
+According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
 
-from whoosh import highlight
-from whoosh.index import create_in
-from whoosh.fields import Schema, ID, TEXT
-from whoosh.qparser import QueryParser
-from whoosh.query import *
+### Tips
 
-# Create schema
-"""
-To begin using Whoosh, you need an index object. The first time you create
-an index, you must define the index’s schema. The schema lists the fields in
-the index. A field is a piece of information for each document in the index,
-such as its title or text content. A field can be indexed (meaning it can be
-searched) and/or stored (meaning the value that gets indexed is returned with
-the results; this is useful for fields such as the title).
-"""
-
-schema = Schema(title=TEXT(stored=True), content=TEXT(stored=True),
-                path=ID(stored=True))
-
-# Create index
-"""
-Once you have the schema, you can create an index.
-At a low level, this creates a Storage object to contains the index.
-A Storage object represents that medium in which the index will be stored.
-Usually this will be FileStorage, which stores the index as a set of files
-in a directory.
-"""
-
-if not os.path.exists("index"):
-    os.mkdir("index")
-my_index = create_in("index", schema)
-
-# Add documents
-"""
-OK, so we’ve got an Index object, now we can start adding documents.
-The writer() method of the Index object returns an IndexWriter object that
-lets you add documents to the index. The IndexWriter’s add_document
-method accepts keyword arguments where the field name is mapped to a value.
-Once you have finished with the writer, you need to commit it.
-
-The documents we add, a small corpus of British fiction, are part of
-the course repo.
-"""
-
-OS_SEP = os.sep  # take care, different OS use different filepath separators!
-
-writer = my_index.writer()
-
-# Corpus courtesy of Maciej Eder (http://maciejeder.org/)
-for document in os.listdir("corpus_of_british_fiction"):
-    if document.endswith(".txt"):
-        with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
-            writer.add_document(title=document, content=str(text.read()),
-                                        path=document)
-writer.commit()
-
-
-# Parse a query string
-"""
-Woosh's Searcher (cf. infra) takes a Query object. You can construct query
-objects directly or use a query parser to parse a query string.
-To parse a query string, you can use the default query parser in the qparser
-module. The first argument to the QueryParser constructor is the default field
-to search. This is usually the "body text" field. The second (optional) argument
-is a schema to use to understand how to parse the fields. The argument of
-the .parse() method is a query in Whoosh query language (similar to Lucene):
-https://whoosh.readthedocs.io/en/latest/querylang.html
-"""
-
-myquery = QueryParser("content", my_index.schema).parse('smattering')
-# compare results for:
-# myquery = QueryParser("content", my_index.schema).parse('smattering in surgery')
-# myquery = QueryParser("content", my_index.schema).parse('smattering NOT surgery')
-
-
-# Search documents
-"""
-Once you have a Searcher and a query object, you can use the Searcher's
-search() method to run the query and get a Results object.
-You can use the highlights() method on the whoosh.searching.Hit object
-to get highlighted snippets from the document containing the search terms.
-To limit the text displayed, you use a Fragmenter. More information at:
-https://whoosh.readthedocs.io/en/latest/searching.html
-"""
-with my_index.searcher() as searcher:
-    # Search
-    # limit=None -> search all documents in index
-    results = searcher.search(myquery, limit=None)
-    print(results)
-    # Print paths that match
-    for hit in results:
-        print(hit["path"])
-
-with my_index.searcher() as searcher:
-    results = searcher.search(myquery, limit=None)
-    # Print examples of matching text with highlights and fragmenter
-    # Use (default) context fragmenter
-    # https://whoosh.readthedocs.io/en/latest/highlight.html#the-character-limit
-    results.fragmenter = highlight.ContextFragmenter(charlimit=None)
-    for index, hit in enumerate(results):
-        print(index+1, hit["path"], "=", hit.highlights("content"))
-
-## Assignment: Morphology tool
-
-Use Whoosh to illustrate English morphology with examples from a given corpus. For instance, the rules of morphology dictate verbs can take different forms or be used to form nouns, adjectives and such, like:
-
-- `render`: 'renders', 'rendered', 'rendering'
-- `think`: 'thinks', 'thought', 'thinking', 'thinker', 'thinkers', 'thinkable'
-- `put`: 'puts', 'putting', 'putter'
-- `do`: 'does', 'did', 'done', 'doing', 'doings', 'doer', 'doers'
-
-Forms like `think`, `put` and `do` illustrate that you cannot approach this problem in a mechanical or brute-force way. It is not as simple as adding 'ed', 'ing', etcetera to the verbs. Sometimes consonants are doubled, sometimes the verb stem changes (in the case of strong verbs), and so on.
-
-Whoosh has a particular feature to deal with this. Look through the documentation and you'll find it easily.
-
-Use it to build a Python application that takes a word as input and returns a list of sentences from the British fiction corpus that contain this word to illustrate its usage. Think about building the index first, so you can then reuse it (without having to rebuild it) for additional searches.
-
-Also, try to display the results nicely, i.e. without the markup tags and whitespace (line breaks, etc.) we saw in the above example. Maybe you can even print the matched word in bold?
+- You can use the Library of Congress __[MARC to Dublin Core Crosswalk](https://www.loc.gov/marc/marc2dc.html)__. You may limit yourself to the fields mentioned in the "unqualified" table and skip the "Leader" field. You will find the meaning of the various codes (`a`, `c`, etcetera) in the MARC specification, but you can limit yourself to code `a`, unless the crosswalk explicitly mentions other codes (e.g. `260` = `Publisher`).
+- The Python `lxml` library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.
+- If you don't already, you will need to know about XML namespaces. This __[tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp)__ and the info from the __[lxml module](https://lxml.de/tutorial.html#namespaces)__ are good starting points.
