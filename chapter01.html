@@ -93,17 +93,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Chapter 5: Metadata
+   Querying data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 6: Indexing
+   Chapter 5: Metadata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 7: Searching, Evaluation, Ranking
+   Chapter 6: Indexing
   </a>
  </li>
  <li class="toctree-l1">
@@ -244,6 +244,23 @@
   <a class="reference internal nav-link" href="#reading">
    Reading
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#required">
+     Required
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional">
+     Optional
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-resources">
+     Other resources
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#technical-requirements">
@@ -269,8 +286,7 @@
                 
   <div class="section" id="chapter-1-welcome">
 <h1>Chapter 1: Welcome<a class="headerlink" href="#chapter-1-welcome" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/data_to_conspiracy.jpg" /></p>
-<p>Credit: unknown</p>
+<p>to do: image</p>
 <div class="section" id="welcome">
 <h2>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h2>
 <p>Welcome to the course “Information Science” for the University of Antwerp <a class="reference external" href="https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/">Master of Digital Text Analysis</a>!</p>
@@ -279,12 +295,11 @@
 <h2>Who am I and why does that matter?<a class="headerlink" href="#who-am-i-and-why-does-that-matter" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="who-am-i">
 <h3>Who am I?<a class="headerlink" href="#who-am-i" title="Permalink to this headline">¶</a></h3>
-<p>My name is Tom Deneire and I am a professional <strong>software engineer</strong>.</p>
+<p>My name is <a class="reference external" href="https://tomdeneire.github.io/">Tom Deneire</a> and I am a professional <strong>software engineer</strong>.</p>
 <p>However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in the humanities for quite some time.</p>
 <p>From 2009-2013 I worked in <strong>academia</strong> as a postdoctoral researcher (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. <a class="reference external" href="https://hdl.handle.net/10067/1535070151162165141">Deneire 2018</a>).</p>
 <p>In 2013 I moved to the <strong>library world</strong> (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.</p>
 <p>In 2018 this lead to a switch from the Special Collections to the library’s <strong>software department</strong> <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/">Anet</a>, where I have been working since on a product called <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade Library Services</a>. My technology stack mainly includes Python and especially <a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a>, the language for our database engine (GT.M, provided by <a class="reference external" href="https://yottadb.com/">YottaDB</a>). My current project is a complete rewrite and integration of the library’s two modules for authority control. Occasionally, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the <a class="reference external" href="https://linuxmint.com/">Linux Mint</a> distro).</p>
-<p>(More information about me and links at <a class="reference external" href="https://tomdeneire.github.io/">https://tomdeneire.github.io/</a>).</p>
 </div>
 <div class="section" id="why-does-that-matter">
 <h3>Why does that matter?<a class="headerlink" href="#why-does-that-matter" title="Permalink to this headline">¶</a></h3>
@@ -301,17 +316,43 @@
 <li><p>Definition, history, ethics</p></li>
 <li><p>Encoding</p></li>
 <li><p>Databases</p></li>
+<li><p>Querying</p></li>
 <li><p>Metadata</p></li>
 <li><p>Indexing</p></li>
 <li><p>Searching</p></li>
-<li><p>Library Management Systems</p></li>
 </ol>
-<p>In line with the hands-on nature of this course, most chapters will end with a <strong>coding assignment</strong>, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.</p>
+<p>In line with the hands-on nature of this course, most chapters will feature a <strong>coding assignment</strong>, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.</p>
 </div>
 <div class="section" id="reading">
 <h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h2>
-<p>Given the very applied nature of this course, it is probably a good idea to supplement this course with some additional reading. I have included several suggestions for optional reading in the <a class="reference external" href="https://tomdeneire.github.io/InformationScience/coursedetails.html">course details</a>, one of which I highly recommend, namely <strong>Foundations of Information</strong>, by Amy J. Ko (2021), available as a free <a class="reference external" href="https://faculty.washington.edu/ajko/books/foundations-of-information/">e-book</a> and <a class="reference external" href="https://github.com/amyjko/foundations-of-information">GitHub repository</a>. Whereas this course focuses on the practical side of things, this book is an exemplary theoretical (but very readable!) introduction into the topic of information.</p>
-<p>Aside from that, I also often refer to <a class="reference external" href="https://medium.com/">Medium</a>, an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.</p>
+<div class="section" id="required">
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<p>Given the very applied nature of this course, I feel it is necessary to supplement it with a brief theoretical introduction to the topic of information. To meet that goal, this course requires reading chapters 1-7 of this highly readable book:</p>
+<p><strong>Foundations of Information</strong>, by Amy J. Ko (2021), available as a free <a class="reference external" href="https://faculty.washington.edu/ajko/books/foundations-of-information/">e-book</a> and <a class="reference external" href="https://github.com/amyjko/foundations-of-information">GitHub repository</a></p>
+</div>
+<div class="section" id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<p>If a subject of this course is of particular interest to you, you can find more information about the various topics in the following publications:</p>
+<ul class="simple">
+<li><p><em>Handbook of Information Science</em>, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), <a class="reference external" href="https://isbnsearch.org/isbn/9783110234992">ISBN 978-3110234992</a>, https://doi.org/10.1515/9783110235005</p></li>
+<li><p><em>The Myth and Magic of Library Systems</em>, By Keith J. Kelley, <a class="reference external" href="https://isbnsearch.org/isbn/9780081000762">ISBN 978-0081000762</a></p></li>
+<li><p><em>Modern Information Retrieval: The Concepts and Technology behind Search</em>, By Ricardo Baeza-Yates, Berthier Ribeiro-Neto, Second edition (Harlow e.a.: Addison-Wesley, 2011), <a class="reference external" href="https://isbnsearch.org/isbn/9780321416919">ISBN 978-0-321-41691-9</a></p></li>
+<li><p><em>Information Architecture</em>, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, <a class="reference external" href="https://isbnsearch.org/isbn/9781491911686">ISBN 978-1491911686</a></p></li>
+<li><p><em>A Librarian’s Guide to Graphs, Data and the Semantic Web</em>, By James Powell, <a class="reference external" href="https://isbnsearch.org/isbn/9781843347538">ISBN 978-1843347538</a></p></li>
+<li><p><em>Apprenticeship Patterns</em>, By Dave Hoover, Adewale Oshineye, <a class="reference external" href="https://isbnsearch.org/isbn/9780596518387">ISBN 978-0596518387</a></p></li>
+</ul>
+</div>
+<div class="section" id="other-resources">
+<h3>Other resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h3>
+<p>While this course is designed for beginners, it may still be possible that you feel your knowledge about a certain topic is lacking, especially when it comes to certain technological concepts. If so, the Internet offers a vast array of resources designed to help your learning process.</p>
+<p>For me, one of the best resources for self-improvement is <a class="reference external" href="https://medium.com/">Medium</a>, an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.</p>
+<p>Other free resources include:</p>
+<ul class="simple">
+<li><p>Tutorialspoint</p></li>
+<li><p>Hashnode</p></li>
+<li><p>…</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="technical-requirements">
 <h2>Technical requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h2>
@@ -337,7 +378,7 @@
 <p>The fourth step especially applies to the coding assignments, so to be sure you are set up okay, please do the following:</p>
 <ol class="simple">
 <li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">assignments</span></code></p></li>
-<li><p>Put an empty file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> in it “)</p></li>
+<li><p>Create an empty file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> in it</p></li>
 <li><p>Add the new folder to the repo</p></li>
 <li><p>Commit and push these changes to your fork</p></li>
 </ol>
@@ -390,7 +431,7 @@
         
           By Tom Deneire<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

@@ -59,22 +59,6 @@ Study material will be provided in various forms (slides, Jupyter Notebooks, ...
 
 #### 7.2. Optional reading
 
-- *Foundations of Information*, By Amy J. Ko (2021) [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub](https://github.com/amyjko/foundations-of-information)
-
-- *Handbook of Information Science*, By Wolfgang G. Stock, Mechtild Stock, (Berlin: De Gruyter Saur, 2013), [ISBN 978-3110234992](https://isbnsearch.org/isbn/9783110234992), https://doi.org/10.1515/9783110235005
-
-- *The Myth and Magic of Library Systems*, By Keith J. Kelley, [ISBN 978-0081000762](https://isbnsearch.org/isbn/9780081000762)
-
-- *A Librarian's Guide to Graphs, Data and the Semantic Web*, By James Powell, [ISBN 978-1843347538](https://isbnsearch.org/isbn/9781843347538)
-
-- *SQL in a Nutshell*, 3rd Edition, By Kevin Kline, [ISBN 978-0596518844](https://isbnsearch.org/isbn/9780596518844)
-
-- *Modern Information Retrieval: The Concepts and Technology behind Search*, By Ricardo Baeza-Yates, Berthier Ribeiro-Neto, Second edition (Harlow e.a.: Addison-Wesley, 2011), [ISBN 978-0-321-41691-9](https://isbnsearch.org/isbn/9780321416919)
-
-- *Information Architecture*, 4th Edition, By Louis Rosenfeld, Peter Morville, Jorge Arango, [ISBN 978-1491911686](https://isbnsearch.org/isbn/9781491911686)
-
-- *Apprenticeship Patterns*, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
-
 
 ### 8. Contact information
 
