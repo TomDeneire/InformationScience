@@ -1,266 +1,142 @@
-# Chapter 8: Library Management Systems
+# Chapter 8: Searching, Evaluation, Ranking
 
-![](images/Brocade.png)
+## Introduction
 
-__[Brocade software visualization](https://anet.be/visualisering/project/hierarchical-edge-bundling.htm)__
+In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:
 
-In this chapter about the Brocade library management system (LMS) we will try to tie the previous chapters together. Above all, the aim is the illustrate the overall **architecture** of an information system, i.e. how different technologies come together to make up a system.
+> Retrieval > Searching > Evaluation > Ranking
 
-## Brocade Library Services
+Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in *Modern Information Retrieval*). Indeed, we will focus on text exclusively here.
 
-(source: __[Wikipedia](https://en.wikipedia.org/wiki/Brocade_Library_Services)__)
+## Searching
 
-Brocade, in full "Brocade Library Services" is a web-based library information management system developed by the University of Antwerp (UAntwerp) in 1998 by a section of the University Library called **Anet**. Brocade is designed as a web-based application, sold via a cloud license model. The system is multilingual and uses open source components.
+We have already seen that searching text is rarely as easy as `string.find(substring)`. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
 
-Brocade offers library and archival institutions a complete suite of **applications** allowing them to:
+### Regular expressions
 
-- create, maintain and publish bibliographical, archival and documentary databases;
-- automate all back-office tasks in a library (cataloguing, authority control and thesaurus management, patron administration, circulation, ordering, subscription control, electronic resource management, interlibrary lending and document delivery) and an archival institution (ISAAR authorities, archival acquisitions, ISAD descriptions, descriptions of objects such as manuscripts, photos, letters, …)
-- offer electronic services to the library end-users (online public access catalogue, SMS services, personalized MyLib-environment, document requests, alerting service, self-renewal, …)
+![](images/regex.png)
 
-The networked topology of the application lets libraries work together, share information, share catalogues, while still keeping their own identity and independency when it comes to typical local functions such as acquisition and circulation.
+Credit: [xkcd.com](https://xkcd.com/1171/)
 
-Brocade is a completely **web-based** application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.
+The `*` symbol we used is actually part of a separate programming language, called **regular expressions**. [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression) says:
 
-Target **customers** for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.
+> A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for "find" or "find and replace" operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.
 
-## Server
+> The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities. Different syntaxes for writing regular expressions have existed since the 1980s, one being the POSIX standard and another, widely used, being the Perl syntax.
 
-It all starts with a server, a physical machine located in the University of Antwerp's server farm. It currently runs Red Hat OS and uses __[Ansible](https://www.ansible.com/)__ for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (`.yaml`) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, ...)
+> Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.
 
-The following components are key parts of our server infrastructure:
+Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Ruby, Microsoft's .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX `grep` command.
 
-### MUMPS
+Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a *write only* programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases. 
 
-__[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__ (or "M") is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:
+Consider this example:
 
-```M
-s ^USERS(1,"first")="Tom"
-s ^USERS(1,"last")="Deneire"
-s ^USERS(1,"email")="deneiretom@gmail.com"
-```
 
-This instruction tells the database to define a **global variable** (the `^` caret sign makes it a global), which will be available both during the program's runtime and which will be saved to an area of physical disk space designated for these globals, making it effectively a database.
+import re
 
-The structure is that of a subscripted array, which is equivalent to this in JSON
+rhyme = re.compile(r'\Dar')
+my_text = "Let's look at the words bar, car, tar, mar and far"
+print(re.findall(rhyme, my_text))
 
-```json
-{"USERS":
-	{
-		"1": {
-			"email": "deneiretom@gmail.com",
-			"first": "Tom",
-			"last": "Deneire"
-		}
-	}
+So I'm looking for potential rhymes on "bar" and have written a regex that looks for one letter character `\D` followed by `ar`. However, when you apply this to one of the paragraphs you quickly see some mismatches, as we forgot to specify that the pattern can only occur at the end of a word.
+
+paragraph = "Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a write only programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases."
+print(re.findall(rhyme, paragraph))
+
+So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use `.isinstance()`), reconsider!
+
+The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at __[w3schools](https://www.w3schools.com/python/python_regex.asp)__) and there are also handy regex testers where you can immediately check your regex, like __[regexr](https://regexr.com/)__. For a good Python cheat sheet, see this __[Medium post](https://link.medium.com/BYkb73meJab)__.
+
+A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in __[RFC 5322](https://tools.ietf.org/html/rfc5322)__. For a (more readable) summary, see __[Wikipedia](https://en.wikipedia.org/wiki/Email_address#Syntax)__.
+
+In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?
+
+# Examples from https://en.wikipedia.org/wiki/Email_address#Examples
+TEST = {
+    # valid addresses
+    "simple@example.com": True, 
+    "very.common@example.com": True, 
+    "disposable.style.email.with+symbol@example.com": True, 
+    "other.email-with-hyphen@example.com": True, 
+    "x@example.com (one-letter local-part)": True, 
+    "admin@mailserver1": True,  # local domain name with no TLD, although ICANN highly discourages dotless email addresses
+    # invalid_addresses
+    "Abc.example.com": False,  # no @ character
+    "A@b@c@example.com": False,  # only one @ is allowed outside quotation marks
+    "1234567890123456789012345678901234567890123456789012345678901234+x@example.com": False,  # local part is longer than 64 characters
+    "i_like_underscore@but_its_not_allow_in_this_part.example.com": False  # underscore is not allowed in domain part
 }
-```
 
-Of course, you can also run code from files in MUMPS. These have extension `.m` and need to be installed in a designated `r` folder (e.g. `library/mumps/brocade/r`).
+def email_regex(address: str) -> bool:
+    # expand test
+    if address.count("@") == 1:
+        return True
+    else:
+        return False
 
-There are now, and have always been, several __[MUMPS implementations](https://en.wikipedia.org/wiki/MUMPS#History)__, one of which is __[G.TM](https://en.wikipedia.org/wiki/GT.M)__. G.TM is now open source, which allows a company called __[YottaDB](https://yottadb.com/)__ to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.
+for case in TEST:
+    result = email_regex(case)
+    if not result == TEST[case]:
+        print(f"Test failed on {case}. Expected = {TEST[case]}. Result = {result}")
+    
 
-YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is a language that, like all languages, has its __[flaws](https://thedailywtf.com/articles/A_Case_of_the_MUMPS)__. On the other hand, MUMPS is simple, fast and powerful, and is codified in an __[ISO-standard](https://en.wikipedia.org/wiki/International_Organization_for_Standardization)__ which means that is allows for very stable code to build applications that can stand the test of time.
 
-In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book `c:lvd:123456` which we used as an example in chapter05 is stored in our database, in global `^BCAT`:
+### Fuzzy searching
 
-```mumps
-^BCAT("lvd",123456)="^UA-CST^53320,52220^tdeneire^65512,39826^^^"
-^BCAT("lvd",123456,"au",1)="aut^0^oip^Sassen^Ferdinand^^nd"
-^BCAT("lvd",123456,"co",1)="190 p.^^^^^oip^nd^normal^^^^^^^"
-^BCAT("lvd",123456,"dr","paper")=""
-^BCAT("lvd",123456,"ed",1)="oip^2 ed.^nd"
-^BCAT("lvd",123456,"im",1)="Antwerpen^0^nd^YYYY^1932^^YYYY^^^pbl^0^Standaard^oip^nd^normal"
-^BCAT("lvd",123456,"lg",1)="dut^dt"
-^BCAT("lvd",123456,"lm","zebra")=""
-^BCAT("lvd",123456,"nr",1)="co^0^1.248929^oip^nd^"
-^BCAT("lvd",123456,"nr",2)="oclcwork^0^48674539^oip^^"
-^BCAT("lvd",123456,"nr",3)="oclc^0^781576701^oip^nd^"
-^BCAT("lvd",123456,"opac","cat.all","*")=""
-^BCAT("lvd",123456,"opac","cat.anet","*")=""
-^BCAT("lvd",123456,"opac","cat.ua","*")=""
-^BCAT("lvd",123456,"pk","TPC")=""
-^BCAT("lvd",123456,"pk","TPC","p:lvd:5554031")="^LZ 10/3/12^more-l^^^^^^^^^^^"
-^BCAT("lvd",123456,"pk","UA-CST")=""
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824")="^MAG-Coll 113.1/2^mag-o^^^^^^^0^^^^"
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824","vo","-")=""
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205824","vo","-","o:lvd:261838")=""
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825")="^FILO 19 A-SASS 32^filo-a^^^^^^^^^^^"
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825","vo","-")=""
-^BCAT("lvd",123456,"pk","UA-CST","p:lvd:205825","vo","-","o:lvd:261839")=""
-^BCAT("lvd",123456,"re","lw")="1^1"
-^BCAT("lvd",123456,"re","lw"," ","c:work:45740")=""
-^BCAT("lvd",123456,"re","vnr")="1^1"
-^BCAT("lvd",123456,"re","vnr"," 1932: 4","c:lvd:222144")=""
-^BCAT("lvd",123456,"su","a::19:1")=""
-^BCAT("lvd",123456,"su","a::93.001:1")=""
-^BCAT("lvd",123456,"ti",1)="h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp"
-```
+Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. __[Wikipedia](https://en.wikipedia.org/wiki/Approximate_string_matching)__ explains:
 
+> The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:
 
+> > insertion: cot → co**a**t
 
-### Apache and PHP
+> > deletion: co**a**t → cot
 
-Our server uses Apache webserver to host a website with a URL that ends in `?brocade.phtml`. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS).
+> > substitution: co**a**t → co**s**t
 
-The `p` in `brocade.phtml` stands for PHP, it is a HTML file which can also execute PHP code. PHP (unlike Javascript) runs *server side* which means it can access the server's shell. The shell can then start a MUMPS that processes the input HTML (e.g. username and password), performs a database operation (e.g. lookup access rights in the database) and then produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.
+>These three operations may be generalized as forms of substitution by adding a NULL character (here symbolized by `*`) wherever a character has been deleted or inserted:
 
-### Python
+> > insertion: co*****t → co**a**t
 
-Our server also has a Python installation, including several (but well-chosen) third-party packages (such as `pylucene`). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call **toolcat applications**.
+> > deletion: co**a**t → co\*t
 
-Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.
+> > substitution: co**a**t → co**s**t
 
-Some examples include:
+> Some approximate matchers also treat transposition, in which the positions of two letters in the string are swapped, to be a primitive operation.
 
-- `mutil`: maintenance of MUMPS
-- `crunch`: storage monitoring (disk space, database regions, ...)
-- `musqet`: export of MUMPS data to `.sqlite`
-- `docman`: file storage, e.g. images, PDFs, ...
-- `lucene`: our Python wrapper (using `pylucene`) for Lucene
+> > transposition: co**st** → co**ts**
 
-So if a user uses Brocade to export a dataset in .sqlite, what happens under the hood is that MUMPS goes to the shell to trigger a `musqet` command. This is then executed with Python and the result is stored on the server with `docman`. The result is offered to the user as a download link.
+> Different approximate matchers impose different constraints. Some matchers use a single global unweighted cost, that is, the total number of primitive operations necessary to convert the match to the pattern. For example, if the pattern is coil, foil differs by one substitution, coils by one insertion, oil by one deletion, and foal by two substitutions. If all operations count as a single unit of cost and the limit is set to one, foil, coils, and oil will count as matches while foal will not.
 
-Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.
+>Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.
 
-### Other software
+#### String metrics
 
-Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning `/library/tmp`) and Lucene for indexing.
+A __[string metric](https://en.wikipedia.org/wiki/String_metric)__ (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the __[Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)__ (also known as edit distance). Another is the __[Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)__.
 
-## Qtech
+## Evaluation and ranking
 
-All Brocade software, whether it is MUMPS, Python or what have you, is maintained in a software repository on the server (`library/software`). However, when a developer wants to interact with this repository, for instance to add or edit a file, this is not done on the server directly. There are many reasons for this. For one, this would be impractical, as it would mean that developers could not use their own tools (e.g. code editor) but whatever is present on the server (e.g. `vi`), and that all developers would be working on the same files. Secondly, it was also be dangerous, as removing the wrong file with the wrong command could result in a permanent loss of the software.
+With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))__ offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
 
-Instead local developers get a copy of the software repository on their local machine, very much like a clone from GitHub, and work on that. When they want to push their changes to the server repository, they use a toolcat application with GUI called `Qtech`. This takes care of version control, of copying the local files to their remote controle, and also of installing the software. For instance, in order to be executable by MUMPS `.m` files need to be put in a designated directory (`library/mumps/brocade/r`), which is also done by Qtech. Or, when a developer makes a new toolcat application, it needs to be available in the `$PATH` environment variable on the server. Again this is handled by Qtech.
+## Assignment: Spelling checker
 
-### Registry
+One very practical application of string metrics, search evaluation and ranking is writing a spelling checker. 
 
-To do that in a clean and permanent way, we use a JSON file called `registry.json`. This file then contains keys like, `GTM-rou-dir` when stands for `library/mumps/brocade/r`. By using not the path itself, but calling the appropriate key from `registry.json` in our software, we make sure that should YottaDB ever change the location of the designated folder for M routines, we only need to change the registry key and all depending software would still run correctly.
+I'm not going to reveal too much of the solution here, but what I can say is that you'll definitely need two things:
 
-There is also a version of `registry.json` on our local machines, which is important because of keys like `os-sep`. Sometimes Qtech or another toolcat application needs to perform a local operation on our machine (e.g. install an extension for Visual Studio Code), and in those cases it is important to know the appropriate separator for that local machine.
+1. A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it'll do for now.
 
-### Brocade object files
+2. A string metric. For this, you can use the Jaro-Winkler metric, which you do not have to implement yourself. Instead just use the code supplied in `jarowinkler.py` as shown below.
 
-One of Qtech's main functions is to translate the bespoke Brocade object files we use to help our development. 
+Your application should do two things:
 
-#### Macros (.d files)
+1. Build the dictionary and save it in some form so it does not have to be rebuilt every time when the application is used.
 
-Standard MUMPS code (MUMPS has an ISO standard) is kind of hardcore and limited. We code in a kind of upgrade `.m` files which are a superset of the .m files YottaDB/G.TM work with. However, in order for YottaDB/GTM to be able to compile them, they need to be translated to standard M code. For instance, one thing that needs to be translated are our **macros** (defined in `.d` files).
+2. Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.
 
-__[Macros](https://en.wikipedia.org/wiki/Macro_(computer_science))__ are patterns that specify how a certain input should be mapped to a replacement output. They are used to make it easy to invoke common command sequences. You see, MUMPS, being quite a minimal language, has no clean way to organize code in libraries or modules. Of course, it is possible to call code that performs, for instance, a `split` operation on a string from a MUMPS routine, but this would look like this:
+As a final tip, you should consider reusing some of your code from chapter 3 for this application...
 
-```M
-s string="Hello world"
-s RAresult=""
-d %Split^stdstring(.RAresult,string," ",1,1)
-```
 
-This is not very readable and it means you need to memorize the appropriate MUMPS routine (`stdstring.m`) and the appropriate code label (`%Split`).
-
-With macros, however, we can use this, which is much easier to use and therefore promotes code reuse.
-
-```M
-m4_strStrip($target=RAresult, $source="string", $chars=" ", $clean=1)
-```
-
-Qtech then translates this macro to the 'pure' MUMPS version before installing the routine in the designated folder. (By the way, the `m4` in the macro name is a wink to the legendary __[m4 macro processor](https://en.wikipedia.org/wiki/M4_(computer_language))__ that is part of the POSIX standard.)
-
-#### Screens (.x files)
-
-Sending HTML as a string from MUMPS over stdout to the webserver probably sounds quite "bare metal", and of course it kind of is. Therefore, we have set up a few things which make frontend development much easier.
-
-Instead of have to cobble together pieces of html in our MUMPS routines, we use **.x files** with which our .m files communicate with macros. These .x files are a superset of HTML which allows you to treat them like regular HTML files. Additionaly they grant access to the session's MUMPS variables, and also allow to interact with our own templating system.
-
-e.g. (MUMPS session has variable `UDuser="tdeneire"`)
-
-xfile:
-
-```X
-{UDuser|staff}
-```
-
-produces this HTML:
-```html
-<a href="mailto:tom.deneire@uantwerpen.be">Tom Deneire</a>
-```
-
-Again it is Qtech that translates these .x files to proper HTML to send to Apache.
-
-#### Language codes (.l files)
-
-Another example of Qtech's role is the way it helps Brocade to function in a multilingual environment. You see, every time we need to display information that is language-dependent, for instance, the word "Title" (which would be "Titel" in a Dutch Brocade, "Titre" in a French one, ...), we do not use the term itself, but refer to a language code that is described in an **.l file**. For instance, in `catalografie.l`
-
-```l
-lgcode Titel:
-    N: «Titel»
-    E: «Title»
-    F: «Titre»
-```
-
-This is then translated appropriately by Qtech using the Brocade system's language setting.
-
-#### Metainformation (.b files)
-
-One final important aspect of what makes Brocade tick is what we call **metainformation**, recorded in .b files.
-
-We use this word for software metadata. Good software is as generic as possible, which means that it is often better not to hard-code specific metadata in your application, but to build a metadata framework that you can address from your application.
-
-For instance, when building an application to catalogue books you not only want to record a book's title, but also it's specific title type, e.g. main title, subtitle, genre title (e.g. the Bible), parallel title (e.g. bilingual titles), incipit, ... Now you could make a HTML select element in your form and hardcode these title types, but that's a bad idea. For instance, when you want to add a title, you have to go back to the code (perhaps in several applications!) and change the HTML. Or, when you distribute your software to serveral libraries and library A wants title types 1-5, but library B only wants title types 1-3, you need to complicate matters even more.
-
-The correct solution is to register this metadata of title types in a database and then call that metadata from the application. That way, you can organize this information in one place and one place only. So, in Brocade, you have metainformation for title types (`menu/titlety`), recorded in the MUMPS database, but if necessary, also available for other environments (e.g. Python, Go), through regular conversion to JSON (`library/meta/json`)
-
-So, in our software, we have a macro which constructs HTML select options with all concrete instances of this metatype for title types.
-
-```M
-m4_selectMeta(select, $type="titlety", $template="say",$default="", $lg="E", $cgonly=1)
-w select
-```
-
-output:
-
-```html
-<option value='cb'>Biomed title</option>
-<option value='ch'>Titel Harvard Law Review</option>
-<option value='ci'>Title Index Medicus</option>
-<option value='cj'>Title Judit</option>
-<option value='cs'>Citeertitel ISI</option>
-<option value='e'>Multiple title</option>
-<option value='h'>Title</option>
-<option value='ko'>Portion of title</option>
-<option value='m'>Uniform title (musical works)</option>
-<option value='nr'>Opus title</option>
-<option value='o'>Original title</option>
-<option value='p'>Parallel title</option>
-<option value='rec'>Reviewed title</option>
-<option value='s'>Filing title</option>
-<option value='tc'>Collocation title</option>
-<option value='u'>Uniform title</option>
-<option value='va'>Other title</option>
-```
-
-By combining metainformation you can then further customize your application. For instance, if you make metainformation for catalography forms and record there which title types a form offers, you can make one application that offers multiple libraries their own unique way of doing catalography.
-
-The role of Qtech in this final type of Brocade object files (.[dxlb] files) is to take the metainformation out of the .b file representation and make it available in MUMPS and in the aforementioned JSON format.
-
-We also have special VScode extensions to format these Brocade object files.
-
-## Production server
-
-So far we've been speaking about 'the' server, but there are in fact several.
-
-The one mentioned was actually the *development* server (we call it "presto"), as of course we don't code on the *production* server ("moto"). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)
-
-This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath `library/software`) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath `library/database`). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.
-
-
-
-
-
-## Optional: YDB Acculturation Workshop
-
-If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free. 
-
-However, for a first acquaintance it's probably better to take a look at the __[YottaDB Acculturation Workshop](https://docs.yottadb.com/AcculturationGuide/acculturation.html)__ which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).
-
-
+from jarowinkler import jaro_winkler
+print(jaro_winkler("coat", "cot"))
 

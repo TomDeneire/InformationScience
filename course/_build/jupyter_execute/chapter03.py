@@ -120,7 +120,7 @@ Go, for instance, is natively UTF-8, for instance, which means you can do this:
     import "fmt"
 
     func main() {
-    fmt.Println("Hello, 世界")
+        fmt.Println("Hello, 世界")
     }
 
 Python 3 is UTF-8 too, but Python 2 used to be ASCII. So, regardless of whether your code editor is able to display such a string or not, the Python 2 will complain if you try to use the print function on it. Remember, print tells a device to display bytes. So if you put this in a file `test.py`

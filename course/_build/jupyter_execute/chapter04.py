@@ -47,7 +47,7 @@ The classification of databases is a topic for a course on its own. For now, it 
 
 >Although Bachman described the concept of navigation in abstract terms, the idea of navigational access came to be associated strongly with the procedural design of the CODASYL Data Manipulation Language. Writing in 1982, for example, Tsichritzis and Lochovsky state that "The notion of currency is central to the concept of navigation." By the **notion of currency**, they refer to the idea that a program maintains (explicitly or implicitly) a current position in any sequence of records that it is processing, and that operations such as `GET NEXT` and `GET PRIOR` retrieve records relative to this current position, while also changing the current position to the record that is retrieved.
 
-Underpinning the navigational model is the idea of ***data as a table**.
+Underpinning the navigational model is the idea of **data as a table**.
 
 One of the basic formats of tabular data is CSV, which is easy to work with in Python, through the built-in library `csv` or with `pandas`.
 
@@ -59,7 +59,7 @@ rows = [["id1", "Deneire", "Tom"],
         ["id2", "Doe", "Jane"]]
 
 FILENAME = "mycsvfile.csv"
-  
+
 # Writing to csv file
 with open(FILENAME, 'w') as csvfile:
     # creating a csv writer object
@@ -79,14 +79,17 @@ with open(FILENAME, 'r') as csvfile:
         data.append(row)
 
 # test
-result = {"headers": {"test": data[0], "original": headers},
-        "rows": {"test": data[1:], "original": rows}}
+result = {"headers":
+          {"test": data[0], "original": headers},
+          "rows":
+          {"test": data[1:], "original": rows}
+          }
 for item in ["headers", "rows"]:
     try:
         assert result[item]["test"] == result[item]["original"]
     except AssertionError:
-        print("test=",result[item]["test"])
-        print("original=",result[item]["original"])
+        print("test=", result[item]["test"])
+        print("original=", result[item]["original"])
 
 os.remove(FILENAME)
 
@@ -215,7 +218,7 @@ xml_string = b'''
 </database>
 '''
 # turn the XML string into an `etree` object
-tree = lxml.etree.fromstring(xml_string)
+tree = lxml.etree.fromstring(xml_string, parser=None)
 print(tree)
 # show the methods that this object allows
 print(dir(tree))
@@ -243,16 +246,19 @@ for element in tree.iter("name"):
 # Constructing the aforementioned XML string
 
 root = lxml.etree.Element("database")
+
 record1 = lxml.etree.SubElement(root, "record", nr="1")
 name1 = lxml.etree.SubElement(record1, "name", type="last")
 name1.text = "Deneire"
 name2 = lxml.etree.SubElement(record1, "name", type="first")
 name2.text = "Tom"
+
 record2 = lxml.etree.SubElement(root, "record", nr="2")
 name3 = lxml.etree.SubElement(record2, "name", type="last")
 name3.text = "Doe"
 name4 = lxml.etree.SubElement(record2, "name", type="first")
 name4.text = "John"
+
 print(lxml.etree.tostring(root))
 
 #### RDF

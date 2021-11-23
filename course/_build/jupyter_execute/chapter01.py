@@ -10,9 +10,9 @@ Welcome to the course "Information Science" for the University of Antwerp [Maste
 
 ### Who am I?
 
-My name is [Tom Deneire](https://tomdeneire.github.io/) and I am a professional **software engineer**.
+My name is [Tom Deneire](https://tomdeneire.github.io/) and I work as a **software engineer**.
 
-However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in the humanities for quite some time.
+However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in humanities research and education for quite some time.
 
 From 2009-2013 I worked in **academia** as a postdoctoral researcher (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. [Deneire 2018](https://hdl.handle.net/10067/1535070151162165141)).
 

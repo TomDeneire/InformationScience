@@ -1,4 +1,4 @@
-# Chapter 5: Metadata
+# Chapter 6: Metadata
 
 ![](images/metadata.jpg)
 

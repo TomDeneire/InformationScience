@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 8: Library Management Systems &#8212; Information Science</title>
+    <title>Chapter 8: Searching, Evaluation, Ranking &#8212; Information Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Information Science (2020-2021)" href="coursedetails.html" />
-    <link rel="prev" title="Chapter 6: Indexing" href="chapter07.html" />
+    <link rel="prev" title="Chapter 7: Indexing" href="chapter07.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -94,22 +94,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Querying data
+   Chapter 5: Queries
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 5: Metadata
+   Chapter 6: Metadata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 6: Indexing
+   Chapter 7: Indexing
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 8: Library Management Systems
+   Chapter 8: Searching, Evaluation, Ranking
   </a>
  </li>
  <li class="toctree-l1">
@@ -215,70 +215,28 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#brocade-library-services">
-   Brocade Library Services
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#server">
-   Server
+  <a class="reference internal nav-link" href="#searching">
+   Searching
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mumps">
-     MUMPS
+    <a class="reference internal nav-link" href="#regular-expressions">
+     Regular expressions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apache-and-php">
-     Apache and PHP
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-software">
-     Other software
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#qtech">
-   Qtech
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#registry">
-     Registry
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#brocade-object-files">
-     Brocade object files
+    <a class="reference internal nav-link" href="#fuzzy-searching">
+     Fuzzy searching
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#macros-d-files">
-       Macros (.d files)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#screens-x-files">
-       Screens (.x files)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#language-codes-l-files">
-       Language codes (.l files)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metainformation-b-files">
-       Metainformation (.b files)
+      <a class="reference internal nav-link" href="#string-metrics">
+       String metrics
       </a>
      </li>
     </ul>
@@ -286,13 +244,13 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#production-server">
-   Production server
+  <a class="reference internal nav-link" href="#evaluation-and-ranking">
+   Evaluation and ranking
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optional-ydb-acculturation-workshop">
-   Optional: YDB Acculturation Workshop
+  <a class="reference internal nav-link" href="#assignment-spelling-checker">
+   Assignment: Spelling checker
   </a>
  </li>
 </ul>
@@ -305,213 +263,201 @@
         
               <div>
                 
-  <div class="section" id="chapter-8-library-management-systems">
-<h1>Chapter 8: Library Management Systems<a class="headerlink" href="#chapter-8-library-management-systems" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/Brocade.png" /></p>
-<p><strong><a class="reference external" href="https://anet.be/visualisering/project/hierarchical-edge-bundling.htm">Brocade software visualization</a></strong></p>
-<p>In this chapter about the Brocade library management system (LMS) we will try to tie the previous chapters together. Above all, the aim is the illustrate the overall <strong>architecture</strong> of an information system, i.e. how different technologies come together to make up a system.</p>
-<div class="section" id="brocade-library-services">
-<h2>Brocade Library Services<a class="headerlink" href="#brocade-library-services" title="Permalink to this headline">¶</a></h2>
-<p>(source: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Wikipedia</a></strong>)</p>
-<p>Brocade, in full “Brocade Library Services” is a web-based library information management system developed by the University of Antwerp (UAntwerp) in 1998 by a section of the University Library called <strong>Anet</strong>. Brocade is designed as a web-based application, sold via a cloud license model. The system is multilingual and uses open source components.</p>
-<p>Brocade offers library and archival institutions a complete suite of <strong>applications</strong> allowing them to:</p>
-<ul class="simple">
-<li><p>create, maintain and publish bibliographical, archival and documentary databases;</p></li>
-<li><p>automate all back-office tasks in a library (cataloguing, authority control and thesaurus management, patron administration, circulation, ordering, subscription control, electronic resource management, interlibrary lending and document delivery) and an archival institution (ISAAR authorities, archival acquisitions, ISAD descriptions, descriptions of objects such as manuscripts, photos, letters, …)</p></li>
-<li><p>offer electronic services to the library end-users (online public access catalogue, SMS services, personalized MyLib-environment, document requests, alerting service, self-renewal, …)</p></li>
-</ul>
-<p>The networked topology of the application lets libraries work together, share information, share catalogues, while still keeping their own identity and independency when it comes to typical local functions such as acquisition and circulation.</p>
-<p>Brocade is a completely <strong>web-based</strong> application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.</p>
-<p>Target <strong>customers</strong> for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.</p>
+  <div class="section" id="chapter-8-searching-evaluation-ranking">
+<h1>Chapter 8: Searching, Evaluation, Ranking<a class="headerlink" href="#chapter-8-searching-evaluation-ranking" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
+<blockquote>
+<div><p>Retrieval &gt; Searching &gt; Evaluation &gt; Ranking</p>
+</div></blockquote>
+<p>Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in <em>Modern Information Retrieval</em>). Indeed, we will focus on text exclusively here.</p>
 </div>
-<div class="section" id="server">
-<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
-<p>It all starts with a server, a physical machine located in the University of Antwerp’s server farm. It currently runs Red Hat OS and uses <strong><a class="reference external" href="https://www.ansible.com/">Ansible</a></strong> for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, …)</p>
-<p>The following components are key parts of our server infrastructure:</p>
-<div class="section" id="mumps">
-<h3>MUMPS<a class="headerlink" href="#mumps" title="Permalink to this headline">¶</a></h3>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a></strong> (or “M”) is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:</p>
-<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s ^USERS(1,&quot;first&quot;)=&quot;Tom&quot;
-s ^USERS(1,&quot;last&quot;)=&quot;Deneire&quot;
-s ^USERS(1,&quot;email&quot;)=&quot;deneiretom@gmail.com&quot;
+<div class="section" id="searching">
+<h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
+<p>We have already seen that searching text is rarely as easy as <code class="docutils literal notranslate"><span class="pre">string.find(substring)</span></code>. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
+<div class="section" id="regular-expressions">
+<h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="_images/regex.png" /></p>
+<p>Credit: <a class="reference external" href="https://xkcd.com/1171/">xkcd.com</a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol we used is actually part of a separate programming language, called <strong>regular expressions</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a> says:</p>
+<blockquote>
+<div><p>A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for “find” or “find and replace” operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.</p>
+</div></blockquote>
+<blockquote>
+<div><p>The concept arose in the 1950s when the American mathematician Stephen Cole Kleene formalized the description of a regular language. The concept came into common use with Unix text-processing utilities. Different syntaxes for writing regular expressions have existed since the 1980s, one being the POSIX standard and another, widely used, being the Perl syntax.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Regular expressions are used in search engines, search and replace dialogs of word processors and text editors, in text processing utilities such as sed and AWK and in lexical analysis. Many programming languages provide regex capabilities either built-in or via libraries.</p>
+</div></blockquote>
+<p>Python uses the Perl regex syntax, as do, for instance, Java, JavaScript, Julia, Ruby, Microsoft’s .NET Framework, and others. Some environments actually let you choose the regex syntax you want to use, like PHP or the UNIX <code class="docutils literal notranslate"><span class="pre">grep</span></code> command.</p>
+<p>Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a <em>write only</em> programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases.</p>
+<p>Consider this example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">rhyme</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\Dar&#39;</span><span class="p">)</span>
+<span class="n">my_text</span> <span class="o">=</span> <span class="s2">&quot;Let&#39;s look at the words bar, car, tar, mar and far&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">my_text</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>This instruction tells the database to define a <strong>global variable</strong> (the <code class="docutils literal notranslate"><span class="pre">^</span></code> caret sign makes it a global), which will be available both during the program’s runtime and which will be saved to an area of physical disk space designated for these globals, making it effectively a database.</p>
-<p>The structure is that of a subscripted array, which is equivalent to this in JSON</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;USERS&quot;</span><span class="p">:</span>
-	<span class="p">{</span>
-		<span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
-			<span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;deneiretom@gmail.com&quot;</span><span class="p">,</span>
-			<span class="nt">&quot;first&quot;</span><span class="p">:</span> <span class="s2">&quot;Tom&quot;</span><span class="p">,</span>
-			<span class="nt">&quot;last&quot;</span><span class="p">:</span> <span class="s2">&quot;Deneire&quot;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bar&#39;, &#39;car&#39;, &#39;tar&#39;, &#39;mar&#39;, &#39;far&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So I’m looking for potential rhymes on “bar” and have written a regex that looks for one letter character <code class="docutils literal notranslate"><span class="pre">\D</span></code> followed by <code class="docutils literal notranslate"><span class="pre">ar</span></code>. However, when you apply this to one of the paragraphs you quickly see some mismatches, as we forgot to specify that the pattern can only occur at the end of a word.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">paragraph</span> <span class="o">=</span> <span class="s2">&quot;Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a write only programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">paragraph</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;lar&#39;, &#39; ar&#39;, &#39;car&#39;, &#39;lar&#39;, &#39; ar&#39;, &#39;har&#39;, &#39;lar&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use <code class="docutils literal notranslate"><span class="pre">.isinstance()</span></code>), reconsider!</p>
+<p>The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at <strong><a class="reference external" href="https://www.w3schools.com/python/python_regex.asp">w3schools</a></strong>) and there are also handy regex testers where you can immediately check your regex, like <strong><a class="reference external" href="https://regexr.com/">regexr</a></strong>. For a good Python cheat sheet, see this <strong><a class="reference external" href="https://link.medium.com/BYkb73meJab">Medium post</a></strong>.</p>
+<p>A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in <strong><a class="reference external" href="https://tools.ietf.org/html/rfc5322">RFC 5322</a></strong>. For a (more readable) summary, see <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Email_address#Syntax">Wikipedia</a></strong>.</p>
+<p>In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
+<span class="n">TEST</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># valid addresses</span>
+    <span class="s2">&quot;simple@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;very.common@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;disposable.style.email.with+symbol@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;other.email-with-hyphen@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;x@example.com (one-letter local-part)&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="s2">&quot;admin@mailserver1&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># local domain name with no TLD, although ICANN highly discourages dotless email addresses</span>
+    <span class="c1"># invalid_addresses</span>
+    <span class="s2">&quot;Abc.example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># no @ character</span>
+    <span class="s2">&quot;A@b@c@example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># only one @ is allowed outside quotation marks</span>
+    <span class="s2">&quot;1234567890123456789012345678901234567890123456789012345678901234+x@example.com&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># local part is longer than 64 characters</span>
+    <span class="s2">&quot;i_like_underscore@but_its_not_allow_in_this_part.example.com&quot;</span><span class="p">:</span> <span class="kc">False</span>  <span class="c1"># underscore is not allowed in domain part</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-<p>Of course, you can also run code from files in MUMPS. These have extension <code class="docutils literal notranslate"><span class="pre">.m</span></code> and need to be installed in a designated <code class="docutils literal notranslate"><span class="pre">r</span></code> folder (e.g. <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>).</p>
-<p>There are now, and have always been, several <strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS#History">MUMPS implementations</a></strong>, one of which is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GT.M">G.TM</a></strong>. G.TM is now open source, which allows a company called <strong><a class="reference external" href="https://yottadb.com/">YottaDB</a></strong> to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.</p>
-<p>YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is a language that, like all languages, has its <strong><a class="reference external" href="https://thedailywtf.com/articles/A_Case_of_the_MUMPS">flaws</a></strong>. On the other hand, MUMPS is simple, fast and powerful, and is codified in an <strong><a class="reference external" href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO-standard</a></strong> which means that is allows for very stable code to build applications that can stand the test of time.</p>
-<p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter05 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
-<div class="highlight-mumps notranslate"><div class="highlight"><pre><span></span>^BCAT(&quot;lvd&quot;,123456)=&quot;^UA-CST^53320,52220^tdeneire^65512,39826^^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;au&quot;,1)=&quot;aut^0^oip^Sassen^Ferdinand^^nd&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;co&quot;,1)=&quot;190 p.^^^^^oip^nd^normal^^^^^^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;dr&quot;,&quot;paper&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;ed&quot;,1)=&quot;oip^2 ed.^nd&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;im&quot;,1)=&quot;Antwerpen^0^nd^YYYY^1932^^YYYY^^^pbl^0^Standaard^oip^nd^normal&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;lg&quot;,1)=&quot;dut^dt&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;lm&quot;,&quot;zebra&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,1)=&quot;co^0^1.248929^oip^nd^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,2)=&quot;oclcwork^0^48674539^oip^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,3)=&quot;oclc^0^781576701^oip^nd^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.all&quot;,&quot;*&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.anet&quot;,&quot;*&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.ua&quot;,&quot;*&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;,&quot;p:lvd:5554031&quot;)=&quot;^LZ 10/3/12^more-l^^^^^^^^^^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;)=&quot;^MAG-Coll 113.1/2^mag-o^^^^^^^0^^^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261838&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;)=&quot;^FILO 19 A-SASS 32^filo-a^^^^^^^^^^^&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261839&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;)=&quot;1^1&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;,&quot; &quot;,&quot;c:work:45740&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;)=&quot;1^1&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;,&quot; 1932: 4&quot;,&quot;c:lvd:222144&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::19:1&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::93.001:1&quot;)=&quot;&quot;
-^BCAT(&quot;lvd&quot;,123456,&quot;ti&quot;,1)=&quot;h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp&quot;
+
+<span class="k">def</span> <span class="nf">email_regex</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="c1"># expand test</span>
+    <span class="k">if</span> <span class="n">address</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">TEST</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">email_regex</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="o">==</span> <span class="n">TEST</span><span class="p">[</span><span class="n">case</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test failed on </span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s2">. Expected = </span><span class="si">{</span><span class="n">TEST</span><span class="p">[</span><span class="n">case</span><span class="p">]</span><span class="si">}</span><span class="s2">. Result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 </div>
-<div class="section" id="apache-and-php">
-<h3>Apache and PHP<a class="headerlink" href="#apache-and-php" title="Permalink to this headline">¶</a></h3>
-<p>Our server uses Apache webserver to host a website with a URL that ends in <code class="docutils literal notranslate"><span class="pre">?brocade.phtml</span></code>. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS).</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">p</span></code> in <code class="docutils literal notranslate"><span class="pre">brocade.phtml</span></code> stands for PHP, it is a HTML file which can also execute PHP code. PHP (unlike Javascript) runs <em>server side</em> which means it can access the server’s shell. The shell can then start a MUMPS that processes the input HTML (e.g. username and password), performs a database operation (e.g. lookup access rights in the database) and then produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.</p>
-</div>
-<div class="section" id="python">
-<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
-<p>Our server also has a Python installation, including several (but well-chosen) third-party packages (such as <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
-<p>Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.</p>
-<p>Some examples include:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mutil</span></code>: maintenance of MUMPS</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">crunch</span></code>: storage monitoring (disk space, database regions, …)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">musqet</span></code>: export of MUMPS data to <code class="docutils literal notranslate"><span class="pre">.sqlite</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docman</span></code>: file storage, e.g. images, PDFs, …</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lucene</span></code>: our Python wrapper (using <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>) for Lucene</p></li>
-</ul>
-<p>So if a user uses Brocade to export a dataset in .sqlite, what happens under the hood is that MUMPS goes to the shell to trigger a <code class="docutils literal notranslate"><span class="pre">musqet</span></code> command. This is then executed with Python and the result is stored on the server with <code class="docutils literal notranslate"><span class="pre">docman</span></code>. The result is offered to the user as a download link.</p>
-<p>Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.</p>
-</div>
-<div class="section" id="other-software">
-<h3>Other software<a class="headerlink" href="#other-software" title="Permalink to this headline">¶</a></h3>
-<p>Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning <code class="docutils literal notranslate"><span class="pre">/library/tmp</span></code>) and Lucene for indexing.</p>
-</div>
-</div>
-<div class="section" id="qtech">
-<h2>Qtech<a class="headerlink" href="#qtech" title="Permalink to this headline">¶</a></h2>
-<p>All Brocade software, whether it is MUMPS, Python or what have you, is maintained in a software repository on the server (<code class="docutils literal notranslate"><span class="pre">library/software</span></code>). However, when a developer wants to interact with this repository, for instance to add or edit a file, this is not done on the server directly. There are many reasons for this. For one, this would be impractical, as it would mean that developers could not use their own tools (e.g. code editor) but whatever is present on the server (e.g. <code class="docutils literal notranslate"><span class="pre">vi</span></code>), and that all developers would be working on the same files. Secondly, it was also be dangerous, as removing the wrong file with the wrong command could result in a permanent loss of the software.</p>
-<p>Instead local developers get a copy of the software repository on their local machine, very much like a clone from GitHub, and work on that. When they want to push their changes to the server repository, they use a toolcat application with GUI called <code class="docutils literal notranslate"><span class="pre">Qtech</span></code>. This takes care of version control, of copying the local files to their remote controle, and also of installing the software. For instance, in order to be executable by MUMPS <code class="docutils literal notranslate"><span class="pre">.m</span></code> files need to be put in a designated directory (<code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>), which is also done by Qtech. Or, when a developer makes a new toolcat application, it needs to be available in the <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> environment variable on the server. Again this is handled by Qtech.</p>
-<div class="section" id="registry">
-<h3>Registry<a class="headerlink" href="#registry" title="Permalink to this headline">¶</a></h3>
-<p>To do that in a clean and permanent way, we use a JSON file called <code class="docutils literal notranslate"><span class="pre">registry.json</span></code>. This file then contains keys like, <code class="docutils literal notranslate"><span class="pre">GTM-rou-dir</span></code> when stands for <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>. By using not the path itself, but calling the appropriate key from <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> in our software, we make sure that should YottaDB ever change the location of the designated folder for M routines, we only need to change the registry key and all depending software would still run correctly.</p>
-<p>There is also a version of <code class="docutils literal notranslate"><span class="pre">registry.json</span></code> on our local machines, which is important because of keys like <code class="docutils literal notranslate"><span class="pre">os-sep</span></code>. Sometimes Qtech or another toolcat application needs to perform a local operation on our machine (e.g. install an extension for Visual Studio Code), and in those cases it is important to know the appropriate separator for that local machine.</p>
-</div>
-<div class="section" id="brocade-object-files">
-<h3>Brocade object files<a class="headerlink" href="#brocade-object-files" title="Permalink to this headline">¶</a></h3>
-<p>One of Qtech’s main functions is to translate the bespoke Brocade object files we use to help our development.</p>
-<div class="section" id="macros-d-files">
-<h4>Macros (.d files)<a class="headerlink" href="#macros-d-files" title="Permalink to this headline">¶</a></h4>
-<p>Standard MUMPS code (MUMPS has an ISO standard) is kind of hardcore and limited. We code in a kind of upgrade <code class="docutils literal notranslate"><span class="pre">.m</span></code> files which are a superset of the .m files YottaDB/G.TM work with. However, in order for YottaDB/GTM to be able to compile them, they need to be translated to standard M code. For instance, one thing that needs to be translated are our <strong>macros</strong> (defined in <code class="docutils literal notranslate"><span class="pre">.d</span></code> files).</p>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Macro_(computer_science)">Macros</a></strong> are patterns that specify how a certain input should be mapped to a replacement output. They are used to make it easy to invoke common command sequences. You see, MUMPS, being quite a minimal language, has no clean way to organize code in libraries or modules. Of course, it is possible to call code that performs, for instance, a <code class="docutils literal notranslate"><span class="pre">split</span></code> operation on a string from a MUMPS routine, but this would look like this:</p>
-<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s string=&quot;Hello world&quot;
-s RAresult=&quot;&quot;
-d %Split^stdstring(.RAresult,string,&quot; &quot;,1,1)
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test failed on 1234567890123456789012345678901234567890123456789012345678901234+x@example.com. Expected = False. Result = True
+Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Expected = False. Result = True
 </pre></div>
 </div>
-<p>This is not very readable and it means you need to memorize the appropriate MUMPS routine (<code class="docutils literal notranslate"><span class="pre">stdstring.m</span></code>) and the appropriate code label (<code class="docutils literal notranslate"><span class="pre">%Split</span></code>).</p>
-<p>With macros, however, we can use this, which is much easier to use and therefore promotes code reuse.</p>
-<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>m4_strStrip($target=RAresult, $source=&quot;string&quot;, $chars=&quot; &quot;, $clean=1)
+</div>
+</div>
+</div>
+<div class="section" id="fuzzy-searching">
+<h3>Fuzzy searching<a class="headerlink" href="#fuzzy-searching" title="Permalink to this headline">¶</a></h3>
+<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia</a></strong> explains:</p>
+<blockquote>
+<div><p>The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>insertion: cot → co<strong>a</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>deletion: co<strong>a</strong>t → cot</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>substitution: co<strong>a</strong>t → co<strong>s</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>These three operations may be generalized as forms of substitution by adding a NULL character (here symbolized by <code class="docutils literal notranslate"><span class="pre">*</span></code>) wherever a character has been deleted or inserted:</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>insertion: co*<strong><strong>t → co</strong>a</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>deletion: co<strong>a</strong>t → co*t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>substitution: co<strong>a</strong>t → co<strong>s</strong>t</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>Some approximate matchers also treat transposition, in which the positions of two letters in the string are swapped, to be a primitive operation.</p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>transposition: co<strong>st</strong> → co<strong>ts</strong></p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>Different approximate matchers impose different constraints. Some matchers use a single global unweighted cost, that is, the total number of primitive operations necessary to convert the match to the pattern. For example, if the pattern is coil, foil differs by one substitution, coils by one insertion, oil by one deletion, and foal by two substitutions. If all operations count as a single unit of cost and the limit is set to one, foil, coils, and oil will count as matches while foal will not.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.</p>
+</div></blockquote>
+<div class="section" id="string-metrics">
+<h4>String metrics<a class="headerlink" href="#string-metrics" title="Permalink to this headline">¶</a></h4>
+<p>A <strong><a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a></strong> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></strong> (also known as edit distance). Another is the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a></strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="evaluation-and-ranking">
+<h2>Evaluation and ranking<a class="headerlink" href="#evaluation-and-ranking" title="Permalink to this headline">¶</a></h2>
+<p>With string metrics we have arrived in the territory of search evaluation: so-called <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)">evaluation measures</a></strong> offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.</p>
+</div>
+<div class="section" id="assignment-spelling-checker">
+<h2>Assignment: Spelling checker<a class="headerlink" href="#assignment-spelling-checker" title="Permalink to this headline">¶</a></h2>
+<p>One very practical application of string metrics, search evaluation and ranking is writing a spelling checker.</p>
+<p>I’m not going to reveal too much of the solution here, but what I can say is that you’ll definitely need two things:</p>
+<ol class="simple">
+<li><p>A dictionary of existing words. As the corpus of the dictionary you can use the collection of words found in the British fiction corpus from the previous chapter. This is limited, but it’ll do for now.</p></li>
+<li><p>A string metric. For this, you can use the Jaro-Winkler metric, which you do not have to implement yourself. Instead just use the code supplied in <code class="docutils literal notranslate"><span class="pre">jarowinkler.py</span></code> as shown below.</p></li>
+</ol>
+<p>Your application should do two things:</p>
+<ol class="simple">
+<li><p>Build the dictionary and save it in some form so it does not have to be rebuilt every time when the application is used.</p></li>
+<li><p>Take a string and print on standard output a list of potential spelling mistakes, with a limited number of suggestions for the correction.</p></li>
+</ol>
+<p>As a final tip, you should consider reusing some of your code from chapter 3 for this application…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jarowinkler</span> <span class="kn">import</span> <span class="n">jaro_winkler</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jaro_winkler</span><span class="p">(</span><span class="s2">&quot;coat&quot;</span><span class="p">,</span> <span class="s2">&quot;cot&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Qtech then translates this macro to the ‘pure’ MUMPS version before installing the routine in the designated folder. (By the way, the <code class="docutils literal notranslate"><span class="pre">m4</span></code> in the macro name is a wink to the legendary <strong><a class="reference external" href="https://en.wikipedia.org/wiki/M4_(computer_language)">m4 macro processor</a></strong> that is part of the POSIX standard.)</p>
 </div>
-<div class="section" id="screens-x-files">
-<h4>Screens (.x files)<a class="headerlink" href="#screens-x-files" title="Permalink to this headline">¶</a></h4>
-<p>Sending HTML as a string from MUMPS over stdout to the webserver probably sounds quite “bare metal”, and of course it kind of is. Therefore, we have set up a few things which make frontend development much easier.</p>
-<p>Instead of have to cobble together pieces of html in our MUMPS routines, we use <strong>.x files</strong> with which our .m files communicate with macros. These .x files are a superset of HTML which allows you to treat them like regular HTML files. Additionaly they grant access to the session’s MUMPS variables, and also allow to interact with our own templating system.</p>
-<p>e.g. (MUMPS session has variable <code class="docutils literal notranslate"><span class="pre">UDuser=&quot;tdeneire&quot;</span></code>)</p>
-<p>xfile:</p>
-<div class="highlight-X notranslate"><div class="highlight"><pre><span></span>{UDuser|staff}
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9333333333333333
 </pre></div>
 </div>
-<p>produces this HTML:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;mailto:tom.deneire@uantwerpen.be&quot;</span><span class="p">&gt;</span>Tom Deneire<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>Again it is Qtech that translates these .x files to proper HTML to send to Apache.</p>
-</div>
-<div class="section" id="language-codes-l-files">
-<h4>Language codes (.l files)<a class="headerlink" href="#language-codes-l-files" title="Permalink to this headline">¶</a></h4>
-<p>Another example of Qtech’s role is the way it helps Brocade to function in a multilingual environment. You see, every time we need to display information that is language-dependent, for instance, the word “Title” (which would be “Titel” in a Dutch Brocade, “Titre” in a French one, …), we do not use the term itself, but refer to a language code that is described in an <strong>.l file</strong>. For instance, in <code class="docutils literal notranslate"><span class="pre">catalografie.l</span></code></p>
-<div class="highlight-l notranslate"><div class="highlight"><pre><span></span>lgcode Titel:
-    N: «Titel»
-    E: «Title»
-    F: «Titre»
-</pre></div>
-</div>
-<p>This is then translated appropriately by Qtech using the Brocade system’s language setting.</p>
-</div>
-<div class="section" id="metainformation-b-files">
-<h4>Metainformation (.b files)<a class="headerlink" href="#metainformation-b-files" title="Permalink to this headline">¶</a></h4>
-<p>One final important aspect of what makes Brocade tick is what we call <strong>metainformation</strong>, recorded in .b files.</p>
-<p>We use this word for software metadata. Good software is as generic as possible, which means that it is often better not to hard-code specific metadata in your application, but to build a metadata framework that you can address from your application.</p>
-<p>For instance, when building an application to catalogue books you not only want to record a book’s title, but also it’s specific title type, e.g. main title, subtitle, genre title (e.g. the Bible), parallel title (e.g. bilingual titles), incipit, … Now you could make a HTML select element in your form and hardcode these title types, but that’s a bad idea. For instance, when you want to add a title, you have to go back to the code (perhaps in several applications!) and change the HTML. Or, when you distribute your software to serveral libraries and library A wants title types 1-5, but library B only wants title types 1-3, you need to complicate matters even more.</p>
-<p>The correct solution is to register this metadata of title types in a database and then call that metadata from the application. That way, you can organize this information in one place and one place only. So, in Brocade, you have metainformation for title types (<code class="docutils literal notranslate"><span class="pre">menu/titlety</span></code>), recorded in the MUMPS database, but if necessary, also available for other environments (e.g. Python, Go), through regular conversion to JSON (<code class="docutils literal notranslate"><span class="pre">library/meta/json</span></code>)</p>
-<p>So, in our software, we have a macro which constructs HTML select options with all concrete instances of this metatype for title types.</p>
-<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>m4_selectMeta(select, $type=&quot;titlety&quot;, $template=&quot;say&quot;,$default=&quot;&quot;, $lg=&quot;E&quot;, $cgonly=1)
-w select
-</pre></div>
-</div>
-<p>output:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cb&#39;</span><span class="p">&gt;</span>Biomed title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ch&#39;</span><span class="p">&gt;</span>Titel Harvard Law Review<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ci&#39;</span><span class="p">&gt;</span>Title Index Medicus<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cj&#39;</span><span class="p">&gt;</span>Title Judit<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;cs&#39;</span><span class="p">&gt;</span>Citeertitel ISI<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;e&#39;</span><span class="p">&gt;</span>Multiple title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;h&#39;</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;ko&#39;</span><span class="p">&gt;</span>Portion of title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">&gt;</span>Uniform title (musical works)<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;nr&#39;</span><span class="p">&gt;</span>Opus title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">&gt;</span>Original title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;p&#39;</span><span class="p">&gt;</span>Parallel title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;rec&#39;</span><span class="p">&gt;</span>Reviewed title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;s&#39;</span><span class="p">&gt;</span>Filing title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;tc&#39;</span><span class="p">&gt;</span>Collocation title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;u&#39;</span><span class="p">&gt;</span>Uniform title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#39;va&#39;</span><span class="p">&gt;</span>Other title<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>By combining metainformation you can then further customize your application. For instance, if you make metainformation for catalography forms and record there which title types a form offers, you can make one application that offers multiple libraries their own unique way of doing catalography.</p>
-<p>The role of Qtech in this final type of Brocade object files (.[dxlb] files) is to take the metainformation out of the .b file representation and make it available in MUMPS and in the aforementioned JSON format.</p>
-<p>We also have special VScode extensions to format these Brocade object files.</p>
 </div>
 </div>
-</div>
-<div class="section" id="production-server">
-<h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>
-<p>So far we’ve been speaking about ‘the’ server, but there are in fact several.</p>
-<p>The one mentioned was actually the <em>development</em> server (we call it “presto”), as of course we don’t code on the <em>production</em> server (“moto”). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)</p>
-<p>This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath <code class="docutils literal notranslate"><span class="pre">library/software</span></code>) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath <code class="docutils literal notranslate"><span class="pre">library/database</span></code>). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.</p>
-</div>
-<div class="section" id="optional-ydb-acculturation-workshop">
-<h2>Optional: YDB Acculturation Workshop<a class="headerlink" href="#optional-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
-<p>If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
-<p>However, for a first acquaintance it’s probably better to take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
 </div>
 </div>
 
@@ -543,7 +489,7 @@ w select
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter07.html" title="previous page">Chapter 6: Indexing</a>
+    <a class='left-prev' id="prev-link" href="chapter07.html" title="previous page">Chapter 7: Indexing</a>
     <a class='right-next' id="next-link" href="coursedetails.html" title="next page">Information Science (2020-2021)</a>
 
     </div>

@@ -1,4 +1,4 @@
-# Chapter 6: Indexing
+# Chapter 7: Indexing
 
 ![](images/tablet.jpg)
 
