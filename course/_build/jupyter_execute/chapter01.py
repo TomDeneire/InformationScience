@@ -1,6 +1,8 @@
 # Chapter 1: Welcome
 
-to do: image
+![](images/welcome.png)
+
+Credit: unknown
 
 ## Welcome
 
