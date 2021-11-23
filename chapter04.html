@@ -35,7 +35,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Querying data" href="chapter05.html" />
+    <link rel="next" title="Chapter 5: Queries" href="chapter05.html" />
     <link rel="prev" title="Chapter 3: Encoding" href="chapter03.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,22 +94,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Querying data
+   Chapter 5: Queries
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 5: Metadata
+   Chapter 6: Metadata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 6: Indexing
+   Chapter 7: Indexing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter08.html">
-   Chapter 8: Library Management Systems
+   Chapter 8: Searching, Evaluation, Ranking
   </a>
  </li>
  <li class="toctree-l1">
@@ -359,7 +359,7 @@
 <blockquote>
 <div><p>Although Bachman described the concept of navigation in abstract terms, the idea of navigational access came to be associated strongly with the procedural design of the CODASYL Data Manipulation Language. Writing in 1982, for example, Tsichritzis and Lochovsky state that “The notion of currency is central to the concept of navigation.” By the <strong>notion of currency</strong>, they refer to the idea that a program maintains (explicitly or implicitly) a current position in any sequence of records that it is processing, and that operations such as <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">NEXT</span></code> and <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">PRIOR</span></code> retrieve records relative to this current position, while also changing the current position to the record that is retrieved.</p>
 </div></blockquote>
-<p>Underpinning the navigational model is the idea of *<strong>data as a table</strong>.</p>
+<p>Underpinning the navigational model is the idea of <strong>data as a table</strong>.</p>
 <p>One of the basic formats of tabular data is CSV, which is easy to work with in Python, through the built-in library <code class="docutils literal notranslate"><span class="pre">csv</span></code> or with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -371,7 +371,7 @@
         <span class="p">[</span><span class="s2">&quot;id2&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">]]</span>
 
 <span class="n">FILENAME</span> <span class="o">=</span> <span class="s2">&quot;mycsvfile.csv&quot;</span>
-  
+
 <span class="c1"># Writing to csv file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
     <span class="c1"># creating a csv writer object</span>
@@ -391,14 +391,17 @@
         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
 <span class="c1"># test</span>
-<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">},</span>
-        <span class="s2">&quot;rows&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span>
+          <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">},</span>
+          <span class="s2">&quot;rows&quot;</span><span class="p">:</span>
+          <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
+          <span class="p">}</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;rows&quot;</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;original&quot;</span><span class="p">]</span>
     <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test=&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;test&quot;</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original=&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;original&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;test&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;original&quot;</span><span class="p">])</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">)</span>
 </pre></div>
@@ -559,7 +562,7 @@
 <span class="s1">&lt;/database&gt;</span>
 <span class="s1">&#39;&#39;&#39;</span>
 <span class="c1"># turn the XML string into an `etree` object</span>
-<span class="n">tree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml_string</span><span class="p">)</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml_string</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
 <span class="c1"># show the methods that this object allows</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
@@ -633,16 +636,19 @@ Justus
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing the aforementioned XML string</span>
 
 <span class="n">root</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">)</span>
+
 <span class="n">record1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
 <span class="n">name1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">name1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
 <span class="n">name2</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
 <span class="n">name2</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Tom&quot;</span>
+
 <span class="n">record2</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
 <span class="n">name3</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">name3</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Doe&quot;</span>
 <span class="n">name4</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
 <span class="n">name4</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;John&quot;</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -741,7 +747,7 @@ Justus
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="chapter03.html" title="previous page">Chapter 3: Encoding</a>
-    <a class='right-next' id="next-link" href="chapter05.html" title="next page">Querying data</a>
+    <a class='right-next' id="next-link" href="chapter05.html" title="next page">Chapter 5: Queries</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
