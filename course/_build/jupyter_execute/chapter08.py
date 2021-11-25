@@ -1,4 +1,4 @@
-# Chapter 8: Searching, Evaluation, Ranking
+# Chapter 8: Searching Information
 
 ## Introduction
 

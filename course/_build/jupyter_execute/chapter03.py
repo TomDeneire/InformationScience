@@ -1,4 +1,4 @@
-# Chapter 3: Encoding
+# Chapter 3: Encoding Information
 
 
 ![](images/Hello_World_Brainfuck.png)

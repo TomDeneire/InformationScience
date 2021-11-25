@@ -1,4 +1,4 @@
-# Chapter 2: Definition
+# Chapter 2: Defining Information
 
 
 ![](images/data_to_conspiracy.jpg)

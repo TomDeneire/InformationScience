@@ -1,6 +1,6 @@
-# Chapter 4: Databases
+# Chapter 4: Storing Information
 
-![](images/data.jpeg)
+![](images/bobbytables.png)
 
 Credit: unknown
 
