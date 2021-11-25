@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 5: Queries &#8212; Information Science</title>
+    <title>Chapter 5: Querying Information &#8212; Information Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -35,8 +35,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 6: Metadata" href="chapter06.html" />
-    <link rel="prev" title="Chapter 4: Databases" href="chapter04.html" />
+    <link rel="next" title="Chapter 6: Information about Information" href="chapter06.html" />
+    <link rel="prev" title="Chapter 4: Storing Information" href="chapter04.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -79,42 +79,42 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="chapter02.html">
-   Chapter 2: Definition
+   Chapter 2: Defining Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter03.html">
-   Chapter 3: Encoding
+   Chapter 3: Encoding Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter04.html">
-   Chapter 4: Databases
+   Chapter 4: Storing Information
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 5: Queries
+   Chapter 5: Querying Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 6: Metadata
+   Chapter 6: Information about Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 7: Indexing
+   Chapter 7: Indexing Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter08.html">
-   Chapter 8: Searching, Evaluation, Ranking
+   Chapter 8: Searching Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="coursedetails.html">
-   Information Science (2020-2021)
+   Information Science (2021-2022)
   </a>
  </li>
  <li class="toctree-l1">
@@ -182,6 +182,28 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter05.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter05.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
 
     </div>
 
@@ -260,8 +282,8 @@
         
               <div>
                 
-  <div class="section" id="chapter-5-queries">
-<h1>Chapter 5: Queries<a class="headerlink" href="#chapter-5-queries" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="chapter-5-querying-information">
+<h1>Chapter 5: Querying Information<a class="headerlink" href="#chapter-5-querying-information" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="query-languages">
 <h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
 <p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
@@ -279,20 +301,42 @@
 <p>Below is an example of how to query this API with SRU/SQL from Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># code example for CERL thesaurus</span>
-<span class="c1"># To use this API you just send a web request to </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
 
-<span class="c1"># ```</span>
-<span class="c1"># https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=</span>
-<span class="c1"># ```</span>
+<span class="n">CERL_THESAURUS</span> <span class="o">=</span> <span class="s2">&quot;https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=&quot;</span>
 
-<span class="c1"># followed by your CQL query in double quotes (or rather: `%22` which is the URL-safe encoding entity for `&quot;`), for instance: </span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clean input string and URL encode (e.g. Léon Degrelle)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">string</span>
 
-<span class="c1"># ```</span>
-<span class="c1"># https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=%22Erasmus%22</span>
-<span class="c1"># ```</span>
 
-<span class="c1"># The response will be an XML document (database) containing the relevant CERL thesaurus entries for this query.</span>
+<span class="k">def</span> <span class="nf">query_Europeana</span><span class="p">(</span><span class="n">search</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Query Europeana Entities API, return response or exit with errorcode</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">CERL_THESAURUS</span> <span class="o">+</span> <span class="n">search</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">query</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">query</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">HTTPerr</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">HTTPerr</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span> <span class="k">as</span> <span class="n">URLerr</span><span class="p">:</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">URLerr</span><span class="p">)</span>
+
+<span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">query_Europeana</span><span class="p">(</span><span class="n">user_input</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;1283&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cnp02142938&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cnp02142938&quot; type=&quot;personalName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Fabricius, Erasmus&lt;/display&gt;&lt;biographicalData&gt;1490/95-1546. ca. 1490/95-1546&lt;/biographicalData&gt;&lt;activityNote&gt;Reformator&lt;/activityNote&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Erasmus Fabricius&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Fabricius, Erasmus&lt;/headingForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Faber&lt;/variantForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Fabricius&lt;/variantForm&gt;&#39;...
 </pre></div>
 </div>
 </div>
@@ -391,7 +435,7 @@ The advantages of relational databases are clear: they are perfect for storing a
 <p>For example, let’s launch some SQL queries on a sqlite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A recent version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="c1"># To use the module, you must first create a Connection object that represents the database</span>
@@ -474,8 +518,8 @@ The advantages of relational databases are clear: they are perfect for storing a
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter04.html" title="previous page">Chapter 4: Databases</a>
-    <a class='right-next' id="next-link" href="chapter06.html" title="next page">Chapter 6: Metadata</a>
+    <a class='left-prev' id="prev-link" href="chapter04.html" title="previous page">Chapter 4: Storing Information</a>
+    <a class='right-next' id="next-link" href="chapter06.html" title="next page">Chapter 6: Information about Information</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
