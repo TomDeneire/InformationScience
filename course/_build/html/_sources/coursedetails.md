@@ -36,7 +36,7 @@ This course should provide a working knowledge of information science and inform
 
 ### 3. Course contents
 
-For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#contents-and-learning-outcomes)
+For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#contents-and-learning-outcomes).
 
 ### 4. International dimension
 
@@ -56,11 +56,11 @@ Study material will be provided in various forms (slides, Jupyter Notebooks, ...
 
 #### 7.1. Required reading
 
-For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#required)
+For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#required).
 
 #### 7.2. Optional reading
 
-For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#optional)
+For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.io/InformationScience/chapter01.html#optional).
 
 ### 8. Contact information
 

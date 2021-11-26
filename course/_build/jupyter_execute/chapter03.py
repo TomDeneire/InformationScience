@@ -34,9 +34,7 @@ This takes us to the issue of encoding, which is at the heart of all things digi
 
 ## Encoding
 
-Encoding is not an easy concept to wrap your head around. When I first started out programming, I took me quite some time to really grasp it. So let's see if we can come to understand it. 
-
-(The following text is also available as a Medium blogpost called [Text versus bytes](https://medium.com/analytics-vidhya/dev-101-text-versus-bytes-70548216409b))
+Encoding is not an easy concept to wrap your head around. When I first started out programming, I took me quite some time to really grasp it (and when I finally did, I wrote a blog post [Text versus bytes](https://medium.com/analytics-vidhya/dev-101-text-versus-bytes-70548216409b) about it). So let's see if we can come to understand it. 
 
 ### Ones and zeros
 
@@ -78,7 +76,7 @@ In order to interpret bytes in an meaningful way, for instance to display them a
 Another is specifying an **encoding**, which you can think of as a lookup table connecting meaning to its corresponding digital representation. When it comes to text, we call this "character
 encoding". Turning characters into code is referred to as "encoding", interpreting code as characters is "decoding".
 
-One of the earliest character encoding standards was [ASCII](https://en.wikipedia.org/wiki/ASCII), which specifies that the character `a` is represented as byte `61` (hexadecimal) or `97` (decimal) or `01100001` (binary). However, since 8-bit bytes only give you 256 possibilities, today multibyte encodings are used. In the past, different areas of the world used different encodings, which was software's Tower of Babel, causing a bunch of communication problems to this day. Luckily, today [UTF8](https://en.wikipedia.org/wiki/UTF-8)is more or less the international standard --- for instance, accounting for 97% of all web pages. UTF-8 is capable of encoding all 1,112,064 valid character [code points](https://en.wikipedia.org/wiki/Code_point) in [Unicode](https://en.wikipedia.org/wiki/Unicode) using one to four one-byte units.
+One of the earliest character encoding standards was [ASCII](https://en.wikipedia.org/wiki/ASCII), which specifies that the character `a` is represented as byte `61` (hexadecimal) or `97` (decimal) or `01100001` (binary). However, since 8-bit bytes only give you 256 possibilities, today multibyte encodings are used. In the past, different areas of the world used different encodings, which was software's Tower of Babel, causing a bunch of communication problems to this day. Luckily, today [UTF8](https://en.wikipedia.org/wiki/UTF-8) is more or less the international standard --- for instance, accounting for 97% of all web pages. UTF-8 is capable of encoding all 1,112,064 valid character [code points](https://en.wikipedia.org/wiki/Code_point) in [Unicode](https://en.wikipedia.org/wiki/Unicode) using one to four one-byte units.
 
 ### Bytes as text
 
@@ -97,7 +95,7 @@ Let's save the UTF-8 encoded text string `El Niño` as a file and then print it.
     $ cat myfile
     El Niño
 
-Now let's change the terminal's encoding to [CP-1252](https://en.wikipedia.org/wiki/Windows-1252 and see what happens when we print the same file:]
+Now let's change the terminal's encoding to [CP-1252](https://en.wikipedia.org/wiki/Windows-1252) and see what happens when we print the same file:
 
     $ cat myfile
     El NiÃ±o
@@ -188,7 +186,7 @@ print('\u00C5')
 print('\u212B')
 print('\u0041\u030A')
 
-This example shows that even Unicode code points don't offer a unique mapping of characters to numbers. To solve this, there is luckily something called [Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization)__
+This example shows that even Unicode code points don't offer a unique mapping of characters to numbers. To solve this, there is luckily something called [Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization).
 
 ## Decoding
 
@@ -207,37 +205,40 @@ for encoding in ['utf8', 'latin1', 'ibm850']:
     except UnicodeDecodeError:
         print(f"Unable to print bytes {bytes_string} in UTF8")
 
-You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list,really are. We've gone from Paul Otlet's grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.
+You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We've gone from Paul Otlet's grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.
 
 ## Assignment: Onegram Counter
 
-You probably know about Google Book's __[Ngram Viewer](https://books.google.com/ngrams)__: when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g., "British English", "English Fiction", "French") over the selected years. 
+You probably know about Google Book's [Ngram Viewer](https://books.google.com/ngrams): when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g. "British English", "English Fiction", "French") over the selected years. 
 
-Your assignment for this course is something similar: build a Python function that can take the file `data/corpus.txt` (UTF-8 encoded) from this repo as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).
+The assignment for this course is something similar: build a Python function that can take the file `data/corpus.txt` (UTF-8 encoded) from this repo as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).
 
 In essence the job is to do this:
 
 from collections import Counter
 import os
 
-def onegrams(file):
+def onegrams(file: str):
+    """
+    Function that takes a filepath as argument 
+    and returns a counter object for onegrams (single words)
+    """
     with open(file, 'r') as corpus:
-        text = corpus.read()
+        raw_text = corpus.read()
         # .casefold() is better than .lower() here
         # https://www.programiz.com/python-programming/methods/string/casefold
-        normalize = text.casefold()
-        words = normalize.split(' ')
-        count = Counter(words) 
-        return count
+        normalized_text = raw_text.casefold()
+        words = normalized_text.split(' ')
+        return Counter(words) 
 
-ngram_viewer = onegrams(os.path.join('data', 'corpus.txt'))
-print(ngram_viewer.most_common(100))
+ngrams = onegrams(os.path.join('data', 'corpus.txt'))
+print(ngrams.most_common(100))
 
 However, there is a twist: you can't use the `collections` library...
 
 Moreover, try to think about what may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the `read()` method). What would happen if we tried this on a really big text file? 
 
-**Most importantly, the count is also wrong**. Check by counting in an editor, for instance, and try to find out why.
+**Most importantly, the count is also wrong**. Check by counting in an editor, for instance, and try to find out why. (For instance, `and` actually occurs 6471 times!)
 
 If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.
 

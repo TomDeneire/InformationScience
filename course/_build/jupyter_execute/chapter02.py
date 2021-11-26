@@ -52,11 +52,11 @@ Some key concepts of information studies, as found in Ko's [Foundations of Infor
 3. *information behaviour* or *seeking*: people seeking, managing, sharing, and using information across all possible contexts
 4. *sensemaking*: iterative information seeking, involving not only gathering information, but making sense of it, integrating it into our understanding, and using that new understanding to shape further information seeking
 5. *information interface*: the mediator between people and information systems (paper, audio, computers, ...)
-6. *information architecture*: the organization and structure of information interfaces, ideally optimized to help peopel use the interface to meet an information need
+6. *information architecture*: the organization and structure of information interfaces, ideally optimized to help people use the interface to meet an information need (library system, search engine, ...)
 
 ## History
 
-At the heart of all of these approaches is the problem of [information overload](https://en.wikipedia.org/wiki/Information_overload), which goes back a long way in intellectual history. 
+At the heart of all of these fields is the problem of [information overload](https://en.wikipedia.org/wiki/Information_overload), which goes back a long way in intellectual history. 
 
 In a sense we might trace it back to Antiquity with Seneca the Elder (1st c. AD) who commented that "the abundance of books is distraction" or with Ecclesiastes 12:12: "of making books there is no end". Indeed, compendia, anthologies, abbreviations and such became very popular in the Middle Ages as a way to manage information. However, with the arrival of the printing press information overload became truly problematic. We see people like [Erasmus](http://archive.boston.com/bostonglobe/ideas/articles/2010/11/28/information_overload_the_early_years/?page=full) complaining about the swarms of new books and looking for ways to further organize, compile, index, ... information in thesauri, encyclopaedias, etcetera. And of course, the arrival of digital carriers and finally the Internet have done nothing to mitigate this issue. Quite the contrary.
 
@@ -64,7 +64,7 @@ Although the study of humanity's strategies to cope with information overload is
 
 It is the story of [Paul Otlet and the Internet before the Internet](https://daily.jstor.org/internet-before-internet-paul-otlet/). Otlet, born in 1868, was a Belgian architect and information pioneer. In 1904, together with Henri La Fontaine, he created [Universal Decimal Classification (UDC)](https://en.wikipedia.org/wiki/Universal_Decimal_Classification), an information system which divides all knowledge into nine categories (with a tenth held open for expansion) such as linguistics, Literature and mathematics or natural sciences, further broken down into 70,000 subdivisions. Updated and translated into 50 languages, the UDC is widely used today, especially in libraries, in 130 countries. 
 
-Yet, Otlet's vision was much larger than bibliography alone. Together with La Fontaine, in 1910 he started planning a center that would hold all the world's information in organized an accessible form, a veritable "city of knowledge", called the *Mundaneum*. Its catalog drawers holding over 15 million paper index cards were only the start of this "world brain", as Otlet's revolutionary ideas went much further than that.He planned on using microphotography techniques tto boos storage and even proposed a network of telescopes and TVs (a recent invention) in order to decentralize information access. 
+Yet, Otlet's vision was much larger than bibliography alone. Together with La Fontaine, in 1910 he started planning a center that would hold all the world's information in organized an accessible form, a veritable **"city of knowledge"**, called the *Mundaneum*. Its catalog drawers holding over 15 million paper index cards was only the start of this "world brain", as Otlet's revolutionary ideas went much further than that. He planned on using microphotography techniques tto boos storage and even proposed a network of telescopes and TVs (a recent invention) in order to decentralize information access. 
 
 Otlet's end goal seems to have been the idea of univeral knowledge, leading to universal equality, and thus, universal peace. Ironically, the First World War was one of many factors that contributed to Otlet's plans remaining largely unfinished. Sadly, Otlet is an obscure figure today, even in Belgian history, although there is a small Mundaneum museum in the Belgian city of Mons, where some tiny fraction of all the world’s knowledge still resides on old index cards stored in wooden cabinets...
 
@@ -74,20 +74,20 @@ Something else which is beyond the scope of this course, is **information ethics
 
 Living in the [Information Age](https://en.wikipedia.org/wiki/Information_Age) is of course a wonderful thing. Most vital aspects of our life, health, work, communication, travel, ... all rely on information. It started with newspapers, radio and TV. Then came computers, the Internet and mobile phones. Today, all of these media are interconnected in our smartphones, tablets and laptops. They are fed by big data and increasingly able through the use of artificial intelligence and machine learning.
 
-While the possibilities of the Information Age can be immensely empowering, it is also clear that **great power comes with great responsiblity**. The flipside of our dependency of information are phenomena like computer crime, digital dark age, cyberterrorism, digital divide, child pornography on the Dark Web, and many, many more. 
+While the possibilities of the Information Age can be immensely empowering, it is also clear that **great power comes with great responsiblity**. The flipside of our dependency of information is the emergence of phenomena like computer crime, digital dark age, cyberterrorism, digital divide, child pornography on the Dark Web, and many, many more. 
 
 Often information technologies are very ambivalent, and it is not easy to see when they cross the line. Two examples.
 
 ### Virtual immortality
 
-A South-Korean TV documentary gave a mother the opportunity to meet a digital version of her dead daughter after her body, voice and face were recreated using virtual reality technology. You can read more about it in these sources and also watch the footage on YouTube (which I recommend). Do you find the story beautiful or heartbreaking?
+A South-Korean TV documentary gave a mother the opportunity to meet a digital version of her dead daughter after her body, voice and face were recreated using virtual reality technology. You can read more about it in these sources and also watch the footage on YouTube. Do you find the story beautiful or heartbreaking?
 
 - [Futurism.com](https://futurism.com/watch-mother-reunion-deceased-child-vr)
 - [YouTube](https://youtu.be/uflTK8c4w0c)
 
 ### GPT-3
 
-[GPT-3](https://en.wikipedia.org/wiki/GPT-3), in full *Generative Pre-trained Transformer 3*, is a language model — a program that is, given an input text, trained to generate text, e.g. to predict the next word or words (thus writing a story) or to translate (just look at [this example](https://twitter.com/sharifshameem/status/1284095222939451393?s=20)!). GPT-3 is one of the largest such models, having been trained on about 45 terabytes of text data, taken from thousands of web sites such as Wikipedia, plus online books and many other sources (definition from this [Medium article](https://medium.com/@melaniemitchell.me/can-gpt-3-make-analogies-16436605c446)). 
+[GPT-3](https://en.wikipedia.org/wiki/GPT-3), in full *Generative Pre-trained Transformer 3*, is a language model — a program that is, given an input text, trained to generate text, e.g. to predict the next word or words (thus writing a story) or to translate (just look at [this example](https://twitter.com/sharifshameem/status/1284095222939451393?s=20)!). GPT-3 is one of the largest such models, having been trained on about 45 *terabytes* of text data, taken from thousands of web sites such as Wikipedia, plus online books and many other sources (definition from this [Medium article](https://medium.com/@melaniemitchell.me/can-gpt-3-make-analogies-16436605c446)). 
 
 The quality of the text generated by GPT-3 is so high that it is difficult to distinguish from that written by a human, which has both benefits and risks. One of the risks is that if there is a certain bias (eurocentric, sexist, racist, ...) present in the data the model is trained on, this trend will be reflected in the texts produced by the model. 
 

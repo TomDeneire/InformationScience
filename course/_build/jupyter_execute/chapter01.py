@@ -24,7 +24,7 @@ In 2018 this lead to a switch from the Special Collections to the library's **so
 
 ### Why does that matter?
 
-This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I was the best person to teach this course! So it goes without saying that I will certainly not have all the answers in this course. 
+This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I am the best person to teach this course! So it goes without saying that I will certainly not have all the answers in this course. 
 
 On the other hand, my profile is very kindred to that of my **intended audience**, which I think of as humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
 
@@ -52,7 +52,7 @@ In line with the hands-on nature of this course, most chapters will feature a **
 
 Given the very applied nature of this course, I feel it is necessary to supplement it with a brief theoretical introduction to the topic of information. To meet that goal, this course requires reading chapters 1-7 of this highly readable book:
 
-**Foundations of Information**, by Amy J. Ko (2021), available as a free [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub repository](https://github.com/amyjko/foundations-of-information) 
+*Foundations of Information*, by Amy J. Ko (2021), available as a free [e-book](https://faculty.washington.edu/ajko/books/foundations-of-information/) and [GitHub repository](https://github.com/amyjko/foundations-of-information) 
   
 
 ### Optional
@@ -77,16 +77,20 @@ While this course is designed for beginners, it may still be possible that you f
 
 For me, one of the best resources for self-improvement is [Medium](https://medium.com/), an online publishing platform for blogs dealing with just about anything, but with a strong emphasis on software and technology. Medium lets you configure your interests so you get a personalized list of reading suggestions. Most articles on Medium are free and the site also allows you to read up to 3 premium articles for free every month. Personally, I find a paying membership more than worthwile.
 
-Other free resources include:
+Other good, free resources include:
 
-- Tutorialspoint
-- Hashnode
-- ...
+- [Tutorialspoint](https://www.tutorialspoint.com/index.htm)
+- [w3schools](https://www.w3schools.com/)
 
 
 ## Technical requirements
 
 This course is available as a series of Jupyter Notebooks and published on the [GitHub repository](https://github.com/TomDeneire/InformationScience) for this course. 
+
+To view the content **without code execution**, you can:
+
+1. Read the notebooks as a Jupyter Book hosted on [GitHub Pages](https://tomdeneire.github.io/InformationScience)
+2. Read the notebooks in the [GitHub repository](https://github.com/TomDeneire/InformationScience/tree/main/course)
 
 To view the content **with code execution**, you can:
 
@@ -95,11 +99,6 @@ To view the content **with code execution**, you can:
 
 If you don't want to install Jupyter on your machine, you can open the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code isn't always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
 
-To view the content **without code execution**, you can:
-
-1. Read the notebooks in the [GitHub repository](https://github.com/TomDeneire/InformationScience/tree/main/course)
-2. Read the notebooks as a Jupyter Book hosted on [GitHub Pages](https://tomdeneire.github.io/InformationScience)
-
 The best way to obtain these course materials on your local machine and to participate with the course, is to:
 
 1. Get a GitHub account (if you don't already have one)
@@ -107,7 +106,7 @@ The best way to obtain these course materials on your local machine and to parti
 3. Clone the repo to your local machine
 4. Make a new folder in the repo and push changes 
 
-The fourth step especially applies to the coding assignments, so to be sure you are set up okay, please do the following:
+The fourth step especially applies to the code assignments and would enable me (if you want!) to see your solutions for the assignments. The workflow for this is:
 
 1. Create a new folder `assignments`
 2. Create an empty file `test.py` in it
@@ -116,7 +115,7 @@ The fourth step especially applies to the coding assignments, so to be sure you 
 
 And of course if you find errors in the other course materials or want to propose changes or additions, I am very open to pull requests.
 
-### Help!
+### Git help!
 
 If you're unsure how to do all of this, this [GitHub guide](https://guides.github.com/activities/forking/) will help. 
 
