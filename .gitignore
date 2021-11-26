@@ -2,4 +2,5 @@ local/
 students/
 course/__*
 course/index
+course/.*
 
