@@ -1,6 +1,7 @@
 local/
 students/
 course/__*
+course/project.md
 course/index
 course/.*
 
