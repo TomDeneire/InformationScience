@@ -313,7 +313,7 @@
   <div class="section" id="chapter-4-storing-information">
 <h1>Chapter 4: Storing Information<a class="headerlink" href="#chapter-4-storing-information" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/bobbytables.png" /></p>
-<p>Credit: unknown</p>
+<p>Credit: <a class="reference external" href="https://xkcd.com/327/">xkcd</a></p>
 <blockquote>
 <div><p><em>TL;DR: Data can be stored in different ways. Understanding different types of databases and the underlying data models is crucial for both storing and reading data.</em></p>
 </div></blockquote>
@@ -331,7 +331,7 @@
 </div>
 <div class="section" id="information-retrieval-models">
 <h3>Information retrieval models<a class="headerlink" href="#information-retrieval-models" title="Permalink to this headline">¶</a></h3>
-<p>Information retrieval then goes a step further and also provides theoretical models for retrieving information, as, for instance, <a class="reference external" href="https://isbnsearch.org/isbn/9780321416919">Modern Information Retrieval</a>:</p>
+<p>Information retrieval then goes a step further and also provides theoretical models for retrieving information, as, for instance, we read in <a class="reference external" href="https://isbnsearch.org/isbn/9780321416919">Modern Information Retrieval</a>:</p>
 <blockquote>
 <div><p>Modeling in IR is a complex process aimed at producing a ranking function, i.e., a function that assigns scores to documents with regard to a given query. This process consists of two main tasks: (a) the conception of a logical framework for representing documents and queries and (b) the definition of a ranking function that computes a rank for each document with regard to a given query.</p>
 </div></blockquote>
@@ -347,8 +347,13 @@
 </div>
 <div class="section" id="databases">
 <h2>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Database">Wikipedia</a> defines a database as a “an organized collection of data, generally stored and accessed electronically from a computer system”. Such a broad definition allows for many different kinds of databases, ranging from a single text file (e.g. the line <code class="docutils literal notranslate"><span class="pre">apples,oranges,grapes</span></code> is a database!) to complex database management systems (DBMS) like <a class="reference external" href="https://en.wikipedia.org/wiki/MySQL">MySQL</a> that operate on large data structures.</p>
-<p>The classification of databases is a topic for a course on its own. For now, it will suffice to say that the development of database technology can be divided into three eras based on data model or structure: navigational, relational/SQL, and post-relational.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Database">Wikipedia</a> defines a database as a “an organized collection of data, generally stored and accessed electronically from a computer system”. Such a broad definition allows for many different kinds of databases, ranging from a single line of text (e.g. <code class="docutils literal notranslate"><span class="pre">apples,oranges,grapes</span></code> is a database!) to complex database management systems (DBMS) that operate on large data structures.</p>
+<p>The classification of databases is a topic for a course on its own. For now, it will suffice to say that the development of database technology can be divided into three eras based on data model or structure:</p>
+<ol class="simple">
+<li><p>navigational</p></li>
+<li><p>relational</p></li>
+<li><p>post-relational</p></li>
+</ol>
 <div class="section" id="navigational">
 <h3>Navigational<a class="headerlink" href="#navigational" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Navigational_database">Wikipedia</a> says</p>
@@ -367,8 +372,10 @@
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">]</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;id1&quot;</span><span class="p">,</span> <span class="s2">&quot;Deneire&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s2">&quot;id2&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">]]</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;Deneire&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
 
 <span class="n">FILENAME</span> <span class="o">=</span> <span class="s2">&quot;mycsvfile.csv&quot;</span>
 
@@ -392,9 +399,9 @@
 
 <span class="c1"># test</span>
 <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span>
-          <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">},</span>
           <span class="s2">&quot;rows&quot;</span><span class="p">:</span>
-          <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
+            <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
           <span class="p">}</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;rows&quot;</span><span class="p">]:</span>
     <span class="k">try</span><span class="p">:</span>
@@ -413,7 +420,7 @@
 <h3>Relational<a class="headerlink" href="#relational" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Relational_model">Wikipedia:Relational_model</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Database">Wikipedia:Database</a> say:</p>
 <blockquote>
-<div><p>The relational model (…) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all <strong>data is represented in terms of tuples, grouped into relations</strong>. (…) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (…), Codd’s idea was to organise the data as a number of “tables”, each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each “fact” was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.</p>
+<div><p>The relational model (…) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all <strong>data is represented in terms of tuples, grouped into relations</strong>. (…) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (…), Codd’s idea was to organise the <strong>data as a number of “tables”</strong>, each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each “fact” was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.</p>
 </div></blockquote>
 <blockquote>
 <div><p>The purpose of the relational model is to provide a declarative method for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.</p>
@@ -421,7 +428,80 @@
 <blockquote>
 <div><p>Most relational databases use the SQL data definition and query language.</p>
 </div></blockquote>
-<p>A relational database conceptualizes <strong>data as a collection of tables</strong>. We will look into relational databases and SQL in <a class="reference external" href="https://tomdeneire.github.io/InformationScience/chapter05.html">chapter 5</a>.</p>
+<p>Simply said, a relational database is a <strong>collection of tables</strong> that share a common data element. Have a look at this simplified example of a library catalogue:</p>
+<p><strong>Table 1: titles</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>LOI</p></th>
+<th class="head"><p>title</p></th>
+<th class="head"><p>language</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>c:1</p></td>
+<td><p>The origin of species</p></td>
+<td><p>eng</p></td>
+</tr>
+<tr class="row-odd"><td><p>c:2</p></td>
+<td><p>History of Middle Earth</p></td>
+<td><p>eng</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2: authors</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>LOI</p></th>
+<th class="head"><p>name</p></th>
+<th class="head"><p>function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>c:1</p></td>
+<td><p>Darwin, Charles</p></td>
+<td><p>aut</p></td>
+</tr>
+<tr class="row-odd"><td><p>c:2</p></td>
+<td><p>Tolkien, J.R.R.</p></td>
+<td><p>aut</p></td>
+</tr>
+<tr class="row-even"><td><p>c:2</p></td>
+<td><p>Tolkien, Christopher</p></td>
+<td><p>edt</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3: subjects</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>LOI</p></th>
+<th class="head"><p>subject</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>c:1</p></td>
+<td><p>evolutionary biology</p></td>
+</tr>
+<tr class="row-odd"><td><p>c:1</p></td>
+<td><p>theology</p></td>
+</tr>
+<tr class="row-even"><td><p>c:1</p></td>
+<td><p>history of science</p></td>
+</tr>
+<tr class="row-odd"><td><p>c:2</p></td>
+<td><p>fantasy</p></td>
+</tr>
+<tr class="row-even"><td><p>c:2</p></td>
+<td><p>constructed languages</p></td>
+</tr>
+</tbody>
+</table>
+<p>Now imagine what would happen if we were to convert these three tables to one spreadsheet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOI</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">subject1</span><span class="p">,</span> <span class="n">subject2</span><span class="p">,</span> <span class="n">subject3</span>
+</pre></div>
+</div>
+<p>And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on?
+The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.</p>
 </div>
 <div class="section" id="post-relational">
 <h3>Post-relational<a class="headerlink" href="#post-relational" title="Permalink to this headline">¶</a></h3>
