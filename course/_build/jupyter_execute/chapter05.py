@@ -6,7 +6,7 @@ Credit: [xkcd](https://xkcd.com/1831/)
 
 ## Query languages
 
-Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through **querying**, for which we use [query languages](https://en.wikipedia.org/wiki/Query_language). 
+Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through **querying**, for which we use [query languages](https://en.wikipedia.org/wiki/Query_language). 
 
 Actually, query languages surpass databases. Formally, query languages can be classified as **database query languages** versus **information retrieval query languages**. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry. 
 
