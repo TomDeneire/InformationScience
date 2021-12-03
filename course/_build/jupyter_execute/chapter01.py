@@ -2,7 +2,7 @@
 
 ![](images/welcome.png)
 
-Credit: unknown
+Credit: [xkcd](https://xkcd.com/722/)
 
 ## Welcome
 
@@ -71,7 +71,7 @@ If a subject of this course is of particular interest to you, you can find more 
 
 - *Apprenticeship Patterns*, By Dave Hoover, Adewale Oshineye, [ISBN 978-0596518387](https://isbnsearch.org/isbn/9780596518387)
 
-### Other resources
+## Other resources
 
 While this course is designed for beginners, it may still be possible that you feel your knowledge about a certain topic is lacking, especially when it comes to certain technological concepts. If so, the Internet offers a vast array of resources designed to help your learning process.
 
@@ -82,6 +82,7 @@ Other good, free resources include:
 - [Tutorialspoint](https://www.tutorialspoint.com/index.htm)
 - [w3schools](https://www.w3schools.com/)
 
+Finally, if you're looking for more hands-on introductions to topics similar to those treated in this course, you might want to have a look at [Library Carpentry](https://librarycarpentry.org/), a non-profit organization who offer free online [workshops](https://librarycarpentry.org/lessons/) teaching technical skills for people working in library- and information-related roles (UNIX shell, Git, Python, R, XML, ...).
 
 ## Technical requirements
 

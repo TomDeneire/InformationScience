@@ -60,41 +60,6 @@ SQL is a technology that is probably new to most of you. Unlike RDF, which libra
 
 SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this [blog](...) about it)
 
-#### Relation database model
-
-If we want to understand SQL, we first need to familiarize ourselves with the concept of relational databases ([chapter 4](https://tomdeneire.github.io/InformationScience/chapter04.html)). Simply said, a relational database is a **collection of tables** that share a common data element. Have a look at this simplified example of a library catalogue:
-
-**Table 1: titles**
-| LOI        | title                   | language |
-| ---------- | ----------------------- | -------- |
-| c:1        | The origin of species   | eng      |
-| c:2        | History of Middle Earth | eng      |
-
-**Table 2: authors**
-| LOI        | name                    | function |
-| ---------- | ----------------------- | -------  |
-| c:1        | Darwin, Charles         | aut      |
-| c:2        | Tolkien, J.R.R.         | aut      |
-| c:2        | Tolkien, Christopher    | edt      |
-
-**Table 3: subjects**
-| LOI        | subject               |
-| ---------- | --------------------- |
-| c:1        | evolutionary biology  |
-| c:1        | theology              |
-| c:1        | history of science    |
-| c:2        | fantasy               |
-| c:2        | constructed languages |
-
-Now imagine what would happen if we were to convert these three tables to one spreadsheet:
-
-```
-LOI, title, language, name1, name2, function, subject1, subject2, subject3
-```
-
-And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on?
-The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.
-
 #### SQL queries
 
 SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We use **join** to add one or more tables to the selected table ([SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf)).

@@ -2,7 +2,7 @@
 
 ![](images/bobbytables.png)
 
-Credit: unknown
+Credit: [xkcd](https://xkcd.com/327/)
 
 > *TL;DR: Data can be stored in different ways. Understanding different types of databases and the underlying data models is crucial for both storing and reading data.*
 
@@ -18,7 +18,7 @@ Formal discussions of information might start with the discussion of **informati
 
 ### Information retrieval models
 
-Information retrieval then goes a step further and also provides theoretical models for retrieving information, as, for instance, [Modern Information Retrieval](https://isbnsearch.org/isbn/9780321416919):
+Information retrieval then goes a step further and also provides theoretical models for retrieving information, as, for instance, we read in [Modern Information Retrieval](https://isbnsearch.org/isbn/9780321416919):
 
 > Modeling in IR is a complex process aimed at producing a ranking function, i.e., a function that assigns scores to documents with regard to a given query. This process consists of two main tasks: (a) the conception of a logical framework for representing documents and queries and (b) the definition of a ranking function that computes a rank for each document with regard to a given query.
 
@@ -33,9 +33,13 @@ Instead, from our practical perspective it makes more sense to open up the discu
 
 ## Databases
 
-[Wikipedia](https://en.wikipedia.org/wiki/Database) defines a database as a "an organized collection of data, generally stored and accessed electronically from a computer system". Such a broad definition allows for many different kinds of databases, ranging from a single text file (e.g. the line `apples,oranges,grapes` is a database!) to complex database management systems (DBMS) like [MySQL](https://en.wikipedia.org/wiki/MySQL) that operate on large data structures.
+[Wikipedia](https://en.wikipedia.org/wiki/Database) defines a database as a "an organized collection of data, generally stored and accessed electronically from a computer system". Such a broad definition allows for many different kinds of databases, ranging from a single line of text (e.g. `apples,oranges,grapes` is a database!) to complex database management systems (DBMS) that operate on large data structures.
 
-The classification of databases is a topic for a course on its own. For now, it will suffice to say that the development of database technology can be divided into three eras based on data model or structure: navigational, relational/SQL, and post-relational.
+The classification of databases is a topic for a course on its own. For now, it will suffice to say that the development of database technology can be divided into three eras based on data model or structure: 
+
+1. navigational
+2. relational
+3. post-relational
 
 ### Navigational
 
@@ -55,8 +59,10 @@ import csv
 import os
 
 headers = ["identifier", "last_name", "first_name"]
-rows = [["id1", "Deneire", "Tom"],
-        ["id2", "Doe", "Jane"]]
+rows = [
+            ["1", "Deneire", "Tom"],
+            ["2", "Doe", "Jane"]
+        ]
 
 FILENAME = "mycsvfile.csv"
 
@@ -80,9 +86,9 @@ with open(FILENAME, 'r') as csvfile:
 
 # test
 result = {"headers":
-          {"test": data[0], "original": headers},
+            {"test": data[0], "original": headers},
           "rows":
-          {"test": data[1:], "original": rows}
+            {"test": data[1:], "original": rows}
           }
 for item in ["headers", "rows"]:
     try:
@@ -97,13 +103,44 @@ os.remove(FILENAME)
 
 [Wikipedia:Relational_model](https://en.wikipedia.org/wiki/Relational_model) and [Wikipedia:Database](https://en.wikipedia.org/wiki/Database) say:
 
->The relational model (...) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all **data is represented in terms of tuples, grouped into relations**. (...) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (...), Codd's idea was to organise the data as a number of "tables", each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each "fact" was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.
+>The relational model (...) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all **data is represented in terms of tuples, grouped into relations**. (...) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (...), Codd's idea was to organise the **data as a number of "tables"**, each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each "fact" was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.
 
 >The purpose of the relational model is to provide a declarative method for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.
 
 >Most relational databases use the SQL data definition and query language.
 
-A relational database conceptualizes **data as a collection of tables**. We will look into relational databases and SQL in [chapter 5](https://tomdeneire.github.io/InformationScience/chapter05.html).
+Simply said, a relational database is a **collection of tables** that share a common data element. Have a look at this simplified example of a library catalogue:
+
+**Table 1: titles**
+| LOI        | title                   | language |
+| ---------- | ----------------------- | -------- |
+| c:1        | The origin of species   | eng      |
+| c:2        | History of Middle Earth | eng      |
+
+**Table 2: authors**
+| LOI        | name                    | function |
+| ---------- | ----------------------- | -------  |
+| c:1        | Darwin, Charles         | aut      |
+| c:2        | Tolkien, J.R.R.         | aut      |
+| c:2        | Tolkien, Christopher    | edt      |
+
+**Table 3: subjects**
+| LOI        | subject               |
+| ---------- | --------------------- |
+| c:1        | evolutionary biology  |
+| c:1        | theology              |
+| c:1        | history of science    |
+| c:2        | fantasy               |
+| c:2        | constructed languages |
+
+Now imagine what would happen if we were to convert these three tables to one spreadsheet:
+
+```
+LOI, title, language, name1, name2, function, subject1, subject2, subject3
+```
+
+And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on?
+The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.
 
 ### Post-relational
 

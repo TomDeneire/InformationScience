@@ -218,7 +218,7 @@ In essence the job is to do this:
 from collections import Counter
 import os
 
-def onegrams(file: str):
+def onegrams(file: str) -> Counter:
     """
     Function that takes a filepath as argument 
     and returns a counter object for onegrams (single words)
