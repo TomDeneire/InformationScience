@@ -62,9 +62,13 @@ print(str(query_Europeana(user_input)[0:1000]) + "...")
 
 SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
 
-SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it)
+SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, ...), but you can also handle them with GUIs like [DB Browser](https://sqlitebrowser.org/), which makes them also very suitable for non-technical use.
+
+If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it
 
 #### SQL queries
+
+There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.
 
 SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We use **join** to add one or more tables to the selected table:
 
@@ -105,7 +109,9 @@ conn.close()
 
 ## Assignment: JSON metadata harvester
 
-For your assignment you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
+For your assignment you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. 
+
+It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
 
 ### What is an API?
 
