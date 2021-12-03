@@ -1,4 +1,4 @@
-# Chapter 5: Querying 
+# Chapter 5: Querying Information
 
 ![](images/algorithms.png)
 
