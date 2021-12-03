@@ -1,10 +1,14 @@
-# Chapter 5: Querying Information
+# Chapter 5: Querying 
+
+![](images/algorithms.png)
+
+Credit: [xkcd](https://xkcd.com/1831/)
 
 ## Query languages
 
 Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through **querying**, for which we use [query languages](https://en.wikipedia.org/wiki/Query_language). 
 
-Actually, query languages surpass databases. Formally, query languages can be classified according to whether they are **database query languages** or **information retrieval query languages**. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry. 
+Actually, query languages surpass databases. Formally, query languages can be classified as **database query languages** versus **information retrieval query languages**. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry. 
 
 For the latter we will discuss CQL, for the former SQL.
 
@@ -56,13 +60,17 @@ print(str(query_Europeana(user_input)[0:1000]) + "...")
 
 ### SQL/SQLite
 
-SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL) , the query language for RDF. So knowing SQL will open many doors.
+SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
 
-SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this [blog](...) about it)
+SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it)
 
 #### SQL queries
 
-SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We use **join** to add one or more tables to the selected table ([SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf)).
+SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We use **join** to add one or more tables to the selected table:
+
+![](images/sql.png)
+
+This [SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf) also offers a great summary.
 
 Let's look at a concrete example.
 

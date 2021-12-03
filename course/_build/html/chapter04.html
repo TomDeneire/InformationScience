@@ -35,7 +35,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 5: Querying Information" href="chapter05.html" />
+    <link rel="next" title="Chapter 5: Querying" href="chapter05.html" />
     <link rel="prev" title="Chapter 3: Encoding Information" href="chapter03.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,7 +94,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Chapter 5: Querying Information
+   Chapter 5: Querying
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,6 +255,11 @@
     <a class="reference internal nav-link" href="#post-relational">
      Post-relational
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchies">
+     Hierarchies
+    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#json">
@@ -286,6 +291,13 @@
        Writing XML
       </a>
      </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphs">
+     Graphs
+    </a>
+    <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#rdf">
        RDF
@@ -423,10 +435,10 @@
 <div><p>The relational model (…) is an approach to managing data using a structure and language consistent with first-order predicate logic, first described in 1969 by English computer scientist Edgar F. Codd, where all <strong>data is represented in terms of tuples, grouped into relations</strong>. (…) he described a new system for storing and working with large databases. Instead of records being stored in some sort of linked list of free-form records (…), Codd’s idea was to organise the <strong>data as a number of “tables”</strong>, each table being used for a different type of entity. Each table would contain a fixed number of columns containing the attributes of the entity. One or more columns of each table were designated as a primary key by which the rows of the table could be uniquely identified; cross-references between tables always used these primary keys, rather than disk addresses, and queries would join tables based on these key relationships, using a set of operations based on the mathematical system of relational calculus (from which the model takes its name). Splitting the data into a set of normalized tables (or relations) aimed to ensure that each “fact” was only stored once, thus simplifying update operations. Virtual tables called views could present the data in different ways for different users, but views could not be directly updated.</p>
 </div></blockquote>
 <blockquote>
-<div><p>The purpose of the relational model is to provide a declarative method for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.</p>
+<div><p>The purpose of the relational model is to provide a <strong>declarative method</strong> for specifying data and queries: users directly state what information the database contains and what information they want from it, and let the database management system software take care of describing data structures for storing the data and retrieval procedures for answering queries.</p>
 </div></blockquote>
 <blockquote>
-<div><p>Most relational databases use the SQL data definition and query language.</p>
+<div><p>Most relational databases use the <strong>SQL</strong> data definition and query language.</p>
 </div></blockquote>
 <p>Simply said, a relational database is a <strong>collection of tables</strong> that share a common data element. Have a look at this simplified example of a library catalogue:</p>
 <p><strong>Table 1: titles</strong></p>
@@ -500,17 +512,16 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOI</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">subject1</span><span class="p">,</span> <span class="n">subject2</span><span class="p">,</span> <span class="n">subject3</span>
 </pre></div>
 </div>
-<p>And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on?
-The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.</p>
+<p>And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on? The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.</p>
 </div>
 <div class="section" id="post-relational">
 <h3>Post-relational<a class="headerlink" href="#post-relational" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/NoSQL">Wikipedia</a> says:</p>
 <blockquote>
-<div><p>A NoSQL (originally referring to “non-SQL” or “non-relational”) database provides a mechanism for storage and retrieval of data that is modeled in <strong>means other than the tabular relations used in relational databases</strong>. Such databases have existed since the late 1960s, but the name “NoSQL” was only coined in the early 21st century (…) NoSQL databases are increasingly used in big data and real-time web applications. NoSQL systems are also sometimes called “Not only SQL” to emphasize that they may support SQL-like query languages or sit alongside SQL databases (…).</p>
+<div><p>A NoSQL (originally referring to “non-SQL” or “non-relational”) database provides a mechanism for storage and retrieval of data that is modeled in <strong>means other than the tabular relations used in relational databases</strong>. Such databases have existed since the late 1960s, but the name “NoSQL” was only coined in the early 21st century (…) NoSQL databases are increasingly used in big data and real-time web applications. NoSQL systems are also sometimes called <strong>“not only SQL”</strong> to emphasize that they may support SQL-like query languages or sit alongside SQL databases (…).</p>
 </div></blockquote>
 <blockquote>
-<div><p>The data structures used by NoSQL databases (e.g. key–value pair, wide column, graph, or document) are different from those used by default in relational databases, making some operations faster in NoSQL. The particular suitability of a given NoSQL database depends on the problem it must solve. Sometimes the data structures used by NoSQL databases are also viewed as “more flexible” than relational database tables.</p>
+<div><p>The data structures used by NoSQL databases (e.g. key–value pair, wide column, graph, or document) are different from those used by default in relational databases, making some operations faster in NoSQL. The particular suitability of a given NoSQL database depends on the problem it must solve. Sometimes the data structures used by NoSQL databases are also viewed as <strong>more flexible</strong> than relational database tables.</p>
 </div></blockquote>
 <p>Categories of post-relational databases include:</p>
 <ul class="simple">
@@ -535,6 +546,9 @@ The advantages of relational databases are clear: they are perfect for storing a
 <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="hierarchies">
+<h3>Hierarchies<a class="headerlink" href="#hierarchies" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="json">
 <h4>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h4>
 <p>In case you are not familiar with <a class="reference external" href="https://www.json.org/json-en.html">JSON</a>, <a class="reference external" href="https://www.w3schools.com/js/js_json_intro.asp">w3schools</a> is a good starting point.</p>
@@ -574,10 +588,10 @@ The advantages of relational databases are clear: they are perfect for storing a
 </div>
 </div>
 </div>
-<p>In fact, Python allows you to access JSON just like a database, using the <code class="docutils literal notranslate"><span class="pre">json</span></code> library to either turn JSON into an object (often a dict) (<code class="docutils literal notranslate"><span class="pre">loads()</span></code> ) or to turn an object into JSON (<code class="docutils literal notranslate"><span class="pre">dumps()</span></code>):</p>
+<p>In fact, Python allows you to access JSON just like a database, using the <code class="docutils literal notranslate"><span class="pre">json</span></code> library to either turn JSON into an object (often a dict) with the function <code class="docutils literal notranslate"><span class="pre">loads()</span></code> or to turn an object into JSON with <code class="docutils literal notranslate"><span class="pre">dumps()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span><span class="p">,</span> <span class="n">dumps</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="n">contacts</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">{</span>
 <span class="s2">	&quot;1&quot;: {</span>
@@ -591,12 +605,12 @@ The advantages of relational databases are clear: they are perfect for storing a
 <span class="s2">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 <span class="c1"># Turn JSON into dict() with loads()</span>
-<span class="n">contacts_dict</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
+<span class="n">contacts_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">])</span>
 
 <span class="c1"># Turn dict() into JSON with dumps()</span>
 <span class="n">contacts_dict</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Eyre&quot;</span>
-<span class="n">contacts</span> <span class="o">=</span> <span class="n">dumps</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">)</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -621,7 +635,8 @@ The advantages of relational databases are clear: they are perfect for storing a
 </div>
 <div class="section" id="install-lxml">
 <h4>Install lxml<a class="headerlink" href="#install-lxml" title="Permalink to this headline">¶</a></h4>
-<p>Depending on your OS and programming environment, you might first need to install lxml. For more instructions on this, visit the <a class="reference external" href="https://lxml.de/installation.html">documentation</a>.</p>
+<p>Depending on your OS and programming environment, you might first need to install lxml. You can easily verify this by executing <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">lxml</span></code>. If the module is not present, Python will throw a <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>.</p>
+<p>For more instructions on this, visit the <a class="reference external" href="https://lxml.de/installation.html">lxml</a> or <a class="reference external" href="https://anaconda.org/anaconda/lxml">Anaconda</a> documentation.</p>
 </div>
 <div class="section" id="reading-xml">
 <h4>Reading XML<a class="headerlink" href="#reading-xml" title="Permalink to this headline">¶</a></h4>
@@ -641,16 +656,16 @@ The advantages of relational databases are clear: they are perfect for storing a
 <span class="s1">    &lt;/record&gt;</span>
 <span class="s1">&lt;/database&gt;</span>
 <span class="s1">&#39;&#39;&#39;</span>
-<span class="c1"># turn the XML string into an `etree` object</span>
+<span class="c1"># Turn the XML bytes-string into an `etree` object</span>
 <span class="n">tree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">xml_string</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
-<span class="c1"># show the methods that this object allows</span>
+<span class="c1"># Show the methods that this object allows</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7fb7640d0f40&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7f888444e380&gt;
 [&#39;__bool__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__copy__&#39;, &#39;__deepcopy__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_init&#39;, &#39;addnext&#39;, &#39;addprevious&#39;, &#39;append&#39;, &#39;attrib&#39;, &#39;base&#39;, &#39;clear&#39;, &#39;cssselect&#39;, &#39;extend&#39;, &#39;find&#39;, &#39;findall&#39;, &#39;findtext&#39;, &#39;get&#39;, &#39;getchildren&#39;, &#39;getiterator&#39;, &#39;getnext&#39;, &#39;getparent&#39;, &#39;getprevious&#39;, &#39;getroottree&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;items&#39;, &#39;iter&#39;, &#39;iterancestors&#39;, &#39;iterchildren&#39;, &#39;iterdescendants&#39;, &#39;iterfind&#39;, &#39;itersiblings&#39;, &#39;itertext&#39;, &#39;keys&#39;, &#39;makeelement&#39;, &#39;nsmap&#39;, &#39;prefix&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;set&#39;, &#39;sourceline&#39;, &#39;tag&#39;, &#39;tail&#39;, &#39;text&#39;, &#39;values&#39;, &#39;xpath&#39;]
 </pre></div>
 </div>
@@ -661,7 +676,7 @@ The advantages of relational databases are clear: they are perfect for storing a
 <h4>Parsing XML<a class="headerlink" href="#parsing-xml" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over the &quot;record&quot; elements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterate over the &quot;record&quot; elements</span>
 <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;record&quot;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 </pre></div>
@@ -676,7 +691,7 @@ The advantages of relational databases are clear: they are perfect for storing a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate over the &quot;name&quot; elements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterate over the &quot;name&quot; elements</span>
 <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 </pre></div>
@@ -685,12 +700,12 @@ The advantages of relational databases are clear: they are perfect for storing a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># access the &quot;name&quot; elements</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the &quot;name&quot; elements</span>
 <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">):</span>
     <span class="c1"># XML attributes are dicts</span>
     <span class="k">for</span> <span class="n">attribute_name</span><span class="p">,</span> <span class="n">attribute_value</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">attribute_name</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">attribute_value</span><span class="p">)</span>
-        <span class="c1"># get text with .text method of element object</span>
+        <span class="c1"># Get text with .text method of element object</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -715,8 +730,11 @@ Justus
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing the aforementioned XML string</span>
 
+<span class="kn">import</span> <span class="nn">lxml.etree</span>
+
 <span class="n">root</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">)</span>
 
+<span class="c1"># Create subelements with SubElement(parent, tag, attribute)</span>
 <span class="n">record1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
 <span class="n">name1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">name1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
@@ -733,26 +751,45 @@ Justus
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;database&gt;&lt;record nr=&quot;1&quot;&gt;&lt;name type=&quot;last&quot;&gt;Deneire&lt;/name&gt;&lt;name type=&quot;first&quot;&gt;Tom&lt;/name&gt;&lt;/record&gt;&lt;record nr=&quot;2&quot;&gt;&lt;name type=&quot;last&quot;&gt;Doe&lt;/name&gt;&lt;name type=&quot;first&quot;&gt;John&lt;/name&gt;&lt;/record&gt;&lt;/database&gt;&#39;
+</pre></div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="graphs">
+<h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="rdf">
 <h4>RDF<a class="headerlink" href="#rdf" title="Permalink to this headline">¶</a></h4>
-<p>Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a data model, not a data serialization model, such as XML or JSON - in fact, both can be used to express RDF data.</p>
+<p>Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a <strong>data model, not a data serialization model</strong>, such as XML or JSON - in fact, both can be used to express RDF data.</p>
 <p>A quick summary from <a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Wikipedia</a>:</p>
 <blockquote>
 <div><p>The RDF data model is similar to classical conceptual modeling approaches (such as entity–relationship or class diagrams). It is based on the idea of making statements about resources (in particular web resources) in expressions of the form <strong>subject–predicate–object, known as triples</strong>. The subject denotes the resource, and the predicate denotes traits or aspects of the resource, and expresses a relationship between the subject and the object.</p>
-<p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a subject denoting “the sky”, a predicate denoting “has the color”, and an object denoting “blue”. Therefore, RDF uses subject instead of object (or entity) in contrast to the typical approach of an entity–attribute–value model in object-oriented design: entity (sky), attribute (color), and value (blue).</p>
+<p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a <strong>subject</strong> denoting “the sky”, a <strong>predicate</strong> denoting “has the color”, and an <strong>object</strong> denoting “blue”.</p>
 <p>RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.</p>
 </div></blockquote>
-<p>A core concept of the triplestore and the underlying Linked Data principle is the <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things linked. Optimally linked data uses URIs for all three elements of the triple, subject, predicate and verb.</p>
-<p>To illustrate how this works, let’s look at the part of the RDF/XML for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
+<p>In order to define the data used in RDF we use a <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let’s look at the part of the RDF/XML for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
     <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">&quot;http://www.wikidata.org/entity/Q90&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;wdt:P1376</span> <span class="na">rdf:resource=</span><span class="s">&quot;http://www.wikidata.org/entity/Q142&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/rdf:Description&gt;</span>
 </pre></div>
 </div>
-<p>This is a triple expressing the fact that “Paris” (subject) “is the capital of” (predicate) “France” (object). To express this three URIs are used: <code class="docutils literal notranslate"><span class="pre">Q90</span></code> (Paris), <code class="docutils literal notranslate"><span class="pre">P1376</span></code> (property “is capital of”) and <code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France). The makes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and linked: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
+<p>This is a triple expressing the fact that:</p>
+<ol class="simple">
+<li><p>“Paris” (subject)</p></li>
+<li><p>“is the capital of” (predicate)</p></li>
+<li><p>“France” (object)</p></li>
+</ol>
+<p>To express this three URIs are used:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Q90</span></code> (Paris)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">P1376</span></code> (property “is capital of”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France)</p></li>
+</ol>
+<p>Theismakes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and also <strong>Linked Data</strong>: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
 <p>Consider the difference with non-RDF XML where resources are not identified with URIs and data is not linked and the model not open:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
     <span class="nt">&lt;Description&gt;</span>Paris
@@ -765,7 +802,7 @@ Justus
 </div>
 <div class="section" id="data-bases-as-linked-data">
 <h3>Data(bases) as Linked Data<a class="headerlink" href="#data-bases-as-linked-data" title="Permalink to this headline">¶</a></h3>
-<p>Another interesting way to think about database models is to consider the different types on the <a class="reference external" href="https://www.w3.org/2011/gld/wiki/5_Star_Linked_Data">Linked Data</a> scale:</p>
+<p>The characterization of databases can also be considered not so much from a technical standpoint, but rather as a gradual evolution on the <a class="reference external" href="https://www.w3.org/2011/gld/wiki/5_Star_Linked_Data">Linked Data</a> scale:</p>
 <blockquote>
 <div><p>Tim Berners-Lee, the inventor of the Web and initiator of the Linked Data project, suggested a 5 star deployment scheme for Linked Data. The 5 Star Linked Data system is cumulative. Each additional star presumes the data meets the criteria of the previous step(s).</p>
 </div></blockquote>
@@ -793,7 +830,7 @@ Justus
 <li><p>URI: Uniform Resource Identifier</p></li>
 <li><p>LD: Linked Data</p></li>
 </ul>
-<p>For a good description of this summary, see <a class="reference external" href="https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/">this article</a>.</p>
+<p>If you want to know more about this, <a class="reference external" href="https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/">this article</a> offers a good explanation.</p>
 </div>
 </div>
 </div>
@@ -827,7 +864,7 @@ Justus
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="chapter03.html" title="previous page">Chapter 3: Encoding Information</a>
-    <a class='right-next' id="next-link" href="chapter05.html" title="next page">Chapter 5: Querying Information</a>
+    <a class='right-next' id="next-link" href="chapter05.html" title="next page">Chapter 5: Querying</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
