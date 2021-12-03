@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 5: Querying Information &#8212; Information Science</title>
+    <title>Chapter 5: Querying &#8212; Information Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -94,7 +94,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 5: Querying Information
+   Chapter 5: Querying
   </a>
  </li>
  <li class="toctree-l1">
@@ -277,12 +277,14 @@
         
               <div>
                 
-  <div class="section" id="chapter-5-querying-information">
-<h1>Chapter 5: Querying Information<a class="headerlink" href="#chapter-5-querying-information" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="chapter-5-querying">
+<h1>Chapter 5: Querying<a class="headerlink" href="#chapter-5-querying" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/algorithms.png" /></p>
+<p>Credit: <a class="reference external" href="https://xkcd.com/1831/">xkcd</a></p>
 <div class="section" id="query-languages">
 <h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
 <p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
-<p>Actually, query languages surpass databases. Formally, query languages can be classified according to whether they are <strong>database query languages</strong> or <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
+<p>Actually, query languages surpass databases. Formally, query languages can be classified as <strong>database query languages</strong> versus <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
 <p>For the latter we will discuss CQL, for the former SQL.</p>
 <div class="section" id="cql">
 <h3>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h3>
@@ -339,11 +341,13 @@
 </div>
 <div class="section" id="sql-sqlite">
 <h3>SQL/SQLite<a class="headerlink" href="#sql-sqlite" title="Permalink to this headline">¶</a></h3>
-<p>SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a> , the query language for RDF. So knowing SQL will open many doors.</p>
-<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>. Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this <span class="xref myst">blog</span> about it)</p>
+<p>SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, the query language for RDF. So knowing SQL will open many doors.</p>
+<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>. Simply said SQLite is just a single file, but you can query it just like a SQL database server. There are some minute differences between SQL syntax and the SQLite dialect, but these are really small. (If you want to know more about SQLite, I wrote this <a class="reference external" href="https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482">blog</a> about it)</p>
 <div class="section" id="sql-queries">
 <h4>SQL queries<a class="headerlink" href="#sql-queries" title="Permalink to this headline">¶</a></h4>
-<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We use <strong>join</strong> to add one or more tables to the selected table (<a class="reference external" href="https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf">SQL cheat sheet</a>).</p>
+<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We use <strong>join</strong> to add one or more tables to the selected table:</p>
+<p><img alt="" src="_images/sql.png" /></p>
+<p>This <a class="reference external" href="https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf">SQL cheat sheet</a> also offers a great summary.</p>
 <p>Let’s look at a concrete example.</p>
 </div>
 </div>
@@ -374,6 +378,20 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="c1"># Close the connection when you&#39;re done</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;A.E.J.D.&#39;, &#39;Exhibitio sacrorum canonum circa ius regvlarium ecclesiarvm, quoad prædicationem divini Verbi&#39;, &#39;1674&#39;)
+(&#39;A.F.&#39;, &quot;Histoire de l&#39;empereur Charles V.&quot;, &#39;1663&#39;)
+(&#39;A.F. Wouthers&#39;, &#39;Civilia busta Philippi ofte De borgerlycke uytvaert over Philippus den Vierden coninck van Spanien [...] gedaen door de overheyt ende het volck van Antwerpen [...] den 17. dagh der wintermaendt 1665&#39;, &#39;1666&#39;)
+(&#39;A.F., Theophilus&#39;, &quot;Het noodeloos tegen-venyn van een stuck sermoons door christelycke liefde van bitterheyt gesuyvert en wederleyt door&#39;t gesagh van d&#39;algemeyne kerck-vergaderingen en van d&#39;heylige vaders dienende tot vastigheyt van ons out geloof&quot;, &#39;1718&#39;)
+(&#39;A.G.&#39;, &#39;Maria het huys des heeren ghebouwt op seven colomnen, te weten op de dry goddelijcke deughden, ende de vier hooft-deughden&#39;, &#39;1683&#39;)
+(&#39;A.H.&#39;, &quot;Entretiens de devotion sur le S. sacrement de l&#39;autel&quot;, &#39;1722&#39;)
+(&#39;A.H.G.H.V.C. Romanum&#39;, &#39;Historia avgvsta, sive Imperatorvm cæsarvmq. Romanorvm vitae et res gestae ex antiquis inscriptionibus collecta&#39;, &#39;1602&#39;)
+(&#39;A.H.v.G.&#39;, &#39;Getuige der waerheid in de leere van Gods eeuwige verkiezinge, van de genade des zaligmakers, en van den vryewil der menschen&#39;, &#39;1689&#39;)
+(&#39;A.I.v.K.P.&#39;, &#39;Opgang, voortgang, en nedergang, der ketteryen deser eeuwe&#39;, &#39;1690&#39;)
+(&#39;A.J. Charles&#39;, &#39;Het leven van de H. moeder Begga fondateuresse van de beggynen&#39;, &#39;1760&#39;)
 </pre></div>
 </div>
 </div>
