@@ -35,7 +35,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Information Science (2020-2021)" href="coursedetails.html" />
+    <link rel="prev" title="Information Science (2021-2022)" href="coursedetails.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -78,42 +78,42 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="chapter02.html">
-   Chapter 2: Definition
+   Chapter 2: Defining Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter03.html">
-   Chapter 3: Encoding
+   Chapter 3: Encoding Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter04.html">
-   Chapter 4: Databases
+   Chapter 4: Storing Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter05.html">
-   Querying data
+   Chapter 5: Querying Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter06.html">
-   Chapter 5: Metadata
+   Chapter 6: Information about Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter07.html">
-   Chapter 6: Indexing
+   Chapter 7: Indexing Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter08.html">
-   Chapter 8: Library Management Systems
+   Chapter 8: Searching Information
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="coursedetails.html">
-   Information Science (2020-2021)
+   Information Science (2021-2022)
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -196,38 +196,6 @@
    Task
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#requirements">
-   Requirements
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pass-or-fail">
-     Pass or fail
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extra-credit">
-     Extra credit
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maxing-out">
-     Maxing out
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tips">
-   Tips
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#consultation">
-   Consultation
-  </a>
- </li>
 </ul>
 
         </nav>
@@ -244,86 +212,7 @@
 <p>This document describes the exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
 <div class="section" id="task">
 <h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
-<p><strong>Use the DBpedia lookup API to build a public access catalogue for the Great Books.</strong></p>
-<p>Note: determine <code class="docutils literal notranslate"><span class="pre">{prefix}</span></code> like so:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">import</span> <span class="nn">urllib.response</span>
-
-
-<span class="k">def</span> <span class="nf">getAPIprefix</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detect functioning DBpedia lookup API</span>
-<span class="sd">    see https://forum.dbpedia.org/t/dbpedia-lookup-api/872</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">prefixes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;http://lookup.dbpedia.org/api/search/PrefixSearch?QueryString=&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;https://lookup.dbpedia.org/api/prefix?query=&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;http://lookup.dbpedia.org/api/prefix?query=&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;http://akswnc7.informatik.uni-leipzig.de/lookup/api/search?query=&quot;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">prefixes</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;Antwerp&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">test</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">test</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">prefix</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;No functioning DBpedia lookup API found!&quot;</span><span class="p">)</span>
-
-
-<span class="n">DBPEDIA_PREFIX</span> <span class="o">=</span> <span class="n">getAPIprefix</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>This task contains (at least) the following components:</p>
-<ul class="simple">
-<li><p>Build a Jupyter Notebook that accepts user input of a book title, such as “To Kill a Mockingbird”, “The Origin of Species”, …</p></li>
-<li><p>Make a call to the <a class="reference external" href="https://github.com/dbpedia/lookup">DBpedia lookup API</a>. (Don’t be surprised if the API sometimes returns incomplete information, it is not the most recent lookup API. The most recent one uses SPARQL queries though).</p></li>
-<li><p>The API response, see e.g. <code class="docutils literal notranslate"><span class="pre">{prefix}mockingbird</span></code>, will be XML which refers to the ontology of each result. For books look for <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/ontology/Book</span></code></p></li>
-<li><p>Parse the XML response and extract the result you need. If there are several, allow the user to pick a choice before you continue to the resource itself, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/resource/To_Kill_a_Mockingbird</span></code></p></li>
-<li><p>The resource itself can be rendered in different formats, but JSON is the easiest to work with, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/data/To_Kill_a_Mockingbird.json</span></code> (notice the structural differences in the URL!). Parse this JSON and extract the metadata you need.</p></li>
-<li><p>This RDF-JSON of the resource contains a lot of metadata about the book, but also its author. As this is Linked Data, many metadata elements again refer to other DBpedia resources, e.g. <code class="docutils literal notranslate"><span class="pre">http://dbpedia.org/resource/Harper_Lee</span></code>, which you can use to further enrich your result.</p></li>
-<li><p>Return the relevant results to the Jupyter Notebook environment and display them nicely.</p></li>
-</ul>
-</div>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pass-or-fail">
-<h3>Pass or fail<a class="headerlink" href="#pass-or-fail" title="Permalink to this headline">¶</a></h3>
-<p>The following is required to pass the exam:</p>
-<ul class="simple">
-<li><p>Upload <strong>functional</strong> code to your GitHub repository. If the Notebook doesn’t work when I try to run its code, I will try to debug your code, but of course, this drastically reduces your chances to pass this course. I would rather have functional code that does one thing, than code that tries to do ten things but doesn’t run.</p></li>
-<li><p>Put the code in a new repository, outside of <code class="docutils literal notranslate"><span class="pre">Information</span> <span class="pre">Science</span></code>. Push your last update by <strong>Wednesday 20 January 00:01 hours</strong>.</p></li>
-<li><p>Add a short <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that describes your application, any necessary dependencies (third-party libraries, …), etcetera. However, please take care to use only the Python standard library and/or the third-party libraries we used in the course itself. This will greatly reduce the chances of your code breaking because of dependency issues.</p></li>
-<li><p>Organize your code by using at least two different modules (e.g. <code class="docutils literal notranslate"><span class="pre">project.ipynb</span></code>, importing something like <code class="docutils literal notranslate"><span class="pre">dbpedia.py</span></code>).</p></li>
-<li><p>As with any exam, this project is a <strong>personal assignment</strong>. Please do not collaborate with your fellow students (and take care not to publish your code prematurely). I will be able to tell if two codebases are essentially the same.</p></li>
-</ul>
-</div>
-<div class="section" id="extra-credit">
-<h3>Extra credit<a class="headerlink" href="#extra-credit" title="Permalink to this headline">¶</a></h3>
-<p>The following will give you extra credit:</p>
-<ul class="simple">
-<li><p>The more relevant metadata you can include in your result, the better. Take full advantage of the ‘linked’ in the DBpedia Linked Data, for instance, by including some information about the author.</p></li>
-<li><p>Including code comments such as function docstrings will make your code a lot more readable and easier to follow.</p></li>
-<li><p>Displaying the result in the notebook can be done in different ways. Jupyter Notebook offers some nice options here, for instance displaying HTML which can dramatically improve the layout of your results. Proper visual presentation of search results is a vital component of information quality, but there is a limit. After that, layout is only eye-candy, so do not invest too much time in this.</p></li>
-</ul>
-</div>
-<div class="section" id="maxing-out">
-<h3>Maxing out<a class="headerlink" href="#maxing-out" title="Permalink to this headline">¶</a></h3>
-<p>The following will make your project exceptional:</p>
-<ul class="simple">
-<li><p>If you follow the Linked Data path, you will find even more metadata than title or author. You should by no means feel obliged to stick to just the DBpedia environment. Maybe the other Wikimedia projects have something to offer too (Wikidata, Wikimedia Commons). Perhaps there is even the possibilty to return some images with the result?</p></li>
-<li><p>Your own creativity is more than welcome!</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="tips">
-<h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><strong>Start with the basics</strong>: read book input from notebook, make the API call, print the result. Only then try to make that better by adding metadata or improving the layout.</p></li>
-<li><p><strong>Test your application with many examples</strong>, e.g. The Origin of Species”, “War and Peace”, “Alice in Wonderland”, “Silmarillion”, etc. Also test it with invalid input: empty strings, characters that are unsafe for URLs, integers, etcetera.</p></li>
-<li><p><strong>Avoid local operations</strong> so the code only runs in Jupyter Notebook. By the way, this will make for a nice online portfolio project!</p></li>
-<li><p><strong>Refactor</strong> every self-contained unit of code to a function or class. Think of your project as a long line of pipes. If you can’t see the bigger picture, work from the bottom up: one function at a time. E.g.: a function that takes user input string (e.g. “Ulysses”) and returns a DBPedia API URL, or: a function that takes a resource URL and turns that into the matching JSON URL (see above).</p></li>
-</ul>
-</div>
-<div class="section" id="consultation">
-<h2>Consultation<a class="headerlink" href="#consultation" title="Permalink to this headline">¶</a></h2>
-<p>If you have questions regarding the project architecture, design or implementation (not about actual code problems), you can contact me the following weeks to make an appointment for a short consultation during the week of <strong>11 to 15 January</strong>. However, this is 100% optional.</p>
+<p>[to be decided]</p>
 </div>
 </div>
 
@@ -355,7 +244,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="coursedetails.html" title="previous page">Information Science (2020-2021)</a>
+    <a class='left-prev' id="prev-link" href="coursedetails.html" title="previous page">Information Science (2021-2022)</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
