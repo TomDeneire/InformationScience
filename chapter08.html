@@ -265,6 +265,8 @@
                 
   <div class="section" id="chapter-8-searching-information">
 <h1>Chapter 8: Searching Information<a class="headerlink" href="#chapter-8-searching-information" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/regex.png" /></p>
+<p>Credit: <a class="reference external" href="https://xkcd.com/1171/">xkcd.com</a></p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
@@ -278,8 +280,6 @@
 <p>We have already seen that searching text is rarely as easy as <code class="docutils literal notranslate"><span class="pre">string.find(substring)</span></code>. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
 <div class="section" id="regular-expressions">
 <h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
-<p><img alt="" src="_images/regex.png" /></p>
-<p>Credit: <a class="reference external" href="https://xkcd.com/1171/">xkcd.com</a></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol we used is actually part of a separate programming language, called <strong>regular expressions</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a> says:</p>
 <blockquote>
 <div><p>A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for “find” or “find and replace” operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.</p>
