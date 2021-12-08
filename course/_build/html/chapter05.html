@@ -220,9 +220,26 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cql">
-     CQL
+    <a class="reference internal nav-link" href="#cql-sru">
+     CQL/SRU
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sru">
+       SRU
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cql">
+       CQL
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-cerl-thesaurus">
+       Example: CERL thesaurus
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sql-sqlite">
@@ -286,19 +303,48 @@
 <p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
 <p>Actually, query languages surpass databases. Formally, query languages can be classified as <strong>database query languages</strong> versus <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
 <p>For the latter we will discuss CQL, for the former SQL.</p>
-<div class="section" id="cql">
-<h3>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h3>
-<p>Let’s start with an example of an information retrieval query language: contextual query language or CQL. According to <a class="reference external" href="https://en.wikipedia.org/wiki/Contextual_Query_Language">Wikipedia</a></p>
+<div class="section" id="cql-sru">
+<h3>CQL/SRU<a class="headerlink" href="#cql-sru" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start with an example of an information retrieval query language: contextual query language or <strong>CQL</strong>. According to <a class="reference external" href="https://en.wikipedia.org/wiki/Contextual_Query_Language">Wikipedia:Contextual_Query_Language</a></p>
 <blockquote>
 <div><p>Contextual Query Language (CQL), previously known as Common Query Language, is a formal language for representing queries to information retrieval systems such as search engines, bibliographic catalogs and museum collection information. (…) its design objective is that queries be human readable and writable, and that the language be intuitive while maintaining the expressiveness of more complex query languages. It is being developed and maintained by the Z39.50 Maintenance Agency, part of the Library of Congress.</p>
 </div></blockquote>
-<p>Querying with CQL operates via SRU - Search/Retrieve via URL, which is an XML-based protocol for search queries.</p>
-<p>You can find the specifications for <a class="reference external" href="http://www.loc.gov/standards/sru/index.html">SRU</a> and <a class="reference external" href="https://www.loc.gov/standards/sru/cql/spec.html">CQL</a> at the Library of Congress website.</p>
-<p>A fun example of an API that supports SRU/CQL is the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
+<p>Querying with CQL operates via <strong>SRU</strong> - Search/Retrieve via URL, which is an XML-based protocol for search queries.</p>
+<p>You can find the full specifications for <a class="reference external" href="https://www.loc.gov/standards/sru/cql/spec.html">CQL</a> and <a class="reference external" href="http://www.loc.gov/standards/sru/index.html">SRU</a> at the Library of Congress website, what is offered here is only the basics.</p>
+<div class="section" id="sru">
+<h4>SRU<a class="headerlink" href="#sru" title="Permalink to this headline">¶</a></h4>
+<p>SRU (Search/Retrieve via URL) is a standard search protocol for Internet search queries. In the context of libraries, SRU is mainly used for search and retrieval of bibliographic records from the catalog.</p>
+<p>A valid SRU request always contains a reference to the SRU “version” and an “operation”, optionally enriched with “parameters”.</p>
+<p>The <strong>explain</strong> operation allows a client to retrieve a description of the facilities available at an SRU server. It can then be used by the client to self-configure and provide an appropriate interface to the user. The response includes list of all the searchable <strong>indexes</strong>.</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain</a></p>
+<p>The <strong>searchRetrieve</strong> operation is the main operation of SRU. It allows the client to submit a search and retrieve request for matching records from the server. This operation needs to be combined with the <strong>query</strong> parameter</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=erasmus">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=erasmus</a></p>
+<p>Note the tag <code class="docutils literal notranslate"><span class="pre">&lt;srw:numberOfRecords&gt;</span></code>. Most SRU servers will not give you the entire response in one go. You can use the parameters <code class="docutils literal notranslate"><span class="pre">&amp;startRecord=</span></code> and <code class="docutils literal notranslate"><span class="pre">&amp;maximumRecords=</span></code> to harvest the whole result in chunks. For instance:</p>
+<p><a class="reference external" href="http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius">http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius</a>
+-&gt;
+<a class="reference external" href="http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius&amp;&amp;startRecord=1&amp;maximumRecords=10">http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius&amp;&amp;startRecord=1&amp;maximumRecords=10</a></p>
+</div>
+<div class="section" id="cql">
+<h4>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h4>
+<p>A SRU search statement, i.e. the <code class="docutils literal notranslate"><span class="pre">&amp;query=</span></code> part, is expressed in <a class="reference external" href="http://zing.z3950.org/cql/intro.html">CQL syntax</a>.</p>
+<p>The simplest CQL queries of all are unqualified <strong>single terms</strong>:</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1</a></p>
+<p>Queries may be joined together using the three <strong>Boolean operators</strong>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span></code>. We use spaces, or rather their URL encoded version <code class="docutils literal notranslate"><span class="pre">%20</span></code> to separate CQL words:</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius%20or%20erasmus&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius%20or%20erasmus&amp;startRecord=1</a></p>
+<p>The queries discussed so far are targeted at whole records. Sometimes we need to be more specific, and limit a search to a particular field of the records we’re interested in. In CQL, we do this using <strong>indexes</strong>. An index is generally attached to its search-term with an equals sign (=). Indexes indicate what part of the records is to be searched - in implementation terms, they frequently specify which index is to be inspected in the database. For information about which specific indexes you can use, use the <code class="docutils literal notranslate"><span class="pre">explain</span></code> operation:</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=ct.imprintname=moretus&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=ct.imprintname=moretus&amp;startRecord=1</a></p>
+<p>SRU also allows other <strong>relations</strong> than equality (<code class="docutils literal notranslate"><span class="pre">=</span></code>) which we have just used (e.g. <code class="docutils literal notranslate"><span class="pre">publicationYear</span> <span class="pre">&lt;</span> <span class="pre">1980</span></code>) and <strong>pattern matching</strong>:</p>
+<p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=m*retus&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=m*retus&amp;startRecord=1</a></p>
+</div>
+<div class="section" id="example-cerl-thesaurus">
+<h4>Example: CERL thesaurus<a class="headerlink" href="#example-cerl-thesaurus" title="Permalink to this headline">¶</a></h4>
+<p>Let’s have a more detailed look at one of the examples used frequently in the above. This API that supports SRU/CQL is the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
 <p>Below is an example of how to query this API with SRU/SQL from Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.parse</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">urllib.error</span>
 
 <span class="n">CERL_THESAURUS</span> <span class="o">=</span> <span class="s2">&quot;https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=&quot;</span>
 
@@ -306,7 +352,6 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clean input string and URL encode (e.g. Léon Degrelle)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
     <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
     <span class="n">string</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
@@ -333,8 +378,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;1283&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cnp02142938&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cnp02142938&quot; type=&quot;personalName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Fabricius, Erasmus&lt;/display&gt;&lt;biographicalData&gt;1490/95-1546. ca. 1490/95-1546&lt;/biographicalData&gt;&lt;activityNote&gt;Reformator&lt;/activityNote&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Erasmus Fabricius&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Fabricius, Erasmus&lt;/headingForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Faber&lt;/variantForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Fabricius&lt;/variantForm&gt;&#39;...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;152&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cni00047961&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cni00047961&quot; type=&quot;imprintName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Moretus, Jean&lt;/display&gt;&lt;biographicalData&gt;1543-1610&lt;/biographicalData&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Jean Moretus&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Moretus, Jean&lt;/headingForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jan Moerentorf&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&gt;Moerentorf, Jan&lt;/variantForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jan Moretus&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&#39;...
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -347,7 +393,7 @@
 <div class="section" id="sql-queries">
 <h4>SQL queries<a class="headerlink" href="#sql-queries" title="Permalink to this headline">¶</a></h4>
 <p>There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.</p>
-<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We use <strong>join</strong> to add one or more tables to the selected table:</p>
+<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We can use <strong>join</strong> (in different forms) to add one or more tables to the selected table:</p>
 <p><img alt="" src="_images/sql.png" /></p>
 <p>This <a class="reference external" href="https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf">SQL cheat sheet</a> also offers a great summary.</p>
 <p>Let’s look at a concrete example.</p>
@@ -356,7 +402,7 @@
 <div class="section" id="sqlite3">
 <h3>sqlite3<a class="headerlink" href="#sqlite3" title="Permalink to this headline">¶</a></h3>
 <p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which allows a SQL interface to a database.</p>
-<p>For example, let’s launch some SQL queries on a sqlite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A recent version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<p>For example, let’s launch some SQL queries on a sqlite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>

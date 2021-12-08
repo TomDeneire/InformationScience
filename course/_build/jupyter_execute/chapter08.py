@@ -1,5 +1,9 @@
 # Chapter 8: Searching Information
 
+![](images/regex.png)
+
+Credit: [xkcd.com](https://xkcd.com/1171/)
+
 ## Introduction
 
 In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:
@@ -13,10 +17,6 @@ Having already discussed some of the aspects of retrieval (e.g. querying), in th
 We have already seen that searching text is rarely as easy as `string.find(substring)`. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
 
 ### Regular expressions
-
-![](images/regex.png)
-
-Credit: [xkcd.com](https://xkcd.com/1171/)
 
 The `*` symbol we used is actually part of a separate programming language, called **regular expressions**. [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression) says:
 
