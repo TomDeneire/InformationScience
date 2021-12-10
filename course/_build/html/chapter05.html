@@ -327,7 +327,7 @@
 <div class="section" id="cql">
 <h4>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h4>
 <p>A SRU search statement, i.e. the <code class="docutils literal notranslate"><span class="pre">&amp;query=</span></code> part, is expressed in <a class="reference external" href="http://zing.z3950.org/cql/intro.html">CQL syntax</a>.</p>
-<p>The simplest CQL queries of all are unqualified <strong>single terms</strong>:</p>
+<p>The simplest CQL queries are unqualified <strong>single terms</strong>:</p>
 <p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1</a></p>
 <p>Queries may be joined together using the three <strong>Boolean operators</strong>, <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> and <code class="docutils literal notranslate"><span class="pre">not</span></code>. We use spaces, or rather their URL encoded version <code class="docutils literal notranslate"><span class="pre">%20</span></code> to separate CQL words:</p>
 <p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius%20or%20erasmus&amp;startRecord=1">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius%20or%20erasmus&amp;startRecord=1</a></p>
@@ -339,7 +339,7 @@
 <div class="section" id="example-cerl-thesaurus">
 <h4>Example: CERL thesaurus<a class="headerlink" href="#example-cerl-thesaurus" title="Permalink to this headline">¶</a></h4>
 <p>Let’s have a more detailed look at one of the examples used frequently in the above. This API that supports SRU/CQL is the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
-<p>Below is an example of how to query this API with SRU/SQL from Python:</p>
+<p>Below is an example of how to query this API with SRU/CQL from Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.parse</span>
@@ -350,7 +350,7 @@
 
 <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Clean input string and URL encode (e.g. Léon Degrelle)</span>
+<span class="sd">    Clean input string and URL encode</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
@@ -358,9 +358,9 @@
     <span class="k">return</span> <span class="n">string</span>
 
 
-<span class="k">def</span> <span class="nf">query_Europeana</span><span class="p">(</span><span class="n">search</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">query_CERL</span><span class="p">(</span><span class="n">search</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Query Europeana Entities API, return response or exit with errorcode</span>
+<span class="sd">    Query CERL thesaurus, return response or exit with errorcode</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">search</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">CERL_THESAURUS</span> <span class="o">+</span> <span class="n">search</span>
@@ -373,12 +373,12 @@
         <span class="n">exit</span><span class="p">(</span><span class="n">URLerr</span><span class="p">)</span>
 
 <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">query_Europeana</span><span class="p">(</span><span class="n">user_input</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">query_CERL</span><span class="p">(</span><span class="n">user_input</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;152&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cni00047961&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cni00047961&quot; type=&quot;imprintName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Moretus, Jean&lt;/display&gt;&lt;biographicalData&gt;1543-1610&lt;/biographicalData&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Jean Moretus&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Moretus, Jean&lt;/headingForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jan Moerentorf&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&gt;Moerentorf, Jan&lt;/variantForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jan Moretus&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&#39;...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;1283&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cnp02142938&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cnp02142938&quot; type=&quot;personalName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Fabricius, Erasmus&lt;/display&gt;&lt;biographicalData&gt;1490/95-1546. ca. 1490/95-1546&lt;/biographicalData&gt;&lt;activityNote&gt;Reformator&lt;/activityNote&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Erasmus Fabricius&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Fabricius, Erasmus&lt;/headingForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Faber&lt;/variantForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Fabricius&lt;/variantForm&gt;&#39;...
 </pre></div>
 </div>
 </div>
@@ -412,7 +412,7 @@
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
 <span class="c1"># Once you have a Connection, you create a Cursor object</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="c1"># To perform SQL commands you call the Cursor object&#39;s excute() method</span>
+<span class="c1"># To perform SQL commands you call the Cursor object&#39;s .execute() method</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        select distinct author_zvwr, title_ti, impressum_ju1sv from author</span>
 <span class="s2">        join title on author.cloi = title.cloi</span>
@@ -448,7 +448,7 @@
 </div>
 <div class="section" id="assignment-json-metadata-harvester">
 <h2>Assignment: JSON metadata harvester<a class="headerlink" href="#assignment-json-metadata-harvester" title="Permalink to this headline">¶</a></h2>
-<p>For your assignment you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata.</p>
+<p>For your assignment you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata.</p>
 <p>It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
 <div class="section" id="what-is-an-api">
 <h3>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h3>

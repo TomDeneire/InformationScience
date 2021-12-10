@@ -49,7 +49,7 @@ Note the tag `<srw:numberOfRecords>`. Most SRU servers will not give you the ent
 
 A SRU search statement, i.e. the `&query=` part, is expressed in [CQL syntax](http://zing.z3950.org/cql/intro.html).
 
-The simplest CQL queries of all are unqualified **single terms**:
+The simplest CQL queries are unqualified **single terms**:
 
 e.g. [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1)
 
@@ -70,7 +70,7 @@ e.g. [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&
 
 Let's have a more detailed look at one of the examples used frequently in the above. This API that supports SRU/CQL is the [CERL (Consortium of European Research Libraries)](https://cerl.org/), which is responsible for the [CERL Thesaurus](https://data.cerl.org/thesaurus/_search), containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.
 
-Below is an example of how to query this API with SRU/SQL from Python:
+Below is an example of how to query this API with SRU/CQL from Python:
 
 import urllib.parse
 import urllib.request
@@ -80,7 +80,7 @@ CERL_THESAURUS = "https://data.cerl.org/thesaurus/_sru?version=1.2&operation=sea
 
 def clean(string: str) -> str:
     """
-    Clean input string and URL encode (e.g. Léon Degrelle)
+    Clean input string and URL encode
     """
     string = string.strip()
     string = string.casefold()
@@ -88,9 +88,9 @@ def clean(string: str) -> str:
     return string
 
 
-def query_Europeana(search: str) -> bytes:
+def query_CERL(search: str) -> bytes:
     """
-    Query Europeana Entities API, return response or exit with errorcode
+    Query CERL thesaurus, return response or exit with errorcode
     """
     search = clean(search)
     url = CERL_THESAURUS + search
@@ -103,7 +103,7 @@ def query_Europeana(search: str) -> bytes:
         exit(URLerr)
 
 user_input = input()
-print(str(query_Europeana(user_input)[0:1000]) + "...")
+print(str(query_CERL(user_input)[0:1000]) + "...")
 
 ### SQL/SQLite
 
@@ -139,7 +139,7 @@ import sqlite3
 conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
 # Once you have a Connection, you create a Cursor object
 c = conn.cursor()
-# To perform SQL commands you call the Cursor object's excute() method
+# To perform SQL commands you call the Cursor object's .execute() method
 query = """
         select distinct author_zvwr, title_ti, impressum_ju1sv from author
         join title on author.cloi = title.cloi
@@ -156,7 +156,7 @@ conn.close()
 
 ## Assignment: JSON metadata harvester
 
-For your assignment you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as ​Geonames, DBpedia and Wikidata. 
+For your assignment you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata. 
 
 It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
 

@@ -166,7 +166,7 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
 
 2. Bibliographic databases
     - [Worldcat](https://platform.worldcat.org/api-explorer/apis) (wide range of exports, plugins, APIs)
-    - [Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/) (including STCV, downloads in MARXML or SQLite)
+    - [Anet open data](https://www.uantwerpen.be/nl/projecten/anet/open-data/) (including STCV, downloads in MARCXML or SQLite)
     - [STCN](http://openvirtuoso.kbresearch.nl/sparql) (SPARQL endpoint)
     - [ESTC](https://rdrr.io/github/COMHIS/estc/f/README.md) (R toolkit)
     - [HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database) (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) (SRU)
