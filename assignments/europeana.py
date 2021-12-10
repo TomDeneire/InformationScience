@@ -4,9 +4,9 @@ Assignment chapter 05
 
 import json
 import sys
-import urllib.parse
-import urllib.request
-import urllib.error
+from urllib.parse import quote
+from urllib.request import urlopen
+from urllib.error import HTTPError, URLError
 
 """
 Note:
@@ -39,7 +39,7 @@ def clean(string: str) -> str:
     """
     string = string.strip()
     string = string.casefold()
-    string = urllib.parse.quote(string)
+    string = quote(string)
     return string
 
 
@@ -50,12 +50,12 @@ def query_Europeana(search: str) -> bytes:
     search = clean(search)
     url = EUROPEANA_ENTITIES + search
     try:
-        with urllib.request.urlopen(url) as query:
+        with urlopen(url) as query:
             return query.read()
-    except urllib.error.HTTPError as HTTPerr:
+    except HTTPError as HTTPerr:
         code = CODES.get(HTTPerr.code)
         sys.exit(code)
-    except urllib.error.URLError as URLerr:
+    except URLError as URLerr:
         sys.exit(URLerr)
 
 
