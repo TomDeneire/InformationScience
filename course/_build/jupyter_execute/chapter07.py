@@ -1,10 +1,8 @@
 # Chapter 7: Indexing Information
 
-![](images/tablet.jpg)
+![](images/index.png)
 
-__[Salamis tablet](https://en.wikipedia.org/wiki/Salamis_Tablet)__
-
-Credit: __[Wikimedia Commons](https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg)__
+Credit: [xkcd](https://xkcd.com/1651/)
 
 ## Searching
 
@@ -12,7 +10,7 @@ In all of our discussions about information we have so far neglected perhaps the
 
 Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth's monumental *The Art of Computer Programming* devotes an entire volume (i.e. vol. 3) to "Sorting and Searching". This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.
 
-At face value searching might seem easy. Let's look at finding a substring in a string. In Python, for instance, offers several ways to check for this:
+Still, at face value searching might seem **simple**. Let's look at finding a substring in a string. In Python, for instance, offers several ways to check for this:
 
 MY_STRING = "Hello world, this is me"
 MY_SEARCH = "me"
@@ -37,7 +35,7 @@ else:
     print("Not found!")
 
 
-However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. __[Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)__) or huge metadata containers (e.g. __[Spotify contains >50.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.)__).
+However, search operations can soon become **complicated and time-consuming**. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. [Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)) or huge metadata containers (e.g. [Spotify contains >50.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/)).
 
 ## Indexing
 
@@ -47,19 +45,22 @@ One way to deal with his issue is **indexing**. Simply said, an index is a data 
 
 Consider the following example. Let's say we have a large list of book titles and want to search them for a specific term.
 
-Let's first use SQL and the STCV database from chapter 04 to make such a list.
+Let's first use SQL and the STCV database from an earlier chapter to make such a list.
 
 import sqlite3
 import os.path
 import random
+
 conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
 c = conn.cursor()
 query = "select distinct title_ti from title"
 c.execute(query)
+
 BOOK_TITLES = []
 for title in c.fetchall():
-    BOOK_TITLES.append(*title)  # * = unpacking the tuple `title`
+    BOOK_TITLES.append(*title)  # `*` operator unpacks the tuple `title`
 conn.close()
+
 # length of list
 length = len(BOOK_TITLES)
 print(length, "titles, e.g.:")
@@ -109,13 +110,17 @@ Obviously, the results of searching with and without a word index are the same. 
 %timeit search_without_index("English", BOOK_TITLES)
 
 
-The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items... 
+The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items... 
 
-#### Excursus: time complexity
+#### Time complexity
 
-In essence and, what we have just done boils down to changing the __[time complexity](https://en.wikipedia.org/wiki/Time_complexity)__ of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
+In essence and, what we have just done boils down to changing the [time complexity](https://en.wikipedia.org/wiki/Time_complexity) of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. 
+
+Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
 
 Optimizing searches by reducing the time complexity of one's search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.
+
+(For a good introduction to different time-complexities, read this [Medium article](https://betterprogramming.pub/practical-big-o-notation-for-javascript-developers-115f6368085d)).
 
 ### Complex searches
 
@@ -124,55 +129,62 @@ Of course, our example was only a simple one where we built an index that allowe
 For instance, titles like "The Art of Computer Programming" and "Zen and the Art of Motorcycle Maintanance" could be turned into an AND-index like so:
 
 import json
+
 TITLES = ["The Art of Computer Programming", "Zen and the Art of Motorcycle Maintanance"]
 index = {}
+words = []
+
 for title in TITLES:
     clean_title = title.casefold()
     words = clean_title.split(' ')
     for word in words:
-        if not word in index:
-            index[word] = {}
+        index.setdefault(word, {})
         for next_word in words:
-            if not next_word == word:
-                if not next_word in index[word]:
-                    index[word][next_word] = [title]
-                else:
-                    index[word][next_word].append(title)
-print(json.dumps(index, indent=4))
+            if next_word == word:
+                continue
+            if next_word not in index[word]:
+                index[word][next_word] = [title]
+            else:
+                index[word][next_word].append(title)
+# example
+print(json.dumps(index["art"], indent=4))
 
 
 In this way, searching with `AND` becomes easy in this index, e.g. books that combine "art" and "computer":
 
-print(index["art"]["computer"])
+print((index.get("art")).get("computer"))
+print((index.get("art")).get("motorcycle"))
+print((index.get("the")).get("art"))
+print((index.get("zen")).get("computer"))
 
-## Excursus: Bitmap indexing
+### Bitmap indexing
 
 A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.
 
-One interesting technique to avoid such problems is bitmap indexing. __[Wikipedia](https://en.wikipedia.org/wiki/Bitmap)__ says:
+One interesting technique to avoid such problems is bitmap indexing. [Wikipedia:Bitmap](https://en.wikipedia.org/wiki/Bitmap) says:
 
 > In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits
 
-Let's say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:
+Let's say you run a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance, serial numbers `1`, `5` and `10`.
 
 from sys import getsizeof
 import array
 
-# using arrays which is more memory-efficient than lists
+# We use arrays as they are already more memory-efficient than lists
 # https://docs.python.org/3/library/array.html
 pens_sold = array.array('B', [1, 5, 10])
-print(getsizeof(pens_sold), 'bytes')
+size = getsizeof(pens_sold)
+print(size, 'bytes')
 
 
 So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
 
 all_pens_sold = array.array('L', [i for i in range(1,10000000)])
-# converting bytes to megabytes
+# 1 byte = 0.00000095367432 megabytes
 size = getsizeof(all_pens_sold) * 0.00000095367432
 print(size, 'megabytes')
 
-
-So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:
+So you see, things can get out of hand quickly. But what if instead of recording all of the serial numbers, you could make a kind of map of serial numbers with the values `1` for sold and `0` for not sold? This is called a **bitmap index** and if you use a bitmapping system, the overhead is radically different:
 
 # Setting a bit array here with array (https://docs.python.org/3/library/array.html)
 # in real applications you should use https://pypi.org/project/bitmap/
@@ -181,26 +193,30 @@ import array
 
 # a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)
 pens_sold = array.array('B', [0b1, 0b0, 0b0, 0b0, 0b1, 0b0, 0b0, 0b0, 0b0, 0b1])
-print(getsizeof(pens_sold), 'bytes')
+size = getsizeof(pens_sold)
+print(size, 'bytes')
 
+# a bit array of one million sold pens
 bitmap_of_all_pens_sold = array.array('B', [0b1 for i in range(1,10000000)])
 size = getsizeof(bitmap_of_all_pens_sold) * 0.00000095367432
 print(size, 'megabytes')
 
 
-## Lucene
+## Indexing software
 
-The leading software for indexing and searching text is definitely __[Lucene](https://lucene.apache.org/)__. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course). 
+### Lucene
 
-There is a Python extension for accessing Java Lucene, called __[PyLucene](https://lucene.apache.org/pylucene/)__. Its goal is to allow you to use Lucene's text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene **port** but a Python **wrapper** around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU `Make`, a C++ compiler, ...).
+The leading software for indexing and searching text is definitely [Lucene](https://lucene.apache.org/). However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course). 
+
+There is a Python extension for accessing Java Lucene, called [PyLucene](https://lucene.apache.org/pylucene/). Its goal is to allow you to use Lucene's text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene **port** but a Python **wrapper** around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU `Make`, a C++ compiler, ...).
 
 
 
-## Whoosh
+### Whoosh
 
-As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __[tutorial](https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/) for building a Python full-text search engine!)
+As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting [tutorial](https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/) for building a Python full-text search engine!)
 
-One of these is __[Whoosh](https://whoosh.readthedocs.io/en/latest/index.html)__, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through `pip install Whoosh`.
+One of these is [Whoosh](https://whoosh.readthedocs.io/en/latest/index.html), which is unfortunately no longer maintained. Still, the most recent version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through `pip install Whoosh`.
 
 In the [Whoosh introduction](https://whoosh.readthedocs.io/en/latest/intro.html) we read:
 
@@ -247,16 +263,17 @@ searched) and/or stored (meaning the value that gets indexed is returned with
 the results; this is useful for fields such as the title).
 """
 
-schema = Schema(title=TEXT(stored=True), content=TEXT(stored=True),
+schema = Schema(title=TEXT(stored=True), 
+                content=TEXT(stored=True),
                 path=ID(stored=True))
 
 # Create index
 """
-Once you have the schema, you can create an index.
-At a low level, this creates a Storage object to contains the index.
+Once you have the schema, you can create an Index object.
+At a low level, this creates a Storage object to contain the index.
 A Storage object represents that medium in which the index will be stored.
 Usually this will be FileStorage, which stores the index as a set of files
-in a directory.
+in a directory. Hence, you will need a directory.
 """
 
 if not os.path.exists("index"):
@@ -265,9 +282,9 @@ my_index = create_in("index", schema)
 
 # Add documents
 """
-OK, so we’ve got an Index object, now we can start adding documents.
+Once we've got an Index object, we can start adding documents.
 The writer() method of the Index object returns an IndexWriter object that
-lets you add documents to the index. The IndexWriter’s add_document
+lets you add documents to the index. The IndexWriter's .add_document()
 method accepts keyword arguments where the field name is mapped to a value.
 Once you have finished with the writer, you need to commit it.
 
@@ -283,8 +300,9 @@ writer = my_index.writer()
 for document in os.listdir("corpus_of_british_fiction"):
     if document.endswith(".txt"):
         with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
-            writer.add_document(title=document, content=str(text.read()),
-                                        path=document)
+            writer.add_document(title=document, 
+                                content=str(text.read()),
+                                path=document)
 writer.commit()
 
 
@@ -293,7 +311,7 @@ writer.commit()
 Woosh's Searcher (cf. infra) takes a Query object. You can construct query
 objects directly or use a query parser to parse a query string.
 To parse a query string, you can use the default query parser in the qparser
-module. The first argument to the QueryParser constructor is the default field
+module. The first argument in the QueryParser constructor is the default field
 to search. This is usually the "body text" field. The second (optional) argument
 is a schema to use to understand how to parse the fields. The argument of
 the .parse() method is a query in Whoosh query language (similar to Lucene):
@@ -309,7 +327,7 @@ myquery = QueryParser("content", my_index.schema).parse('smattering')
 # Search documents
 """
 Once you have a Searcher and a query object, you can use the Searcher's
-search() method to run the query and get a Results object.
+.search() method to run the query and get a Results object.
 You can use the highlights() method on the whoosh.searching.Hit object
 to get highlighted snippets from the document containing the search terms.
 To limit the text displayed, you use a Fragmenter. More information at:

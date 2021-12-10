@@ -39,7 +39,9 @@ e.g. [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&
 Note the tag `<srw:numberOfRecords>`. Most SRU servers will not give you the entire response in one go. You can use the parameters `&startRecord=` and `&maximumRecords=` to harvest the whole result in chunks. For instance:
 
 [http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius](http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius)
+
 ->
+
 [http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius&&startRecord=1&maximumRecords=10](http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius&&startRecord=1&maximumRecords=10)
 
 

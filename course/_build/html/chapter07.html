@@ -230,8 +230,8 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#excursus-time-complexity">
-       Excursus: time complexity
+      <a class="reference internal nav-link" href="#time-complexity">
+       Time complexity
       </a>
      </li>
     </ul>
@@ -241,22 +241,29 @@
      Complex searches
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bitmap-indexing">
+     Bitmap indexing
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#excursus-bitmap-indexing">
-   Excursus: Bitmap indexing
+  <a class="reference internal nav-link" href="#indexing-software">
+   Indexing software
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lucene">
-   Lucene
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#whoosh">
-   Whoosh
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lucene">
+     Lucene
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#whoosh">
+     Whoosh
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#assignment-morphology-tool">
@@ -275,14 +282,13 @@
                 
   <div class="section" id="chapter-7-indexing-information">
 <h1>Chapter 7: Indexing Information<a class="headerlink" href="#chapter-7-indexing-information" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/tablet.jpg" /></p>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Salamis_Tablet">Salamis tablet</a></strong></p>
-<p>Credit: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Salamis_Tablet#/media/File:Salaminische_Tafel_Salamis_Tablet_nach_Wilhelm_Kubitschek_Numismatische_Zeitschrift_Bd_31_Wien_1899_p._394_ff.jpg">Wikimedia Commons</a></strong></p>
+<p><img alt="" src="_images/index.png" /></p>
+<p>Credit: <a class="reference external" href="https://xkcd.com/1651/">xkcd</a></p>
 <div class="section" id="searching">
 <h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
 <p>In all of our discussions about information we have so far neglected perhaps the most important aspect of it: <strong>searching</strong>. Indeed, you could say that the only difference between data and information, is that “information is data that we are looking for”. Ergo, very simply said, working with information often boils down to “searching stuff”. Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.</p>
 <p>Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth’s monumental <em>The Art of Computer Programming</em> devotes an entire volume (i.e. vol. 3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
-<p>At face value searching might seem easy. Let’s look at finding a substring in a string. In Python, for instance, offers several ways to check for this:</p>
+<p>Still, at face value searching might seem <strong>simple</strong>. Let’s look at finding a substring in a string. In Python, for instance, offers several ways to check for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MY_STRING</span> <span class="o">=</span> <span class="s2">&quot;Hello world, this is me&quot;</span>
@@ -317,7 +323,7 @@ Found!
 </div>
 </div>
 </div>
-<p>However, search operations can soon become complicated and especially time-consuming. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a></strong>) or huge metadata containers (e.g. <strong><a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/#:~:text=Source%3A%20Goodwater%20Capital-,Spotify%20Content%20Statistics,the%20largest%20music%20library%20available.">Spotify contains &gt;50.000.000 songs</a></strong>).</p>
+<p>However, search operations can soon become <strong>complicated and time-consuming</strong>. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a>) or huge metadata containers (e.g. <a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/">Spotify contains &gt;50.000.000 songs</a>).</p>
 </div>
 <div class="section" id="indexing">
 <h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
@@ -325,20 +331,23 @@ Found!
 <div class="section" id="simple-searches">
 <h3>Simple searches<a class="headerlink" href="#simple-searches" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following example. Let’s say we have a large list of book titles and want to search them for a specific term.</p>
-<p>Let’s first use SQL and the STCV database from chapter 04 to make such a list.</p>
+<p>Let’s first use SQL and the STCV database from an earlier chapter to make such a list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">random</span>
+
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select distinct title_ti from title&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
 <span class="n">BOOK_TITLES</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-    <span class="n">BOOK_TITLES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># * = unpacking the tuple `title`</span>
+    <span class="n">BOOK_TITLES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># `*` operator unpacks the tuple `title`</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
 <span class="c1"># length of list</span>
 <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="s2">&quot;titles, e.g.:&quot;</span><span class="p">)</span>
@@ -431,11 +440,13 @@ True
 </div>
 </div>
 </div>
-<p>The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but consider searching a collection like the Library of Congress, which holds over 170 million items…</p>
-<div class="section" id="excursus-time-complexity">
-<h4>Excursus: time complexity<a class="headerlink" href="#excursus-time-complexity" title="Permalink to this headline">¶</a></h4>
-<p>In essence and, what we have just done boils down to changing the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a></strong> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
+<p>The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items…</p>
+<div class="section" id="time-complexity">
+<h4>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">¶</a></h4>
+<p>In essence and, what we have just done boils down to changing the <a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm.</p>
+<p>Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
 <p>Optimizing searches by reducing the time complexity of one’s search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.</p>
+<p>(For a good introduction to different time-complexities, read this <a class="reference external" href="https://betterprogramming.pub/practical-big-o-notation-for-javascript-developers-115f6368085d">Medium article</a>).</p>
 </div>
 </div>
 <div class="section" id="complex-searches">
@@ -445,218 +456,56 @@ True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
 <span class="n">TITLES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The Art of Computer Programming&quot;</span><span class="p">,</span> <span class="s2">&quot;Zen and the Art of Motorcycle Maintanance&quot;</span><span class="p">]</span>
 <span class="n">index</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="n">title</span> <span class="ow">in</span> <span class="n">TITLES</span><span class="p">:</span>
     <span class="n">clean_title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">clean_title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
-            <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">index</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="p">{})</span>
         <span class="k">for</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">next_word</span> <span class="ow">in</span> <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]:</span>
-                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">next_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">next_word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">]:</span>
+                <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">title</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">index</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">next_word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="c1"># example</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="s2">&quot;art&quot;</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-    &quot;the&quot;: {
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;art&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;of&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;,
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;computer&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;programming&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ]
-    },
-    &quot;programming&quot;: {
-        &quot;the&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ],
-        &quot;computer&quot;: [
-            &quot;The Art of Computer Programming&quot;
-        ]
-    },
-    &quot;zen&quot;: {
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;and&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;motorcycle&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;maintanance&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    },
-    &quot;maintanance&quot;: {
-        &quot;zen&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;and&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;the&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;art&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;of&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ],
-        &quot;motorcycle&quot;: [
-            &quot;Zen and the Art of Motorcycle Maintanance&quot;
-        ]
-    }
+    &quot;the&quot;: [
+        &quot;The Art of Computer Programming&quot;,
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ],
+    &quot;of&quot;: [
+        &quot;The Art of Computer Programming&quot;,
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ],
+    &quot;computer&quot;: [
+        &quot;The Art of Computer Programming&quot;
+    ],
+    &quot;programming&quot;: [
+        &quot;The Art of Computer Programming&quot;
+    ],
+    &quot;zen&quot;: [
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ],
+    &quot;and&quot;: [
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ],
+    &quot;motorcycle&quot;: [
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ],
+    &quot;maintanance&quot;: [
+        &quot;Zen and the Art of Motorcycle Maintanance&quot;
+    ]
 }
 </pre></div>
 </div>
@@ -665,35 +514,41 @@ True
 <p>In this way, searching with <code class="docutils literal notranslate"><span class="pre">AND</span></code> becomes easy in this index, e.g. books that combine “art” and “computer”:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="s2">&quot;art&quot;</span><span class="p">][</span><span class="s2">&quot;computer&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">index</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;art&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;computer&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">index</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;art&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;motorcycle&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">index</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;the&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;art&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">index</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;zen&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;computer&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;The Art of Computer Programming&#39;]
+[&#39;Zen and the Art of Motorcycle Maintanance&#39;]
+[&#39;The Art of Computer Programming&#39;, &#39;Zen and the Art of Motorcycle Maintanance&#39;]
+None
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="excursus-bitmap-indexing">
-<h2>Excursus: Bitmap indexing<a class="headerlink" href="#excursus-bitmap-indexing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bitmap-indexing">
+<h3>Bitmap indexing<a class="headerlink" href="#bitmap-indexing" title="Permalink to this headline">¶</a></h3>
 <p>A lot more can be said about indexing. For one, you might wonder if indexing in itself might not lead to building overly large data structures that take up a lot of space and memory. As was clear from the above example of a combined index, indexing can quickly escalate.</p>
-<p>One interesting technique to avoid such problems is bitmap indexing. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Bitmap">Wikipedia</a></strong> says:</p>
+<p>One interesting technique to avoid such problems is bitmap indexing. <a class="reference external" href="https://en.wikipedia.org/wiki/Bitmap">Wikipedia:Bitmap</a> says:</p>
 <blockquote>
 <div><p>In computing, a bitmap is a mapping from some domain (for example, a range of integers) to bits</p>
 </div></blockquote>
-<p>Let’s say you are a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance:</p>
+<p>Let’s say you run a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance, serial numbers <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getsizeof</span>
 <span class="kn">import</span> <span class="nn">array</span>
 
-<span class="c1"># using arrays which is more memory-efficient than lists</span>
+<span class="c1"># We use arrays as they are already more memory-efficient than lists</span>
 <span class="c1"># https://docs.python.org/3/library/array.html</span>
 <span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">),</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -707,7 +562,7 @@ True
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
-<span class="c1"># converting bytes to megabytes</span>
+<span class="c1"># 1 byte = 0.00000095367432 megabytes</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
 </pre></div>
@@ -719,7 +574,7 @@ True
 </div>
 </div>
 </div>
-<p>So you see, things can get out of hand quickly. But if you use a bitmapping system, the overhead is radically different:</p>
+<p>So you see, things can get out of hand quickly. But what if instead of recording all of the serial numbers, you could make a kind of map of serial numbers with the values <code class="docutils literal notranslate"><span class="pre">1</span></code> for sold and <code class="docutils literal notranslate"><span class="pre">0</span></code> for not sold? This is called a <strong>bitmap index</strong> and if you use a bitmapping system, the overhead is radically different:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting a bit array here with array (https://docs.python.org/3/library/array.html)</span>
@@ -729,8 +584,10 @@ True
 
 <span class="c1"># a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)</span>
 <span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">),</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
 
+<span class="c1"># a bit array of one million sold pens</span>
 <span class="n">bitmap_of_all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">bitmap_of_all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
@@ -745,15 +602,18 @@ True
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="indexing-software">
+<h2>Indexing software<a class="headerlink" href="#indexing-software" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="lucene">
-<h2>Lucene<a class="headerlink" href="#lucene" title="Permalink to this headline">¶</a></h2>
-<p>The leading software for indexing and searching text is definitely <strong><a class="reference external" href="https://lucene.apache.org/">Lucene</a></strong>. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course).</p>
-<p>There is a Python extension for accessing Java Lucene, called <strong><a class="reference external" href="https://lucene.apache.org/pylucene/">PyLucene</a></strong>. Its goal is to allow you to use Lucene’s text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene <strong>port</strong> but a Python <strong>wrapper</strong> around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU <code class="docutils literal notranslate"><span class="pre">Make</span></code>, a C++ compiler, …).</p>
+<h3>Lucene<a class="headerlink" href="#lucene" title="Permalink to this headline">¶</a></h3>
+<p>The leading software for indexing and searching text is definitely <a class="reference external" href="https://lucene.apache.org/">Lucene</a>. However, Lucene is a Java library, which is not easy to implement (especially crossplatform as would be the case in this course).</p>
+<p>There is a Python extension for accessing Java Lucene, called <a class="reference external" href="https://lucene.apache.org/pylucene/">PyLucene</a>. Its goal is to allow you to use Lucene’s text indexing and searching capabilities from Python. Still, PyLucene is not a Lucene <strong>port</strong> but a Python <strong>wrapper</strong> around Java Lucene. PyLucene embeds a Java VM with Lucene into a Python process. This means that you still need Java Lucene to run PyLucene, and some additional tools (GNU <code class="docutils literal notranslate"><span class="pre">Make</span></code>, a C++ compiler, …).</p>
 </div>
 <div class="section" id="whoosh">
-<h2>Whoosh<a class="headerlink" href="#whoosh" title="Permalink to this headline">¶</a></h2>
-<p>As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting __<a class="reference external" href="https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/">tutorial</a> for building a Python full-text search engine!)</p>
-<p>One of these is <strong><a class="reference external" href="https://whoosh.readthedocs.io/en/latest/index.html">Whoosh</a></strong>, which is unfortunately no longer maintained. Still, the latest version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Whoosh</span></code>.</p>
+<h3>Whoosh<a class="headerlink" href="#whoosh" title="Permalink to this headline">¶</a></h3>
+<p>As text indexing/searching is bound to be really slow in Python (so it make good sense to stick to Java Lucene) there is no true pure-Python alternative to Lucene. However, there are some libraries that allow you to experiment with similar indexing/searching software. (Also check out this interesting <a class="reference external" href="https://bart.degoe.de/building-a-full-text-search-engine-150-lines-of-code/">tutorial</a> for building a Python full-text search engine!)</p>
+<p>One of these is <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/index.html">Whoosh</a>, which is unfortunately no longer maintained. Still, the most recent version, 2.7.4, is quite stable and still works fine for Python 3. It can easily be installed through <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Whoosh</span></code>.</p>
 <p>In the <a class="reference external" href="https://whoosh.readthedocs.io/en/latest/intro.html">Whoosh introduction</a> we read:</p>
 <blockquote>
 <div><p><strong>About Whoosh</strong></p>
@@ -805,16 +665,17 @@ True
 <span class="sd">the results; this is useful for fields such as the title).</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">content</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+                <span class="n">content</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
                 <span class="n">path</span><span class="o">=</span><span class="n">ID</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
 <span class="c1"># Create index</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Once you have the schema, you can create an index.</span>
-<span class="sd">At a low level, this creates a Storage object to contains the index.</span>
+<span class="sd">Once you have the schema, you can create an Index object.</span>
+<span class="sd">At a low level, this creates a Storage object to contain the index.</span>
 <span class="sd">A Storage object represents that medium in which the index will be stored.</span>
 <span class="sd">Usually this will be FileStorage, which stores the index as a set of files</span>
-<span class="sd">in a directory.</span>
+<span class="sd">in a directory. Hence, you will need a directory.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">):</span>
@@ -823,9 +684,9 @@ True
 
 <span class="c1"># Add documents</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">OK, so we’ve got an Index object, now we can start adding documents.</span>
+<span class="sd">Once we&#39;ve got an Index object, we can start adding documents.</span>
 <span class="sd">The writer() method of the Index object returns an IndexWriter object that</span>
-<span class="sd">lets you add documents to the index. The IndexWriter’s add_document</span>
+<span class="sd">lets you add documents to the index. The IndexWriter&#39;s .add_document()</span>
 <span class="sd">method accepts keyword arguments where the field name is mapped to a value.</span>
 <span class="sd">Once you have finished with the writer, you need to commit it.</span>
 
@@ -841,8 +702,9 @@ True
 <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">document</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
-            <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
-                                        <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> 
+                                <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
+                                <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
 <span class="n">writer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
 
@@ -851,7 +713,7 @@ True
 <span class="sd">Woosh&#39;s Searcher (cf. infra) takes a Query object. You can construct query</span>
 <span class="sd">objects directly or use a query parser to parse a query string.</span>
 <span class="sd">To parse a query string, you can use the default query parser in the qparser</span>
-<span class="sd">module. The first argument to the QueryParser constructor is the default field</span>
+<span class="sd">module. The first argument in the QueryParser constructor is the default field</span>
 <span class="sd">to search. This is usually the &quot;body text&quot; field. The second (optional) argument</span>
 <span class="sd">is a schema to use to understand how to parse the fields. The argument of</span>
 <span class="sd">the .parse() method is a query in Whoosh query language (similar to Lucene):</span>
@@ -867,7 +729,7 @@ True
 <span class="c1"># Search documents</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Once you have a Searcher and a query object, you can use the Searcher&#39;s</span>
-<span class="sd">search() method to run the query and get a Results object.</span>
+<span class="sd">.search() method to run the query and get a Results object.</span>
 <span class="sd">You can use the highlights() method on the whoosh.searching.Hit object</span>
 <span class="sd">to get highlighted snippets from the document containing the search terms.</span>
 <span class="sd">To limit the text displayed, you use a Fragmenter. More information at:</span>
@@ -923,6 +785,7 @@ Fielding_Joseph.txt
 
 	The company
 </pre></div>
+</div>
 </div>
 </div>
 </div>
