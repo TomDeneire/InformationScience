@@ -119,7 +119,7 @@ Another is the [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%
 
 With the discussion of searching, we come to the end of our very succinct overview of Information Science. 
 
-Had our topic been Information Retrieval, we would have needed to add two additional, crucial steps, i.e. the **evaluation and ranking** of the search results. This articulates the difference between database querying, with results in *data*, and information retrieval querying, which results in *documents* containing data. In order to sift through the search results of the latter, we need [evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval) and [ranking](https://en.wikipedia.org/wiki/Ranking_(information_retrieval)) to make the results usable. Unfortunately, evaluation and ranking are beyond the scope of this course.
+Had our topic been Information *Retrieval*, we would have needed to add two additional, crucial steps, i.e. the **evaluation and ranking** of the search results. This articulates the difference between database querying, with results in *data*, and information retrieval querying, which results in *documents* containing data. In order to sift through the search results of the latter, we need [evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)) and [ranking](https://en.wikipedia.org/wiki/Ranking_(information_retrieval)) to make the results usable. Unfortunately, evaluation and ranking are beyond the scope of this course.
 
 ## Assignment: Spelling checker
 
