@@ -202,8 +202,30 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#goal">
-   Goal
+  <a class="reference internal nav-link" href="#technical-specification">
+   Technical specification
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expectations">
+   Expectations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic">
+     Basic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced">
+     Advanced
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#timing">
+   Timing
   </a>
  </li>
 </ul>
@@ -231,10 +253,8 @@
 <p>This can be implemented using <strong>HPB’s SRU/CQL service</strong>, see <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=explain">https://sru.gbv.de/hpb?version=2.0&amp;operation=explain</a></p>
 <p>HPB offers metadata in several formats, including MARC, Dublin Core, … See, for instance, <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc">https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc</a></p>
 <p>How you query HPB and which metadata you use, is completely up to you.</p>
-<p>For the STCV dataset you will be using a sample from the <strong>SQLite STCV export</strong> that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select 100 single-volume titles from STCV</span>
-<span class="c1"># with detailed bibliographic information</span>
-<span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<p>For the STCV dataset you will be using a sample from the <strong>SQLite STCV export</strong> that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query. This selects 100 single-volume titles (multivolume titles pose specific reconciliation problems) with all relevant metadata you will need.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">SELECT DISTINCT</span>
 <span class="s2">    title.cloi as identifier,</span>
 <span class="s2">    COUNT(title.cloi) as id_count,</span>
@@ -272,8 +292,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="goal">
-<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="technical-specification">
+<h2>Technical specification<a class="headerlink" href="#technical-specification" title="Permalink to this headline">¶</a></h2>
 <p>The goal of the project is to write a Jupyter Notebook that looks for <code class="docutils literal notranslate"><span class="pre">stcv.sqlite</span></code> in the same directory as the notebook itself and produces an onscreen output of the potential matches in the form of STCV identifier (<code class="docutils literal notranslate"><span class="pre">c:stcv:*</span></code>) = HPB identifier.</p>
 <p>Just to be clear, the HPB identifier is the piece of data found in MARCXML field <code class="docutils literal notranslate"><span class="pre">035a</span></code>, e.g.:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;datafield</span> <span class="na">tag=</span><span class="s">&quot;035&quot;</span> <span class="na">ind1=</span><span class="s">&quot; &quot;</span> <span class="na">ind2=</span><span class="s">&quot; &quot;</span><span class="nt">&gt;</span>
@@ -284,7 +304,37 @@
 <p>You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.</p>
 <p>One STCV record may also have several HPB matches.</p>
 <p>Please use only the <code class="docutils literal notranslate"><span class="pre">lxml</span></code> module to handle XML.</p>
+<p><strong>Important!</strong> I am not aware of any limitations on the <a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB SRU access</a>, but nevertheless, please take the following precautions to keep your usage of the service “friendly”:</p>
+<ul class="simple">
+<li><p>as this application is not really performance-critical, combine each request with <code class="docutils literal notranslate"><span class="pre">time.sleep(2)</span></code></p></li>
+<li><p>try to keep your test-volume down, e.g. test with only one record first and/or save the XML response and handle it as a local file</p></li>
+</ul>
+<p>Please inform me if there are any API issues!</p>
 <p>Just to give you an idea: the model solution for this project took me about 4 hours to write and test, and is about 250 lines long (including the query).</p>
+<p>Hand in your project by setting up a private GitHub repository that you share with me (username <a class="reference external" href="https://github.com/TomDeneire">TomDeneire</a>).</p>
+</div>
+<div class="section" id="expectations">
+<h2>Expectations<a class="headerlink" href="#expectations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic">
+<h3>Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Please hand in only fully functional code</p></li>
+<li><p>Use only the Python standard library (except for <code class="docutils literal notranslate"><span class="pre">lxml</span></code>)</p></li>
+<li><p>Write clean and legible code</p></li>
+</ul>
+</div>
+<div class="section" id="advanced">
+<h3>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Take into account the differences between STCV and HPB metadata / cataloguing standards.</p></li>
+<li><p>Optimize your CQL queries with indices, Booleans, …</p></li>
+<li><p>Simple queries will yield many results. Complex queries will yield fewer results. How can you find a balance?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="timing">
+<h2>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h2>
+<p>[To be agreed upon]</p>
 </div>
 </div>
 

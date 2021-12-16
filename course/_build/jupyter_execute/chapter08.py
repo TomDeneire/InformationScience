@@ -6,19 +6,11 @@ Credit: [xkcd.com](https://xkcd.com/1171/)
 
 ## Introduction
 
-In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:
+In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of *string*.find(*substring*) in Python! However, ae have already seen that searching text is rarely as easy as that. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (you are probably familiar with the `*` and `?` symbols) and will need to use **regular expressions** in our search, while other times we are not looking for exact results, but more interested in **fuzzy searching**. 
 
-> Retrieval > Searching > Evaluation > Ranking
+## Regular expressions
 
-Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in *Modern Information Retrieval*). Indeed, we will focus on text exclusively here.
-
-## Searching
-
-We have already seen that searching text is rarely as easy as `string.find(substring)`. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the `*` symbol) in our search, while other times we are not looking for exact results, but more interested in *fuzzy* searching.
-
-### Regular expressions
-
-The `*` symbol we used is actually part of a separate programming language, called **regular expressions**. [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression) says:
+The `*` symbol we used is actually part of a separate programming language, called **regular expressions**. [Wikipedia:Regular_expression](https://en.wikipedia.org/wiki/Regular_expression) says:
 
 > A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for "find" or "find and replace" operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.
 
@@ -44,13 +36,15 @@ So I'm looking for potential rhymes on "bar" and have written a regex that looks
 paragraph = "Regular expressions are an extremely powerful tool, but as the above cartoon shows there is a downside too. It is sometimes said that regular expressions are a write only programming language, as the code is often hardly readable, especially if you revisit a regex written long ago. Moreover, regular expresssions can be very tricky, for example, when they provide exact matches in your tests, only to produce mismatches when you open up the use cases."
 print(re.findall(rhyme, paragraph))
 
-So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use `.isinstance()`), reconsider!
+So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem? If you find yourself parsing XML with regular expressions (use a parsing library!), or testing the type of user input with regexes (use `.isinstance()`), reconsider!
 
-The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at __[w3schools](https://www.w3schools.com/python/python_regex.asp)__) and there are also handy regex testers where you can immediately check your regex, like __[regexr](https://regexr.com/)__. For a good Python cheat sheet, see this __[Medium post](https://link.medium.com/BYkb73meJab)__.
+The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at [w3schools](https://www.w3schools.com/python/python_regex.asp)) and there are also handy regex testers where you can immediately check your regex, like [regexr](https://regexr.com/). For a good Python cheat sheet, see this [Medium post](https://link.medium.com/BYkb73meJab).
 
-A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in __[RFC 5322](https://tools.ietf.org/html/rfc5322)__. For a (more readable) summary, see __[Wikipedia](https://en.wikipedia.org/wiki/Email_address#Syntax)__.
+A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in [RFC 5322](https://tools.ietf.org/html/rfc5322). For a (more readable) summary, see [Wikipedia:Email_address#Syntax](https://en.wikipedia.org/wiki/Email_address#Syntax).
 
 In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?
+
+import re
 
 # Examples from https://en.wikipedia.org/wiki/Email_address#Examples
 TEST = {
@@ -69,8 +63,9 @@ TEST = {
 }
 
 def email_regex(address: str) -> bool:
-    # expand test
-    if address.count("@") == 1:
+    # expand pattern
+    pattern = r'.*?@.*?'
+    if re.search(pattern, address):
         return True
     else:
         return False
@@ -82,9 +77,9 @@ for case in TEST:
     
 
 
-### Fuzzy searching
+## Fuzzy searching
 
-Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. __[Wikipedia](https://en.wikipedia.org/wiki/Approximate_string_matching)__ explains:
+Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. [Wikipedia:Approximate_string_matching](https://en.wikipedia.org/wiki/Approximate_string_matching) explains:
 
 > The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:
 
@@ -110,13 +105,21 @@ Regular expressions can also be used to illustrate the concept of fuzzy searchin
 
 >Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.
 
-#### String metrics
+### String metrics
 
-A __[string metric](https://en.wikipedia.org/wiki/String_metric)__ (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the __[Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance)__ (also known as edit distance). Another is the __[Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance)__.
+As a concrete example of a string matcher, we can have a look at string metrics. 
 
-## Evaluation and ranking
+A [string metric](https://en.wikipedia.org/wiki/String_metric) (also known as a string similarity metric or string distance function) is a metric that measures distance ("inverse similarity") between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) (also known as "edit distance"). 
 
-With string metrics we have arrived in the territory of search evaluation: so-called __[evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval))__ offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.
+Another is the [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance), which is perhaps a bit easier to grasp. The lower the Jaro-Winkler distance for two strings is, the more similar the strings are. The score is normalized such that 1 means an exact match and 0 means there is no similarity. For a Python implementation of the Jaro-Winkler similarity, which is a modified version of the Jaro-Winkler distance, giving more favorable ratings to strings that match from the beginning, see the [course repository](https://github.com/TomDeneire/InformationScience/blob/main/course/jarowinkler.py).
+
+
+
+## Final remark
+
+With the discussion of searching, we come to the end of our very succinct overview of Information Science. 
+
+Had our topic been Information Retrieval, we would have needed to add two additional, crucial steps, i.e. the **evaluation and ranking** of the search results. This articulates the difference between database querying, with results in *data*, and information retrieval querying, which results in *documents* containing data. In order to sift through the search results of the latter, we need [evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval) and [ranking](https://en.wikipedia.org/wiki/Ranking_(information_retrieval)) to make the results usable. Unfortunately, evaluation and ranking are beyond the scope of this course.
 
 ## Assignment: Spelling checker
 
@@ -139,4 +142,3 @@ As a final tip, you should consider reusing some of your code from chapter 3 for
 
 from jarowinkler import jaro_winkler
 print(jaro_winkler("coat", "cot"))
-
