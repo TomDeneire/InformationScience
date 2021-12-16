@@ -70,13 +70,10 @@ def build_xml(dc_dict: dict) -> bytes:
     Convert Dublin Core metadata dict to XML
     """
     root = lxml.etree.Element("metadata")
-    dc = lxml.etree.SubElement(root,
-                               "dc",
-                               xmlns="http://purl.org/dc/elements/1.1/")
+    dc = lxml.etree.SubElement(root, "dc", xmlns="http://purl.org/dc/elements/1.1/")
     for _, values in dc_dict.items():
         for category, data in values.items():
-            field = lxml.etree.SubElement(dc,
-                                          category)
+            field = lxml.etree.SubElement(dc, category)
             field.text = data
     dc_xml = lxml.etree.tostring(root)
     return dc_xml
@@ -123,7 +120,7 @@ Some points to take away from this assignment:
     main scope and not in a function scope, we avoid having to create the table
     with each conversion request.
 
-    2. This is a real-world example. As explained in chapter05, OAI-PMH is
+    2. This is a real-world example. As explained, OAI-PMH is
     the GLAM industry standard for exchanging metadata. As the DC format is
     mandatory in OAI, it means we have already implemented it in Brocade.
     So you can double check your solution and see a real-world implementation

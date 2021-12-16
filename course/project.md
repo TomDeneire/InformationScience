@@ -20,11 +20,9 @@ HPB offers metadata in several formats, including MARC, Dublin Core, ... See, fo
 
 How you query HPB and which metadata you use, is completely up to you.
 
-For the STCV dataset you will be using a sample from the **SQLite STCV export** that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query:
+For the STCV dataset you will be using a sample from the **SQLite STCV export** that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query. This selects 100 single-volume titles (multivolume titles pose specific reconciliation problems) with all relevant metadata you will need.
 
 ``` python
-# Select 100 single-volume titles from STCV
-# with detailed bibliographic information
 QUERY = """
 SELECT DISTINCT
     title.cloi as identifier,
@@ -62,7 +60,7 @@ LIMIT 100
 """
 ```
 
-## Goal
+## Technical specification
 
 The goal of the project is to write a Jupyter Notebook that looks for `stcv.sqlite` in the same directory as the notebook itself and produces an onscreen output of the potential matches in the form of STCV identifier (`c:stcv:*`) = HPB identifier.
 
@@ -80,4 +78,31 @@ One STCV record may also have several HPB matches.
 
 Please use only the `lxml` module to handle XML.
 
+**Important!** I am not aware of any limitations on the [HPB SRU access](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database), but nevertheless, please take the following precautions to keep your usage of the service "friendly":
+
+- as this application is not really performance-critical, combine each request with `time.sleep(2)`
+- try to keep your test-volume down, e.g. test with only one record first and/or save the XML response and handle it as a local file
+
+Please inform me if there are any API issues!
+
 Just to give you an idea: the model solution for this project took me about 4 hours to write and test, and is about 250 lines long (including the query).
+
+Hand in your project by setting up a private GitHub repository that you share with me (username [TomDeneire](https://github.com/TomDeneire)).
+
+## Expectations
+
+### Basic
+
+- Please hand in only fully functional code
+- Use only the Python standard library (except for `lxml`)
+- Write clean and legible code
+
+### Advanced
+
+- Take into account the differences between STCV and HPB metadata / cataloguing standards.
+- Optimize your CQL queries with indices, Booleans, ...
+- Simple queries will yield many results. Complex queries will yield fewer results. How can you find a balance?
+
+## Timing
+
+[To be agreed upon]
