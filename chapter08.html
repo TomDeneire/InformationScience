@@ -220,32 +220,25 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#searching">
-   Searching
+  <a class="reference internal nav-link" href="#regular-expressions">
+   Regular expressions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fuzzy-searching">
+   Fuzzy searching
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regular-expressions">
-     Regular expressions
+    <a class="reference internal nav-link" href="#string-metrics">
+     String metrics
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fuzzy-searching">
-     Fuzzy searching
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#string-metrics">
-       String metrics
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#evaluation-and-ranking">
-   Evaluation and ranking
+  <a class="reference internal nav-link" href="#final-remark">
+   Final remark
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -269,18 +262,11 @@
 <p>Credit: <a class="reference external" href="https://xkcd.com/1171/">xkcd.com</a></p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! Evidently, there is more to searching than just this. Moreover, we also need to say something about the crucial follow-up of any searching operation, i.e. the evaluation and subsequent ranking of the search results. Indeed, the very basic Information Retrieval model is:</p>
-<blockquote>
-<div><p>Retrieval &gt; Searching &gt; Evaluation &gt; Ranking</p>
-</div></blockquote>
-<p>Having already discussed some of the aspects of retrieval (e.g. querying), in this chapter, we will try to discuss the other factors. Again, we will do so from a very practical and hands-on standpoint, neglecting more or less completely the theoretical or multimedia dimension of these issues (see chapters 4-5, 14 in <em>Modern Information Retrieval</em>). Indeed, we will focus on text exclusively here.</p>
+<p>In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of <em>string</em>.find(<em>substring</em>) in Python! However, ae have already seen that searching text is rarely as easy as that. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (you are probably familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code> symbols) and will need to use <strong>regular expressions</strong> in our search, while other times we are not looking for exact results, but more interested in <strong>fuzzy searching</strong>.</p>
 </div>
-<div class="section" id="searching">
-<h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
-<p>We have already seen that searching text is rarely as easy as <code class="docutils literal notranslate"><span class="pre">string.find(substring)</span></code>. Searching vast data sets lead us to indexing, as did the issue of complex searches, such as Boolean queries. However, not all of the complex searches can be solved with indexing. Sometimes we want to include wildcards (many people are familiar with the <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol) in our search, while other times we are not looking for exact results, but more interested in <em>fuzzy</em> searching.</p>
 <div class="section" id="regular-expressions">
-<h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol we used is actually part of a separate programming language, called <strong>regular expressions</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia</a> says:</p>
+<h2>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol we used is actually part of a separate programming language, called <strong>regular expressions</strong>. <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia:Regular_expression</a> says:</p>
 <blockquote>
 <div><p>A regular expression (shortened as regex or regexp; also referred to as rational expression) is a sequence of characters that define a search pattern. Usually such patterns are used by string-searching algorithms for “find” or “find and replace” operations on strings, or for input validation. It is a technique developed in theoretical computer science and formal language theory.</p>
 </div></blockquote>
@@ -323,13 +309,15 @@
 </div>
 </div>
 </div>
-<p>So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem. If you find yourself parsing XML with regular expressions (use a parsing library), or testing the type of user input with regexes (use <code class="docutils literal notranslate"><span class="pre">.isinstance()</span></code>), reconsider!</p>
-<p>The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at <strong><a class="reference external" href="https://www.w3schools.com/python/python_regex.asp">w3schools</a></strong>) and there are also handy regex testers where you can immediately check your regex, like <strong><a class="reference external" href="https://regexr.com/">regexr</a></strong>. For a good Python cheat sheet, see this <strong><a class="reference external" href="https://link.medium.com/BYkb73meJab">Medium post</a></strong>.</p>
-<p>A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in <strong><a class="reference external" href="https://tools.ietf.org/html/rfc5322">RFC 5322</a></strong>. For a (more readable) summary, see <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Email_address#Syntax">Wikipedia</a></strong>.</p>
+<p>So when you are inclined to use regular expressions, it is often good to ask yourself: is this the best solution for this problem? If you find yourself parsing XML with regular expressions (use a parsing library!), or testing the type of user input with regexes (use <code class="docutils literal notranslate"><span class="pre">.isinstance()</span></code>), reconsider!</p>
+<p>The only way to really get the hang of regular expressions is by diving in the deep end. Fortunately, there are many good tutorials online (e.g. at <a class="reference external" href="https://www.w3schools.com/python/python_regex.asp">w3schools</a>) and there are also handy regex testers where you can immediately check your regex, like <a class="reference external" href="https://regexr.com/">regexr</a>. For a good Python cheat sheet, see this <a class="reference external" href="https://link.medium.com/BYkb73meJab">Medium post</a>.</p>
+<p>A good and certainly not trivial exercise would be to write a regex that can detect a valid email address, as specified in <a class="reference external" href="https://tools.ietf.org/html/rfc5322">RFC 5322</a>. For a (more readable) summary, see <a class="reference external" href="https://en.wikipedia.org/wiki/Email_address#Syntax">Wikipedia:Email_address#Syntax</a>.</p>
 <p>In practice, most applications that ask you to enter an email address will check on a simple subset of the specification. Can you whip something up that passes this test?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Examples from https://en.wikipedia.org/wiki/Email_address#Examples</span>
 <span class="n">TEST</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># valid addresses</span>
     <span class="s2">&quot;simple@example.com&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> 
@@ -346,8 +334,9 @@
 <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">email_regex</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="c1"># expand test</span>
-    <span class="k">if</span> <span class="n">address</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="c1"># expand pattern</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;.*?@.*?&#39;</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -361,7 +350,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test failed on 1234567890123456789012345678901234567890123456789012345678901234+x@example.com. Expected = False. Result = True
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test failed on A@b@c@example.com. Expected = False. Result = True
+Test failed on 1234567890123456789012345678901234567890123456789012345678901234+x@example.com. Expected = False. Result = True
 Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Expected = False. Result = True
 </pre></div>
 </div>
@@ -369,8 +359,8 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
 </div>
 </div>
 <div class="section" id="fuzzy-searching">
-<h3>Fuzzy searching<a class="headerlink" href="#fuzzy-searching" title="Permalink to this headline">¶</a></h3>
-<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia</a></strong> explains:</p>
+<h2>Fuzzy searching<a class="headerlink" href="#fuzzy-searching" title="Permalink to this headline">¶</a></h2>
+<p>Regular expressions can also be used to illustrate the concept of fuzzy searching or approximate string matching, which is the technique of finding strings that match a pattern approximately rather than exactly. <a class="reference external" href="https://en.wikipedia.org/wiki/Approximate_string_matching">Wikipedia:Approximate_string_matching</a> explains:</p>
 <blockquote>
 <div><p>The closeness of a match is measured in terms of the number of primitive operations necessary to convert the string into an exact match. This number is called the edit distance between the string and the pattern. The usual primitive operations are:</p>
 </div></blockquote>
@@ -422,14 +412,16 @@ Test failed on i_like_underscore@but_its_not_allow_in_this_part.example.com. Exp
 <div><p>Other matchers specify the number of operations of each type separately, while still others set a total cost but allow different weights to be assigned to different operations. Some matchers permit separate assignments of limits and weights to individual groups in the pattern.</p>
 </div></blockquote>
 <div class="section" id="string-metrics">
-<h4>String metrics<a class="headerlink" href="#string-metrics" title="Permalink to this headline">¶</a></h4>
-<p>A <strong><a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a></strong> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></strong> (also known as edit distance). Another is the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a></strong>.</p>
+<h3>String metrics<a class="headerlink" href="#string-metrics" title="Permalink to this headline">¶</a></h3>
+<p>As a concrete example of a string matcher, we can have a look at string metrics.</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/String_metric">string metric</a> (also known as a string similarity metric or string distance function) is a metric that measures distance (“inverse similarity”) between two text strings. A string metric provides a number indicating an algorithm-specific indication of distance. The most widely known string metric is a rudimentary one called the <a class="reference external" href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a> (also known as “edit distance”).</p>
+<p>Another is the <a class="reference external" href="https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro-Winkler distance</a>, which is perhaps a bit easier to grasp. The lower the Jaro-Winkler distance for two strings is, the more similar the strings are. The score is normalized such that 1 means an exact match and 0 means there is no similarity. For a Python implementation of the Jaro-Winkler similarity, which is a modified version of the Jaro-Winkler distance, giving more favorable ratings to strings that match from the beginning, see the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/blob/main/course/jarowinkler.py">course repository</a>.</p>
 </div>
 </div>
-</div>
-<div class="section" id="evaluation-and-ranking">
-<h2>Evaluation and ranking<a class="headerlink" href="#evaluation-and-ranking" title="Permalink to this headline">¶</a></h2>
-<p>With string metrics we have arrived in the territory of search evaluation: so-called <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)">evaluation measures</a></strong> offer us an exact means to quantify the success of our search. Nowadays, with the advent of big data and the ubiquity of information, the best search engines make the difference not by the amount of information they yield, but by the ranking of the results they display. Unfortunately, the scope of this course is too limited to go into ranking more deeply.</p>
+<div class="section" id="final-remark">
+<h2>Final remark<a class="headerlink" href="#final-remark" title="Permalink to this headline">¶</a></h2>
+<p>With the discussion of searching, we come to the end of our very succinct overview of Information Science.</p>
+<p>Had our topic been Information Retrieval, we would have needed to add two additional, crucial steps, i.e. the <strong>evaluation and ranking</strong> of the search results. This articulates the difference between database querying, with results in <em>data</em>, and information retrieval querying, which results in <em>documents</em> containing data. In order to sift through the search results of the latter, we need [evaluation measures](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval) and <a class="reference external" href="https://en.wikipedia.org/wiki/Ranking_(information_retrieval)">ranking</a> to make the results usable. Unfortunately, evaluation and ranking are beyond the scope of this course.</p>
 </div>
 <div class="section" id="assignment-spelling-checker">
 <h2>Assignment: Spelling checker<a class="headerlink" href="#assignment-spelling-checker" title="Permalink to this headline">¶</a></h2>
