@@ -192,8 +192,18 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#task">
-   Task
+  <a class="reference internal nav-link" href="#description">
+   Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metadata">
+   Metadata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#goal">
+   Goal
   </a>
  </li>
 </ul>
@@ -210,9 +220,71 @@
 <h1>Exam project<a class="headerlink" href="#exam-project" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/project.jpeg" /></p>
 <p>This document describes the exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
-<div class="section" id="task">
-<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
-<p>[to be decided]</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This year’s project can be described as an <strong>STCV - HPB data reconciliator</strong>. The idea is to write a piece of software that tries to pair up STCV (Short Title Catalogue Flanders) records with their HPB (Heritage of the Printed Book Database) matches.</p>
+<p>For instance:</p>
+<p><a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:12854444/E">c:stcv:12854444</a> matches <a class="reference external" href="http://hpb.cerl.org/record/FR-751131015.CG.FRBNF363412140000008">FR-751131015.CG.FRBNF363412140000008</a></p>
+</div>
+<div class="section" id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
+<p>This can be implemented using <strong>HPB’s SRU/CQL service</strong>, see <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=explain">https://sru.gbv.de/hpb?version=2.0&amp;operation=explain</a></p>
+<p>HPB offers metadata in several formats, including MARC, Dublin Core, … See, for instance, <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc">https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc</a></p>
+<p>How you query HPB and which metadata you use, is completely up to you.</p>
+<p>For the STCV dataset you will be using a sample from the <strong>SQLite STCV export</strong> that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select 100 single-volume titles from STCV</span>
+<span class="c1"># with detailed bibliographic information</span>
+<span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT DISTINCT</span>
+<span class="s2">    title.cloi as identifier,</span>
+<span class="s2">    COUNT(title.cloi) as id_count,</span>
+<span class="s2">    author_vw as author_standardized,</span>
+<span class="s2">    author_zvwr as author_original,</span>
+<span class="s2">    author_zbd as author_dates,</span>
+<span class="s2">    corporateauthor_nm as corporateauthor_standardized,</span>
+<span class="s2">    corporateauthor_zvwr as corporateauthor_original,</span>
+<span class="s2">    title_ti as title_title,</span>
+<span class="s2">    title_lg as title_language,</span>
+<span class="s2">    collation_fm as format,</span>
+<span class="s2">    collation_ka as quires,</span>
+<span class="s2">    collation_pg as pages,</span>
+<span class="s2">    edition_ed as edition_info,</span>
+<span class="s2">    impressum_ju1sv as year1,</span>
+<span class="s2">    impressum_ju1ty as year1_type,</span>
+<span class="s2">    impressum_ju2sv as year2,</span>
+<span class="s2">    impressum_ju2ty as year2_type,</span>
+<span class="s2">    impressum_pl as place,</span>
+<span class="s2">    impressum_ug as printer,</span>
+<span class="s2">    language_lg as language_info,</span>
+<span class="s2">    number_nr as fingerprint</span>
+<span class="s2">    FROM title</span>
+<span class="s2">LEFT JOIN author on author.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN collation on collation.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN corporateauthor on corporateauthor.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN edition on edition.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN impressum on impressum.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN language on language.cloi = title.cloi</span>
+<span class="s2">LEFT JOIN number on number.cloi = title.cloi</span>
+<span class="s2">GROUP BY identifier</span>
+<span class="s2">HAVING ID_COUNT=2</span>
+<span class="s2">LIMIT 100</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>The goal of the project is to write a Jupyter Notebook that looks for <code class="docutils literal notranslate"><span class="pre">stcv.sqlite</span></code> in the same directory as the notebook itself and produces an onscreen output of the potential matches in the form of STCV identifier (<code class="docutils literal notranslate"><span class="pre">c:stcv:*</span></code>) = HPB identifier.</p>
+<p>Just to be clear, the HPB identifier is the piece of data found in MARCXML field <code class="docutils literal notranslate"><span class="pre">035a</span></code>, e.g.:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;datafield</span> <span class="na">tag=</span><span class="s">&quot;035&quot;</span> <span class="na">ind1=</span><span class="s">&quot; &quot;</span> <span class="na">ind2=</span><span class="s">&quot; &quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;subfield</span> <span class="na">code=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;</span>IT-ICCU.TSAE008822<span class="nt">&lt;/subfield&gt;</span>
+<span class="nt">&lt;/datafield&gt;</span>
+</pre></div>
+</div>
+<p>You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.</p>
+<p>One STCV record may also have several HPB matches.</p>
+<p>Please use only the <code class="docutils literal notranslate"><span class="pre">lxml</span></code> module to handle XML.</p>
+<p>Just to give you an idea: the model solution for this project took me about 4 hours to write and test, and is about 250 lines long (including the query).</p>
 </div>
 </div>
 

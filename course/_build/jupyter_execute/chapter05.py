@@ -38,11 +38,11 @@ e.g. [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&
 
 Note the tag `<srw:numberOfRecords>`. Most SRU servers will not give you the entire response in one go. You can use the parameters `&startRecord=` and `&maximumRecords=` to harvest the whole result in chunks. For instance:
 
-[http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius](http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius)
+[http://sru.gbv.de/hpb?version=2.0&operation=searchRetrieve&query=lipsius](http://sru.gbv.de/hpb?version=2.0&operation=searchRetrieve&query=lipsius)
 
 ->
 
-[http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius&&startRecord=1&maximumRecords=10](http://sru.gbv.de/hpb?version=1.1&operation=searchRetrieve&query=lipsius&&startRecord=1&maximumRecords=10)
+[http://sru.gbv.de/hpb?version=2.0&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10](http://sru.gbv.de/hpb?version=2.0&operation=searchRetrieve&query=lipsius&&startRecord=1&maximumRecords=10)
 
 
 #### CQL
@@ -144,7 +144,7 @@ query = """
         select distinct author_zvwr, title_ti, impressum_ju1sv from author
         join title on author.cloi = title.cloi
         join impressum on title.cloi = impressum.cloi
-        group by author_zvwr
+        order by author_zvwr
         """
 c.execute(query)
 # Call fetchall() to get a list of the matching rows

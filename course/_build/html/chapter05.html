@@ -320,9 +320,9 @@
 <p>The <strong>searchRetrieve</strong> operation is the main operation of SRU. It allows the client to submit a search and retrieve request for matching records from the server. This operation needs to be combined with the <strong>query</strong> parameter</p>
 <p>e.g. <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=erasmus">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=erasmus</a></p>
 <p>Note the tag <code class="docutils literal notranslate"><span class="pre">&lt;srw:numberOfRecords&gt;</span></code>. Most SRU servers will not give you the entire response in one go. You can use the parameters <code class="docutils literal notranslate"><span class="pre">&amp;startRecord=</span></code> and <code class="docutils literal notranslate"><span class="pre">&amp;maximumRecords=</span></code> to harvest the whole result in chunks. For instance:</p>
-<p><a class="reference external" href="http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius">http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius</a></p>
+<p><a class="reference external" href="http://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius">http://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius</a></p>
 <p>-&gt;</p>
-<p><a class="reference external" href="http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius&amp;&amp;startRecord=1&amp;maximumRecords=10">http://sru.gbv.de/hpb?version=1.1&amp;operation=searchRetrieve&amp;query=lipsius&amp;&amp;startRecord=1&amp;maximumRecords=10</a></p>
+<p><a class="reference external" href="http://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;&amp;startRecord=1&amp;maximumRecords=10">http://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10</a></p>
 </div>
 <div class="section" id="cql">
 <h4>CQL<a class="headerlink" href="#cql" title="Permalink to this headline">¶</a></h4>
@@ -417,7 +417,7 @@
 <span class="s2">        select distinct author_zvwr, title_ti, impressum_ju1sv from author</span>
 <span class="s2">        join title on author.cloi = title.cloi</span>
 <span class="s2">        join impressum on title.cloi = impressum.cloi</span>
-<span class="s2">        group by author_zvwr</span>
+<span class="s2">        order by author_zvwr</span>
 <span class="s2">        &quot;&quot;&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="c1"># Call fetchall() to get a list of the matching rows</span>
