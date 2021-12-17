@@ -115,7 +115,7 @@ A [string metric](https://en.wikipedia.org/wiki/String_metric) (also known as a 
 
 Another is the [Jaro-Winkler distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance), which is perhaps a bit easier to grasp. The lower the Jaro-Winkler distance for two strings is, the more similar the strings are. The score is normalized such that 1 means an exact match and 0 means there is no similarity. For a Python implementation of the Jaro-Winkler similarity, which is a modified version of the Jaro-Winkler distance, giving more favorable ratings to strings that match from the beginning, see the [course repository](https://github.com/TomDeneire/InformationScience/blob/main/course/jarowinkler.py).
 
-
+There are many concrete applications for string metrics. Think of Google's *Did you mean...* feature, which is a form of fuzzy searching, or, the example used below, a spelling checker.
 
 ## Final remark
 
