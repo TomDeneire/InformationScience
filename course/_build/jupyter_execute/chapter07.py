@@ -8,7 +8,7 @@ Credit: [xkcd](https://xkcd.com/1651/)
 
 In all of our discussions about information we have so far neglected perhaps the most important aspect of it: **searching**. Indeed, you could say that the only difference between data and information, is that "information is data that we are looking for". Ergo, very simply said, working with information often boils down to "searching stuff". Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.
 
-Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth's monumental *The Art of Computer Programming* devotes an entire volume (i.e. vol. 3) to "Sorting and Searching". This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.
+Searching and search optimization are a vast area of computer science and a distinct type of computational problem. For instance, Donald Knuth's monumental *The Art of Computer Programming* devotes an entire volume (i.e. vol. 3) to "Sorting and Searching". This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.
 
 Still, at face value searching might seem **simple**. Let's look at finding a substring in a string. In Python, for instance, offers several ways to check for this:
 
@@ -116,7 +116,7 @@ The difference is as large as milliseconds versus nanoseconds! Remember, with ST
 
 In essence and, what we have just done boils down to changing the [time complexity](https://en.wikipedia.org/wiki/Time_complexity) of our search algorithm, i.e. the amount of computer time it takes to run the algorithm. 
 
-Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
+Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length `n` has a time complexity of `O(n)`, i.e. it could maximally take all `n` units of time to find it (`O` stands for "order of"). Accessing a key in a Python dictionary, on the other hand, has a time complexity of `O(1)`, i.e. it always takes just one unit of time.
 
 Optimizing searches by reducing the time complexity of one's search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.
 

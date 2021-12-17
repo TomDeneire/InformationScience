@@ -287,7 +287,7 @@
 <div class="section" id="searching">
 <h2>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h2>
 <p>In all of our discussions about information we have so far neglected perhaps the most important aspect of it: <strong>searching</strong>. Indeed, you could say that the only difference between data and information, is that “information is data that we are looking for”. Ergo, very simply said, working with information often boils down to “searching stuff”. Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.</p>
-<p>Searching and search optimization are a vast area of computer science distinct type of computational problem. For instance, Donald Knuth’s monumental <em>The Art of Computer Programming</em> devotes an entire volume (i.e. vol. 3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
+<p>Searching and search optimization are a vast area of computer science and a distinct type of computational problem. For instance, Donald Knuth’s monumental <em>The Art of Computer Programming</em> devotes an entire volume (i.e. vol. 3) to “Sorting and Searching”. This means that we will only be able to briefly touch on the topic and, as always, from a very practical point of view.</p>
 <p>Still, at face value searching might seem <strong>simple</strong>. Let’s look at finding a substring in a string. In Python, for instance, offers several ways to check for this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -444,7 +444,7 @@ True
 <div class="section" id="time-complexity">
 <h4>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">¶</a></h4>
 <p>In essence and, what we have just done boils down to changing the <a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm.</p>
-<p>Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it. Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
+<p>Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform. Thus we say that looking for an item in a Python list with length <code class="docutils literal notranslate"><span class="pre">n</span></code> has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(n)</span></code>, i.e. it could maximally take all <code class="docutils literal notranslate"><span class="pre">n</span></code> units of time to find it (<code class="docutils literal notranslate"><span class="pre">O</span></code> stands for “order of”). Accessing a key in a Python dictionary, on the other hand, has a time complexity of <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>, i.e. it always takes just one unit of time.</p>
 <p>Optimizing searches by reducing the time complexity of one’s search operation lies at the very heart of searching and is a key aspect to Information Science in particular and Computer Science in general.</p>
 <p>(For a good introduction to different time-complexities, read this <a class="reference external" href="https://betterprogramming.pub/practical-big-o-notation-for-javascript-developers-115f6368085d">Medium article</a>).</p>
 </div>
@@ -747,7 +747,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0008145450001393328&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0009757540001373854&gt;
 Thackeray_Barry.txt
 Fielding_Joseph.txt
 </pre></div>
