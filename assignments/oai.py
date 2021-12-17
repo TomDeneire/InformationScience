@@ -35,7 +35,7 @@ def parse(oai: bytes) -> dict:
     """
     # .fromstring() method only works on ... bytes
     # see https://lxml.de/parsing.html#parsers
-    root = lxml.etree.fromstring(oai)
+    root = lxml.etree.fromstring(oai)  # type: ignore
     metadata = {}
     index = 0
     # iter() method to iterate over elements
@@ -69,11 +69,11 @@ def build_xml(dc_dict: dict) -> bytes:
     """
     Convert Dublin Core metadata dict to XML
     """
-    root = lxml.etree.Element("metadata")
-    dc = lxml.etree.SubElement(root, "dc", xmlns="http://purl.org/dc/elements/1.1/")
+    root = lxml.etree.Element("metadata")  # type: ignore
+    dc = lxml.etree.SubElement(root, "dc", xmlns="http://purl.org/dc/elements/1.1/")  # type: ignore
     for _, values in dc_dict.items():
         for category, data in values.items():
-            field = lxml.etree.SubElement(dc, category)
+            field = lxml.etree.SubElement(dc, category)  # type: ignore
             field.text = data
     dc_xml = lxml.etree.tostring(root)
     return dc_xml
