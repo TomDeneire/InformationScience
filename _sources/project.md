@@ -2,6 +2,8 @@
 
 ![](images/project.jpeg)
 
+Credit: unknown
+
 This document describes the exam project for the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
 
 ## Description
@@ -93,6 +95,7 @@ Hand in your project by setting up a private GitHub repository that you share wi
 
 ### Basic
 
+- As with any exam, this project is strictly personal
 - Please hand in only fully functional code
 - Use only the Python standard library (except for `lxml`)
 - Write clean and legible code
