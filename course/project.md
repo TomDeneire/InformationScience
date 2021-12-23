@@ -108,4 +108,4 @@ Hand in your project by setting up a private GitHub repository that you share wi
 
 ## Timing
 
-[To be agreed upon]
+The final deadline to upload your code to GitHub is **Sunday 30 January, 23h59**.
