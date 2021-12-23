@@ -172,14 +172,14 @@ import array
 
 # We use arrays as they are already more memory-efficient than lists
 # https://docs.python.org/3/library/array.html
-pens_sold = array.array('B', [1, 5, 10])
+pens_sold = array.array('B', [1, 5, 10])  # 'B' = unsigned char
 size = getsizeof(pens_sold)
 print(size, 'bytes')
 
 
 So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
 
-all_pens_sold = array.array('L', [i for i in range(1,10000000)])
+all_pens_sold = array.array('I', [i for i in range(1,10000000)])  # 'I' = unsigned int
 # 1 byte = 0.00000095367432 megabytes
 size = getsizeof(all_pens_sold) * 0.00000095367432
 print(size, 'megabytes')
@@ -191,7 +191,7 @@ So you see, things can get out of hand quickly. But what if instead of recording
 
 import array
 
-# a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)
+# a bit array with bits 1, 5 and 10 set to 1 (= pens sold)
 pens_sold = array.array('B', [0b1, 0b0, 0b0, 0b0, 0b1, 0b0, 0b0, 0b0, 0b0, 0b1])
 size = getsizeof(pens_sold)
 print(size, 'bytes')
