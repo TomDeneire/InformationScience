@@ -28,7 +28,7 @@ CODES[429] = "The request could be served because the application has reached it
 CODES[500] = "Internal Server Error. Something has gone wrong, which we will correct."
 
 # Europeana API prefix
-EUROPEANA_ENTITIES = "https://www.europeana.eu/api/entities/suggest?wskey=apidemo&text="
+EUROPEANA_ENTITIES = "https://api.europeana.eu/entity/suggest?wskey=apidemo&text="
 
 # FUNCTIONS
 
