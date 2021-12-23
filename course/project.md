@@ -89,7 +89,7 @@ Please inform me if there are any API issues!
 
 Just to give you an idea: the model solution for this project took me about 4 hours to write and test, and is about 250 lines long (including the query).
 
-Hand in your project by setting up a private GitHub repository that you share with me (username [TomDeneire](https://github.com/TomDeneire)).
+Hand in your project by setting up a private GitHub repository that you share with me (username [TomDeneire](https://github.com/TomDeneire)). Please take care to mention your **full name** in the exam notebook!
 
 ## Expectations
 
