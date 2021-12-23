@@ -546,7 +546,7 @@ None
 
 <span class="c1"># We use arrays as they are already more memory-efficient than lists</span>
 <span class="c1"># https://docs.python.org/3/library/array.html</span>
-<span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>  <span class="c1"># &#39;B&#39; = unsigned char</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
 </pre></div>
@@ -561,7 +561,7 @@ None
 <p>So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>  <span class="c1"># &#39;I&#39; = unsigned int</span>
 <span class="c1"># 1 byte = 0.00000095367432 megabytes</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
@@ -569,7 +569,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76.29399900576193 megabytes
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.147030020459205 megabytes
 </pre></div>
 </div>
 </div>
@@ -582,7 +582,7 @@ None
 
 <span class="kn">import</span> <span class="nn">array</span>
 
-<span class="c1"># a bit array of unsigned ints with bits 1, 5 and 10 set to 1 (= pens sold)</span>
+<span class="c1"># a bit array with bits 1, 5 and 10 set to 1 (= pens sold)</span>
 <span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b0</span><span class="p">,</span> <span class="mb">0b1</span><span class="p">])</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>

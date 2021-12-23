@@ -76,7 +76,7 @@ Just to be clear, the HPB identifier is the piece of data found in MARCXML field
 
 You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.
 
-One STCV record may also have several HPB matches.
+One STCV record may also have several HPB matches. Moreover, you may notice that some HPB records explicitely link to STCV, e.g. [http://hpb.cerl.org/record/BE-AnVE.c:stcv:12922627](http://hpb.cerl.org/record/BE-AnVE.c:stcv:12922627)? However, not all relevant HPB records will have such an explicit link. There is no continuous synchronization of HPB and STCV. Your software would be a good step in that direction. In other words, **any HPB id** can be a match for an STCV record, not only those HPB records which already contain an STCV link.
 
 Please use only the `lxml` module to handle XML.
 
@@ -108,4 +108,4 @@ Hand in your project by setting up a private GitHub repository that you share wi
 
 ## Timing
 
-[To be agreed upon]
+The final deadline to upload your code to GitHub is **Sunday 30 January, 23h59**.
