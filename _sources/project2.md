@@ -64,7 +64,7 @@ One authority record may have several potential CERL Thesaurus matches. Also kee
 
 Please use only the `lxml` module to handle XML.
 
-**Important!** I am not aware of any limitations on the [SRU interface to the CERL Thesaurus]<https://www.cerl.org/resources/cerl_thesaurus/sru>), but nevertheless, please take the following precautions to keep your usage of the service "friendly":
+**Important!** I am not aware of any limitations on the [SRU interface to the CERL Thesaurus](https://www.cerl.org/resources/cerl_thesaurus/sru), but nevertheless, please take the following precautions to keep your usage of the service "friendly":
 
 - as this application is not really performance-critical, combine each request with `time.sleep(2)`
 - try to keep your test-volume down, e.g. test with only one record first and/or save the XML response and handle it as a local file
