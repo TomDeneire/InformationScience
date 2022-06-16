@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exam project &#8212; Information Science</title>
+    <title>Exam project (2) &#8212; Information Science</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -35,7 +35,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Information Science (2021-2022)" href="coursedetails.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -75,7 +74,7 @@
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="chapter02.html">
    Chapter 2: Defining Information
@@ -116,8 +115,8 @@
    Information Science (2021-2022)
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="project.html">
    Exam project
   </a>
  </li>
@@ -163,7 +162,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/project.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/project2.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -238,80 +237,63 @@
         
               <div>
                 
-  <div class="section" id="exam-project">
-<h1>Exam project<a class="headerlink" href="#exam-project" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="exam-project-2">
+<h1>Exam project (2)<a class="headerlink" href="#exam-project-2" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/project.jpeg" /></p>
 <p>Credit: unknown</p>
-<p>This document describes the exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
+<p>This document describes the <strong>2022 second exam period</strong> (22 August - 10 September 2022) exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This year’s project can be described as an <strong>STCV - HPB data reconciliator</strong>. The idea is to write a piece of software that tries to pair up STCV (Short Title Catalogue Flanders) records with their HPB (Heritage of the Printed Book Database) matches.</p>
+<p>This project can be described as an <strong>Anet - CERL thesaurus data reconciliator</strong>. The idea is to write a piece of software that tries to pair up  authority records (which describe entities such as people, places, organizations, …) from the <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Anet library network</a>  with their <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a> matches.</p>
 <p>For instance:</p>
-<p><a class="reference external" href="https://anet.be/record/stcvopac/c:stcv:12854444/E">c:stcv:12854444</a> matches <a class="reference external" href="http://hpb.cerl.org/record/FR-751131015.CG.FRBNF363412140000008">FR-751131015.CG.FRBNF363412140000008</a></p>
+<p><a class="reference external" href="https://anet.be/record/isaarua/au::6387/E">au::6387</a> matches <a class="reference external" href="https://data.cerl.org/thesaurus/cnp02236021">cnp02236021</a></p>
 </div>
 <div class="section" id="metadata">
 <h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
-<p>This can be implemented using <strong>HPB’s SRU/CQL service</strong>, see <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=explain">https://sru.gbv.de/hpb?version=2.0&amp;operation=explain</a></p>
-<p>HPB offers metadata in several formats, including MARC, Dublin Core, … See, for instance, <a class="reference external" href="https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc">https://sru.gbv.de/hpb?version=2.0&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=dc</a></p>
-<p>How you query HPB and which metadata you use, is completely up to you.</p>
-<p>For the STCV dataset you will be using a sample from the <strong>SQLite STCV export</strong> that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query. This selects 100 single-volume titles (multivolume titles pose specific reconciliation problems) with all relevant metadata you will need.</p>
+<p>This can be implemented using the <strong>CERL Thesaurus SRU/CQL service</strong>, see <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain</a></p>
+<p>HPB offers metadata in several formats, including MARCXML, or the more explicit ctas. See, for instance, <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=marcxml">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=marcxml</a> or <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=ctas">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=ctas</a>.</p>
+<p>How you query the CERL Thesaurus and which metadata you use, is completely up to you.</p>
+<p>For the Anet authority records dataset you will be using a sample from the <strong>SQLite  export</strong> (extract from <code class="docutils literal notranslate"><span class="pre">authorities.zip</span></code>) that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query. This selects 100 records of type <code class="docutils literal notranslate"><span class="pre">P</span></code> (person), born in the seventeenth century, with all relevant metadata you will need.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT DISTINCT</span>
-<span class="s2">    title.cloi as identifier,</span>
-<span class="s2">    COUNT(title.cloi) as id_count,</span>
-<span class="s2">    author_vw as author_standardized,</span>
-<span class="s2">    author_zvwr as author_original,</span>
-<span class="s2">    author_zbd as author_dates,</span>
-<span class="s2">    corporateauthor_nm as corporateauthor_standardized,</span>
-<span class="s2">    corporateauthor_zvwr as corporateauthor_original,</span>
-<span class="s2">    title_ti as title_title,</span>
-<span class="s2">    title_lg as title_language,</span>
-<span class="s2">    collation_fm as format,</span>
-<span class="s2">    collation_ka as quires,</span>
-<span class="s2">    collation_pg as pages,</span>
-<span class="s2">    edition_ed as edition_info,</span>
-<span class="s2">    impressum_ju1sv as year1,</span>
-<span class="s2">    impressum_ju1ty as year1_type,</span>
-<span class="s2">    impressum_ju2sv as year2,</span>
-<span class="s2">    impressum_ju2ty as year2_type,</span>
-<span class="s2">    impressum_pl as place,</span>
-<span class="s2">    impressum_ug as printer,</span>
-<span class="s2">    language_lg as language_info,</span>
-<span class="s2">    number_nr as fingerprint</span>
-<span class="s2">    FROM title</span>
-<span class="s2">LEFT JOIN author on author.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN collation on collation.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN corporateauthor on corporateauthor.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN edition on edition.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN impressum on impressum.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN language on language.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN number on number.cloi = title.cloi</span>
-<span class="s2">GROUP BY identifier</span>
-<span class="s2">HAVING ID_COUNT=2</span>
-<span class="s2">LIMIT 100</span>
+<span class="s2">SELECT</span>
+<span class="s2">    DISTINCT administration.LOI AS identifier,</span>
+<span class="s2">    begin_in AS begin_date,</span>
+<span class="s2">    begin_so AS begin_standardized,</span>
+<span class="s2">    end_in AS end_date,</span>
+<span class="s2">    end_so AS end_standardized,</span>
+<span class="s2">    dsc_fn AS family_name,</span>
+<span class="s2">    dsc_vn AS first_name,</span>
+<span class="s2">    dsc_nm AS name,</span>
+<span class="s2">    dsc AS description</span>
+<span class="s2">FROM</span>
+<span class="s2">    administration</span>
+<span class="s2">    LEFT JOIN dates ON dates.LOI = administration.LOI</span>
+<span class="s2">    LEFT JOIN identity ON identity.LOI = administration.LOI</span>
+<span class="s2">WHERE</span>
+<span class="s2">    administration.type = &quot;P&quot;</span>
+<span class="s2">    AND begin_standardized LIKE &quot;16%&quot;</span>
+<span class="s2">LIMIT</span>
+<span class="s2">    100</span>
 <span class="s2">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="technical-specification">
 <h2>Technical specification<a class="headerlink" href="#technical-specification" title="Permalink to this headline">¶</a></h2>
-<p>The goal of the project is to write a Jupyter Notebook that looks for <code class="docutils literal notranslate"><span class="pre">stcv.sqlite</span></code> in the same directory as the notebook itself and produces an onscreen output of the potential matches in the form of STCV identifier (<code class="docutils literal notranslate"><span class="pre">c:stcv:*</span></code>) = HPB identifier.</p>
-<p>Just to be clear, the HPB identifier is the piece of data found in MARCXML field <code class="docutils literal notranslate"><span class="pre">035a</span></code>, e.g.:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;datafield</span> <span class="na">tag=</span><span class="s">&quot;035&quot;</span> <span class="na">ind1=</span><span class="s">&quot; &quot;</span> <span class="na">ind2=</span><span class="s">&quot; &quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;subfield</span> <span class="na">code=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;</span>IT-ICCU.TSAE008822<span class="nt">&lt;/subfield&gt;</span>
-<span class="nt">&lt;/datafield&gt;</span>
+<p>The goal of the project is to write a Jupyter Notebook that looks for <code class="docutils literal notranslate"><span class="pre">authorities.sqlite</span></code> in the same directory as the notebook itself and produces an onscreen output of the potential matches in the form of authority identifier (<code class="docutils literal notranslate"><span class="pre">au::*</span></code>) = CERL Thesaurus identifier.</p>
+<p>Just to be clear, the CERL Thesaurus identifier is the piece of data found in this XML element, e.g.:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;srw:recordIdentifier&gt;</span>cnp00605296<span class="nt">&lt;/srw:recordIdentifier&gt;</span>
 </pre></div>
 </div>
 <p>You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.</p>
-<p>One STCV record may also have several HPB matches. Moreover, you may notice that some HPB records explicitely link to STCV, e.g. <a class="reference external" href="http://hpb.cerl.org/record/BE-AnVE.c:stcv:12922627">http://hpb.cerl.org/record/BE-AnVE.c:stcv:12922627</a>? However, not all relevant HPB records will have such an explicit link. There is no continuous synchronization of HPB and STCV. Your software would be a good step in that direction. In other words, <strong>any HPB id</strong> can be a match for an STCV record, not only those HPB records which already contain an STCV link.</p>
+<p>One authority record may have several potential CERL Thesaurus matches. Also keep in mind that people can be known under several different names (language variants, pseudonyms, abbreviated forms, etc.).</p>
 <p>Please use only the <code class="docutils literal notranslate"><span class="pre">lxml</span></code> module to handle XML.</p>
-<p><strong>Important!</strong> I am not aware of any limitations on the <a class="reference external" href="https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database">HPB SRU access</a>, but nevertheless, please take the following precautions to keep your usage of the service “friendly”:</p>
+<p><strong>Important!</strong> I am not aware of any limitations on the [SRU interface to the CERL Thesaurus]<a class="reference external" href="https://www.cerl.org/resources/cerl_thesaurus/sru">https://www.cerl.org/resources/cerl_thesaurus/sru</a>), but nevertheless, please take the following precautions to keep your usage of the service “friendly”:</p>
 <ul class="simple">
 <li><p>as this application is not really performance-critical, combine each request with <code class="docutils literal notranslate"><span class="pre">time.sleep(2)</span></code></p></li>
 <li><p>try to keep your test-volume down, e.g. test with only one record first and/or save the XML response and handle it as a local file</p></li>
 </ul>
 <p>Please inform me if there are any API issues!</p>
-<p>Just to give you an idea: the model solution for this project took me about 4 hours to write and test, and is about 250 lines long (including the query).</p>
 <p>Hand in your project by setting up a private GitHub repository that you share with me (username <a class="reference external" href="https://github.com/TomDeneire">TomDeneire</a>). Please take care to mention your <strong>full name</strong> in the exam notebook!</p>
 </div>
 <div class="section" id="expectations">
@@ -328,7 +310,7 @@
 <div class="section" id="advanced">
 <h3>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Take into account the differences between STCV and HPB metadata / cataloguing standards.</p></li>
+<li><p>Take into account the differences between CERL Thesaurus and authority metadata / cataloguing standards.</p></li>
 <li><p>Optimize your CQL queries with indices, Booleans, …</p></li>
 <li><p>Simple queries will yield many results. Complex queries will yield fewer results. How can you find a balance?</p></li>
 </ul>
@@ -336,7 +318,7 @@
 </div>
 <div class="section" id="timing">
 <h2>Timing<a class="headerlink" href="#timing" title="Permalink to this headline">¶</a></h2>
-<p>The final deadline to upload your code to GitHub is <strong>Sunday 30 January, 23h59</strong>.</p>
+<p>The final deadline to upload your code to GitHub is <strong>5 September 2022</strong>.</p>
 </div>
 </div>
 
@@ -368,7 +350,6 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="coursedetails.html" title="previous page">Information Science (2021-2022)</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
