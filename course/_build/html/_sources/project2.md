@@ -88,6 +88,8 @@ Hand in your project by setting up a private GitHub repository that you share wi
 - Optimize your CQL queries with indices, Booleans, ...
 - Simple queries will yield many results. Complex queries will yield fewer results. How can you find a balance?
 
+Note: It might be interesting to re-read the feedback for the January exam, which pointed out some common mistakes (e.g. parsing XML with regular expressions).
+
 ## Timing
 
 The final deadline to upload your code to GitHub is **5 September 2022**.
