@@ -141,4 +141,5 @@ chapter07
 chapter08
 coursedetails
 project
+project2
 ```
