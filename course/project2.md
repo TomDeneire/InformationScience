@@ -22,7 +22,7 @@ HPB offers metadata in several formats, including MARCXML, or the more explicit 
 
 How you query the CERL Thesaurus and which metadata you use, is completely up to you.
 
-For the Anet authority records dataset you will be using a sample from the **SQLite  export** (extract from `authorities.zip`) that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query. This selects 100 records of type `P` (person), born in the seventeenth century, with all relevant metadata you will need.
+For the Anet authority records dataset you will be using a sample from the **SQLite  export** (extract from `authorities.zip`) that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query. This selects 50 records of type `P` (person), born in the seventeenth century, with all relevant metadata you will need.
 
 ``` python
 QUERY = """
@@ -44,7 +44,7 @@ WHERE
     administration.type = "P"
     AND begin_standardized LIKE "16%"
 LIMIT
-    100
+    50
 """
 ```
 
@@ -57,6 +57,17 @@ Just to be clear, the CERL Thesaurus identifier is the piece of data found in th
 ``` xml
 <srw:recordIdentifier>cnp00605296</srw:recordIdentifier>
 ```
+
+or
+
+```xml
+<record xmlns="http://www.loc.gov/MARC21/slim">
+<leader>0RL 00000nz 22000003 45 </leader>
+<controlfield tag="001">cnp02312326</controlfield>
+...
+```
+
+(if you opt to use MARCXML)
 
 You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.
 

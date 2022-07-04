@@ -4,4 +4,5 @@ course/__*
 course/project.md
 course/index
 course/.*
+course/data/authorities.sqlite
 
