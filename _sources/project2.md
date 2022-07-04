@@ -4,7 +4,7 @@
 
 Credit: unknown
 
-This document describes the **2022 second exam period** (22 August - 10 September 2022) exam project for the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
+This document describes the **2022 second exam period** (22 August - 10 September 2022) exam project for the course "Information Science" for the UAntwerp Master of Digital Text Analysis".
 
 ## Description
 
@@ -22,7 +22,7 @@ HPB offers metadata in several formats, including MARCXML, or the more explicit 
 
 How you query the CERL Thesaurus and which metadata you use, is completely up to you.
 
-For the Anet authority records dataset you will be using a sample from the **SQLite  export** (extract from `authorities.zip`) that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query. This selects 50 records of type `P` (person), born in the seventeenth century, with all relevant metadata you will need.
+For the Anet authority records dataset you will be using a sample from the **SQLite  export** (extract from `authorities.zip`) that is in the [course repository](https://github.com/TomDeneire/InformationScience/tree/main/course/data). This sample is defined as the following SQL query, which selects 50 records of type `P` (person), born in the seventeenth century, with all relevant metadata you will need.
 
 ``` python
 QUERY = """
@@ -58,7 +58,7 @@ Just to be clear, the CERL Thesaurus identifier is the piece of data found in th
 <srw:recordIdentifier>cnp00605296</srw:recordIdentifier>
 ```
 
-or
+or also
 
 ```xml
 <record xmlns="http://www.loc.gov/MARC21/slim">
@@ -67,7 +67,7 @@ or
 ...
 ```
 
-(if you opt to use MARCXML)
+if you use MARCXML.
 
 You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.
 

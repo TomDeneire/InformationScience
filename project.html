@@ -248,7 +248,7 @@
 <h1>Exam project<a class="headerlink" href="#exam-project" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/project.jpeg" /></p>
 <p>Credit: unknown</p>
-<p>This document describes the exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
+<p>This document describes the exam project for the course “Information Science” for the UAntwerp Master of Digital Text Analysis.</p>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>This year’s project can be described as an <strong>STCV - HPB data reconciliator</strong>. The idea is to write a piece of software that tries to pair up STCV (Short Title Catalogue Flanders) records with their HPB (Heritage of the Printed Book Database) matches.</p>
@@ -262,39 +262,43 @@
 <p>How you query HPB and which metadata you use, is completely up to you.</p>
 <p>For the STCV dataset you will be using a sample from the <strong>SQLite STCV export</strong> that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query. This selects 100 single-volume titles (multivolume titles pose specific reconciliation problems) with all relevant metadata you will need.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT DISTINCT</span>
-<span class="s2">    title.cloi as identifier,</span>
-<span class="s2">    COUNT(title.cloi) as id_count,</span>
-<span class="s2">    author_vw as author_standardized,</span>
-<span class="s2">    author_zvwr as author_original,</span>
-<span class="s2">    author_zbd as author_dates,</span>
-<span class="s2">    corporateauthor_nm as corporateauthor_standardized,</span>
-<span class="s2">    corporateauthor_zvwr as corporateauthor_original,</span>
-<span class="s2">    title_ti as title_title,</span>
-<span class="s2">    title_lg as title_language,</span>
-<span class="s2">    collation_fm as format,</span>
-<span class="s2">    collation_ka as quires,</span>
-<span class="s2">    collation_pg as pages,</span>
-<span class="s2">    edition_ed as edition_info,</span>
-<span class="s2">    impressum_ju1sv as year1,</span>
-<span class="s2">    impressum_ju1ty as year1_type,</span>
-<span class="s2">    impressum_ju2sv as year2,</span>
-<span class="s2">    impressum_ju2ty as year2_type,</span>
-<span class="s2">    impressum_pl as place,</span>
-<span class="s2">    impressum_ug as printer,</span>
-<span class="s2">    language_lg as language_info,</span>
-<span class="s2">    number_nr as fingerprint</span>
-<span class="s2">    FROM title</span>
-<span class="s2">LEFT JOIN author on author.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN collation on collation.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN corporateauthor on corporateauthor.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN edition on edition.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN impressum on impressum.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN language on language.cloi = title.cloi</span>
-<span class="s2">LEFT JOIN number on number.cloi = title.cloi</span>
-<span class="s2">GROUP BY identifier</span>
-<span class="s2">HAVING ID_COUNT=2</span>
-<span class="s2">LIMIT 100</span>
+<span class="s2">SELECT</span>
+<span class="s2">    DISTINCT title.cloi AS identifier,</span>
+<span class="s2">    COUNT(title.cloi) AS id_count,</span>
+<span class="s2">    author_vw AS author_standardized,</span>
+<span class="s2">    author_zvwr AS author_original,</span>
+<span class="s2">    author_zbd AS author_dates,</span>
+<span class="s2">    corporateauthor_nm AS corporateauthor_standardized,</span>
+<span class="s2">    corporateauthor_zvwr AS corporateauthor_original,</span>
+<span class="s2">    title_ti AS title_title,</span>
+<span class="s2">    title_lg AS title_language,</span>
+<span class="s2">    collation_fm AS format,</span>
+<span class="s2">    collation_ka AS quires,</span>
+<span class="s2">    collation_pg AS pages,</span>
+<span class="s2">    edition_ed AS edition_info,</span>
+<span class="s2">    impressum_ju1sv AS year1,</span>
+<span class="s2">    impressum_ju1ty AS year1_type,</span>
+<span class="s2">    impressum_ju2sv AS year2,</span>
+<span class="s2">    impressum_ju2ty AS year2_type,</span>
+<span class="s2">    impressum_pl AS place,</span>
+<span class="s2">    impressum_ug AS printer,</span>
+<span class="s2">    language_lg AS language_info,</span>
+<span class="s2">    number_nr AS fingerprint</span>
+<span class="s2">FROM</span>
+<span class="s2">    title</span>
+<span class="s2">    LEFT JOIN author ON author.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN COLLATION ON COLLATION.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN corporateauthor ON corporateauthor.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN edition ON edition.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN impressum ON impressum.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN language ON language.cloi = title.cloi</span>
+<span class="s2">    LEFT JOIN number ON number.cloi = title.cloi</span>
+<span class="s2">GROUP BY</span>
+<span class="s2">    identifier</span>
+<span class="s2">HAVING</span>
+<span class="s2">    ID_COUNT = 2</span>
+<span class="s2">LIMIT</span>
+<span class="s2">    100</span>
 <span class="s2">&quot;&quot;&quot;</span>
 </pre></div>
 </div>
