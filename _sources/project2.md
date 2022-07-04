@@ -18,7 +18,13 @@ For instance:
 
 This can be implemented using the **CERL Thesaurus SRU/CQL service**, see [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=explain](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=explain)
 
-HPB offers metadata in several formats, including MARCXML, or the more explicit ctas. See, for instance, [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=marcxml](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=marcxml) or [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=ctas](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=ctas).
+HPB offers metadata in several formats, including ``MARCXML``, or the more explicit ``CTAS``. For instance:
+
+[https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=marcxml](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=marcxml)
+
+or
+
+[https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=ctas](https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query=lipsius&startRecord=1&maximumRecords=10&recordSchema=ctas)
 
 How you query the CERL Thesaurus and which metadata you use, is completely up to you.
 
@@ -103,4 +109,4 @@ Note: It might be interesting to re-read the feedback for the January exam, whic
 
 ## Timing
 
-The final deadline to upload your code to GitHub is **5 September 2022**.
+The final deadline to upload your code to GitHub is **4 September 2022, 23h59**.
