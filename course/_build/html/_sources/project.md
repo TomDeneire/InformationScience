@@ -4,7 +4,7 @@
 
 Credit: unknown
 
-This document describes the exam project for the course "Information Science" for the UAntwerp Master of Linguistics (from 2021-2022 onwards: "Master of Digital Text Analysis").
+This document describes the exam project for the course "Information Science" for the UAntwerp Master of Digital Text Analysis.
 
 ## Description
 
@@ -26,39 +26,43 @@ For the STCV dataset you will be using a sample from the **SQLite STCV export** 
 
 ``` python
 QUERY = """
-SELECT DISTINCT
-    title.cloi as identifier,
-    COUNT(title.cloi) as id_count,
-    author_vw as author_standardized,
-    author_zvwr as author_original,
-    author_zbd as author_dates,
-    corporateauthor_nm as corporateauthor_standardized,
-    corporateauthor_zvwr as corporateauthor_original,
-    title_ti as title_title,
-    title_lg as title_language,
-    collation_fm as format,
-    collation_ka as quires,
-    collation_pg as pages,
-    edition_ed as edition_info,
-    impressum_ju1sv as year1,
-    impressum_ju1ty as year1_type,
-    impressum_ju2sv as year2,
-    impressum_ju2ty as year2_type,
-    impressum_pl as place,
-    impressum_ug as printer,
-    language_lg as language_info,
-    number_nr as fingerprint
-    FROM title
-LEFT JOIN author on author.cloi = title.cloi
-LEFT JOIN collation on collation.cloi = title.cloi
-LEFT JOIN corporateauthor on corporateauthor.cloi = title.cloi
-LEFT JOIN edition on edition.cloi = title.cloi
-LEFT JOIN impressum on impressum.cloi = title.cloi
-LEFT JOIN language on language.cloi = title.cloi
-LEFT JOIN number on number.cloi = title.cloi
-GROUP BY identifier
-HAVING ID_COUNT=2
-LIMIT 100
+SELECT
+    DISTINCT title.cloi AS identifier,
+    COUNT(title.cloi) AS id_count,
+    author_vw AS author_standardized,
+    author_zvwr AS author_original,
+    author_zbd AS author_dates,
+    corporateauthor_nm AS corporateauthor_standardized,
+    corporateauthor_zvwr AS corporateauthor_original,
+    title_ti AS title_title,
+    title_lg AS title_language,
+    collation_fm AS format,
+    collation_ka AS quires,
+    collation_pg AS pages,
+    edition_ed AS edition_info,
+    impressum_ju1sv AS year1,
+    impressum_ju1ty AS year1_type,
+    impressum_ju2sv AS year2,
+    impressum_ju2ty AS year2_type,
+    impressum_pl AS place,
+    impressum_ug AS printer,
+    language_lg AS language_info,
+    number_nr AS fingerprint
+FROM
+    title
+    LEFT JOIN author ON author.cloi = title.cloi
+    LEFT JOIN COLLATION ON COLLATION.cloi = title.cloi
+    LEFT JOIN corporateauthor ON corporateauthor.cloi = title.cloi
+    LEFT JOIN edition ON edition.cloi = title.cloi
+    LEFT JOIN impressum ON impressum.cloi = title.cloi
+    LEFT JOIN language ON language.cloi = title.cloi
+    LEFT JOIN number ON number.cloi = title.cloi
+GROUP BY
+    identifier
+HAVING
+    ID_COUNT = 2
+LIMIT
+    100
 """
 ```
 

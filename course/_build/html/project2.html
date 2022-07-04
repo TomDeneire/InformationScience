@@ -247,7 +247,7 @@
 <h1>Exam project (2)<a class="headerlink" href="#exam-project-2" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/project.jpeg" /></p>
 <p>Credit: unknown</p>
-<p>This document describes the <strong>2022 second exam period</strong> (22 August - 10 September 2022) exam project for the course “Information Science” for the UAntwerp Master of Linguistics (from 2021-2022 onwards: “Master of Digital Text Analysis”).</p>
+<p>This document describes the <strong>2022 second exam period</strong> (22 August - 10 September 2022) exam project for the course “Information Science” for the UAntwerp Master of Digital Text Analysis”.</p>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>This project can be described as an <strong>Anet - CERL thesaurus data reconciliator</strong>. The idea is to write a piece of software that tries to pair up  authority records (which describe entities such as people, places, organizations, …) from the <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Anet library network</a>  with their <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a> matches.</p>
@@ -259,7 +259,7 @@
 <p>This can be implemented using the <strong>CERL Thesaurus SRU/CQL service</strong>, see <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=explain</a></p>
 <p>HPB offers metadata in several formats, including MARCXML, or the more explicit ctas. See, for instance, <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=marcxml">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=marcxml</a> or <a class="reference external" href="https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=ctas">https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=lipsius&amp;startRecord=1&amp;maximumRecords=10&amp;recordSchema=ctas</a>.</p>
 <p>How you query the CERL Thesaurus and which metadata you use, is completely up to you.</p>
-<p>For the Anet authority records dataset you will be using a sample from the <strong>SQLite  export</strong> (extract from <code class="docutils literal notranslate"><span class="pre">authorities.zip</span></code>) that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query. This selects 50 records of type <code class="docutils literal notranslate"><span class="pre">P</span></code> (person), born in the seventeenth century, with all relevant metadata you will need.</p>
+<p>For the Anet authority records dataset you will be using a sample from the <strong>SQLite  export</strong> (extract from <code class="docutils literal notranslate"><span class="pre">authorities.zip</span></code>) that is in the <a class="reference external" href="https://github.com/TomDeneire/InformationScience/tree/main/course/data">course repository</a>. This sample is defined as the following SQL query, which selects 50 records of type <code class="docutils literal notranslate"><span class="pre">P</span></code> (person), born in the seventeenth century, with all relevant metadata you will need.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QUERY</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">SELECT</span>
 <span class="s2">    DISTINCT administration.LOI AS identifier,</span>
@@ -291,14 +291,14 @@
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;srw:recordIdentifier&gt;</span>cnp00605296<span class="nt">&lt;/srw:recordIdentifier&gt;</span>
 </pre></div>
 </div>
-<p>or</p>
+<p>or also</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;record</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.loc.gov/MARC21/slim&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;leader&gt;</span>0RL 00000nz 22000003 45 <span class="nt">&lt;/leader&gt;</span>
 <span class="nt">&lt;controlfield</span> <span class="na">tag=</span><span class="s">&quot;001&quot;</span><span class="nt">&gt;</span>cnp02312326<span class="nt">&lt;/controlfield&gt;</span>
 ...
 </pre></div>
 </div>
-<p>(if you opt to use MARCXML)</p>
+<p>if you use MARCXML.</p>
 <p>You may choose to add additional information to the result, if you think it is relevant for the specific data reconciliation.</p>
 <p>One authority record may have several potential CERL Thesaurus matches. Also keep in mind that people can be known under several different names (language variants, pseudonyms, abbreviated forms, etc.).</p>
 <p>Please use only the <code class="docutils literal notranslate"><span class="pre">lxml</span></code> module to handle XML.</p>
