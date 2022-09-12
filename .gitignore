@@ -5,4 +5,5 @@ course/project.md
 course/index
 course/.*
 course/data/authorities.sqlite
+__pycache__
 
