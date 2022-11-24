@@ -10,7 +10,7 @@
 
 ## Manipulating Information
 
-Let's go back to Paul Otlet and his index cards for a minute. For me, one of the key takeaways of this story is the simple fact that information never just *is*. Even when we thing we are merely making it accessable through catalogs or search engines, information is, as postmodern philosopher [Jacques Derrida](https://en.wikipedia.org/wiki/Jacques_Derrida) would say, *always already* manipulated. 
+Let's go back to Paul Otlet and his index cards for a minute. For me, one of the key takeaways of this story is the simple fact that information never just *is*. Even when we think we are merely making it accessable through catalogs or search engines, information is, as the postmodern philosopher [Jacques Derrida](https://en.wikipedia.org/wiki/Jacques_Derrida) would say, *always already* manipulated. 
 
 So we could say that at the heart of information retrieval is **manipulating information**, i.e. selecting, grouping, filtering, ordering, sorting, ranking. In fact, `select`, `group`, `filter`, `order`, `sort` and `rank` are the most important keywords in the world's most used database query language, [SQL](https://en.wikipedia.org/wiki/SQL), which we will talk about later.
 
@@ -186,7 +186,7 @@ print('\u00C5')
 print('\u212B')
 print('\u0041\u030A')
 
-This example shows that even Unicode code points don't offer a unique mapping of characters to numbers. To solve this, there is luckily something called [Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization).
+This example shows that even Unicode code points don't offer a unique mapping of characters to numbers. Luckily, to solve this, there is something called [Unicode normalization](https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization).
 
 ## Decoding
 
@@ -207,11 +207,11 @@ for encoding in ['utf8', 'latin1', 'ibm850']:
 
 You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We've gone from Paul Otlet's grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.
 
-## Assignment: Onegram Counter
+## Example: Onegram Counter
 
 You probably know about Google Book's [Ngram Viewer](https://books.google.com/ngrams): when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g. "British English", "English Fiction", "French") over the selected years. 
 
-The assignment for this course is something similar: build a Python function that can take the file `data/corpus.txt` (UTF-8 encoded) from this repo as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).
+The code example for this chapter is building a Python function that can take the file `data/corpus.txt` (UTF-8 encoded) from this repository as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).
 
 In essence the job is to do this:
 
@@ -239,8 +239,6 @@ However, there is a twist: you can't use the `collections` library...
 Moreover, try to think about what may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the `read()` method). What would happen if we tried this on a really big text file? 
 
 **Most importantly, the count is also wrong**. Check by counting in an editor, for instance, and try to find out why. (For instance, `and` actually occurs 6471 times!)
-
-If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.
 
 ## Further reading
 

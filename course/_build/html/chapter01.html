@@ -113,17 +113,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="coursedetails.html">
-   Information Science (2021-2022)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="project.html">
-   Exam project
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="project2.html">
-   Exam project (2)
+   Information Science (2022-2023)
   </a>
  </li>
 </ul>
@@ -293,6 +283,9 @@
 <h1>Chapter 1: Welcome<a class="headerlink" href="#chapter-1-welcome" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/welcome.png" /></p>
 <p>Credit: <a class="reference external" href="https://xkcd.com/722/">xkcd</a></p>
+<blockquote>
+<div><p><em>TL;DR: This is a course on Information Science made by a classicist turned software engineer</em></p>
+</div></blockquote>
 <div class="section" id="welcome">
 <h2>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h2>
 <p>Welcome to the course “Information Science” for the University of Antwerp <a class="reference external" href="https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/">Master of Digital Text Analysis</a>!</p>
@@ -305,11 +298,12 @@
 <p>However, my carreer did not start in IT. On the contrary, I studied Classics (MA 2003, PhD 2009) and was active in humanities research and education for quite some time.</p>
 <p>From 2009-2013 I worked in <strong>academia</strong> as a postdoctoral researcher (Neo-Latin Studies) and a visiting professor (Latin rhetoric and stylistics), focussing mainly on the interplay of Neo-Latin and the vernacular, literary theory and dabbling in (then emerging) Digital Humanities (see e.g. <a class="reference external" href="https://hdl.handle.net/10067/1535070151162165141">Deneire 2018</a>).</p>
 <p>In 2013 I moved to the <strong>library world</strong> (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.</p>
-<p>In 2018 this lead to a switch from the Special Collections to the library’s <strong>software department</strong> <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/">Anet</a>, where I have been working since on a product called <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade Library Services</a>. My technology stack mainly includes Python and especially <a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a>, the language for our database engine (GT.M, provided by <a class="reference external" href="https://yottadb.com/">YottaDB</a>). My current project is a complete rewrite and integration of the library’s two modules for authority control. Occasionally, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the <a class="reference external" href="https://linuxmint.com/">Linux Mint</a> distro).</p>
+<p>In 2018 this lead to a switch from the Special Collections to the library’s automation department <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/">Anet</a>, where I currently work as a <strong>software engineer</strong> on a product called <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade Library Services</a>.  My current project is a complete rewrite and integration of the library’s two modules for authority control.</p>
+<p>My technology stack mainly includes Python and especially <a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a>, the language for our database engine (GT.M, provided by <a class="reference external" href="https://yottadb.com/">YottaDB</a>). However, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the <a class="reference external" href="https://linuxmint.com/">Linux Mint</a> distro) and I use <a class="reference external" href="https://neovim.io/">Neovim</a> for an editor.</p>
 </div>
 <div class="section" id="why-does-that-matter">
 <h3>Why does that matter?<a class="headerlink" href="#why-does-that-matter" title="Permalink to this headline">¶</a></h3>
-<p>This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I am the best person to teach this course! So it goes without saying that I will certainly not have all the answers in this course.</p>
+<p>This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I am the best person to teach this course! So it goes without saying that I will certainly not have all the answers.</p>
 <p>On the other hand, my profile is very kindred to that of my <strong>intended audience</strong>, which I think of as humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.</p>
 </div>
 </div>
@@ -326,8 +320,9 @@
 <li><p>Metadata</p></li>
 <li><p>Indexing</p></li>
 <li><p>Searching</p></li>
+<li><p>Architecture</p></li>
 </ol>
-<p>In line with the hands-on nature of this course, most chapters will feature a <strong>coding assignment</strong>, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.</p>
+<p>In line with the hands-on nature of this course, most chapters will feature a <strong>code example</strong>, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.</p>
 </div>
 <div class="section" id="reading">
 <h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h2>
@@ -374,26 +369,18 @@
 <li><p>Install <a class="reference external" href="https://jupyter.org/install">Jupyter</a> (Lab or Notebook) locally and open the notebooks in your browser</p></li>
 </ol>
 <p>If you don’t want to install Jupyter on your machine, you can open the notebooks with <a class="reference external" href="https://colab.research.google.com/notebooks/">Google Colab</a>, but executing the code isn’t always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).</p>
-<p>The best way to obtain these course materials on your local machine and to participate with the course, is to:</p>
+<p>The best way to obtain these course materials on your local machine is to:</p>
 <ol class="simple">
 <li><p>Get a GitHub account (if you don’t already have one)</p></li>
 <li><p>Fork this repo to your own GitHub account</p></li>
 <li><p>Clone the repo to your local machine</p></li>
-<li><p>Make a new folder in the repo and push changes</p></li>
-</ol>
-<p>The fourth step especially applies to the code assignments and would enable me (if you want!) to see your solutions for the assignments. The workflow for this is:</p>
-<ol class="simple">
-<li><p>Create a new folder <code class="docutils literal notranslate"><span class="pre">assignments</span></code></p></li>
-<li><p>Create an empty file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> in it</p></li>
-<li><p>Add the new folder to the repo</p></li>
-<li><p>Commit and push these changes to your fork</p></li>
 </ol>
 <p>And of course if you find errors in the other course materials or want to propose changes or additions, I am very open to pull requests.</p>
 <div class="section" id="git-help">
 <h3>Git help!<a class="headerlink" href="#git-help" title="Permalink to this headline">¶</a></h3>
 <p>If you’re unsure how to do all of this, this <a class="reference external" href="https://guides.github.com/activities/forking/">GitHub guide</a> will help.</p>
 <p>Other interesting sources on Git are this <a class="reference external" href="https://link.medium.com/w1ShAzxQE9">Medium article</a> and Atlassian’s <a class="reference external" href="https://www.atlassian.com/git/tutorials/what-is-git">tutorial</a>. This <a class="reference external" href="https://link.medium.com/NdBy7ILHIbb">Medium article</a> contains even more references to cheatsheets, tutorials, etc.</p>
-<p>Bear in mind that you can use Git from the command line (which I would always advise in the learning stages), but that there are also desktop applications, such as <a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a> or integrations for your editor, such as <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> for VSCode.</p>
+<p>Bear in mind that you can use Git from the command line (which I would always advise in the learning stages), but that there are also desktop applications, such as <a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a>, <a class="reference external" href="https://www.gitkraken.com/">GitKraken</a> or integrations for your editor, such as <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> for VSCode.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>

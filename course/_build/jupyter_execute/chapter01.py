@@ -4,6 +4,8 @@
 
 Credit: [xkcd](https://xkcd.com/722/)
 
+> *TL;DR: This is a course on Information Science made by a classicist turned software engineer*
+
 ## Welcome
 
 Welcome to the course "Information Science" for the University of Antwerp [Master of Digital Text Analysis](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/)!
@@ -20,11 +22,13 @@ From 2009-2013 I worked in **academia** as a postdoctoral researcher (Neo-Latin 
 
 In 2013 I moved to the **library world** (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.
 
-In 2018 this lead to a switch from the Special Collections to the library's **software department** [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I have been working since on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services). My technology stack mainly includes Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). My current project is a complete rewrite and integration of the library's two modules for authority control. Occasionally, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro).
+In 2018 this lead to a switch from the Special Collections to the library's automation department [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I currently work as a **software engineer** on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services).  My current project is a complete rewrite and integration of the library's two modules for authority control. 
+
+My technology stack mainly includes Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). However, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro) and I use [Neovim](https://neovim.io/) for an editor.
 
 ### Why does that matter?
 
-This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I am the best person to teach this course! So it goes without saying that I will certainly not have all the answers in this course. 
+This should make clear that I am not an academic expert in Information Science, nor have I been a professional developer for a long time. Indeed, at first I was not sure if I am the best person to teach this course! So it goes without saying that I will certainly not have all the answers.
 
 On the other hand, my profile is very kindred to that of my **intended audience**, which I think of as humanities majors looking to acquire digital skills. I hope this common perspective will enable me to teach what such students need most from a vast field such as Information Science.
 
@@ -43,8 +47,9 @@ The course will discuss the following topics:
 5. Metadata
 6. Indexing
 7. Searching
+8. Architecture
 
-In line with the hands-on nature of this course, most chapters will feature a **coding assignment**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
+In line with the hands-on nature of this course, most chapters will feature a **code example**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
 
 ## Reading
 
@@ -100,19 +105,11 @@ To view the content **with code execution**, you can:
 
 If you don't want to install Jupyter on your machine, you can open the notebooks with [Google Colab](https://colab.research.google.com/notebooks/), but executing the code isn't always guaranteed to work (because of missing third-party libraries and stack overflows in heavy data operations).
 
-The best way to obtain these course materials on your local machine and to participate with the course, is to:
+The best way to obtain these course materials on your local machine is to:
 
 1. Get a GitHub account (if you don't already have one)
 2. Fork this repo to your own GitHub account
 3. Clone the repo to your local machine
-4. Make a new folder in the repo and push changes 
-
-The fourth step especially applies to the code assignments and would enable me (if you want!) to see your solutions for the assignments. The workflow for this is:
-
-1. Create a new folder `assignments`
-2. Create an empty file `test.py` in it
-3. Add the new folder to the repo
-4. Commit and push these changes to your fork 
 
 And of course if you find errors in the other course materials or want to propose changes or additions, I am very open to pull requests.
 
@@ -122,7 +119,7 @@ If you're unsure how to do all of this, this [GitHub guide](https://guides.githu
 
 Other interesting sources on Git are this [Medium article](https://link.medium.com/w1ShAzxQE9) and Atlassian's [tutorial](https://www.atlassian.com/git/tutorials/what-is-git). This [Medium article](https://link.medium.com/NdBy7ILHIbb) contains even more references to cheatsheets, tutorials, etc.
 
-Bear in mind that you can use Git from the command line (which I would always advise in the learning stages), but that there are also desktop applications, such as [GitHub Desktop](https://desktop.github.com/) or integrations for your editor, such as [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) for VSCode.
+Bear in mind that you can use Git from the command line (which I would always advise in the learning stages), but that there are also desktop applications, such as [GitHub Desktop](https://desktop.github.com/), [GitKraken](https://www.gitkraken.com/) or integrations for your editor, such as [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) for VSCode.
 
 
 
@@ -140,6 +137,4 @@ chapter06
 chapter07
 chapter08
 coursedetails
-project
-project2
 ```

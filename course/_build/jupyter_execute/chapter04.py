@@ -163,7 +163,7 @@ For instance, how would you translate this JSON (postrelational) to a spreadshee
 {
 	"1": {
 		"name": "Tom Deneire",
-		"age": "39"
+		"age": "41"
 	},
 	"2": {
 		"name": "Gandalf",
@@ -307,6 +307,8 @@ print(lxml.etree.tostring(root))
 ### Graphs
 
 #### RDF
+
+to do: make this more explicit and introduce .nt type for triples (much easier than xml!)
 
 Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a **data model, not a data serialization model**, such as XML or JSON - in fact, both can be used to express RDF data.
 

@@ -114,17 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="coursedetails.html">
-   Information Science (2021-2022)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="project.html">
-   Exam project
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="project2.html">
-   Exam project (2)
+   Information Science (2022-2023)
   </a>
  </li>
 </ul>
@@ -282,8 +272,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignment-onegram-counter">
-   Assignment: Onegram Counter
+  <a class="reference internal nav-link" href="#example-onegram-counter">
+   Example: Onegram Counter
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -310,7 +300,7 @@
 </div></blockquote>
 <div class="section" id="manipulating-information">
 <h2>Manipulating Information<a class="headerlink" href="#manipulating-information" title="Permalink to this headline">¶</a></h2>
-<p>Let’s go back to Paul Otlet and his index cards for a minute. For me, one of the key takeaways of this story is the simple fact that information never just <em>is</em>. Even when we thing we are merely making it accessable through catalogs or search engines, information is, as postmodern philosopher <a class="reference external" href="https://en.wikipedia.org/wiki/Jacques_Derrida">Jacques Derrida</a> would say, <em>always already</em> manipulated.</p>
+<p>Let’s go back to Paul Otlet and his index cards for a minute. For me, one of the key takeaways of this story is the simple fact that information never just <em>is</em>. Even when we think we are merely making it accessable through catalogs or search engines, information is, as the postmodern philosopher <a class="reference external" href="https://en.wikipedia.org/wiki/Jacques_Derrida">Jacques Derrida</a> would say, <em>always already</em> manipulated.</p>
 <p>So we could say that at the heart of information retrieval is <strong>manipulating information</strong>, i.e. selecting, grouping, filtering, ordering, sorting, ranking. In fact, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">group</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">order</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code> and <code class="docutils literal notranslate"><span class="pre">rank</span></code> are the most important keywords in the world’s most used database query language, <a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a>, which we will talk about later.</p>
 <p>In programming terms, this manipulation often boils down to basic <strong>string operations</strong>, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
 </div>
@@ -549,7 +539,7 @@ Å
 </div>
 </div>
 </div>
-<p>This example shows that even Unicode code points don’t offer a unique mapping of characters to numbers. To solve this, there is luckily something called <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization">Unicode normalization</a>.</p>
+<p>This example shows that even Unicode code points don’t offer a unique mapping of characters to numbers. Luckily, to solve this, there is something called <a class="reference external" href="https://en.wikipedia.org/wiki/Unicode_equivalence#Normalization">Unicode normalization</a>.</p>
 </div>
 <div class="section" id="decoding">
 <h2>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h2>
@@ -582,10 +572,10 @@ Unable to print bytes b&#39;\x82&#39; in UTF8
 </div>
 <p>You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We’ve gone from Paul Otlet’s grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
 </div>
-<div class="section" id="assignment-onegram-counter">
-<h2>Assignment: Onegram Counter<a class="headerlink" href="#assignment-onegram-counter" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-onegram-counter">
+<h2>Example: Onegram Counter<a class="headerlink" href="#example-onegram-counter" title="Permalink to this headline">¶</a></h2>
 <p>You probably know about Google Book’s <a class="reference external" href="https://books.google.com/ngrams">Ngram Viewer</a>: when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g. “British English”, “English Fiction”, “French”) over the selected years.</p>
-<p>The assignment for this course is something similar: build a Python function that can take the file <code class="docutils literal notranslate"><span class="pre">data/corpus.txt</span></code> (UTF-8 encoded) from this repo as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).</p>
+<p>The code example for this chapter is building a Python function that can take the file <code class="docutils literal notranslate"><span class="pre">data/corpus.txt</span></code> (UTF-8 encoded) from this repository as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).</p>
 <p>In essence the job is to do this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -619,7 +609,6 @@ Unable to print bytes b&#39;\x82&#39; in UTF8
 <p>However, there is a twist: you can’t use the <code class="docutils literal notranslate"><span class="pre">collections</span></code> library…</p>
 <p>Moreover, try to think about what may be suboptimal in this example. For instance, in this code all of the text is loaded into memory in one time (with the <code class="docutils literal notranslate"><span class="pre">read()</span></code> method). What would happen if we tried this on a really big text file?</p>
 <p><strong>Most importantly, the count is also wrong</strong>. Check by counting in an editor, for instance, and try to find out why. (For instance, <code class="docutils literal notranslate"><span class="pre">and</span></code> actually occurs 6471 times!)</p>
-<p>If this is an easy task for you, you can also think about the graphical representation of the 1-gram count.</p>
 </div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>

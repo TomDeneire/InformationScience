@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 8: Information Architecture &#8212; Information Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Information Science</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter01.html">
+   Chapter 1: Welcome
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter02.html">
+   Chapter 2: Defining Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter03.html">
+   Chapter 3: Encoding Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter04.html">
+   Chapter 4: Storing Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter05.html">
+   Chapter 5: Querying Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter06.html">
+   Chapter 6: Information about Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter07.html">
+   Chapter 7: Indexing Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter08.html">
+   Chapter 8: Searching Information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="coursedetails.html">
+   Information Science (2022-2023)
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/chapter09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/chapter09.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brocade-library-services">
+   Brocade Library Services
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server">
+   Server
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mumps">
+     MUMPS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apache-and-php">
+     Apache and PHP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python">
+     Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-software">
+     Other software
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#production-server">
+   Production server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-ydb-acculturation-workshop">
+   Optional: YDB Acculturation Workshop
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-8-information-architecture">
+<h1>Chapter 8: Information Architecture<a class="headerlink" href="#chapter-8-information-architecture" title="Permalink to this headline">¶</a></h1>
+<p><img alt="" src="_images/brocade.png" /></p>
+<p><strong><a class="reference external" href="https://anet.be/visualisering/project/hierarchical-edge-bundling.htm">Brocade software visualization</a></strong></p>
+<p>In this chapter about the Brocade library management system (LMS) we will try to tie the previous chapters together. Above all, the aim is the illustrate the overall <strong>architecture</strong> of an information system, i.e. how different technologies come together to make up a system.</p>
+<div class="section" id="brocade-library-services">
+<h2>Brocade Library Services<a class="headerlink" href="#brocade-library-services" title="Permalink to this headline">¶</a></h2>
+<p>(source: <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Wikipedia</a></strong>)</p>
+<p>Brocade, in full “Brocade Library Services” is a web-based library information management system developed by the University of Antwerp (UAntwerp) in 1998 by a section of the University Library called <strong>Anet</strong>. Brocade is designed as a web-based application, sold via a cloud license model. The system is multilingual and uses open source components.</p>
+<p>Brocade offers library and archival institutions a complete suite of <strong>applications</strong> allowing them to:</p>
+<ul class="simple">
+<li><p>create, maintain and publish bibliographical, archival and documentary databases;</p></li>
+<li><p>automate all back-office tasks in a library (cataloguing, authority control and thesaurus management, patron administration, circulation, ordering, subscription control, electronic resource management, interlibrary lending and document delivery) and an archival institution (ISAAR authorities, archival acquisitions, ISAD descriptions, descriptions of objects such as manuscripts, photos, letters, …)</p></li>
+<li><p>offer electronic services to the library end-users (online public access catalogue, SMS services, personalized MyLib-environment, document requests, alerting service, self-renewal, …)</p></li>
+</ul>
+<p>The networked topology of the application lets libraries work together, share information, share catalogues, while still keeping their own identity and independency when it comes to typical local functions such as acquisition and circulation.</p>
+<p>Brocade is a completely <strong>web-based</strong> application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.</p>
+<p>Target <strong>customers</strong> for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.</p>
+</div>
+<div class="section" id="server">
+<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
+<p>It all starts with a server, a physical machine located in the University of Antwerp’s server farm. It currently runs Red Hat OS and uses <strong><a class="reference external" href="https://www.ansible.com/">Ansible</a></strong> for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, …)</p>
+<p>The following components are key parts of our server infrastructure:</p>
+<div class="section" id="mumps">
+<h3>MUMPS<a class="headerlink" href="#mumps" title="Permalink to this headline">¶</a></h3>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a></strong> (or “M”) is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:</p>
+<div class="highlight-M notranslate"><div class="highlight"><pre><span></span>s ^USERS(1,&quot;first&quot;)=&quot;Tom&quot;
+s ^USERS(1,&quot;last&quot;)=&quot;Deneire&quot;
+s ^USERS(1,&quot;email&quot;)=&quot;tom.deneire@uantwerpen.be&quot;
+</pre></div>
+</div>
+<p>This instruction tells the database to define a <strong>global variable</strong> (the <code class="docutils literal notranslate"><span class="pre">^</span></code> caret sign makes it a global), which will be available both during the program’s runtime and which will be saved to an area of physical disk space designated for these globals, making it effectively a database.</p>
+<p>The structure is that of a subscripted array, which is equivalent to this in JSON</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;USERS&quot;</span><span class="p">:</span>
+	<span class="p">{</span>
+		<span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+			<span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;tom.deneire@uantwerpen.be&quot;</span><span class="p">,</span>
+			<span class="nt">&quot;first&quot;</span><span class="p">:</span> <span class="s2">&quot;Tom&quot;</span><span class="p">,</span>
+			<span class="nt">&quot;last&quot;</span><span class="p">:</span> <span class="s2">&quot;Deneire&quot;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Of course, you can also run code from files in MUMPS. These have extension <code class="docutils literal notranslate"><span class="pre">.m</span></code> and need to be installed in a designated <code class="docutils literal notranslate"><span class="pre">r</span></code> folder (e.g. <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>).</p>
+<p>There are now, and have always been, several <strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS#History">MUMPS implementations</a></strong>, one of which is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GT.M">G.TM</a></strong>. G.TM is now open source, which allows a company called <strong><a class="reference external" href="https://yottadb.com/">YottaDB</a></strong> to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.</p>
+<p>YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is a language that, like all languages, has its <strong><a class="reference external" href="https://thedailywtf.com/articles/A_Case_of_the_MUMPS">flaws</a></strong>. On the other hand, MUMPS is simple, fast and powerful, and is codified in an <strong><a class="reference external" href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO-standard</a></strong> which means that is allows for very stable code to build applications that can stand the test of time.</p>
+<p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter05 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
+<div class="highlight-mumps notranslate"><div class="highlight"><pre><span></span>^BCAT(&quot;lvd&quot;,123456)=&quot;^UA-CST^53320,52220^tdeneire^65512,39826^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;au&quot;,1)=&quot;aut^0^oip^Sassen^Ferdinand^^nd&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;co&quot;,1)=&quot;190 p.^^^^^oip^nd^normal^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;dr&quot;,&quot;paper&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;ed&quot;,1)=&quot;oip^2 ed.^nd&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;im&quot;,1)=&quot;Antwerpen^0^nd^YYYY^1932^^YYYY^^^pbl^0^Standaard^oip^nd^normal&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;lg&quot;,1)=&quot;dut^dt&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;lm&quot;,&quot;zebra&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,1)=&quot;co^0^1.248929^oip^nd^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,2)=&quot;oclcwork^0^48674539^oip^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;nr&quot;,3)=&quot;oclc^0^781576701^oip^nd^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.all&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.anet&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;opac&quot;,&quot;cat.ua&quot;,&quot;*&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;TPC&quot;,&quot;p:lvd:5554031&quot;)=&quot;^LZ 10/3/12^more-l^^^^^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;)=&quot;^MAG-Coll 113.1/2^mag-o^^^^^^^0^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205824&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261838&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;)=&quot;^FILO 19 A-SASS 32^filo-a^^^^^^^^^^^&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;pk&quot;,&quot;UA-CST&quot;,&quot;p:lvd:205825&quot;,&quot;vo&quot;,&quot;-&quot;,&quot;o:lvd:261839&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;)=&quot;1^1&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;lw&quot;,&quot; &quot;,&quot;c:work:45740&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;)=&quot;1^1&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;re&quot;,&quot;vnr&quot;,&quot; 1932: 4&quot;,&quot;c:lvd:222144&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::19:1&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;su&quot;,&quot;a::93.001:1&quot;)=&quot;&quot;
+^BCAT(&quot;lvd&quot;,123456,&quot;ti&quot;,1)=&quot;h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="apache-and-php">
+<h3>Apache and PHP<a class="headerlink" href="#apache-and-php" title="Permalink to this headline">¶</a></h3>
+<p>Our server uses Apache webserver to host a website with a URL that ends in <code class="docutils literal notranslate"><span class="pre">?brocade.phtml</span></code>. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS/Python/Go).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">p</span></code> in <code class="docutils literal notranslate"><span class="pre">brocade.phtml</span></code> stands for PHP, it is a HTML file which can also execute PHP code. PHP (unlike Javascript) runs <em>server side</em> which means it can access the server’s shell. The shell can then start a MUMPS that processes the input HTML (e.g. username and password), performs a database operation (e.g. lookup access rights in the database) and then produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.</p>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>Our server also has a Python installation, including several (but well-chosen) third-party packages (such as <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
+<p>Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.</p>
+<p>Some examples include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mutil</span></code>: maintenance of MUMPS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crunch</span></code>: storage monitoring (disk space, database regions, …)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">musqet</span></code>: export of MUMPS data to <code class="docutils literal notranslate"><span class="pre">.sqlite</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docman</span></code>: file storage, e.g. images, PDFs, …</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">explorator</span></code>: our Python wrapper (using <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>) for Lucene</p></li>
+</ul>
+<p>So if a user uses Brocade to export a dataset in .sqlite, what happens under the hood is that MUMPS goes to the shell to trigger a <code class="docutils literal notranslate"><span class="pre">musqet</span></code> command. This is then executed with Python and the result is stored on the server with <code class="docutils literal notranslate"><span class="pre">docman</span></code>. The result is offered to the user as a download link.</p>
+<p>Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.</p>
+</div>
+<div class="section" id="other-software">
+<h3>Other software<a class="headerlink" href="#other-software" title="Permalink to this headline">¶</a></h3>
+<p>Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning <code class="docutils literal notranslate"><span class="pre">/library/tmp</span></code>) and Lucene for indexing.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.</p>
+</div>
+<div class="section" id="production-server">
+<h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>
+<p>So far we’ve been speaking about ‘the’ server, but there are in fact several.</p>
+<p>The one mentioned was actually the <em>development</em> server (we call it “presto”), as of course we don’t code on the <em>production</em> server (“moto”). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)</p>
+<p>This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath <code class="docutils literal notranslate"><span class="pre">library/software</span></code>) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath <code class="docutils literal notranslate"><span class="pre">library/database</span></code>). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.</p>
+</div>
+<div class="section" id="optional-ydb-acculturation-workshop">
+<h2>Optional: YDB Acculturation Workshop<a class="headerlink" href="#optional-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
+<p>If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
+<p>However, for a first acquaintance it’s probably better to take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Tom Deneire<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
