@@ -1,4 +1,4 @@
-# Information Science (2021-2022)
+# Information Science (2022-2023)
 
 This document describes the course "Information Science" for the University of Antwerp [Master of Digital Text Analysis](https://www.uantwerpen.be/en/study/programmes/all-programmes/digital-text-analysis/).
 
@@ -8,7 +8,7 @@ This document describes the course "Information Science" for the University of A
 --- | ---
 Course Code | 2005FLWDTA
 Study domain | Linguistics and Proficiency
-Academic year | 2021-2022
+Academic year | 2022-2023
 Semester | 1st semester
 Credits | 3
 Contract restrictions | No contract restriction
@@ -18,7 +18,7 @@ Exam period | exam in the 1st semester
 
 ## Course schedule
 
-During the academic year 2020-2021, the course "Information Science" (1st semester) will take place on Fridays, from 9h30 to 12h30, in room S.R-Annexe 111, during weeks 9-13.
+During the academic year 2022-2023, the course "Information Science" (1st semester) will take place on Fridays, from 9h30 to 12h30, in room S.K.102, from 21/11/2022 to 25/12/2022.
 
 ## Course description
 
@@ -42,13 +42,13 @@ For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.i
 
 ### 5. Teaching method and planned learning activities
 
-Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a coding **assignment**, which will be introduced and discussed during the practical part of the course. Students are expected to finish the assignments after hours.
+Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a **code example**, which will be introduced and discussed during the practical part of the course.
 
-Model solutions for the assignments will be made available in the repository with a few weeks delay.
+Model solutions will be made available in the repository with a few weeks delay.
 
 ### 6. Assessment method and criteria
 
-The aforementioned assignments lead up to a project assignment which will serve as the exam for this course. The project assignment will be introduced during the final course. Students who have succesfully completed the previous course assignments should have no trouble submitting an adequate project assignment. Students will be required to finish the project in a certain timeframe.
+The course assessment form is a so-called "open book" exam. This means that students can use whatever sources they want (including the course materials and the Internet) during the exam.
 
 ### 7. Study material
 
