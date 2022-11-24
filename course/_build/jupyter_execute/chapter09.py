@@ -1,4 +1,4 @@
-# Chapter 8: Information Architecture
+# Chapter 9: Information Architecture
 
 ![](images/brocade.png)
 
