@@ -34,7 +34,7 @@ The following components are key parts of our server infrastructure:
 
 __[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__ (or "M") is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:
 
-```M
+```
 s ^USERS(1,"first")="Tom"
 s ^USERS(1,"last")="Deneire"
 s ^USERS(1,"email")="tom.deneire@uantwerpen.be"
@@ -64,7 +64,7 @@ YottaDB also provide a C and Go wrapper, so you can access the MUMPS database wi
 
 In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book `c:lvd:123456` which we used as an example in chapter05 is stored in our database, in global `^BCAT`:
 
-```mumps
+```
 ^BCAT("lvd",123456)="^UA-CST^53320,52220^tdeneire^65512,39826^^^"
 ^BCAT("lvd",123456,"au",1)="aut^0^oip^Sassen^Ferdinand^^nd"
 ^BCAT("lvd",123456,"co",1)="190 p.^^^^^oip^nd^normal^^^^^^^"
