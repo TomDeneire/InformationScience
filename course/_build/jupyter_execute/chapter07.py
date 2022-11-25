@@ -351,7 +351,7 @@ with my_index.searcher() as searcher:
     for index, hit in enumerate(results):
         print(index+1, hit["path"], "=", hit.highlights("content"))
 
-## Assignment: Morphology tool
+## Exercise: Morphology tool
 
 Use Whoosh to illustrate English morphology with examples from a given corpus. For instance, the rules of morphology dictate verbs can take different forms or be used to form nouns, adjectives and such, like:
 

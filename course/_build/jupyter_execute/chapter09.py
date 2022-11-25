@@ -127,9 +127,7 @@ Other software installed on the server, includes Go (for systems programming, e.
 
 ## Example
 
-example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.
-
-
+Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.
 
 ## Production server
 
@@ -143,11 +141,8 @@ This works like this: we are currently developing Brocade version 5.20, whereas 
 
 
 
-## Optional: YDB Acculturation Workshop
+## Optional exercise: YDB Acculturation Workshop
 
-If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free. 
+If you want a taste of what it is like to set up your own information system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free. 
 
 However, for a first acquaintance it's probably better to take a look at the __[YottaDB Acculturation Workshop](https://docs.yottadb.com/AcculturationGuide/acculturation.html)__ which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).
-
-
-

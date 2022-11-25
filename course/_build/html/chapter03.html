@@ -114,7 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter09.html">
-   Chapter 8: Information Architecture
+   Chapter 9: Information Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -277,8 +277,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-onegram-counter">
-   Example: Onegram Counter
+  <a class="reference internal nav-link" href="#exercise-onegram-counter">
+   Exercise: Onegram Counter
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -307,7 +307,7 @@
 <h2>Manipulating Information<a class="headerlink" href="#manipulating-information" title="Permalink to this headline">¶</a></h2>
 <p>Let’s go back to Paul Otlet and his index cards for a minute. For me, one of the key takeaways of this story is the simple fact that information never just <em>is</em>. Even when we think we are merely making it accessable through catalogs or search engines, information is, as the postmodern philosopher <a class="reference external" href="https://en.wikipedia.org/wiki/Jacques_Derrida">Jacques Derrida</a> would say, <em>always already</em> manipulated.</p>
 <p>So we could say that at the heart of information retrieval is <strong>manipulating information</strong>, i.e. selecting, grouping, filtering, ordering, sorting, ranking. In fact, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">group</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">order</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code> and <code class="docutils literal notranslate"><span class="pre">rank</span></code> are the most important keywords in the world’s most used database query language, <a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a>, which we will talk about later.</p>
-<p>In programming terms, this manipulation often boils down to basic <strong>string operations</strong>, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
+<p>In programming terms, this manipulation often boils down to basic <strong>string operations</strong>, like filtering strings on the presence of substrings, grouping or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.</p>
 </div>
 <div class="section" id="sorting-strings">
 <h2>Sorting strings<a class="headerlink" href="#sorting-strings" title="Permalink to this headline">¶</a></h2>
@@ -378,7 +378,7 @@ encoding”. Turning characters into code is referred to as “encoding”, inte
 hello world
 </pre></div>
 </div>
-<p>This means the bytes we discussed earlier are the UTF-8 representation of the string <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>. For this example, other character encodings, like ASCII or ISO-Latin-1 would yield the same result. But the difference quickly becomes clear when look at another example.</p>
+<p>This means the bytes we discussed earlier are the UTF-8 representation of the string <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code>. For this example, other character encodings, like ASCII or ISO-Latin-1 would yield the same result. But the difference quickly becomes clear when we look at another example.</p>
 <p>Let’s save the UTF-8 encoded text string <code class="docutils literal notranslate"><span class="pre">El</span> <span class="pre">Niño</span></code> as a file and then print it. We can do that in the terminal — remember, it’s set to UTF-8 display by default:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo &quot;El Niño&quot; &gt; myfile
 $ cat myfile
@@ -499,30 +499,17 @@ indispensable for any software developer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">&quot;Étienne&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; ,&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s2">&quot;Etienne&quot;</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; ,&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>é = 233
-t = 116
-i = 105
-e = 101
-n = 110
-n = 110
-e = 101
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>é = 233 ,t = 116 ,i = 105 ,e = 101 ,n = 110 ,n = 110 ,e = 101 ,
 
-
-e = 101
-t = 116
-i = 105
-e = 101
-n = 110
-n = 110
-e = 101
+e = 101 ,t = 116 ,i = 105 ,e = 101 ,n = 110 ,n = 110 ,e = 101 ,
 </pre></div>
 </div>
 </div>
@@ -558,7 +545,7 @@ Å
     <span class="n">bytes_string</span> <span class="o">=</span> <span class="n">e_accent_aigue</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bytes_string</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bytes_string</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>  <span class="c1"># this is equal to .decode(encoding=&#39;utf8&#39;)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bytes_string</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>  <span class="c1"># the default is equal to .decode(encoding=&#39;utf8&#39;)</span>
     <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to print bytes </span><span class="si">{</span><span class="n">bytes_string</span><span class="si">}</span><span class="s2"> in UTF8&quot;</span><span class="p">)</span>
 </pre></div>
@@ -577,8 +564,8 @@ Unable to print bytes b&#39;\x82&#39; in UTF8
 </div>
 <p>You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We’ve gone from Paul Otlet’s grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.</p>
 </div>
-<div class="section" id="example-onegram-counter">
-<h2>Example: Onegram Counter<a class="headerlink" href="#example-onegram-counter" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-onegram-counter">
+<h2>Exercise: Onegram Counter<a class="headerlink" href="#exercise-onegram-counter" title="Permalink to this headline">¶</a></h2>
 <p>You probably know about Google Book’s <a class="reference external" href="https://books.google.com/ngrams">Ngram Viewer</a>: when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g. “British English”, “English Fiction”, “French”) over the selected years.</p>
 <p>The code example for this chapter is building a Python function that can take the file <code class="docutils literal notranslate"><span class="pre">data/corpus.txt</span></code> (UTF-8 encoded) from this repository as an argument and print a count of the 100 most frequent 1-grams (i.e. single words).</p>
 <p>In essence the job is to do this:</p>
@@ -600,7 +587,8 @@ Unable to print bytes b&#39;\x82&#39; in UTF8
         <span class="n">words</span> <span class="o">=</span> <span class="n">normalized_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Counter</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> 
 
-<span class="n">ngrams</span> <span class="o">=</span> <span class="n">onegrams</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;corpus.txt&#39;</span><span class="p">))</span>
+<span class="n">CORPUS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;corpus.txt&#39;</span><span class="p">)</span>
+<span class="n">ngrams</span> <span class="o">=</span> <span class="n">onegrams</span><span class="p">(</span><span class="n">CORPUS</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ngrams</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>

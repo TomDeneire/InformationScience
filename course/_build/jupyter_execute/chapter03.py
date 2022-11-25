@@ -14,7 +14,7 @@ Let's go back to Paul Otlet and his index cards for a minute. For me, one of the
 
 So we could say that at the heart of information retrieval is **manipulating information**, i.e. selecting, grouping, filtering, ordering, sorting, ranking. In fact, `select`, `group`, `filter`, `order`, `sort` and `rank` are the most important keywords in the world's most used database query language, [SQL](https://en.wikipedia.org/wiki/SQL), which we will talk about later.
 
-In programming terms, this manipulation often boils down to basic **string operations**, like testing metadata for certain criteria or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.
+In programming terms, this manipulation often boils down to basic **string operations**, like filtering strings on the presence of substrings, grouping or sorting them. And while manipulating strings might seem easy, things can get complicated really easily.
 
 ## Sorting strings
 
@@ -87,7 +87,7 @@ Terminals, for instance, have a default character setting --- mine is set to UTF
     $ cat myfile
     hello world
 
-This means the bytes we discussed earlier are the UTF-8 representation of the string `hello world`. For this example, other character encodings, like ASCII or ISO-Latin-1 would yield the same result. But the difference quickly becomes clear when look at another example.
+This means the bytes we discussed earlier are the UTF-8 representation of the string `hello world`. For this example, other character encodings, like ASCII or ISO-Latin-1 would yield the same result. But the difference quickly becomes clear when we look at another example.
 
 Let's save the UTF-8 encoded text string `El Niño` as a file and then print it. We can do that in the terminal --- remember, it's set to UTF-8 display by default:
 
@@ -175,10 +175,10 @@ for item in ["doe, john", "DOE, JOHN"]:
 You can account for that by converting all strings to lower case before sorting, but what happens in the case of the French `Étienne` versus `Etienne`, which you would want to be sorted close to each other and are, in fact, used interchangeably?
 
 for char in "Étienne".lower():
-    print(char + " = " + str(ord(char)))
+    print(char + " = " + str(ord(char)), end=" ,")
 print("\n")
 for char in "Etienne".lower():
-    print(char + " = " + str(ord(char)))
+    print(char + " = " + str(ord(char)), end=" ,")
 
 We can complicate matters even more:
 
@@ -201,13 +201,13 @@ for encoding in ['utf8', 'latin1', 'ibm850']:
     bytes_string = e_accent_aigue.encode(encoding=encoding)
     print(bytes_string)
     try:
-        print(bytes_string.decode())  # this is equal to .decode(encoding='utf8')
+        print(bytes_string.decode())  # the default is equal to .decode(encoding='utf8')
     except UnicodeDecodeError:
         print(f"Unable to print bytes {bytes_string} in UTF8")
 
 You can see how complex seemingly trivial tasks of information theory, like alphabetizing a list, really are. We've gone from Paul Otlet's grand visions of the future to the nitty-gritty bits and bytes, one of the most fundamental concepts in computer science, really quickly.
 
-## Example: Onegram Counter
+## Exercise: Onegram Counter
 
 You probably know about Google Book's [Ngram Viewer](https://books.google.com/ngrams): when you enter phrases into it, it displays a graph showing how those phrases have occurred in a corpus of books (e.g. "British English", "English Fiction", "French") over the selected years. 
 
@@ -231,7 +231,8 @@ def onegrams(file: str) -> Counter:
         words = normalized_text.split(' ')
         return Counter(words) 
 
-ngrams = onegrams(os.path.join('data', 'corpus.txt'))
+CORPUS = os.path.join('data', 'corpus.txt')
+ngrams = onegrams(CORPUS)
 print(ngrams.most_common(100))
 
 However, there is a twist: you can't use the `collections` library...

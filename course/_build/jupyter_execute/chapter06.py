@@ -176,7 +176,7 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
 
 As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: [A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices](https://github.com/TomDeneire/quiring), which specifically aims to analyse the Early Modern practice of 'quiring' gatherings in handpress book production.
 
-## Assignment: MARC21 to Dublin Core conversion for OAI
+## Exercise: MARC21 to Dublin Core conversion for OAI
 
 [The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)](https://www.openarchives.org/pmh/) or OAI for short:
 
@@ -201,7 +201,7 @@ In these examples, the trailing `c:lvd:` number is a unique Library Object Ident
 
 Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.
 
-According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
+According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your task will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
 
 ### Tips
 

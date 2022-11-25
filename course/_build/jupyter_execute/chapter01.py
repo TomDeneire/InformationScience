@@ -22,9 +22,9 @@ From 2009-2013 I worked in **academia** as a postdoctoral researcher (Neo-Latin 
 
 In 2013 I moved to the **library world** (University Library of Antwerp) as Curator of the Special Collections, where I became increasingly interested in library metadata and data science. I learned the basics of XML, SQL and Python, and started using these tools to research and aggregate library metadata.
 
-In 2018 this lead to a switch from the Special Collections to the library's automation department [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I currently work as a **software engineer** on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services).  My current project is a complete rewrite and integration of the library's two modules for authority control. 
+In 2018 this lead to a switch from the Special Collections to the library's **software department** [Anet](https://www.uantwerpen.be/nl/projecten/anet/), where I currently work as a full-stack engineer on a product called [Brocade Library Services](https://en.wikipedia.org/wiki/Brocade_Library_Services).  My current project is a complete rewrite and integration of the library's two modules for authority control. 
 
-My technology stack mainly includes Python and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). However, I also use SQL, Golang, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro) and I use [Neovim](https://neovim.io/) for an editor.
+My technology stack mainly includes Python, Go and especially [MUMPS](https://en.wikipedia.org/wiki/MUMPS), the language for our database engine (GT.M, provided by [YottaDB](https://yottadb.com/)). However, I also use SQL, HTML/CSS, Javascript and PHP. My OS of choice is Linux (i.c. the [Linux Mint](https://linuxmint.com/) distro) and I use [Neovim](https://neovim.io/) for an editor.
 
 ### Why does that matter?
 
@@ -36,9 +36,9 @@ On the other hand, my profile is very kindred to that of my **intended audience*
 
 My specific profile also implies that this will not be a standard introduction to Information Science. If this is really what you are after, there is enough  literature out there to acquire this knowledge by yourself. 
 
-Instead what is offered here is a very **hands-on introduction** into information science and the technologies used in the field. Think of this class as an internship with an information systems company, rather than an academic course! The aim of this course is to provide you with a minimum of theoretical knowledge, but a maximum of practical experience.
+Instead what is offered here is a very **hands-on introduction** into information science and the technologies used in the field. Think of this class as an internship with an information systems company, rather than an academic course. The aim of this course is to provide you with a minimum of theoretical knowledge and a maximum of practical experience.
 
-The course will discuss the following topics:
+The course will discuss the following information science topics:
 
 1. Definition, history, ethics
 2. Encoding
@@ -49,7 +49,7 @@ The course will discuss the following topics:
 7. Searching
 8. Architecture
 
-In line with the hands-on nature of this course, most chapters will feature a **code example**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
+In line with the hands-on nature of this course, most chapters will feature a **code exercise**, designed to offer a realistic example of a real-world implementation of the technology discussed in the chapter.
 
 ## Reading
 
@@ -107,9 +107,10 @@ If you don't want to install Jupyter on your machine, you can open the notebooks
 
 The best way to obtain these course materials on your local machine is to:
 
-1. Get a GitHub account (if you don't already have one)
-2. Fork this repo to your own GitHub account
-3. Clone the repo to your local machine
+1. Install ``git`` on our local machine
+2. Get a GitHub account (if you don't already have one)
+3. Fork this repo to your own GitHub account
+4. Clone the repo to your local machine
 
 And of course if you find errors in the other course materials or want to propose changes or additions, I am very open to pull requests.
 

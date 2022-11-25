@@ -23,6 +23,8 @@ While this course is officially called Information *Science*, it was originally 
 
 >A key measure in information theory is **entropy**. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (with two equally likely outcomes) provides less information (lower entropy) than specifying the outcome from a roll of a die (with six equally likely outcomes).
 
+Another interesting information theory principle that was recently in the [news](...) is **[Landauer's Principle]**(https://en.wikipedia.org/wiki/Landauer%27s_principle), which has to do with the limits of energy consumption in computation.
+
 #### Information Retrieval
 
 Information Retrieval relies on information theory for its methods, but it is a much more applied discipline. [Wikipedia](https://en.wikipedia.org/wiki/Information_retrieval) says: 
@@ -47,7 +49,7 @@ Finally, Information Science is introduced on [Wikipedia](https://en.wikipedia.o
 
 Some key concepts of information studies, as found in Ko's [Foundations of Information](https://faculty.washington.edu/ajko/books/foundations-of-information/) include:
 
-1. *information technology*: any technology that serves to capture, store, process, or transmit information (e.g. the printing press, photograph, ...)
+1. *information technology*: any technology that serves to capture, store, process, or transmit information (e.g. the printing press, photography, ...)
 2. *information system*: a process that organizes people, technology, and data to allow people to create, store, manipulate, distribute, and access information (e.g. the postal services, a library, the Internet, ...)
 3. *information behaviour* or *seeking*: people seeking, managing, sharing, and using information across all possible contexts
 4. *sensemaking*: iterative information seeking, involving not only gathering information, but making sense of it, integrating it into our understanding, and using that new understanding to shape further information seeking
@@ -60,7 +62,16 @@ At the heart of all of these fields is the problem of [information overload](htt
 
 In a sense we might trace it back to Antiquity with Seneca the Elder (1st c. AD) who commented that "the abundance of books is distraction" or with Ecclesiastes 12:12: "of making books there is no end". Indeed, compendia, anthologies, abbreviations and such became very popular in the Middle Ages as a way to manage information. However, with the arrival of the printing press information overload became truly problematic. We see people like [Erasmus](http://archive.boston.com/bostonglobe/ideas/articles/2010/11/28/information_overload_the_early_years/?page=full) complaining about the swarms of new books and looking for ways to further organize, compile, index, ... information in thesauri, encyclopaedias, etcetera. And of course, the arrival of digital carriers and finally the Internet have done nothing to mitigate this issue. Quite the contrary.
 
+
 Although the study of humanity's strategies to cope with information overload is well beyond the scope of this course, I would still like to indulge in one particular example, which, for us Belgians, is close to home.
+
+It is the story of [Paul Otlet and the Internet before the Internet](https://daily.jstor.org/internet-before-internet-paul-otlet/). Otlet, born in 1868, was a Belgian architect and information pioneer. In 1904, together with Henri La Fontaine, he created [Universal Decimal Classification (UDC)](https://en.wikipedia.org/wiki/Universal_Decimal_Classification), an information system which divides all knowledge into nine categories (with a tenth held open for expansion) such as linguistics, literature and mathematics or natural sciences, further broken down into 70,000 subdivisions. Updated and translated into 50 languages, the UDC is widely used today, especially in libraries, in 130 countries. 
+
+Yet, Otlet's vision was much larger than bibliography alone. Together with La Fontaine, in 1910 he started planning a center that would hold all the world's information in organized an accessible form, a veritable **"city of knowledge"**, called the *Mundaneum*. Its catalog drawers holding over 15 million paper index cards was only the start of this "world brain", as Otlet's revolutionary ideas went much further than that. He planned on using microphotography techniques to boost storage and even proposed a network of telescopes and TVs (a recent [invention](https://en.wikipedia.org/wiki/Mechanical_television)) in order to decentralize information access. 
+
+Otlet's end goal seems to have been the idea of univeral knowledge, leading to universal equality, and thus, universal peace. Ironically, the First World War was one of many factors that contributed to Otlet's plans remaining largely unfinished. Sadly, Otlet is an obscure figure today, even in Belgian history, although there is a small Mundaneum museum in the Belgian city of Mons, where some tiny fraction of all the world's knowledge still resides on old index cards stored in wooden cabinets...
+
+The study of humanity's strategies to cope with information overload is well beyond the scope of this course, I would still like to indulge in one particular example, which, for us Belgians, is close to home.
 
 It is the story of [Paul Otlet and the Internet before the Internet](https://daily.jstor.org/internet-before-internet-paul-otlet/). Otlet, born in 1868, was a Belgian architect and information pioneer. In 1904, together with Henri La Fontaine, he created [Universal Decimal Classification (UDC)](https://en.wikipedia.org/wiki/Universal_Decimal_Classification), an information system which divides all knowledge into nine categories (with a tenth held open for expansion) such as linguistics, Literature and mathematics or natural sciences, further broken down into 70,000 subdivisions. Updated and translated into 50 languages, the UDC is widely used today, especially in libraries, in 130 countries. 
 

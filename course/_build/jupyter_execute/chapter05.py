@@ -156,9 +156,9 @@ for row in data[50:60]:
 # Close the connection when you're done
 conn.close()
 
-## Assignment: JSON metadata harvester
+## Exercise: JSON metadata harvester
 
-For your assignment you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata. 
+For this exercise you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata. 
 
 It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
 
@@ -173,9 +173,9 @@ In this way, an API is an intermediary structure, which has a lot of benefits. W
 There are lots of free web APIs out there. The [NASA API](https://api.nasa.gov/), for instance, is quite incredible. For book information there is [OpenLibrary](https://openlibrary.org/dev/docs/api/books). Or this [Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json), if you want to have some fun! You can find an extensive list of free APIs [here](https://github.com/public-apis/public-apis).
  
 
-### Assignment
+### Task
 
-Your assignment is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.
+The task is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.
 
 #### Some tips:
 
