@@ -23,7 +23,7 @@ While this course is officially called Information *Science*, it was originally 
 
 >A key measure in information theory is **entropy**. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (with two equally likely outcomes) provides less information (lower entropy) than specifying the outcome from a roll of a die (with six equally likely outcomes).
 
-Another interesting information theory principle that was recently in the [news](...) is **[Landauer's Principle]**(https://en.wikipedia.org/wiki/Landauer%27s_principle), which has to do with the limits of energy consumption in computation.
+Another interesting information theory principle that was recently in the [news](...) is [Landauer's Principle](https://en.wikipedia.org/wiki/Landauer%27s_principle), which has to do with the limits of energy consumption in computation.
 
 #### Information Retrieval
 
