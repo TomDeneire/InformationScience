@@ -114,7 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter09.html">
-   Chapter 8: Information Architecture
+   Chapter 9: Information Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -281,8 +281,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignment-marc21-to-dublin-core-conversion-for-oai">
-   Assignment: MARC21 to Dublin Core conversion for OAI
+  <a class="reference internal nav-link" href="#exercise-marc21-to-dublin-core-conversion-for-oai">
+   Exercise: MARC21 to Dublin Core conversion for OAI
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -506,8 +506,8 @@
 <h2>Excursus: DH example<a class="headerlink" href="#excursus-dh-example" title="Permalink to this headline">¶</a></h2>
 <p>As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: <a class="reference external" href="https://github.com/TomDeneire/quiring">A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices</a>, which specifically aims to analyse the Early Modern practice of ‘quiring’ gatherings in handpress book production.</p>
 </div>
-<div class="section" id="assignment-marc21-to-dublin-core-conversion-for-oai">
-<h2>Assignment: MARC21 to Dublin Core conversion for OAI<a class="headerlink" href="#assignment-marc21-to-dublin-core-conversion-for-oai" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-marc21-to-dublin-core-conversion-for-oai">
+<h2>Exercise: MARC21 to Dublin Core conversion for OAI<a class="headerlink" href="#exercise-marc21-to-dublin-core-conversion-for-oai" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a> or OAI for short:</p>
 <blockquote>
 <div><p>is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.</p>
@@ -523,7 +523,7 @@
 </div>
 <p>In these examples, the trailing <code class="docutils literal notranslate"><span class="pre">c:lvd:</span></code> number is a unique Library Object Identifier (LOI) used by our LMS <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a>. You can substitute it for any LOI you find in our <a class="reference external" href="https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E">OPAC</a>.</p>
 <p>Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.</p>
-<p>According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your assignment will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
+<p>According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your task will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
 <div class="section" id="tips">
 <h3>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">

@@ -114,7 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter09.html">
-   Chapter 8: Information Architecture
+   Chapter 9: Information Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -261,8 +261,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#assignment-json-metadata-harvester">
-   Assignment: JSON metadata harvester
+  <a class="reference internal nav-link" href="#exercise-json-metadata-harvester">
+   Exercise: JSON metadata harvester
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -271,8 +271,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assignment">
-     Assignment
+    <a class="reference internal nav-link" href="#task">
+     Task
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -447,9 +447,9 @@
 </div>
 </div>
 </div>
-<div class="section" id="assignment-json-metadata-harvester">
-<h2>Assignment: JSON metadata harvester<a class="headerlink" href="#assignment-json-metadata-harvester" title="Permalink to this headline">¶</a></h2>
-<p>For your assignment you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata.</p>
+<div class="section" id="exercise-json-metadata-harvester">
+<h2>Exercise: JSON metadata harvester<a class="headerlink" href="#exercise-json-metadata-harvester" title="Permalink to this headline">¶</a></h2>
+<p>For this exercise you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata.</p>
 <p>It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
 <div class="section" id="what-is-an-api">
 <h3>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h3>
@@ -458,9 +458,9 @@
 <p>In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn’t it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but <a class="reference external" href="https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa">API architectures</a> are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don’t have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before.</p>
 <p>There are lots of free web APIs out there. The <a class="reference external" href="https://api.nasa.gov/">NASA API</a>, for instance, is quite incredible. For book information there is <a class="reference external" href="https://openlibrary.org/dev/docs/api/books">OpenLibrary</a>. Or this <a class="reference external" href="https://evilinsult.com/generate_insult.php?lang=en&amp;type=json">Evil Insult Generator</a>, if you want to have some fun! You can find an extensive list of free APIs <a class="reference external" href="https://github.com/public-apis/public-apis">here</a>.</p>
 </div>
-<div class="section" id="assignment">
-<h3>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h3>
-<p>Your assignment is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
+<div class="section" id="task">
+<h3>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h3>
+<p>The task is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
 <div class="section" id="some-tips">
 <h4>Some tips:<a class="headerlink" href="#some-tips" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">

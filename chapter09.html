@@ -257,8 +257,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optional-ydb-acculturation-workshop">
-   Optional: YDB Acculturation Workshop
+  <a class="reference internal nav-link" href="#optional-exercise-ydb-acculturation-workshop">
+   Optional exercise: YDB Acculturation Workshop
   </a>
  </li>
 </ul>
@@ -379,7 +379,7 @@
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.</p>
+<p>Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.</p>
 </div>
 <div class="section" id="production-server">
 <h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>
@@ -387,9 +387,9 @@
 <p>The one mentioned was actually the <em>development</em> server (we call it “presto”), as of course we don’t code on the <em>production</em> server (“moto”). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)</p>
 <p>This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath <code class="docutils literal notranslate"><span class="pre">library/software</span></code>) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath <code class="docutils literal notranslate"><span class="pre">library/database</span></code>). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.</p>
 </div>
-<div class="section" id="optional-ydb-acculturation-workshop">
-<h2>Optional: YDB Acculturation Workshop<a class="headerlink" href="#optional-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
-<p>If you want a taste of what it is like to set up your own library system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
+<div class="section" id="optional-exercise-ydb-acculturation-workshop">
+<h2>Optional exercise: YDB Acculturation Workshop<a class="headerlink" href="#optional-exercise-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
+<p>If you want a taste of what it is like to set up your own information system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
 <p>However, for a first acquaintance it’s probably better to take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
 </div>
 </div>
