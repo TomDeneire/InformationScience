@@ -261,8 +261,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise-json-metadata-harvester">
-   Exercise: JSON metadata harvester
+  <a class="reference internal nav-link" href="#exercise-europeana-entities-api">
+   Exercise: Europeana Entities API
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -300,7 +300,8 @@
 <p>Credit: <a class="reference external" href="https://xkcd.com/1831/">xkcd</a></p>
 <div class="section" id="query-languages">
 <h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
-<p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
+<p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete.</p>
+<p>From an information standpoint, the main focus is <strong>reading</strong> from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
 <p>Actually, query languages surpass databases. Formally, query languages can be classified as <strong>database query languages</strong> versus <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
 <p>For the latter we will discuss CQL, for the former SQL.</p>
 <div class="section" id="cql-sru">
@@ -338,15 +339,15 @@
 </div>
 <div class="section" id="example-cerl-thesaurus">
 <h4>Example: CERL thesaurus<a class="headerlink" href="#example-cerl-thesaurus" title="Permalink to this headline">¶</a></h4>
-<p>Let’s have a more detailed look at one of the examples used frequently in the above. This API that supports SRU/CQL is the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
-<p>Below is an example of how to query this API with SRU/CQL from Python:</p>
+<p>Let’s have a more detailed look at one of the examples used frequently in the above. This source that supports SRU/CQL is the <a class="reference external" href="https://cerl.org/">CERL (Consortium of European Research Libraries)</a>, which is responsible for the <a class="reference external" href="https://data.cerl.org/thesaurus/_search">CERL Thesaurus</a>, containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.</p>
+<p>Below is an example of how to query this source with SRU/CQL from Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.parse</span>
 <span class="kn">import</span> <span class="nn">urllib.request</span>
 <span class="kn">import</span> <span class="nn">urllib.error</span>
 
-<span class="n">CERL_THESAURUS</span> <span class="o">=</span> <span class="s2">&quot;https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=&quot;</span>
+<span class="n">CERL_SRU_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;https://data.cerl.org/thesaurus/_sru?version=1.2&amp;operation=searchRetrieve&amp;query=&quot;</span>
 
 <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -362,15 +363,15 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Query CERL thesaurus, return response or exit with errorcode</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">search</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">CERL_THESAURUS</span> <span class="o">+</span> <span class="n">search</span>
+    <span class="n">cql_query</span> <span class="o">=</span> <span class="n">clean</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">CERL_SRU_PREFIX</span> <span class="o">+</span> <span class="n">cql_query</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">query</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">query</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">HTTPerr</span><span class="p">:</span>
         <span class="n">exit</span><span class="p">(</span><span class="n">HTTPerr</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span> <span class="k">as</span> <span class="n">URLerr</span><span class="p">:</span>
-        <span class="n">exit</span><span class="p">(</span><span class="n">URLerr</span><span class="p">)</span>
+        <span class="n">exit</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">URLerr</span><span class="p">))</span>
 
 <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">query_CERL</span><span class="p">(</span><span class="n">user_input</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1000</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
@@ -378,7 +379,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;1283&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cnp02142938&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cnp02142938&quot; type=&quot;personalName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Fabricius, Erasmus&lt;/display&gt;&lt;biographicalData&gt;1490/95-1546. ca. 1490/95-1546&lt;/biographicalData&gt;&lt;activityNote&gt;Reformator&lt;/activityNote&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Erasmus Fabricius&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Fabricius, Erasmus&lt;/headingForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Faber&lt;/variantForm&gt;&lt;variantForm name=&quot;single&quot;&gt;Erasmus Fabricius&lt;/variantForm&gt;&#39;...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;srw:searchRetrieveResponse xmlns:srw=&quot;http://www.loc.gov/zing/srw/&quot; xmlns:diag=&quot;http://www.loc.gov/zing/srw/diagnostic/&quot;&gt;\r\n&lt;srw:version&gt;1.2&lt;/srw:version&gt;\r\n&lt;srw:numberOfRecords&gt;51&lt;/srw:numberOfRecords&gt;\r\n&lt;srw:records&gt;\r\n\r\n    &lt;srw:record&gt;\r\n        &lt;srw:recordSchema&gt;http://sru.cerl.org/schema/ctas/1.1/&lt;/srw:recordSchema&gt;\r\n        &lt;srw:recordPacking&gt;xml&lt;/srw:recordPacking&gt;\r\n        &lt;srw:recordIdentifier&gt;cnp00605296&lt;/srw:recordIdentifier&gt;\r\n        &lt;srw:recordData&gt;\r\n        \r\n        \r\n        &lt;record id=&quot;cnp00605296&quot; type=&quot;personalName&quot; xmlns=&quot;http://sru.cerl.org/ctas/dtd/1.1&quot;&gt;&lt;info&gt;&lt;display&gt;Lipsius, Jacob&lt;/display&gt;&lt;/info&gt;&lt;nameForms&gt;&lt;headingForm name=&quot;full&quot;&gt;Jacob Lipsius&lt;/headingForm&gt;&lt;headingForm name=&quot;inverted&quot;&gt;Lipsius, Jacob&lt;/headingForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jacobus Lipsius&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&gt;Lipsius, Jacobus&lt;/variantForm&gt;&lt;variantForm name=&quot;full&quot;&gt;Jakob Lipsius&lt;/variantForm&gt;&lt;variantForm name=&quot;inverted&quot;&gt;Lipsius, Jakob&lt;/variantForm&gt;&lt;/nameForm&#39;...
 </pre></div>
 </div>
 </div>
@@ -387,10 +388,9 @@
 </div>
 <div class="section" id="sql-sqlite">
 <h3>SQL/SQLite<a class="headerlink" href="#sql-sqlite" title="Permalink to this headline">¶</a></h3>
-<p>to do: also talk about sparql?</p>
-<p>SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, the query language for RDF. So knowing SQL will open many doors.</p>
-<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>. Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, …), but you can also handle them with GUIs like <a class="reference external" href="https://sqlitebrowser.org/">DB Browser</a>, which makes them also very suitable for non-technical use.</p>
-<p>If you want to know more about SQLite, I wrote this <a class="reference external" href="https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482">blog</a> about it</p>
+<p>SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, the query language for RDF. So knowing SQL will open many doors.</p>
+<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like <a class="reference external" href="https://en.wikipedia.org/wiki/MySQL">MySQL</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/PostgreSQL">PostgreSQL</a>. However, there is also a very good standalone alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>. Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, …), but you can also handle them with GUIs like <a class="reference external" href="https://sqlitebrowser.org/">DB Browser</a>, which makes them also very suitable for non-technical use.</p>
+<p>If you want to know more about SQLite, I wrote this <a class="reference external" href="https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482">blog</a> about it and why it is the most widely-used database in the world…</p>
 <div class="section" id="sql-queries">
 <h4>SQL queries<a class="headerlink" href="#sql-queries" title="Permalink to this headline">¶</a></h4>
 <p>There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.</p>
@@ -402,8 +402,8 @@
 </div>
 <div class="section" id="sqlite3">
 <h3>sqlite3<a class="headerlink" href="#sqlite3" title="Permalink to this headline">¶</a></h3>
-<p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which allows a SQL interface to a database.</p>
-<p>For example, let’s launch some SQL queries on a sqlite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which offers an API for a SQLite database.</p>
+<p>For example, let’s launch some SQL queries on a SQLite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -447,15 +447,15 @@
 </div>
 </div>
 </div>
-<div class="section" id="exercise-json-metadata-harvester">
-<h2>Exercise: JSON metadata harvester<a class="headerlink" href="#exercise-json-metadata-harvester" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-europeana-entities-api">
+<h2>Exercise: Europeana Entities API<a class="headerlink" href="#exercise-europeana-entities-api" title="Permalink to this headline">¶</a></h2>
 <p>For this exercise you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata.</p>
 <p>It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
 <div class="section" id="what-is-an-api">
 <h3>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h3>
 <p>A quick word in general about an <a class="reference external" href="https://en.wikipedia.org/wiki/API">API</a>, or Application Programming Interface.</p>
 <p>Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata’s web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python’s <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> module) or remote (e.g. <a class="reference external" href="https://query.wikidata.org/">Wikidata’s Query Service</a>) API to get this data in a way that can be easily handled by computers.</p>
-<p>In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn’t it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but <a class="reference external" href="https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa">API architectures</a> are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don’t have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before.</p>
+<p>In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn’t it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but <a class="reference external" href="https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa">API architectures</a> are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don’t have to learn a new query language. Moreover, suppose Wikidata changes their database. All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before.</p>
 <p>There are lots of free web APIs out there. The <a class="reference external" href="https://api.nasa.gov/">NASA API</a>, for instance, is quite incredible. For book information there is <a class="reference external" href="https://openlibrary.org/dev/docs/api/books">OpenLibrary</a>. Or this <a class="reference external" href="https://evilinsult.com/generate_insult.php?lang=en&amp;type=json">Evil Insult Generator</a>, if you want to have some fun! You can find an extensive list of free APIs <a class="reference external" href="https://github.com/public-apis/public-apis">here</a>.</p>
 </div>
 <div class="section" id="task">
@@ -470,7 +470,6 @@
 <li><p>Try to anticipate what can go wrong so the program doesn’t crash in unexpected situations.</p></li>
 <li><p>Test your application with the following search strings: <code class="docutils literal notranslate"><span class="pre">Erasmus</span></code>, <code class="docutils literal notranslate"><span class="pre">Justus</span> <span class="pre">Lipsius</span></code> and <code class="docutils literal notranslate"><span class="pre">Django</span> <span class="pre">Spirelli</span></code>.</p></li>
 </ul>
-<p>If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite.</p>
 </div>
 </div>
 </div>
