@@ -318,7 +318,7 @@ A quick summary from [Wikipedia](https://en.wikipedia.org/wiki/Resource_Descript
 >
 >RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.
 
-In order to define the data used in RDF we use a **Uniform Resource Identifier (URI)**, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let's look at the part of the [Turtle] RDF [Q90.ttl](https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump) for the Wikidata entry [Paris](https://www.wikidata.org/wiki/Q90), known as entity `Q90`:
+In order to define the data used in RDF we use a **Uniform Resource Identifier (URI)**, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let's look at the part of the [Turtle](https://en.wikipedia.org/wiki/Turtle_(syntax)) RDF [Q90.ttl](https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump) for the Wikidata entry [Paris](https://www.wikidata.org/wiki/Q90), known as entity `Q90`:
 
 ```ttl
 wd:Q90 wdt:P2924 "2320508" ;
@@ -359,7 +359,7 @@ wd:Q90 wdt:P2924 "2320508" ;
 		wd:Q16665915 ;
 ```
 
-(If you want, you can compare it to the [JSON/RDF version](https://www.wikidata.org/wiki/Special:EntityData/Q90.json))
+(If you want, you can compare it to the [JSON-LD version](https://www.wikidata.org/wiki/Special:EntityData/Q90.jsonld) which is another serialization of RDF)
 
 The last two lines are triples expressing the fact that:
 

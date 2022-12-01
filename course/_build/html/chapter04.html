@@ -789,7 +789,7 @@ John
 <p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a <strong>subject</strong> denoting “the sky”, a <strong>predicate</strong> denoting “has the color”, and an <strong>object</strong> denoting “blue”.</p>
 <p>RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.</p>
 </div></blockquote>
-<p>In order to define the data used in RDF we use a <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let’s look at the part of the [Turtle] RDF <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump">Q90.ttl</a> for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
+<p>In order to define the data used in RDF we use a <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let’s look at the part of the <a class="reference external" href="https://en.wikipedia.org/wiki/Turtle_(syntax)">Turtle</a> RDF <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump">Q90.ttl</a> for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
 <div class="highlight-ttl notranslate"><div class="highlight"><pre><span></span><span class="nv">wd</span>:<span class="nv">Q90</span> <span class="nv">wdt</span>:<span class="nv">P2924</span> <span class="s2">&quot;</span><span class="s">2320508</span><span class="s2">&quot;</span> <span class="c1">;</span>
 	<span class="nv">wdt</span>:<span class="nv">P1082</span> <span class="s2">&quot;</span><span class="s">+2165423</span><span class="s2">&quot;</span><span class="o">^^</span><span class="nv">xsd</span>:<span class="nv">decimal</span> <span class="c1">;</span>
 	<span class="nv">wdt</span>:<span class="nv">P1667</span> <span class="s2">&quot;</span><span class="s">7008038</span><span class="s2">&quot;</span> <span class="c1">;</span>
@@ -828,7 +828,7 @@ John
 		<span class="nv">wd</span>:<span class="nv">Q16665915</span> <span class="c1">;</span>
 </pre></div>
 </div>
-<p>(If you want, you can compare it to the <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.json">JSON/RDF version</a>)</p>
+<p>(If you want, you can compare it to the <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.jsonld">JSON-LD version</a> which is another serialization of RDF)</p>
 <p>The last two lines are triples expressing the fact that:</p>
 <ol class="simple">
 <li><p>“Paris” (subject)</p></li>
