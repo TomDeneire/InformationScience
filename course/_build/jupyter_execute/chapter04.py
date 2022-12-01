@@ -16,6 +16,12 @@ Formal discussions of information might start with the discussion of **informati
 
 > An information model provides formalism to the description of a problem domain without constraining how that description is mapped to an actual implementation in software. There may be many mappings of the information model. Such mappings are called data models (...)
 
+An [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) is an example of an information model being used in Information Science, for instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:
+
+![](images/ontology.png)
+
+[Credit](https://www.researchgate.net/figure/Example-Ontology-for-the-family-domain_fig1_301463542)
+
 ### Information retrieval models
 
 Information retrieval then goes a step further and also provides theoretical models for retrieving information, as, for instance, we read in [Modern Information Retrieval](https://isbnsearch.org/isbn/9780321416919):
@@ -58,8 +64,8 @@ One of the basic formats of tabular data is CSV, which is easy to work with in P
 import csv
 import os
 
-headers = ["identifier", "last_name", "first_name"]
-rows = [
+HEADERS = ["identifier", "last_name", "first_name"]
+ROWS = [
             ["1", "Deneire", "Tom"],
             ["2", "Doe", "Jane"]
         ]
@@ -71,9 +77,9 @@ with open(FILENAME, 'w') as csvfile:
     # creating a csv writer object
     csvwriter = csv.writer(csvfile)
     # writing the headers
-    csvwriter.writerow(headers)
+    csvwriter.writerow(HEADERS)
     # writing the data rows
-    csvwriter.writerows(rows)
+    csvwriter.writerows(ROWS)
 
 # Reading from csv file
 data = []
@@ -84,18 +90,12 @@ with open(FILENAME, 'r') as csvfile:
     for row in csvreader:
         data.append(row)
 
-# test
-result = {"headers":
-            {"test": data[0], "original": headers},
-          "rows":
-            {"test": data[1:], "original": rows}
-          }
-for item in ["headers", "rows"]:
-    try:
-        assert result[item]["test"] == result[item]["original"]
-    except AssertionError:
-        print("test=", result[item]["test"])
-        print("original=", result[item]["original"])
+# Querying a csv file
+# note the navigational nature!
+for count, record in enumerate(data):
+    last_name = record[1]
+    if last_name == "Deneire":
+        print(count+1)
 
 os.remove(FILENAME)
 
@@ -186,7 +186,7 @@ One of the main advantages of JSON is that it is easy to read for humans (easier
 json_string = '''
 {
 	"name": "Deneire",
-	"age": 40,
+	"age": 41,
 	"initials": ["T", "B"]
 }
 '''
@@ -195,7 +195,7 @@ print(type(json_string))
 
 python_dict = {}
 python_dict["name"] = "Deneire"
-python_dict["age"] = 40
+python_dict["age"] = 41
 python_dict["initials"] = ["T", "B"]
 print(python_dict)
 print(type(python_dict))
@@ -221,14 +221,14 @@ print(contacts_dict["2"]["lastname"])
 
 # Turn dict() into JSON with dumps()
 contacts_dict["2"]["lastname"] = "Eyre"
-contacts = json.dumps(contacts_dict)
+contacts = json.dumps(contacts_dict, indent=4)
 print(contacts)
 
 #### XML
 
 [XML](https://www.w3schools.com/xml/) is something most of you are probably familiar with, as it is a recurring technology in digital text analysis. In fact, XML is ubiquitous in the information world. For instance, it is very actively used in the library world. Another example is invoicing; for instance, the Government of Flanders has been asking for XML e-invoices from its suppliers for all contracts since 2017.
 
-XML is properly queried with [XPath](https://www.w3schools.com/xml/xpath_intro.asp) and [XQuery](https://www.w3schools.com/xml/xquery_intro.asp), but with Python it is often easier to use one of the available XML libraries which turn XML's hierarchical structure into a parse tree, which behaves like a Pythonic object that you can iterate over. Two well-known examples are 
+XML can be queried with [XPath](https://www.w3schools.com/xml/xpath_intro.asp) and [XQuery](https://www.w3schools.com/xml/xquery_intro.asp), but with Python it is often easier to use one of the available XML libraries which turn XML's hierarchical structure into a parse tree, which behaves like a Pythonic object that you can iterate over. Two well-known examples are 
 
 - [beautifulsoup](https://pypi.org/project/beautifulsoup4/)
 - [lxml](https://lxml.de/)
@@ -289,7 +289,7 @@ import lxml.etree
 
 root = lxml.etree.Element("database")
 
-# Create subelements with SubElement(parent, tag, attribute)
+# Create subelements with SubElement(parent, tag, attribute=value)
 record1 = lxml.etree.SubElement(root, "record", nr="1")
 name1 = lxml.etree.SubElement(record1, "name", type="last")
 name1.text = "Deneire"
@@ -308,8 +308,6 @@ print(lxml.etree.tostring(root))
 
 #### RDF
 
-to do: make this more explicit and introduce .nt type for triples (much easier than xml!)
-
 Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a **data model, not a data serialization model**, such as XML or JSON - in fact, both can be used to express RDF data.
 
 A quick summary from [Wikipedia](https://en.wikipedia.org/wiki/Resource_Description_Framework):
@@ -320,33 +318,72 @@ A quick summary from [Wikipedia](https://en.wikipedia.org/wiki/Resource_Descript
 >
 >RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.
 
-In order to define the data used in RDF we use a **Uniform Resource Identifier (URI)**, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let's look at the part of the RDF/XML for the Wikidata entry [Paris](https://www.wikidata.org/wiki/Q90), known as entity `Q90`:
+In order to define the data used in RDF we use a **Uniform Resource Identifier (URI)**, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let's look at the part of the [Turtle] RDF [Q90.ttl](https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump) for the Wikidata entry [Paris](https://www.wikidata.org/wiki/Q90), known as entity `Q90`:
 
-```xml
-<?xml version="1.0"?>
-    <rdf:Description rdf:about="http://www.wikidata.org/entity/Q90">
-        <wdt:P1376 rdf:resource="http://www.wikidata.org/entity/Q142"/>
-    </rdf:Description>
+```ttl
+wd:Q90 wdt:P2924 "2320508" ;
+	wdt:P1082 "+2165423"^^xsd:decimal ;
+	wdt:P1667 "7008038" ;
+	wdtn:P1667 <http://vocab.getty.edu/tgn/7008038> ;
+	wdt:P1151 wd:Q8253667 ;
+	wdt:P1333 "Point(2.3444967 48.8155755)"^^geo:wktLiteral ;
+	wdt:P349 "00629026" ;
+	wdtn:P349 <http://id.ndl.go.jp/auth/ndlna/00629026> ;
+	wdt:P214 "158822968" ;
+	wdtn:P214 <http://viaf.org/viaf/158822968> ;
+	wdt:P1566 "2968815" ;
+	wdtn:P1566 <http://sws.geonames.org/2968815/> ;
+	wdt:P227 "4044660-8" ;
+	wdtn:P227 <https://d-nb.info/gnd/4044660-8> ;
+	wdt:P1792 wd:Q8964470 ;
+	wdt:P5905 "4020-56052" ;
+	wdt:P395 "75" ;
+	wdt:P3500 "55653" ;
+	wdt:P2581 "00015540n" ;
+	wdtn:P2581 <http://babelnet.org/rdf/s00015540n> ;
+	wdt:P1943 <http://commons.wikimedia.org/wiki/Special:FilePath/Paris%20plan%20jms.png> ;
+	wdt:P1997 "110774245616525" ;
+	wdt:P1313 wd:Q12371988 ;
+	wdt:P3417 "Paris" ;
+	wdt:P417 wd:Q235863 ;
+	wdt:P17 wd:Q142 ;
+	wdt:P3219 "paris" ;
+	wdt:P486 "D010297" ;
+	wdtn:P486 <http://id.nlm.nih.gov/mesh/D010297> ;
+	wdt:P3106 "world/paris" ;
+	wdt:P982 "dc10c22b-e510-4006-8b7f-fecb4f36436e" ;
+	wdtn:P982 <http://musicbrainz.org/area/dc10c22b-e510-4006-8b7f-fecb4f36436e> ;
+	wdt:P1424 wd:Q18220037 ;
+	wdt:P94 <http://commons.wikimedia.org/wiki/Special:FilePath/Grandes%20Armes%20de%20Paris.svg> ;
+	wdt:P1376 wd:Q142,
+		wd:Q16665915 ;
 ```
 
-This is a triple expressing the fact that:
+(If you want, you can compare it to the [JSON/RDF version](https://www.wikidata.org/wiki/Special:EntityData/Q90.json))
+
+The last two lines are triples expressing the fact that:
 
 1. "Paris" (subject) 
 2. "is the capital of" (predicate) 
-3. "France" (object)
+3. "France" (object) and "Grand Paris" (object)
 
 To express this three URIs are used: 
 
 1. `Q90` (Paris)
 2. `P1376` (property "is capital of") 
-3. `Q142` (France)
+3. `Q142` (France) and `Q16665915` (Grand Paris, administrative area)
 
-Theismakes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and also **Linked Data**: all elements of the triple are linked up to other data, e.g. `Q142` which was the object in this statement, will be the subject of others.
+This the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and also **Linked Data**: all elements of the triple are linked up to other data, e.g. `Q142` which was the object in this statement, will be the subject of others.
 
-Consider the difference with non-RDF XML where resources are not identified with URIs and data is not linked and the model not open:
+Consider the difference comparing the RDF/XML with a non-RDF version where resources are not identified with URIs and data is not linked and the model not open:
 
 ```xml
-<?xml version="1.0"?>
+    <rdf:Description rdf:about="http://www.wikidata.org/entity/Q90">
+        <wdt:P1376 rdf:resource="http://www.wikidata.org/entity/Q142"/>
+    </rdf:Description>
+```
+
+```xml
     <Description>Paris
         <isCapitalof>France</isCapitalof>
     </Description>

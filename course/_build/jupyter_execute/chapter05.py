@@ -6,7 +6,9 @@ Credit: [xkcd](https://xkcd.com/1831/)
 
 ## Query languages
 
-Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. From an information standpoint, the main focus is reading from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through **querying**, for which we use [query languages](https://en.wikipedia.org/wiki/Query_language). 
+Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. 
+
+From an information standpoint, the main focus is **reading** from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through **querying**, for which we use [query languages](https://en.wikipedia.org/wiki/Query_language). 
 
 Actually, query languages surpass databases. Formally, query languages can be classified as **database query languages** versus **information retrieval query languages**. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry. 
 
@@ -68,15 +70,15 @@ e.g. [https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&
 
 #### Example: CERL thesaurus
 
-Let's have a more detailed look at one of the examples used frequently in the above. This API that supports SRU/CQL is the [CERL (Consortium of European Research Libraries)](https://cerl.org/), which is responsible for the [CERL Thesaurus](https://data.cerl.org/thesaurus/_search), containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.
+Let's have a more detailed look at one of the examples used frequently in the above. This source that supports SRU/CQL is the [CERL (Consortium of European Research Libraries)](https://cerl.org/), which is responsible for the [CERL Thesaurus](https://data.cerl.org/thesaurus/_search), containing forms of imprint places, imprint names, personal names and corporate names as found in material printed before the middle of the nineteenth century - including variant spellings, forms in Latin and other languages, and fictitious names.
 
-Below is an example of how to query this API with SRU/CQL from Python:
+Below is an example of how to query this source with SRU/CQL from Python:
 
 import urllib.parse
 import urllib.request
 import urllib.error
 
-CERL_THESAURUS = "https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query="
+CERL_SRU_PREFIX = "https://data.cerl.org/thesaurus/_sru?version=1.2&operation=searchRetrieve&query="
 
 def clean(string: str) -> str:
     """
@@ -92,28 +94,26 @@ def query_CERL(search: str) -> bytes:
     """
     Query CERL thesaurus, return response or exit with errorcode
     """
-    search = clean(search)
-    url = CERL_THESAURUS + search
+    cql_query = clean(search)
+    url = CERL_SRU_PREFIX + cql_query
     try:
         with urllib.request.urlopen(url) as query:
             return query.read()
     except urllib.error.HTTPError as HTTPerr:
         exit(HTTPerr.code)
     except urllib.error.URLError as URLerr:
-        exit(URLerr)
+        exit(str(URLerr))
 
 user_input = input()
 print(str(query_CERL(user_input)[0:1000]) + "...")
 
 ### SQL/SQLite
 
-to do: also talk about sparql?
+SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
 
-SQL is a technology that is probably new to most of you. Unlike RDF, which libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
+SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like [MySQL](https://en.wikipedia.org/wiki/MySQL) or [PostgreSQL](https://en.wikipedia.org/wiki/PostgreSQL). However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, ...), but you can also handle them with GUIs like [DB Browser](https://sqlitebrowser.org/), which makes them also very suitable for non-technical use.
 
-SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like MySQL or PostgreSQL. However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, ...), but you can also handle them with GUIs like [DB Browser](https://sqlitebrowser.org/), which makes them also very suitable for non-technical use.
-
-If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it
+If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it and why it is the most widely-used database in the world...
 
 #### SQL queries
 
@@ -129,9 +129,9 @@ Let's look at a concrete example.
 
 ### sqlite3
 
-Python's standard library contains the module [sqlite3](https://docs.python.org/3/library/sqlite3.html) which allows a SQL interface to a database.
+Python's standard library contains the module [sqlite3](https://docs.python.org/3/library/sqlite3.html) which offers an API for a SQLite database.
 
-For example, let's launch some SQL queries on a sqlite database of [STCV](https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv), which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the [Anet Open Data](https://www.uantwerpen.be/nl/projecten/anet/open-data/). A version of it is available in this repo under `data`.
+For example, let's launch some SQL queries on a SQLite database of [STCV](https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv), which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the [Anet Open Data](https://www.uantwerpen.be/nl/projecten/anet/open-data/). A version of it is available in this repo under `data`.
 
 
 import os
@@ -156,7 +156,7 @@ for row in data[50:60]:
 # Close the connection when you're done
 conn.close()
 
-## Exercise: JSON metadata harvester
+## Exercise: Europeana Entities API
 
 For this exercise you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata. 
 
@@ -168,7 +168,7 @@ A quick word in general about an [API](https://en.wikipedia.org/wiki/API), or Ap
 
 Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata's web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python's `sqlite3` module) or remote (e.g. [Wikidata's Query Service](https://query.wikidata.org/)) API to get this data in a way that can be easily handled by computers.
 
-In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn't it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but [API architectures](https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa) are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don't have to learn a new query language. Moreover, suppose Wikidata changes their database? All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before. 
+In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn't it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but [API architectures](https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa) are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don't have to learn a new query language. Moreover, suppose Wikidata changes their database. All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before. 
 
 There are lots of free web APIs out there. The [NASA API](https://api.nasa.gov/), for instance, is quite incredible. For book information there is [OpenLibrary](https://openlibrary.org/dev/docs/api/books). Or this [Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json), if you want to have some fun! You can find an extensive list of free APIs [here](https://github.com/public-apis/public-apis).
  
@@ -184,5 +184,3 @@ The task is simple. Write a Python script that prompts for user input of a named
 - Think about what we have seen already about standardizing/normalizing search strings, but take this to the next level.
 - Try to anticipate what can go wrong so the program doesn't crash in unexpected situations.
 - Test your application with the following search strings: `Erasmus`, `Justus Lipsius` and `Django Spirelli`.
-
-If this is an easy task for you, you might think about parsing the results and adding them to your own database structure, e.g. XML or SQLite. 

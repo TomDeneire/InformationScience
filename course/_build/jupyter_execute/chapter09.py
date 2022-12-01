@@ -127,7 +127,7 @@ Other software installed on the server, includes Go (for systems programming, e.
 
 ## Example
 
-Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search, etc.
+Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search and connection to authority record, getting records associated with authority record, getting basic catalographic information of results, putting results in html with templating, returning result etc.
 
 ## Production server
 

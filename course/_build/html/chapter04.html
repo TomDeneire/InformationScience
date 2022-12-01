@@ -114,7 +114,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter09.html">
-   Chapter 8: Information Architecture
+   Chapter 9: Information Architecture
   </a>
  </li>
  <li class="toctree-l1">
@@ -340,6 +340,9 @@
 <blockquote>
 <div><p>An information model provides formalism to the description of a problem domain without constraining how that description is mapped to an actual implementation in software. There may be many mappings of the information model. Such mappings are called data models (…)</p>
 </div></blockquote>
+<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> is an example of an information model being used in Information Science, for instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:</p>
+<p><img alt="" src="_images/ontology.png" /></p>
+<p><a class="reference external" href="https://www.researchgate.net/figure/Example-Ontology-for-the-family-domain_fig1_301463542">Credit</a></p>
 </div>
 <div class="section" id="information-retrieval-models">
 <h3>Information retrieval models<a class="headerlink" href="#information-retrieval-models" title="Permalink to this headline">¶</a></h3>
@@ -383,8 +386,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">]</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">]</span>
+<span class="n">ROWS</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;Deneire&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">],</span>
             <span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">]</span>
         <span class="p">]</span>
@@ -396,9 +399,9 @@
     <span class="c1"># creating a csv writer object</span>
     <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
     <span class="c1"># writing the headers</span>
-    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">HEADERS</span><span class="p">)</span>
     <span class="c1"># writing the data rows</span>
-    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">ROWS</span><span class="p">)</span>
 
 <span class="c1"># Reading from csv file</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -409,26 +412,19 @@
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csvreader</span><span class="p">:</span>
         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
-<span class="c1"># test</span>
-<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span>
-            <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">headers</span><span class="p">},</span>
-          <span class="s2">&quot;rows&quot;</span><span class="p">:</span>
-            <span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s2">&quot;original&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
-          <span class="p">}</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;rows&quot;</span><span class="p">]:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;original&quot;</span><span class="p">]</span>
-    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;test&quot;</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;original&quot;</span><span class="p">])</span>
+<span class="c1"># Querying a csv file</span>
+<span class="c1"># note the navigational nature!</span>
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">last_name</span> <span class="o">==</span> <span class="s2">&quot;Deneire&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test= [[&#39;1&#39;, &#39;Deneire&#39;, &#39;Tom&#39;], [&#39;2&#39;, &#39;Doe&#39;, &#39;Jane&#39;]]
-original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#39;]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
 </pre></div>
 </div>
 </div>
@@ -564,7 +560,7 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">{</span>
 <span class="s1">	&quot;name&quot;: &quot;Deneire&quot;,</span>
-<span class="s1">	&quot;age&quot;: 40,</span>
+<span class="s1">	&quot;age&quot;: 41,</span>
 <span class="s1">	&quot;initials&quot;: [&quot;T&quot;, &quot;B&quot;]</span>
 <span class="s1">}</span>
 <span class="s1">&#39;&#39;&#39;</span>
@@ -573,7 +569,7 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 
 <span class="n">python_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
-<span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">41</span>
 <span class="n">python_dict</span><span class="p">[</span><span class="s2">&quot;initials&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">python_dict</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">python_dict</span><span class="p">))</span>
@@ -583,12 +579,12 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
 	&quot;name&quot;: &quot;Deneire&quot;,
-	&quot;age&quot;: 40,
+	&quot;age&quot;: 41,
 	&quot;initials&quot;: [&quot;T&quot;, &quot;B&quot;]
 }
 
 &lt;class &#39;str&#39;&gt;
-{&#39;name&#39;: &#39;Deneire&#39;, &#39;age&#39;: 40, &#39;initials&#39;: [&#39;T&#39;, &#39;B&#39;]}
+{&#39;name&#39;: &#39;Deneire&#39;, &#39;age&#39;: 41, &#39;initials&#39;: [&#39;T&#39;, &#39;B&#39;]}
 &lt;class &#39;dict&#39;&gt;
 </pre></div>
 </div>
@@ -616,14 +612,23 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 
 <span class="c1"># Turn dict() into JSON with dumps()</span>
 <span class="n">contacts_dict</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="s2">&quot;lastname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Eyre&quot;</span>
-<span class="n">contacts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">)</span>
+<span class="n">contacts</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">contacts_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doe
-{&quot;1&quot;: {&quot;lastname&quot;: &quot;Doe&quot;, &quot;firstname&quot;: &quot;John&quot;}, &quot;2&quot;: {&quot;lastname&quot;: &quot;Eyre&quot;, &quot;firstname&quot;: &quot;Jane&quot;}}
+{
+    &quot;1&quot;: {
+        &quot;lastname&quot;: &quot;Doe&quot;,
+        &quot;firstname&quot;: &quot;John&quot;
+    },
+    &quot;2&quot;: {
+        &quot;lastname&quot;: &quot;Eyre&quot;,
+        &quot;firstname&quot;: &quot;Jane&quot;
+    }
+}
 </pre></div>
 </div>
 </div>
@@ -632,7 +637,7 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 <div class="section" id="xml">
 <h4>XML<a class="headerlink" href="#xml" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference external" href="https://www.w3schools.com/xml/">XML</a> is something most of you are probably familiar with, as it is a recurring technology in digital text analysis. In fact, XML is ubiquitous in the information world. For instance, it is very actively used in the library world. Another example is invoicing; for instance, the Government of Flanders has been asking for XML e-invoices from its suppliers for all contracts since 2017.</p>
-<p>XML is properly queried with <a class="reference external" href="https://www.w3schools.com/xml/xpath_intro.asp">XPath</a> and <a class="reference external" href="https://www.w3schools.com/xml/xquery_intro.asp">XQuery</a>, but with Python it is often easier to use one of the available XML libraries which turn XML’s hierarchical structure into a parse tree, which behaves like a Pythonic object that you can iterate over. Two well-known examples are</p>
+<p>XML can be queried with <a class="reference external" href="https://www.w3schools.com/xml/xpath_intro.asp">XPath</a> and <a class="reference external" href="https://www.w3schools.com/xml/xquery_intro.asp">XQuery</a>, but with Python it is often easier to use one of the available XML libraries which turn XML’s hierarchical structure into a parse tree, which behaves like a Pythonic object that you can iterate over. Two well-known examples are</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pypi.org/project/beautifulsoup4/">beautifulsoup</a></p></li>
 <li><p><a class="reference external" href="https://lxml.de/">lxml</a></p></li>
@@ -671,7 +676,7 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7f888444e380&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7ff5866211c0&gt;
 [&#39;__bool__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__copy__&#39;, &#39;__deepcopy__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_init&#39;, &#39;addnext&#39;, &#39;addprevious&#39;, &#39;append&#39;, &#39;attrib&#39;, &#39;base&#39;, &#39;clear&#39;, &#39;cssselect&#39;, &#39;extend&#39;, &#39;find&#39;, &#39;findall&#39;, &#39;findtext&#39;, &#39;get&#39;, &#39;getchildren&#39;, &#39;getiterator&#39;, &#39;getnext&#39;, &#39;getparent&#39;, &#39;getprevious&#39;, &#39;getroottree&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;items&#39;, &#39;iter&#39;, &#39;iterancestors&#39;, &#39;iterchildren&#39;, &#39;iterdescendants&#39;, &#39;iterfind&#39;, &#39;itersiblings&#39;, &#39;itertext&#39;, &#39;keys&#39;, &#39;makeelement&#39;, &#39;nsmap&#39;, &#39;prefix&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;set&#39;, &#39;sourceline&#39;, &#39;tag&#39;, &#39;tail&#39;, &#39;text&#39;, &#39;values&#39;, &#39;xpath&#39;]
 </pre></div>
 </div>
@@ -689,8 +694,8 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element record at 0x7fb764770740&gt;
-&lt;Element record at 0x7fb7647b3ac0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element record at 0x7ff58664cb00&gt;
+&lt;Element record at 0x7ff58661ffc0&gt;
 </pre></div>
 </div>
 </div>
@@ -704,10 +709,10 @@ original= [[1, &#39;Deneire&#39;, &#39;Tom&#39;], [2, &#39;Doe&#39;, &#39;Jane&#
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element name at 0x7f887d14a880&gt;
-&lt;Element name at 0x7f887d14b380&gt;
-&lt;Element name at 0x7f887d14a4c0&gt;
-&lt;Element name at 0x7f887d14aa40&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element name at 0x7ff58660f480&gt;
+&lt;Element name at 0x7ff58661f480&gt;
+&lt;Element name at 0x7ff586625900&gt;
+&lt;Element name at 0x7ff58661ffc0&gt;
 </pre></div>
 </div>
 </div>
@@ -730,9 +735,9 @@ Deneire
 type : first
 Tom
 type : last
-Lipsius
+Doe
 type : first
-Justus
+John
 </pre></div>
 </div>
 </div>
@@ -748,7 +753,7 @@ Justus
 
 <span class="n">root</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">)</span>
 
-<span class="c1"># Create subelements with SubElement(parent, tag, attribute)</span>
+<span class="c1"># Create subelements with SubElement(parent, tag, attribute=value)</span>
 <span class="n">record1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
 <span class="n">name1</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">record1</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
 <span class="n">name1</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Deneire&quot;</span>
@@ -777,7 +782,6 @@ Justus
 <h3>Graphs<a class="headerlink" href="#graphs" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="rdf">
 <h4>RDF<a class="headerlink" href="#rdf" title="Permalink to this headline">¶</a></h4>
-<p>to do: make this more explicit and introduce .nt type for triples (much easier than xml!)</p>
 <p>Unfortunately, we do not have time to discuss RDF and Linked Data in detail. However, it is important to realize that RDF is a <strong>data model, not a data serialization model</strong>, such as XML or JSON - in fact, both can be used to express RDF data.</p>
 <p>A quick summary from <a class="reference external" href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Wikipedia</a>:</p>
 <blockquote>
@@ -785,29 +789,66 @@ Justus
 <p>For example, one way to represent the notion “The sky has the color blue” in RDF is as the triple: a <strong>subject</strong> denoting “the sky”, a <strong>predicate</strong> denoting “has the color”, and an <strong>object</strong> denoting “blue”.</p>
 <p>RDF is an abstract model with several serialization formats (i.e. file formats), so the particular encoding for resources or triples varies from format to format.</p>
 </div></blockquote>
-<p>In order to define the data used in RDF we use a <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let’s look at the part of the RDF/XML for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-    <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">&quot;http://www.wikidata.org/entity/Q90&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;wdt:P1376</span> <span class="na">rdf:resource=</span><span class="s">&quot;http://www.wikidata.org/entity/Q142&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/rdf:Description&gt;</span>
+<p>In order to define the data used in RDF we use a <strong>Uniform Resource Identifier (URI)</strong>, a unique and unambiguous identifier for all things described in the triplestore. To illustrate how this works, let’s look at the part of the [Turtle] RDF <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.ttl?flavor=dump">Q90.ttl</a> for the Wikidata entry <a class="reference external" href="https://www.wikidata.org/wiki/Q90">Paris</a>, known as entity <code class="docutils literal notranslate"><span class="pre">Q90</span></code>:</p>
+<div class="highlight-ttl notranslate"><div class="highlight"><pre><span></span><span class="nv">wd</span>:<span class="nv">Q90</span> <span class="nv">wdt</span>:<span class="nv">P2924</span> <span class="s2">&quot;</span><span class="s">2320508</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1082</span> <span class="s2">&quot;</span><span class="s">+2165423</span><span class="s2">&quot;</span><span class="o">^^</span><span class="nv">xsd</span>:<span class="nv">decimal</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1667</span> <span class="s2">&quot;</span><span class="s">7008038</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P1667</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">vocab</span>.<span class="nv">getty</span>.<span class="nv">edu</span><span class="o">/</span><span class="nv">tgn</span><span class="o">/</span><span class="mi">7008038</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1151</span> <span class="nv">wd</span>:<span class="nv">Q8253667</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1333</span> <span class="s2">&quot;</span><span class="s">Point(2.3444967 48.8155755)</span><span class="s2">&quot;</span><span class="o">^^</span><span class="nv">geo</span>:<span class="nv">wktLiteral</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P349</span> <span class="s2">&quot;</span><span class="s">00629026</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P349</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">id</span>.<span class="nv">ndl</span>.<span class="nv">go</span>.<span class="nv">jp</span><span class="o">/</span><span class="nv">auth</span><span class="o">/</span><span class="nv">ndlna</span><span class="o">/</span><span class="mi">00629026</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P214</span> <span class="s2">&quot;</span><span class="s">158822968</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P214</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">viaf</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">viaf</span><span class="o">/</span><span class="mi">158822968</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1566</span> <span class="s2">&quot;</span><span class="s">2968815</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P1566</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">sws</span>.<span class="nv">geonames</span>.<span class="nv">org</span><span class="o">/</span><span class="mi">2968815</span><span class="o">/&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P227</span> <span class="s2">&quot;</span><span class="s">4044660-8</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P227</span> <span class="o">&lt;</span><span class="nv">https</span>:<span class="o">//</span><span class="nv">d</span><span class="o">-</span><span class="nv">nb</span>.<span class="nv">info</span><span class="o">/</span><span class="nv">gnd</span><span class="o">/</span><span class="mi">4044660</span><span class="o">-</span><span class="mi">8</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1792</span> <span class="nv">wd</span>:<span class="nv">Q8964470</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P5905</span> <span class="s2">&quot;</span><span class="s">4020-56052</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P395</span> <span class="s2">&quot;</span><span class="s">75</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P3500</span> <span class="s2">&quot;</span><span class="s">55653</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P2581</span> <span class="s2">&quot;</span><span class="s">00015540n</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P2581</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">babelnet</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">rdf</span><span class="o">/</span><span class="nv">s00015540n</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1943</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">commons</span>.<span class="nv">wikimedia</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">wiki</span><span class="o">/</span><span class="nv">Special</span>:<span class="nv">FilePath</span><span class="o">/</span><span class="nv">Paris</span><span class="o">%</span><span class="mi">20</span><span class="nv">plan</span><span class="o">%</span><span class="mi">20</span><span class="nv">jms</span>.<span class="nv">png</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1997</span> <span class="s2">&quot;</span><span class="s">110774245616525</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1313</span> <span class="nv">wd</span>:<span class="nv">Q12371988</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P3417</span> <span class="s2">&quot;</span><span class="s">Paris</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P417</span> <span class="nv">wd</span>:<span class="nv">Q235863</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P17</span> <span class="nv">wd</span>:<span class="nv">Q142</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P3219</span> <span class="s2">&quot;</span><span class="s">paris</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P486</span> <span class="s2">&quot;</span><span class="s">D010297</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P486</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">id</span>.<span class="nv">nlm</span>.<span class="nv">nih</span>.<span class="nv">gov</span><span class="o">/</span><span class="nv">mesh</span><span class="o">/</span><span class="nv">D010297</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P3106</span> <span class="s2">&quot;</span><span class="s">world/paris</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P982</span> <span class="s2">&quot;</span><span class="s">dc10c22b-e510-4006-8b7f-fecb4f36436e</span><span class="s2">&quot;</span> <span class="c1">;</span>
+	<span class="nv">wdtn</span>:<span class="nv">P982</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">musicbrainz</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">area</span><span class="o">/</span><span class="nv">dc10c22b</span><span class="o">-</span><span class="nv">e510</span><span class="o">-</span><span class="mi">4006</span><span class="o">-</span><span class="mi">8</span><span class="nv">b7f</span><span class="o">-</span><span class="nv">fecb4f36436e</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1424</span> <span class="nv">wd</span>:<span class="nv">Q18220037</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P94</span> <span class="o">&lt;</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">commons</span>.<span class="nv">wikimedia</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">wiki</span><span class="o">/</span><span class="nv">Special</span>:<span class="nv">FilePath</span><span class="o">/</span><span class="nv">Grandes</span><span class="o">%</span><span class="mi">20</span><span class="nv">Armes</span><span class="o">%</span><span class="mi">20</span><span class="nv">de</span><span class="o">%</span><span class="mi">20</span><span class="nv">Paris</span>.<span class="nv">svg</span><span class="o">&gt;</span> <span class="c1">;</span>
+	<span class="nv">wdt</span>:<span class="nv">P1376</span> <span class="nv">wd</span>:<span class="nv">Q142</span>,
+		<span class="nv">wd</span>:<span class="nv">Q16665915</span> <span class="c1">;</span>
 </pre></div>
 </div>
-<p>This is a triple expressing the fact that:</p>
+<p>(If you want, you can compare it to the <a class="reference external" href="https://www.wikidata.org/wiki/Special:EntityData/Q90.json">JSON/RDF version</a>)</p>
+<p>The last two lines are triples expressing the fact that:</p>
 <ol class="simple">
 <li><p>“Paris” (subject)</p></li>
 <li><p>“is the capital of” (predicate)</p></li>
-<li><p>“France” (object)</p></li>
+<li><p>“France” (object) and “Grand Paris” (object)</p></li>
 </ol>
 <p>To express this three URIs are used:</p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Q90</span></code> (Paris)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">P1376</span></code> (property “is capital of”)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q142</span></code> (France) and <code class="docutils literal notranslate"><span class="pre">Q16665915</span></code> (Grand Paris, administrative area)</p></li>
 </ol>
-<p>Theismakes the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and also <strong>Linked Data</strong>: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
-<p>Consider the difference with non-RDF XML where resources are not identified with URIs and data is not linked and the model not open:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-    <span class="nt">&lt;Description&gt;</span>Paris
+<p>This the statement unique, uniform, unambiguous (telling a computer that Paris the city, not Paris Hilton (Q47899) is the capital of France), and also <strong>Linked Data</strong>: all elements of the triple are linked up to other data, e.g. <code class="docutils literal notranslate"><span class="pre">Q142</span></code> which was the object in this statement, will be the subject of others.</p>
+<p>Consider the difference comparing the RDF/XML with a non-RDF version where resources are not identified with URIs and data is not linked and the model not open:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;rdf:Description</span> <span class="na">rdf:about=</span><span class="s">&quot;http://www.wikidata.org/entity/Q90&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;wdt:P1376</span> <span class="na">rdf:resource=</span><span class="s">&quot;http://www.wikidata.org/entity/Q142&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/rdf:Description&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;Description&gt;</span>Paris
         <span class="nt">&lt;isCapitalof&gt;</span>France<span class="nt">&lt;/isCapitalof&gt;</span>
     <span class="nt">&lt;/Description&gt;</span>
 </pre></div>
