@@ -415,10 +415,10 @@
 <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="c1"># To perform SQL commands you call the Cursor object&#39;s .execute() method</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        select distinct author_zvwr, title_ti, impressum_ju1sv from author</span>
-<span class="s2">        join title on author.cloi = title.cloi</span>
-<span class="s2">        join impressum on title.cloi = impressum.cloi</span>
-<span class="s2">        order by author_zvwr</span>
+<span class="s2">        SELECT DISTINCT author_zvwr, title_ti, impressum_ju1sv FROM author</span>
+<span class="s2">        JOIN title ON author.cloi = title.cloi</span>
+<span class="s2">        JOIN impressum ON title.cloi = impressum.cloi</span>
+<span class="s2">        ORDER BY author_zvwr DESC</span>
 <span class="s2">        &quot;&quot;&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="c1"># Call fetchall() to get a list of the matching rows</span>
@@ -431,16 +431,16 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;A.E.J.D.&#39;, &#39;Exhibitio sacrorum canonum circa ius regvlarium ecclesiarvm, quoad prædicationem divini Verbi&#39;, &#39;1674&#39;)
-(&#39;A.F.&#39;, &quot;Histoire de l&#39;empereur Charles V.&quot;, &#39;1663&#39;)
-(&#39;A.F. Wouthers&#39;, &#39;Civilia busta Philippi ofte De borgerlycke uytvaert over Philippus den Vierden coninck van Spanien [...] gedaen door de overheyt ende het volck van Antwerpen [...] den 17. dagh der wintermaendt 1665&#39;, &#39;1666&#39;)
-(&#39;A.F., Theophilus&#39;, &quot;Het noodeloos tegen-venyn van een stuck sermoons door christelycke liefde van bitterheyt gesuyvert en wederleyt door&#39;t gesagh van d&#39;algemeyne kerck-vergaderingen en van d&#39;heylige vaders dienende tot vastigheyt van ons out geloof&quot;, &#39;1718&#39;)
-(&#39;A.G.&#39;, &#39;Maria het huys des heeren ghebouwt op seven colomnen, te weten op de dry goddelijcke deughden, ende de vier hooft-deughden&#39;, &#39;1683&#39;)
-(&#39;A.H.&#39;, &quot;Entretiens de devotion sur le S. sacrement de l&#39;autel&quot;, &#39;1722&#39;)
-(&#39;A.H.G.H.V.C. Romanum&#39;, &#39;Historia avgvsta, sive Imperatorvm cæsarvmq. Romanorvm vitae et res gestae ex antiquis inscriptionibus collecta&#39;, &#39;1602&#39;)
-(&#39;A.H.v.G.&#39;, &#39;Getuige der waerheid in de leere van Gods eeuwige verkiezinge, van de genade des zaligmakers, en van den vryewil der menschen&#39;, &#39;1689&#39;)
-(&#39;A.I.v.K.P.&#39;, &#39;Opgang, voortgang, en nedergang, der ketteryen deser eeuwe&#39;, &#39;1690&#39;)
-(&#39;A.J. Charles&#39;, &#39;Het leven van de H. moeder Begga fondateuresse van de beggynen&#39;, &#39;1760&#39;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ægidius de Lallaing&#39;, &#39;Den troost der scrvpvlevse; dat is: Gheestelyck medecijn-boecksken, in-houdende vele troostelijcke remedien teghen de [...] scrupuleusheyt&#39;, &#39;1647&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in Vniuersam doctrinam D. Thomæ De sacramentis et censvris tomi dvo&#39;, &#39;1624&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Responsio ad dissertationem impvgnantem absolutionem moribundi sensibus destituti&#39;, &#39;1625&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1619&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1616&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;De moralitate, natvra, et effectibvs actvvm svpernatvralivm in genere. Et fide, spe, ac charitate, speciatim. Libri quatuor&#39;, &#39;1623&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;De actibvs svpernatvralibvs in genere&#39;, &#39;1623&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Dispvtationes theologicæ de sanctissima trinitate et divini verbi incarnatione&#39;, &#39;1645&#39;)
+(&#39;Ægidius Perrinus&#39;, &#39;Sextvs decretalivm liber&#39;, &#39;1573&#39;)
+(&#39;Ægidius Perrinus&#39;, &#39;Institvtionvm, sive Primorum totius iurisprudentiæ elementorum libri qvatvor&#39;, &#39;1575&#39;)
 </pre></div>
 </div>
 </div>
