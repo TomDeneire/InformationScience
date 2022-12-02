@@ -143,10 +143,10 @@ conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
 c = conn.cursor()
 # To perform SQL commands you call the Cursor object's .execute() method
 query = """
-        select distinct author_zvwr, title_ti, impressum_ju1sv from author
-        join title on author.cloi = title.cloi
-        join impressum on title.cloi = impressum.cloi
-        order by author_zvwr
+        SELECT DISTINCT author_zvwr, title_ti, impressum_ju1sv FROM author
+        JOIN title ON author.cloi = title.cloi
+        JOIN impressum ON title.cloi = impressum.cloi
+        ORDER BY author_zvwr DESC
         """
 c.execute(query)
 # Call fetchall() to get a list of the matching rows

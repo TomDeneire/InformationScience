@@ -312,6 +312,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -340,7 +345,7 @@
 <blockquote>
 <div><p>An information model provides formalism to the description of a problem domain without constraining how that description is mapped to an actual implementation in software. There may be many mappings of the information model. Such mappings are called data models (…)</p>
 </div></blockquote>
-<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> is an example of an information model being used in Information Science, for instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:</p>
+<p>An <a class="reference external" href="https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> is an example of an information model at work in Information Science. For instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:</p>
 <p><img alt="" src="_images/ontology.png" /></p>
 <p><a class="reference external" href="https://www.researchgate.net/figure/Example-Ontology-for-the-family-domain_fig1_301463542">Credit</a></p>
 </div>
@@ -417,14 +422,14 @@
 <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">last_name</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">last_name</span> <span class="o">==</span> <span class="s2">&quot;Deneire&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;Deneire&#39; found in record: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Deneire&#39; found in record: 1
 </pre></div>
 </div>
 </div>
@@ -514,7 +519,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LOI</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">subject1</span><span class="p">,</span> <span class="n">subject2</span><span class="p">,</span> <span class="n">subject3</span>
 </pre></div>
 </div>
-<p>And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on? The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.</p>
+<p>And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carriers, holdings, and so on?</p>
+<p>The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.</p>
 </div>
 <div class="section" id="post-relational">
 <h3>Post-relational<a class="headerlink" href="#post-relational" title="Permalink to this headline">¶</a></h3>
@@ -676,7 +682,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7ff5866211c0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element database at 0x7f9937786ec0&gt;
 [&#39;__bool__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__copy__&#39;, &#39;__deepcopy__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_init&#39;, &#39;addnext&#39;, &#39;addprevious&#39;, &#39;append&#39;, &#39;attrib&#39;, &#39;base&#39;, &#39;clear&#39;, &#39;cssselect&#39;, &#39;extend&#39;, &#39;find&#39;, &#39;findall&#39;, &#39;findtext&#39;, &#39;get&#39;, &#39;getchildren&#39;, &#39;getiterator&#39;, &#39;getnext&#39;, &#39;getparent&#39;, &#39;getprevious&#39;, &#39;getroottree&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;items&#39;, &#39;iter&#39;, &#39;iterancestors&#39;, &#39;iterchildren&#39;, &#39;iterdescendants&#39;, &#39;iterfind&#39;, &#39;itersiblings&#39;, &#39;itertext&#39;, &#39;keys&#39;, &#39;makeelement&#39;, &#39;nsmap&#39;, &#39;prefix&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;set&#39;, &#39;sourceline&#39;, &#39;tag&#39;, &#39;tail&#39;, &#39;text&#39;, &#39;values&#39;, &#39;xpath&#39;]
 </pre></div>
 </div>
@@ -694,8 +700,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element record at 0x7ff58664cb00&gt;
-&lt;Element record at 0x7ff58661ffc0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element record at 0x7f99377f52c0&gt;
+&lt;Element record at 0x7f99377f5640&gt;
 </pre></div>
 </div>
 </div>
@@ -709,10 +715,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element name at 0x7ff58660f480&gt;
-&lt;Element name at 0x7ff58661f480&gt;
-&lt;Element name at 0x7ff586625900&gt;
-&lt;Element name at 0x7ff58661ffc0&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Element name at 0x7f99377b0e80&gt;
+&lt;Element name at 0x7f99377b0e00&gt;
+&lt;Element name at 0x7f99377f52c0&gt;
+&lt;Element name at 0x7f99369fe2c0&gt;
 </pre></div>
 </div>
 </div>
@@ -888,6 +894,14 @@ John
 </ul>
 <p>If you want to know more about this, <a class="reference external" href="https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/">this article</a> offers a good explanation.</p>
 </div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>In modern computing, all types of databases are heavily used. Choosing which data format is most suitable for an application is a crucial step that should have nothing to do with taste or fashion (alas, in practice it often does), but everything with the <strong>nature of the data</strong> you want to store and the way you want to make it accessible.</p>
+<p>For instance, tabular data is still heavily used today, mainly because of its simplicity (it is very human-readable), brevity (CSV is much less verbose than, for instance, JSON or XML) and accessibility (you don’t need much parsing). Moreover, because of its navigational nature, CSV can be read line by line (which is not the case with JSON or XML), which makes it easy to handle large files. Therefore, CSV or something similar (TSV) is often perfect for very simple databases.</p>
+<p>Some of the downsides of single tabular data files include that formulating complicated queries is not straightforward (there is no standardized query language like XPATH or SQL). If you anticipate that users will need to query the data in very specific ways, it is probably better to go with a relational or RDF database which you can query with SQL or SPARQL. Another downside of CSV is that there is no tight connection between the data (rows) and the data scheme (columns), which does not easily allow to express complex relationships. In such cases, it is probably best to look at hierarchical data structure such as JSON or XML, or RDF, which includes the data scheme (URI) everywhere in the database.</p>
+<p>Another consideration is how your data or data scheme might change, which is easier to handle in some formats than in others. For instance, it is easy to add rows to a CSV file or an RDF triple store. With JSON or XML, this is much harder (you need to read the whole structure into memory). Changing the data scheme in CSV can be easy (adding another column of data) or hard (splitting up columns). With RDF it is often easier, as you can just keep adding predicates. In JSON/XML it can be easily done (as we saw, the data can even be asymmetrical), but it might break all your existing queries (which will have to look for data in a different place than before).</p>
+<p>These are only a few considerations in the very complicated, but fascinating field of <strong>database design</strong>.</p>
 </div>
 </div>
 

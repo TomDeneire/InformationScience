@@ -16,7 +16,7 @@ Formal discussions of information might start with the discussion of **informati
 
 > An information model provides formalism to the description of a problem domain without constraining how that description is mapped to an actual implementation in software. There may be many mappings of the information model. Such mappings are called data models (...)
 
-An [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) is an example of an information model being used in Information Science, for instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:
+An [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) is an example of an information model at work in Information Science. For instance, this part of a family ontology. As you can immediately see, ontologies are always simplifications and can therefore be debatable:
 
 ![](images/ontology.png)
 
@@ -95,7 +95,7 @@ with open(FILENAME, 'r') as csvfile:
 for count, record in enumerate(data):
     last_name = record[1]
     if last_name == "Deneire":
-        print(count+1)
+        print(f"'Deneire' found in record: {count}")
 
 os.remove(FILENAME)
 
@@ -139,7 +139,9 @@ Now imagine what would happen if we were to convert these three tables to one sp
 LOI, title, language, name1, name2, function, subject1, subject2, subject3
 ```
 
-And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carries, holdings, and so on? The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.
+And imagine scaling this up: books might easily have five authors and ten subjects, and we have only a little bit of metadata here. What about imprints, editions, carriers, holdings, and so on? 
+
+The advantages of relational databases are clear: they are perfect for storing and querying large amounts of related information in a flexible, decoupled way.
 
 ### Post-relational
 
@@ -418,3 +420,15 @@ In this way, we can organize different database types into a data hierarchy like
 * LD: Linked Data
 
 If you want to know more about this, [this article](https://www.ontotext.com/knowledgehub/fundamentals/five-star-linked-open-data/) offers a good explanation.
+
+## Conclusion
+
+In modern computing, all types of databases are heavily used. Choosing which data format is most suitable for an application is a crucial step that should have nothing to do with taste or fashion (alas, in practice it often does), but everything with the **nature of the data** you want to store and the way you want to make it accessible.
+
+For instance, tabular data is still heavily used today, mainly because of its simplicity (it is very human-readable), brevity (CSV is much less verbose than, for instance, JSON or XML) and accessibility (you don't need much parsing). Moreover, because of its navigational nature, CSV can be read line by line (which is not the case with JSON or XML), which makes it easy to handle large files. Therefore, CSV or something similar (TSV) is often perfect for very simple databases. 
+
+Some of the downsides of single tabular data files include that formulating complicated queries is not straightforward (there is no standardized query language like XPATH or SQL). If you anticipate that users will need to query the data in very specific ways, it is probably better to go with a relational or RDF database which you can query with SQL or SPARQL. Another downside of CSV is that there is no tight connection between the data (rows) and the data scheme (columns), which does not easily allow to express complex relationships. In such cases, it is probably best to look at hierarchical data structure such as JSON or XML, or RDF, which includes the data scheme (URI) everywhere in the database.
+
+Another consideration is how your data or data scheme might change, which is easier to handle in some formats than in others. For instance, it is easy to add rows to a CSV file or an RDF triple store. With JSON or XML, this is much harder (you need to read the whole structure into memory). Changing the data scheme in CSV can be easy (adding another column of data) or hard (splitting up columns). With RDF it is often easier, as you can just keep adding predicates. In JSON/XML it can be easily done (as we saw, the data can even be asymmetrical), but it might break all your existing queries (which will have to look for data in a different place than before).
+
+These are only a few considerations in the very complicated, but fascinating field of **database design**.
