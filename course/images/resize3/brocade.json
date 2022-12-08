@@ -1,0 +1,6 @@
+{
+    "$id": "https://dev.anet.be/brocade/schema/qtechng.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "py3": true,
+    "binary": []
+}
