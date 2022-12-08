@@ -12,11 +12,102 @@ From an information standpoint, the main focus is **reading** from the database.
 
 Actually, query languages surpass databases. Formally, query languages can be classified as **database query languages** versus **information retrieval query languages**. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry. 
 
-For the latter we will discuss CQL, for the former SQL.
+For the former we will discuss SQL, for the latter CQL.
 
-### CQL/SRU
+### Database querying: SQL/SQLite
 
-Let's start with an example of an information retrieval query language: contextual query language or **CQL**. According to [Wikipedia:Contextual_Query_Language](https://en.wikipedia.org/wiki/Contextual_Query_Language)
+SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
+
+SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database **server,** i.e. something like [MySQL](https://en.wikipedia.org/wiki/MySQL) or [PostgreSQL](https://en.wikipedia.org/wiki/PostgreSQL), which you can see, for instance, running on my local machine like so:
+
+```
+tdeneire@XPS-13-9370:~/tmp$ ps -ef | grep postgres
+
+postgres    1258       1  0 07:01 ?        00:00:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c config_file=/etc/postgresql/12/main/postgresql.conf
+postgres    1286    1258  0 07:01 ?        00:00:00 postgres: 12/main: checkpointer   
+postgres    1287    1258  0 07:01 ?        00:00:00 postgres: 12/main: background writer   
+postgres    1288    1258  0 07:01 ?        00:00:00 postgres: 12/main: walwriter   
+postgres    1289    1258  0 07:01 ?        00:00:00 postgres: 12/main: autovacuum launcher   
+postgres    1290    1258  0 07:01 ?        00:00:00 postgres: 12/main: stats collector   
+postgres    1291    1258  0 07:01 ?        00:00:00 postgres: 12/main: logical replication launcher
+```
+
+However, there is also a very good **standalone** alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). 
+
+Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, ...), but you can also handle them with GUIs like [DB Browser](https://sqlitebrowser.org/), which makes them also very suitable for non-technical use.
+
+If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about why it is the most widely-used database in the world...
+
+#### SQL queries
+
+There are some minute differences between SQL syntax and the SQLite dialect, but these so small they can be neglected.
+
+SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We can use **join** (in different forms) to add one or more tables to the selected table:
+
+![](images/sql.png)
+
+This [SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf) also offers a great summary.
+
+Let's look at a concrete example.
+
+#### Python sqlite3
+
+Python's standard library contains the module [sqlite3](https://docs.python.org/3/library/sqlite3.html) which offers an API for a SQLite database. (We will discuss API's in general later in this chapter).
+
+For example, let's launch some SQL queries on a SQLite database of [STCV](https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv), which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the [Anet Open Data](https://www.uantwerpen.be/nl/projecten/anet/open-data/). A version of it is available in this repo under `data`.
+
+
+import os
+import sqlite3
+
+# To use the module, you must first create a Connection object that represents the database
+conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
+# Once you have a Connection, you create a Cursor object
+c = conn.cursor()
+# To perform SQL commands you call the Cursor object's .execute() method
+query = """
+        SELECT DISTINCT 
+            author.author_zvwr, 
+            title.title_ti, 
+            impressum.impressum_ju1sv FROM author
+        JOIN 
+            title ON author.cloi = title.cloi
+        JOIN 
+            impressum ON title.cloi = impressum.cloi
+        ORDER BY 
+            author.author_zvwr DESC
+        """
+c.execute(query)
+# Call fetchall() to get a list of the matching rows
+data = [row for row in c.fetchall()]
+# Print sample of result
+for row in data[50:60]:
+    print(row)
+# Close the connection when you're done
+conn.close()
+
+Becoming fully versed in SQL is beyond the scope of this course. In this context, it is enough to understand the capabilities of SQL and the basic anatomy of a SQL query. This will help you to better understand RDBM systems as a whole or learn new querying technologies, such as the aforementioned SPARQL, which is effectively a variant of SQL:
+
+Consider this example:
+
+```sql
+SELECT DISTINCT 
+    ?resource, ?name, ?birthDate, ?deathDate
+WHERE {
+    ?resource rdfs:label "Hugo Claus"@en; 
+              rdfs:label ?name; 
+              rdf:type dbo:Person
+    OPTIONAL {?resource dbp:birthDate ?birthDate}.
+    OPTIONAL {?resource dbp:deathDate ?deathDate}
+    FILTER(?name = "Hugo Claus"@en)
+}
+```
+
+Execute this query against the [DBPedia SPARQL endpoint](https://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=++++++++++++SELECT+DISTINCT+%0D%0A%3Fresource%2C+%3Fname%2C+%3FbirthDate%2C+%3FdeathDate%0D%0A++++++++++++WHERE+%7B%3Fresource+rdfs%3Alabel+%22Hugo+Claus%22%40en%3B+rdfs%3Alabel+%3Fname%3B+rdf%3Atype+dbo%3APerson%0D%0A++++++++++++OPTIONAL+%7B%3Fresource+dbp%3AbirthDate+%3FbirthDate%7D.%0D%0A++++++++++++OPTIONAL+%7B%3Fresource+dbp%3AdeathDate+%3FdeathDate%7D%0D%0A++++++++++++FILTER%28%3Fname+%3D+%22Hugo+Claus%22%40en%29%7D%0D%0A&format=application%2Fsparql-results%2Bjson&timeout=10000&signal_void=on&signal_unconnected=on).
+
+### Information retrieval querying: CQL/SRU
+
+Contextual query language or **CQL** is an example of an information retrieval query language. According to [Wikipedia:Contextual_Query_Language](https://en.wikipedia.org/wiki/Contextual_Query_Language)
 
 >Contextual Query Language (CQL), previously known as Common Query Language, is a formal language for representing queries to information retrieval systems such as search engines, bibliographic catalogs and museum collection information. (...) its design objective is that queries be human readable and writable, and that the language be intuitive while maintaining the expressiveness of more complex query languages. It is being developed and maintained by the Z39.50 Maintenance Agency, part of the Library of Congress.
 
@@ -107,71 +198,21 @@ def query_CERL(search: str) -> bytes:
 user_input = input()
 print(str(query_CERL(user_input)[0:1000]) + "...")
 
-### SQL/SQLite
+## APIs
 
-SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also [SPARQL](https://en.wikipedia.org/wiki/SPARQL), the query language for RDF. So knowing SQL will open many doors.
+An SRU server is an example of a web [API](https://en.wikipedia.org/wiki/API), or Application Programming Interface.
 
-SQL is the query language for RDBMS, which are most often implemented in a *client-server* database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like [MySQL](https://en.wikipedia.org/wiki/MySQL) or [PostgreSQL](https://en.wikipedia.org/wiki/PostgreSQL). However, there is also a very good standalone alternative, called [SQLite](https://en.wikipedia.org/wiki/SQLite). Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, ...), but you can also handle them with GUIs like [DB Browser](https://sqlitebrowser.org/), which makes them also very suitable for non-technical use.
-
-If you want to know more about SQLite, I wrote this [blog](https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482) about it and why it is the most widely-used database in the world...
-
-#### SQL queries
-
-There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.
-
-SQL queries always take the same basic form: we **select** data from a table (mandatory), **where** certain conditions apply (optional). We can use **join** (in different forms) to add one or more tables to the selected table:
-
-![](images/sql.png)
-
-This [SQL cheat sheet](https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf) also offers a great summary.
-
-Let's look at a concrete example.
-
-### sqlite3
-
-Python's standard library contains the module [sqlite3](https://docs.python.org/3/library/sqlite3.html) which offers an API for a SQLite database.
-
-For example, let's launch some SQL queries on a SQLite database of [STCV](https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv), which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the [Anet Open Data](https://www.uantwerpen.be/nl/projecten/anet/open-data/). A version of it is available in this repo under `data`.
-
-
-import os
-import sqlite3
-
-# To use the module, you must first create a Connection object that represents the database
-conn = sqlite3.connect(os.path.join('data', 'stcv.sqlite'))
-# Once you have a Connection, you create a Cursor object
-c = conn.cursor()
-# To perform SQL commands you call the Cursor object's .execute() method
-query = """
-        SELECT DISTINCT author_zvwr, title_ti, impressum_ju1sv FROM author
-        JOIN title ON author.cloi = title.cloi
-        JOIN impressum ON title.cloi = impressum.cloi
-        ORDER BY author_zvwr DESC
-        """
-c.execute(query)
-# Call fetchall() to get a list of the matching rows
-data = [row for row in c.fetchall()]
-for row in data[50:60]:
-    print(row)
-# Close the connection when you're done
-conn.close()
-
-## Exercise: Europeana Entities API
-
-For this exercise you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata. 
-
-It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
-
-### What is an API?
-
-A quick word in general about an [API](https://en.wikipedia.org/wiki/API), or Application Programming Interface.
-
-Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata's web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python's `sqlite3` module) or remote (e.g. [Wikidata's Query Service](https://query.wikidata.org/)) API to get this data in a way that can be easily handled by computers.
+Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata's web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local API (e.g. Python's `sqlite3` module) or web API (e.g. [Wikidata's Query Service](https://query.wikidata.org/)) to get this data in a way that can be easily handled by computers.
 
 In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn't it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but [API architectures](https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa) are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don't have to learn a new query language. Moreover, suppose Wikidata changes their database. All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before. 
 
 There are lots of free web APIs out there. The [NASA API](https://api.nasa.gov/), for instance, is quite incredible. For book information there is [OpenLibrary](https://openlibrary.org/dev/docs/api/books). Or this [Evil Insult Generator](https://evilinsult.com/generate_insult.php?lang=en&type=json), if you want to have some fun! You can find an extensive list of free APIs [here](https://github.com/public-apis/public-apis).
- 
+
+## Exercise: Europeana Entities API
+
+For this exercise you will be using the JSON data made available through the [Europeana Entities API](https://pro.europeana.eu/page/entity), which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as [GeoNames](https://www.geonames.org/), [DBPedia](https://www.dbpedia.org/about/) and [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page). 
+
+It is advisable to read the API's [documentation](https://pro.europeana.eu/page/entity) first.
 
 ### Task
 
