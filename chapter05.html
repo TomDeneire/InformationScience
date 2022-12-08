@@ -55,8 +55,6 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
   
   <h1 class="site-logo" id="site-title">Information Science</h1>
   
@@ -220,8 +218,25 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cql-sru">
-     CQL/SRU
+    <a class="reference internal nav-link" href="#database-querying-sql-sqlite">
+     Database querying: SQL/SQLite
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql-queries">
+       SQL queries
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-sqlite3">
+       Python sqlite3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-retrieval-querying-cql-sru">
+     Information retrieval querying: CQL/SRU
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -241,35 +256,18 @@
      </li>
     </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sql-sqlite">
-     SQL/SQLite
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#sql-queries">
-       SQL queries
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sqlite3">
-     sqlite3
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apis">
+   APIs
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercise-europeana-entities-api">
    Exercise: Europeana Entities API
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-an-api">
-     What is an API?
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#task">
      Task
@@ -296,17 +294,112 @@
                 
   <div class="section" id="chapter-5-querying-information">
 <h1>Chapter 5: Querying Information<a class="headerlink" href="#chapter-5-querying-information" title="Permalink to this headline">¶</a></h1>
-<p><img alt="" src="_images/algorithms.png" /></p>
+<p><img alt="" src="images/algorithms.png" /></p>
 <p>Credit: <a class="reference external" href="https://xkcd.com/1831/">xkcd</a></p>
 <div class="section" id="query-languages">
 <h2>Query languages<a class="headerlink" href="#query-languages" title="Permalink to this headline">¶</a></h2>
 <p>Database operations can be summarized with the acronym <code class="docutils literal notranslate"><span class="pre">CRUD</span></code>: create, read, update and delete.</p>
 <p>From an information standpoint, the main focus is <strong>reading</strong> from the database. Most often though, we do not read directly, as this is not possible (not all databases can be browsed), or practical (we get too much information). Instead, reading databases is usually done through <strong>querying</strong>, for which we use <a class="reference external" href="https://en.wikipedia.org/wiki/Query_language">query languages</a>.</p>
 <p>Actually, query languages surpass databases. Formally, query languages can be classified as <strong>database query languages</strong> versus <strong>information retrieval query languages</strong>. The difference is that a database query language attempts to give factual answers to factual questions, while an information retrieval query language attempts to find documents containing information that is relevant to an area of inquiry.</p>
-<p>For the latter we will discuss CQL, for the former SQL.</p>
-<div class="section" id="cql-sru">
-<h3>CQL/SRU<a class="headerlink" href="#cql-sru" title="Permalink to this headline">¶</a></h3>
-<p>Let’s start with an example of an information retrieval query language: contextual query language or <strong>CQL</strong>. According to <a class="reference external" href="https://en.wikipedia.org/wiki/Contextual_Query_Language">Wikipedia:Contextual_Query_Language</a></p>
+<p>For the former we will discuss SQL, for the latter CQL.</p>
+<div class="section" id="database-querying-sql-sqlite">
+<h3>Database querying: SQL/SQLite<a class="headerlink" href="#database-querying-sql-sqlite" title="Permalink to this headline">¶</a></h3>
+<p>SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, the query language for RDF. So knowing SQL will open many doors.</p>
+<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database <strong>server,</strong> i.e. something like <a class="reference external" href="https://en.wikipedia.org/wiki/MySQL">MySQL</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/PostgreSQL">PostgreSQL</a>, which you can see, for instance, running on my local machine like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>tdeneire@XPS-13-9370:~/tmp$ ps -ef | grep postgres
+
+postgres    1258       1  0 07:01 ?        00:00:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c config_file=/etc/postgresql/12/main/postgresql.conf
+postgres    1286    1258  0 07:01 ?        00:00:00 postgres: 12/main: checkpointer   
+postgres    1287    1258  0 07:01 ?        00:00:00 postgres: 12/main: background writer   
+postgres    1288    1258  0 07:01 ?        00:00:00 postgres: 12/main: walwriter   
+postgres    1289    1258  0 07:01 ?        00:00:00 postgres: 12/main: autovacuum launcher   
+postgres    1290    1258  0 07:01 ?        00:00:00 postgres: 12/main: stats collector   
+postgres    1291    1258  0 07:01 ?        00:00:00 postgres: 12/main: logical replication launcher
+</pre></div>
+</div>
+<p>However, there is also a very good <strong>standalone</strong> alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>.</p>
+<p>Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, …), but you can also handle them with GUIs like <a class="reference external" href="https://sqlitebrowser.org/">DB Browser</a>, which makes them also very suitable for non-technical use.</p>
+<p>If you want to know more about SQLite, I wrote this <a class="reference external" href="https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482">blog</a> about why it is the most widely-used database in the world…</p>
+<div class="section" id="sql-queries">
+<h4>SQL queries<a class="headerlink" href="#sql-queries" title="Permalink to this headline">¶</a></h4>
+<p>There are some minute differences between SQL syntax and the SQLite dialect, but these so small they can be neglected.</p>
+<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We can use <strong>join</strong> (in different forms) to add one or more tables to the selected table:</p>
+<p><img alt="" src="images/sql.png" /></p>
+<p>This <a class="reference external" href="https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf">SQL cheat sheet</a> also offers a great summary.</p>
+<p>Let’s look at a concrete example.</p>
+</div>
+<div class="section" id="python-sqlite3">
+<h4>Python sqlite3<a class="headerlink" href="#python-sqlite3" title="Permalink to this headline">¶</a></h4>
+<p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which offers an API for a SQLite database. (We will discuss API’s in general later in this chapter).</p>
+<p>For example, let’s launch some SQL queries on a SQLite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># To use the module, you must first create a Connection object that represents the database</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
+<span class="c1"># Once you have a Connection, you create a Cursor object</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="c1"># To perform SQL commands you call the Cursor object&#39;s .execute() method</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT DISTINCT </span>
+<span class="s2">            author.author_zvwr, </span>
+<span class="s2">            title.title_ti, </span>
+<span class="s2">            impressum.impressum_ju1sv FROM author</span>
+<span class="s2">        JOIN </span>
+<span class="s2">            title ON author.cloi = title.cloi</span>
+<span class="s2">        JOIN </span>
+<span class="s2">            impressum ON title.cloi = impressum.cloi</span>
+<span class="s2">        ORDER BY </span>
+<span class="s2">            author.author_zvwr DESC</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="c1"># Call fetchall() to get a list of the matching rows</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
+<span class="c1"># Print sample of result</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">60</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="c1"># Close the connection when you&#39;re done</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ægidius de Lallaing&#39;, &#39;Den troost der scrvpvlevse; dat is: Gheestelyck medecijn-boecksken, in-houdende vele troostelijcke remedien teghen de [...] scrupuleusheyt&#39;, &#39;1647&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in Vniuersam doctrinam D. Thomæ De sacramentis et censvris tomi dvo&#39;, &#39;1624&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Responsio ad dissertationem impvgnantem absolutionem moribundi sensibus destituti&#39;, &#39;1625&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1619&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1616&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;De moralitate, natvra, et effectibvs actvvm svpernatvralivm in genere. Et fide, spe, ac charitate, speciatim. Libri quatuor&#39;, &#39;1623&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;De actibvs svpernatvralibvs in genere&#39;, &#39;1623&#39;)
+(&#39;Ægidius de Coninck&#39;, &#39;Dispvtationes theologicæ de sanctissima trinitate et divini verbi incarnatione&#39;, &#39;1645&#39;)
+(&#39;Ægidius Perrinus&#39;, &#39;Sextvs decretalivm liber&#39;, &#39;1573&#39;)
+(&#39;Ægidius Perrinus&#39;, &#39;Institvtionvm, sive Primorum totius iurisprudentiæ elementorum libri qvatvor&#39;, &#39;1575&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Becoming fully versed in SQL is beyond the scope of this course. In this context, it is enough to understand the capabilities of SQL and the basic anatomy of a SQL query. This will help you to better understand RDBM systems as a whole or learn new querying technologies, such as the aforementioned SPARQL, which is effectively a variant of SQL:</p>
+<p>Consider this example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SELECT DISTINCT 
+    ?resource, ?name, ?birthDate, ?deathDate
+WHERE {
+    ?resource rdfs:label &quot;Hugo Claus&quot;@en; 
+              rdfs:label ?name; 
+              rdf:type dbo:Person
+    OPTIONAL {?resource dbp:birthDate ?birthDate}.
+    OPTIONAL {?resource dbp:deathDate ?deathDate}
+    FILTER(?name = &quot;Hugo Claus&quot;@en)
+}
+</pre></div>
+</div>
+<p>Execute this query against the <a class="reference external" href="https://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&amp;query=++++++++++++SELECT+DISTINCT+%0D%0A%3Fresource%2C+%3Fname%2C+%3FbirthDate%2C+%3FdeathDate%0D%0A++++++++++++WHERE+%7B%3Fresource+rdfs%3Alabel+%22Hugo+Claus%22%40en%3B+rdfs%3Alabel+%3Fname%3B+rdf%3Atype+dbo%3APerson%0D%0A++++++++++++OPTIONAL+%7B%3Fresource+dbp%3AbirthDate+%3FbirthDate%7D.%0D%0A++++++++++++OPTIONAL+%7B%3Fresource+dbp%3AdeathDate+%3FdeathDate%7D%0D%0A++++++++++++FILTER%28%3Fname+%3D+%22Hugo+Claus%22%40en%29%7D%0D%0A&amp;format=application%2Fsparql-results%2Bjson&amp;timeout=10000&amp;signal_void=on&amp;signal_unconnected=on">DBPedia SPARQL endpoint</a>.</p>
+</div>
+</div>
+<div class="section" id="information-retrieval-querying-cql-sru">
+<h3>Information retrieval querying: CQL/SRU<a class="headerlink" href="#information-retrieval-querying-cql-sru" title="Permalink to this headline">¶</a></h3>
+<p>Contextual query language or <strong>CQL</strong> is an example of an information retrieval query language. According to <a class="reference external" href="https://en.wikipedia.org/wiki/Contextual_Query_Language">Wikipedia:Contextual_Query_Language</a></p>
 <blockquote>
 <div><p>Contextual Query Language (CQL), previously known as Common Query Language, is a formal language for representing queries to information retrieval systems such as search engines, bibliographic catalogs and museum collection information. (…) its design objective is that queries be human readable and writable, and that the language be intuitive while maintaining the expressiveness of more complex query languages. It is being developed and maintained by the Z39.50 Maintenance Agency, part of the Library of Congress.</p>
 </div></blockquote>
@@ -386,78 +479,18 @@
 </div>
 </div>
 </div>
-<div class="section" id="sql-sqlite">
-<h3>SQL/SQLite<a class="headerlink" href="#sql-sqlite" title="Permalink to this headline">¶</a></h3>
-<p>SQL is a technology that is probably new to most of you. Unlike RDF, which some libraries seem hesitant to adopt, SQL is ubiquitous, including outside of libraries. Moreover, SQL has for instance heavily influenced the aforementioned CQL, and also <a class="reference external" href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a>, the query language for RDF. So knowing SQL will open many doors.</p>
-<p>SQL is the query language for RDBMS, which are most often implemented in a <em>client-server</em> database engine. So for you to use SQL you would need a connection to a SQL database server, i.e. something like <a class="reference external" href="https://en.wikipedia.org/wiki/MySQL">MySQL</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/PostgreSQL">PostgreSQL</a>. However, there is also a very good standalone alternative, called <a class="reference external" href="https://en.wikipedia.org/wiki/SQLite">SQLite</a>. Simply said SQLite is just a single file, but you can query it just like a SQL database server. Moreover, you can access SQLite databases from many programming languages (C, Python, PHP, Go, …), but you can also handle them with GUIs like <a class="reference external" href="https://sqlitebrowser.org/">DB Browser</a>, which makes them also very suitable for non-technical use.</p>
-<p>If you want to know more about SQLite, I wrote this <a class="reference external" href="https://tomdeneire.medium.com/the-most-widely-used-database-in-the-world-d0cd87f7c482">blog</a> about it and why it is the most widely-used database in the world…</p>
-<div class="section" id="sql-queries">
-<h4>SQL queries<a class="headerlink" href="#sql-queries" title="Permalink to this headline">¶</a></h4>
-<p>There are some minute differences between SQL syntax and the SQLite dialect, but these are really small.</p>
-<p>SQL queries always take the same basic form: we <strong>select</strong> data from a table (mandatory), <strong>where</strong> certain conditions apply (optional). We can use <strong>join</strong> (in different forms) to add one or more tables to the selected table:</p>
-<p><img alt="" src="_images/sql.png" /></p>
-<p>This <a class="reference external" href="https://github.com/ABZ-Aaron/CheatSheets/blob/main/SQL-V2-Light.pdf">SQL cheat sheet</a> also offers a great summary.</p>
-<p>Let’s look at a concrete example.</p>
 </div>
-</div>
-<div class="section" id="sqlite3">
-<h3>sqlite3<a class="headerlink" href="#sqlite3" title="Permalink to this headline">¶</a></h3>
-<p>Python’s standard library contains the module <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> which offers an API for a SQLite database.</p>
-<p>For example, let’s launch some SQL queries on a SQLite database of <a class="reference external" href="https://vlaamse-erfgoedbibliotheken.be/en/dossier/short-title-catalogue-flanders-stcv/stcv">STCV</a>, which is the Short Title Catalogue Flanders, an online database with extensive bibliographical descriptions of editions printed in Flanders before 1801. This database is available as part of the <a class="reference external" href="https://www.uantwerpen.be/nl/projecten/anet/open-data/">Anet Open Data</a>. A version of it is available in this repo under <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
-
-<span class="c1"># To use the module, you must first create a Connection object that represents the database</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stcv.sqlite&#39;</span><span class="p">))</span>
-<span class="c1"># Once you have a Connection, you create a Cursor object</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="c1"># To perform SQL commands you call the Cursor object&#39;s .execute() method</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        SELECT DISTINCT author_zvwr, title_ti, impressum_ju1sv FROM author</span>
-<span class="s2">        JOIN title ON author.cloi = title.cloi</span>
-<span class="s2">        JOIN impressum ON title.cloi = impressum.cloi</span>
-<span class="s2">        ORDER BY author_zvwr DESC</span>
-<span class="s2">        &quot;&quot;&quot;</span>
-<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<span class="c1"># Call fetchall() to get a list of the matching rows</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">60</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="c1"># Close the connection when you&#39;re done</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ægidius de Lallaing&#39;, &#39;Den troost der scrvpvlevse; dat is: Gheestelyck medecijn-boecksken, in-houdende vele troostelijcke remedien teghen de [...] scrupuleusheyt&#39;, &#39;1647&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in Vniuersam doctrinam D. Thomæ De sacramentis et censvris tomi dvo&#39;, &#39;1624&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;Responsio ad dissertationem impvgnantem absolutionem moribundi sensibus destituti&#39;, &#39;1625&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1619&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;Commentariorvm ac dispvtationvm in vniuersam doctrinam D. Thomæ de sacramentis et censvris tomi dvo&#39;, &#39;1616&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;De moralitate, natvra, et effectibvs actvvm svpernatvralivm in genere. Et fide, spe, ac charitate, speciatim. Libri quatuor&#39;, &#39;1623&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;De actibvs svpernatvralibvs in genere&#39;, &#39;1623&#39;)
-(&#39;Ægidius de Coninck&#39;, &#39;Dispvtationes theologicæ de sanctissima trinitate et divini verbi incarnatione&#39;, &#39;1645&#39;)
-(&#39;Ægidius Perrinus&#39;, &#39;Sextvs decretalivm liber&#39;, &#39;1573&#39;)
-(&#39;Ægidius Perrinus&#39;, &#39;Institvtionvm, sive Primorum totius iurisprudentiæ elementorum libri qvatvor&#39;, &#39;1575&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="exercise-europeana-entities-api">
-<h2>Exercise: Europeana Entities API<a class="headerlink" href="#exercise-europeana-entities-api" title="Permalink to this headline">¶</a></h2>
-<p>For this exercise you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as Geonames, DBPedia and Wikidata.</p>
-<p>It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
-<div class="section" id="what-is-an-api">
-<h3>What is an API?<a class="headerlink" href="#what-is-an-api" title="Permalink to this headline">¶</a></h3>
-<p>A quick word in general about an <a class="reference external" href="https://en.wikipedia.org/wiki/API">API</a>, or Application Programming Interface.</p>
-<p>Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata’s web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local (e.g. Python’s <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> module) or remote (e.g. <a class="reference external" href="https://query.wikidata.org/">Wikidata’s Query Service</a>) API to get this data in a way that can be easily handled by computers.</p>
+<div class="section" id="apis">
+<h2>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h2>
+<p>An SRU server is an example of a web <a class="reference external" href="https://en.wikipedia.org/wiki/API">API</a>, or Application Programming Interface.</p>
+<p>Non-technical users mostly interact with data through a GUI or Graphical User Interface, either locally (e.g. you use DBbrowser to look at an SQLite database) or on the web (e.g. you use Wikidata’s web page). However, when we try to interact with this data from a machine-standpoint, i.e. in programming, this GUI is not suitable. We need an interface that is geared towards computers. So we use a local API (e.g. Python’s <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> module) or web API (e.g. <a class="reference external" href="https://query.wikidata.org/">Wikidata’s Query Service</a>) to get this data in a way that can be easily handled by computers.</p>
 <p>In this way, an API is an intermediary structure, which has a lot of benefits. Wouldn’t it be nicer to have direct access to a certain database? In a way, yes, but this would also cause problems. There are many, many different database architectures, but <a class="reference external" href="https://levelup.gitconnected.com/comparing-api-architectural-styles-soap-vs-rest-vs-graphql-vs-rpc-84a3720adefa">API architectures</a> are generally quite predictable. They are often based on well-known technologies like JSON or XML, so you don’t have to learn a new query language. Moreover, suppose Wikidata changes their database. All of your code that uses the database would need to be rewritten. By using the API intermediary structure Wikidata can change the underlying database, but make sure their API still functions in the same way as before.</p>
 <p>There are lots of free web APIs out there. The <a class="reference external" href="https://api.nasa.gov/">NASA API</a>, for instance, is quite incredible. For book information there is <a class="reference external" href="https://openlibrary.org/dev/docs/api/books">OpenLibrary</a>. Or this <a class="reference external" href="https://evilinsult.com/generate_insult.php?lang=en&amp;type=json">Evil Insult Generator</a>, if you want to have some fun! You can find an extensive list of free APIs <a class="reference external" href="https://github.com/public-apis/public-apis">here</a>.</p>
 </div>
+<div class="section" id="exercise-europeana-entities-api">
+<h2>Exercise: Europeana Entities API<a class="headerlink" href="#exercise-europeana-entities-api" title="Permalink to this headline">¶</a></h2>
+<p>For this exercise you will be using the JSON data made available through the <a class="reference external" href="https://pro.europeana.eu/page/entity">Europeana Entities API</a>, which allows you to search on or retrieve information from named entities. These named entities (such as persons, topics and places) are part of the Europeana Entity Collection, a collection of entities in the context of Europeana harvested from and linked to controlled vocabularies, such as <a class="reference external" href="https://www.geonames.org/">GeoNames</a>, <a class="reference external" href="https://www.dbpedia.org/about/">DBPedia</a> and <a class="reference external" href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a>.</p>
+<p>It is advisable to read the API’s <a class="reference external" href="https://pro.europeana.eu/page/entity">documentation</a> first.</p>
 <div class="section" id="task">
 <h3>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h3>
 <p>The task is simple. Write a Python script that prompts for user input of a named entity, query the API for that entity, parse the results and print them on standard output.</p>
