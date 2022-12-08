@@ -7,10 +7,11 @@ import unicodedata
 
 # Globals
 
-CORPUS = '/home/tdeneire/projects/InformationScience/course/data/corpus.txt'
+CORPUS = "/home/tdeneire/projects/InformationScience/course/data/corpus.txt"
 
 
 # Functions
+
 
 def clean(to_clean: str) -> str:
     """
@@ -22,7 +23,7 @@ def clean(to_clean: str) -> str:
     Therefore we deal with the apostrophe in the split() function.
     We keep numbers and such, this is also debatable.
     """
-    for punc in "!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\n":
+    for punc in '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\n':
         # checking for efficiency
         check = to_clean.count(punc)
         if check:
@@ -45,7 +46,7 @@ def split(line: str) -> list:
     Split a line into words, and deal with the ' apostrophe
     """
     words = []
-    for word in line.split(' '):
+    for word in line.split(" "):
         # Account for multiple spaces
         if word not in ["", " "]:
             # Account for ' apostrophe, but not perfectly:
@@ -63,7 +64,7 @@ def onegrams(file: str) -> dict:
     Extract onegrams from a text file
     """
     dict_of_onegrams = {}
-    with open(file, 'r') as lines:
+    with open(file, "r") as lines:
         # Do not use .readlines() or .read()
         # as both read the entire file in memory!
         for line in lines:
@@ -90,9 +91,7 @@ def show_most_common(data: dict, count: int) -> None:
     # lambda function sorts objects using the object's indices
     # you can choose the variable name (e.g. x: x[1], item: item[1], etc.)
     # alternatively, you can use itemgetter() from the operator module
-    data_sorted = sorted(data.items(),
-                         key=lambda word: word[1],
-                         reverse=True)
+    data_sorted = sorted(data.items(), key=lambda word: word[1], reverse=True)
     # sorted() always returns list!
     for index, word_with_count in enumerate(data_sorted):
         if index < count:
