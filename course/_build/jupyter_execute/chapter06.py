@@ -14,7 +14,9 @@ Earlier on we saw how, from a practical point of view, it makes more sense to ta
 
 In this discussion, we will focus especially on **descriptive metadata**, i.e. descriptive information about a resource. 
 
-Descriptive metadata is used for discovery and identification. If we think about books, for example, descriptive metadata would include elements such as title, author, date of publication, etcetera. Another example is `Exif` (Exchangeable image file format), a metadata standard that specifies the formats for images, sound, and ancillary tags used by digital cameras (including smartphones), scanners and other systems handling image and sound files recorded by digital cameras.
+Descriptive metadata is used for discovery and identification. If we think about books, for example, descriptive metadata would include elements such as title, author, date of publication, etcetera. 
+
+Another example is `Exif` (Exchangeable image file format), a metadata standard that specifies the formats for images, sound, and ancillary tags used by digital cameras (including smartphones), scanners and other systems handling image and sound files recorded by digital cameras.
 
 ## Metadata is important!
 
@@ -59,7 +61,7 @@ Now let's compare this to the title page.
 
 - Furthermore, we see that **copy specific** information, such as the stamp in the upper right corner and the pasted on inscription on the bottom have also been left out. 
 
-- On the other hand, there is also **more information** in the descriptive metadata than is on the title page. The names of the illustrators, for instance, and the name of Christopher Plantin's widow are added.
+- On the other hand, there is also **more information** in the descriptive metadata than is on the title page. The names of the illustrators, for instance, and the name of Christopher Plantin's widow are added. In other words, the descriptive metadata covers a wide region of information about an object, possibly even information that is not explicity present in the object itself.
 
 ### Worldcat
 
@@ -73,25 +75,25 @@ Publisher |	Antverpiæ : Ex Officina Plantiniana, apud Viduam, & Ioannem Moretum
 
 The information is pretty similar, but now that we are tuned into some of the subtleties we notice the differences. 
 
-"Ad historiarum lucem" is present here, for instance. On the other hand, Worldcat has different capitalization and provides only one illustrator, without specifying that this is external information (i.e. not included in the title page). Worldcat also has opts for a transliteration in Latin alphabet for Lipsius's "macaronic" form Poliorceticωn, again a conscious effort of antiquarian *Spielerei*.
+"Ad historiarum lucem" is present here, for instance. On the other hand, Worldcat has different capitalization and provides only one illustrator, without specifying that this is external information (i.e. not included in the title page). Worldcat also opts for a transliteration in Latin alphabet for Lipsius's "macaronic" form Poliorceticωn, again a conscious effort of antiquarian *Spielerei*.
 
 ### Discussion
 
-This example shows that different catalogues adhere to different **cataloguing rules**. Indeed, it is impossible to simply catalogue at book title (or indeed any item, be it physical or digital) "as is". However diplomatic and inclusive you try to be when cataloguing, you will always have to make hard decisions about how to handle layout, how to transcribe characters, whether or not to standardize spelling, punctuation, etcetera. 
+These difference between a book object and various sources of descriptive metadata can be explained from the use of different **cataloguing rules**. Indeed, it is impossible to simply catalogue at book title (or indeed any item, be it physical or digital) "as is". However diplomatic and inclusive you try to be when cataloguing, you will always have to make hard decisions about how to handle layout, how to transcribe characters, whether or not to standardize spelling, punctuation, etcetera. 
 
 All of this is perfectly understandable and in general (good) catalogues will be explicit and very scrupulous in the cataloguing rules they follow. The danger is that when we leave the cataloguing context and, for instance, acquire catalogue information in a data dump (STCV is freely available [here](https://www.uantwerpen.be/nl/projecten/anet/open-data/)) we tend to forget this and take the **metadata at face value**.
 
 Imagine for a minute that you hadn't seen the above title page, but merely got the STCV metadata from a SQL query. How accurate would your understanding of this title page actually be? And what happens when, as good DH research is bound to do, you break open metadata containers and **aggregate metadata**, for instance merging several of the national "short-title catalogue" initiatives (STCV, [STCN](https://www.kb.nl/en/organisation/research-expertise/for-libraries/short-title-catalogue-netherlands-stcn), [ESTC](http://estc.bl.uk/), [USTC](https://www.ustc.ac.uk/), ...), which all adhere to different rules?
 
-To make matters worse, our example was a very simple one really. There are many, many **more complex** metadata problems. Just to give you a taste:
+To make matters worse, our example was a very simple one really. There are many, even **more complex** metadata problems. Just to give you a taste:
 
 - How would you catalogue one of those squeeky toddler books that feature not a single word of text (no author, title, date, publisher, ...)?
-- When in 1993 Prince changed his stage name to the unpronounceable symbol ![Prince](images/prince.png) (known to fans as the "Love Symbol"), and was sometimes referred to as the "Artist Formerly Known as Prince" or simply "The Artist", how were record shops supposed to catalogue his albums? Remember, in those days, most people would go up to the "P" section and browse for "Prince"!
+- When in 1993 Prince changed his stage name to the unpronounceable symbol ![Prince](images/prince.png) (known to fans as the "Love Symbol"), and was sometimes referred to as the "Artist Formerly Known as Prince", "The Artist" or "TAFKAP", how were record shops supposed to catalogue his albums? Remember, in those days, most people would go up to the "P" section and browse for "Prince"!
 - Or what about the IMDB website listing the actors of the *Blair Witch Project* as "missing, presumed dead" in the first year of the film's availability (see [this](https://web.archive.org/web/20170109185339/http://www.telegraph.co.uk/films/2016/07/25/why-did-the-world-think-the-blair-witch-project-really-happened/) article)?
 
 ## Metadata 101
 
-We now have a better understanding of metadata. We know know that, as a former student of mine [@Karolingva](https://twitter.com/karolingva) once tweeted from a [RightsCon](https://www.rightscon.org/) conference: metadata is not *just* data about data, but
+We now have a better understanding of metadata. We know know that, as a former student of mine ([@Karolingva](https://twitter.com/karolingva)) once tweeted from a [RightsCon](https://www.rightscon.org/) conference: metadata is not *just* data about data, but
 
 - created data about data
 - by humans
@@ -116,7 +118,7 @@ As for [book cataloguing standards](https://en.wikipedia.org/wiki/Cataloging#Cat
 2. [DCRM(B)](http://rbms.info/dcrm/dcrmb/) (Descriptive Cataloging of Rare Materials - Books)
 
     - (open source)
-    - E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem...’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum..’
+    - E.g. no spaces for abbreviations = ‘Ad S.R.E. Cardinalem’, EXCEPT multiple letter-abbreviations = ‘Ad Ph. D. Jacobum’
 
 
 ### Metadata standards
@@ -140,26 +142,26 @@ Some of the most common metadata standards in the world of [GLAM](https://en.wik
 
     - Dublin Core Metadata Initiative
 
-If you're interested to know more about metadata standards, good starting points [this page](https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx) by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and [BARTOC](https://bartoc.org/), the Basic Register of Thesauri, Ontologies & Classifications.
+If you're interested to know more about metadata standards, good starting points are [this page](https://www.lyrasis.org/services/Pages/Digital-Toolbox-Metadata.aspx) by Lyrasis, a non-profit organization whose mission is to support enduring access to the world’s shared academic, scientific and cultural heritage through open technologies, and [BARTOC](https://bartoc.org/), the Basic Register of Thesauri, Ontologies & Classifications.
 
-### Exports
+### Open Data
 
 Working with metadata one is quickly faced with the issue of data being locked away in a so-called [information silo](https://en.wikipedia.org/wiki/Information_silo):
 
 >an insular management system in which one information system or subsystem is incapable of reciprocal operation with others that are, or should be, related. Thus information is not adequately shared but rather remains sequestered within each system or subsystem, figuratively trapped within a container like grain is trapped within a silo: there may be much of it, and it may be stacked quite high and freely available within those limits, but it has no effect outside those limits. Such data silos are proving to be an obstacle for businesses wishing to use data mining to make productive use of their data.
 
-Luckily many information systems, for instance for GLAM institutions, are paying increasing attention to providing **open access metadata exports**, which in turn allows to aggregate it (for further information retrieval, research purposes, etcetera). 
+Luckily many information systems, for instance for GLAM institutions, are paying increasing attention to providing metadata as **open data**, which in turn allows to aggregate it (for further information retrieval, research purposes, etcetera). 
 
-Such exports will make metadata available in all sorts of standards (see above) and formats, such as data dumps in `.txt` or `.tab`, structured formats like `.csv`, document databases like `.xml` or `.json`, or Linked Data. As we have seen in the previous chapter with CERL and Europeana, some institutions even provide an API.
+Such initiatives will make metadata available in all sorts of standards (see above) and formats, such as data dumps in `.txt` or `.tab`, structured formats like `.csv`, document databases like `.xml` or `.json`, or Linked Data. As we have seen in the previous chapter with CERL and Europeana, some institutions even provide an API.
 
 #### Examples for book history
 
-Some time ago I made a very incomplete of useful metadata exports in the field of book history. They might be worthwhile if you are looking for a research project.
+Some time ago I made a very incomplete of useful metadata sources in the field of book history. They might be of interest when your research takes you that direction.
 
 1. Biographic databases
-    - [VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF) (Virtual International Authority File) (SRU protocol)
-    - [DBpedia](https://wiki.dbpedia.org/OnlineAccess) (SPARQL endpoint, REST API, Lookup API)
-    - [CERL thesaurus](https://data.cerl.org/thesaurus/_sru) (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (linked data in XML/RDF, SRU)
+    - [VIAF](https://platform.worldcat.org/api-explorer/apis/VIAF) (Virtual International Authority File) (SRU)
+    - [DBpedia](https://wiki.dbpedia.org/OnlineAccess) (SPARQL endpoint, Lookup/Search API)
+    - [CERL thesaurus](https://data.cerl.org/thesaurus/_sru) (place name and personal names in Europe in the period of hand press printing, c. 1450 - c. 1830)  (SRU)
     - [Europeana APIs](https://pro.europeana.eu/page/apis) (SPARQL endpoint, REST API, ...)
     - [RKDArtists](https://rkd.nl/en/collections/services-tools/rkdartists-as-linked-open-data/open-search-artists) (biographical data about artists, companies and institutes of various disciplines of visual arts, applied arts and architecture from both the Netherlands as abroad) (API with Lucene query syntax)
 
@@ -172,15 +174,28 @@ Some time ago I made a very incomplete of useful metadata exports in the field o
     - [HPB](https://www.cerl.org/resources/hpb/technical/modes_of_access_to_the_hpb_database) (Heritage of the Printed Book Database, a catalogue of European printing of the hand-press period, c.1455-c.1830) (SRU)
     - [TW](http://tw.staatsbibliothek-berlin.de/) (Typenrepertorium der Wiegendrucke) (XML exports)
 
-## Excursus: DH example
+## DH examples
 
 As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: [A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices](https://github.com/TomDeneire/quiring), which specifically aims to analyse the Early Modern practice of 'quiring' gatherings in handpress book production.
 
-## Exercise: MARC21 to Dublin Core conversion for OAI
+Another, more recent project was [Ulpia](https://github.com/TomDeneire/ulpia), an aggregator of rare book databases that uses SRU, OAI-PMH (see below) and other APIs. Ulpia is serverless, i.e. it does not give you the requested information by performing the queries on a server, but the queries are run in your client's browser. In this way, Ulpia is a discovery tool, meant to help identify or locate rare books, and start the bibliographic journey, rather than get detailed metadata (for which the individual databases are better suited).
+
+## Example: MARC21 to Dublin Core conversion for OAI-PMH
 
 [The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)](https://www.openarchives.org/pmh/) or OAI for short:
 
 > is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.
+
+The verbs are:
+
+1. Identify
+2. ListMetadataFormats
+3. ListIdentifiers
+4. ListRecords
+5. ListSets
+6. GetRecord
+
+Knowing SRU from the above, OAI-PMH is similar as an architecture, except the fact that it does not natively support a query language. (Although you can implement querying by defining "sets").
 
 At Anet, for instance, we provide full OAI access to our complete database of books. Like so:
 
@@ -199,9 +214,9 @@ https://anet.be/oai/catgeneric/server.phtml?verb=GetRecord&metadataPrefix=mods&i
 
 In these examples, the trailing `c:lvd:` number is a unique Library Object Identifier (LOI) used by our LMS [Brocade](https://en.wikipedia.org/wiki/Brocade_Library_Services). You can substitute it for any LOI you find in our [OPAC](https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E).
 
-Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when setting up an OAI server, one of the main tasks is coding software that converts data from one standard to another. Libraries management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.
+Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when they set up an OAI server, one of the main tasks is making software that converts data from one standard to another. Library management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.
 
-According to the standards specifications, all implementations of OAI-PMH must support representing metadata in Dublin Core, so your task will be to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python command line application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
+According to the standard's specification, all implementations of OAI-PMH *must* support representing metadata in Dublin Core, so the task here is to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
 
 ### Tips
 
