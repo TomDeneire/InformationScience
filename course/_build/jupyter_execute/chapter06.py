@@ -180,7 +180,7 @@ As an example of the kind of DH research you could do using library metadata, I 
 
 Another, more recent project was [Ulpia](https://github.com/TomDeneire/ulpia), an aggregator of rare book databases that uses SRU, OAI-PMH (see below) and other APIs. Ulpia is serverless, i.e. it does not give you the requested information by performing the queries on a server, but the queries are run in your client's browser. In this way, Ulpia is a discovery tool, meant to help identify or locate rare books, and start the bibliographic journey, rather than get detailed metadata (for which the individual databases are better suited).
 
-## Example: MARC21 to Dublin Core conversion for OAI-PMH
+## Exercise: MARC21 to Dublin Core conversion for OAI-PMH
 
 [The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)](https://www.openarchives.org/pmh/) or OAI for short:
 
@@ -218,8 +218,25 @@ Typically, libraries will use the OAI protocol to import/export metadata in diff
 
 According to the standard's specification, all implementations of OAI-PMH *must* support representing metadata in Dublin Core, so the task here is to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python application that asks for a LOI number (e.g. `c:lvd:123456`), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. `123456.xml`).
 
+### XML namespaces
+
+Upon closely inspecting the OAI-PMH XML response from the examples cited above, you will notice that the root element has a special structure:
+
+```xml
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+```
+
+The attribute `xmlns` declares an XML **namespace**, which is a way to avoid element name conflicts (for instance when combining XML) by using a **prefix**. This means that if we want to access this element or one of its sub-elements, we will always have to include the prefix. There are different ways of doing this. LXML uses curly braces for this:
+
+```python
+...
+# raw string is safer for XML namespaces
+for datafield in root.iter(r"{http://www.openarchives.org/OAI/2.0/}datafield"):
+    ...
+```
+
+For more information, you can look at this [tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp) and the info from the [lxml module](https://lxml.de/tutorial.html#namespaces).
+
 ### Tips
 
 - You can use the Library of Congress [MARC to Dublin Core Crosswalk](https://www.loc.gov/marc/marc2dc.html). You may limit yourself to the fields mentioned in the "unqualified" table and skip the "Leader" field. You will find the meaning of the various codes (`a`, `c`, etcetera) in the MARC specification, but you can limit yourself to code `a`, unless the crosswalk explicitly mentions other codes (e.g. `260` = `Publisher`).
-- The Python `lxml` library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.
-- If you don't already, you will need to know about XML namespaces. This [tutorial from w3schools](https://www.w3schools.com/xml/xml_namespaces.asp) and the info from the [lxml module](https://lxml.de/tutorial.html#namespaces) are good starting points.

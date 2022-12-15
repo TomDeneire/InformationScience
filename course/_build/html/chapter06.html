@@ -281,10 +281,15 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-marc21-to-dublin-core-conversion-for-oai-pmh">
-   Example: MARC21 to Dublin Core conversion for OAI-PMH
+  <a class="reference internal nav-link" href="#exercise-marc21-to-dublin-core-conversion-for-oai-pmh">
+   Exercise: MARC21 to Dublin Core conversion for OAI-PMH
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#xml-namespaces">
+     XML namespaces
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tips">
      Tips
@@ -508,8 +513,8 @@
 <p>As an example of the kind of DH research you could do using library metadata, I refer to a kind of proof-of-concept paper of mine: <a class="reference external" href="https://github.com/TomDeneire/quiring">A Datamining Approach to the Anet Database of Hand Printed Books. The Case of Early Modern Quiring Practices</a>, which specifically aims to analyse the Early Modern practice of ‘quiring’ gatherings in handpress book production.</p>
 <p>Another, more recent project was <a class="reference external" href="https://github.com/TomDeneire/ulpia">Ulpia</a>, an aggregator of rare book databases that uses SRU, OAI-PMH (see below) and other APIs. Ulpia is serverless, i.e. it does not give you the requested information by performing the queries on a server, but the queries are run in your client’s browser. In this way, Ulpia is a discovery tool, meant to help identify or locate rare books, and start the bibliographic journey, rather than get detailed metadata (for which the individual databases are better suited).</p>
 </div>
-<div class="section" id="example-marc21-to-dublin-core-conversion-for-oai-pmh">
-<h2>Example: MARC21 to Dublin Core conversion for OAI-PMH<a class="headerlink" href="#example-marc21-to-dublin-core-conversion-for-oai-pmh" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-marc21-to-dublin-core-conversion-for-oai-pmh">
+<h2>Exercise: MARC21 to Dublin Core conversion for OAI-PMH<a class="headerlink" href="#exercise-marc21-to-dublin-core-conversion-for-oai-pmh" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.openarchives.org/pmh/">The Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH)</a> or OAI for short:</p>
 <blockquote>
 <div><p>is a low-barrier mechanism for repository interoperability. Data Providers are repositories that expose structured metadata via OAI-PMH. Service Providers then make OAI-PMH service requests to harvest that metadata. OAI-PMH is a set of six verbs or services that are invoked within HTTP.</p>
@@ -536,12 +541,25 @@
 <p>In these examples, the trailing <code class="docutils literal notranslate"><span class="pre">c:lvd:</span></code> number is a unique Library Object Identifier (LOI) used by our LMS <a class="reference external" href="https://en.wikipedia.org/wiki/Brocade_Library_Services">Brocade</a>. You can substitute it for any LOI you find in our <a class="reference external" href="https://anet.uantwerpen.be/desktop/uantwerpen/opacuantwerpen/E">OPAC</a>.</p>
 <p>Typically, libraries will use the OAI protocol to import/export metadata in different formats. So when they set up an OAI server, one of the main tasks is making software that converts data from one standard to another. Library management systems, for instance, need such conversions both to be able to feed an OAI server from their own database respository, or, vice versa, to harvest data from external repositories and convert it to the standard(s) they use.</p>
 <p>According to the standard’s specification, all implementations of OAI-PMH <em>must</em> support representing metadata in Dublin Core, so the task here is to write a metadata converter that is able to harvest MARC21 metadata (XML) and convert that to Dublin Core (XML). It should be a Python application that asks for a LOI number (e.g. <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code>), uses OAI to harvest the MARC21 metadata and then writes the Dublin Core conversion to a file (e.g. <code class="docutils literal notranslate"><span class="pre">123456.xml</span></code>).</p>
+<div class="section" id="xml-namespaces">
+<h3>XML namespaces<a class="headerlink" href="#xml-namespaces" title="Permalink to this headline">¶</a></h3>
+<p>Upon closely inspecting the OAI-PMH XML response from the examples cited above, you will notice that the root element has a special structure:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;OAI-PMH</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.openarchives.org/OAI/2.0/&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>The attribute <code class="docutils literal notranslate"><span class="pre">xmlns</span></code> declares an XML <strong>namespace</strong>, which is a way to avoid element name conflicts (for instance when combining XML) by using a <strong>prefix</strong>. This means that if we want to access this element or one of its sub-elements, we will always have to include the prefix. There are different ways of doing this. LXML uses curly braces for this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="c1"># raw string is safer for XML namespaces</span>
+<span class="k">for</span> <span class="n">datafield</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;{http://www.openarchives.org/OAI/2.0/}datafield&quot;</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>For more information, you can look at this <a class="reference external" href="https://www.w3schools.com/xml/xml_namespaces.asp">tutorial from w3schools</a> and the info from the <a class="reference external" href="https://lxml.de/tutorial.html#namespaces">lxml module</a>.</p>
+</div>
 <div class="section" id="tips">
 <h3>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>You can use the Library of Congress <a class="reference external" href="https://www.loc.gov/marc/marc2dc.html">MARC to Dublin Core Crosswalk</a>. You may limit yourself to the fields mentioned in the “unqualified” table and skip the “Leader” field. You will find the meaning of the various codes (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, etcetera) in the MARC specification, but you can limit yourself to code <code class="docutils literal notranslate"><span class="pre">a</span></code>, unless the crosswalk explicitly mentions other codes (e.g. <code class="docutils literal notranslate"><span class="pre">260</span></code> = <code class="docutils literal notranslate"><span class="pre">Publisher</span></code>).</p></li>
-<li><p>The Python <code class="docutils literal notranslate"><span class="pre">lxml</span></code> library is well-suited to both parse (MARC21) and generate (Dublin Core) XML.</p></li>
-<li><p>If you don’t already, you will need to know about XML namespaces. This <a class="reference external" href="https://www.w3schools.com/xml/xml_namespaces.asp">tutorial from w3schools</a> and the info from the <a class="reference external" href="https://lxml.de/tutorial.html#namespaces">lxml module</a> are good starting points.</p></li>
 </ul>
 </div>
 </div>
