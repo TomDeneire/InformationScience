@@ -129,6 +129,8 @@ Other software installed on the server, includes Go (for systems programming, e.
 
 Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search and connection to authority record, getting records associated with authority record, getting basic catalographic information of results, putting results in html with templating, returning result etc.
 
+![](images/brocade_scheme.png)
+
 ## Production server
 
 So far we've been speaking about 'the' server, but there are in fact several.
