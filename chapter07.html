@@ -323,7 +323,7 @@ Found!
 </div>
 </div>
 </div>
-<p>However, search operations can soon become <strong>complicated and time-consuming</strong>. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a>) or huge metadata containers (e.g. <a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/">Spotify contains &gt;50.000.000 songs</a>).</p>
+<p>However, search operations can soon become <strong>complicated and time-consuming</strong>. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Google_Books">Google Books contains &gt;40.000.000 books</a>) or huge metadata containers (e.g. <a class="reference external" href="https://www.businessofapps.com/data/spotify-statistics/">Spotify contains &gt;70.000.000 songs</a>).</p>
 </div>
 <div class="section" id="indexing">
 <h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
@@ -401,11 +401,14 @@ Found!
     <span class="k">return</span> <span class="n">result</span>
 
 
-<span class="n">BOOK_TITLES_INDEX</span> <span class="o">=</span> <span class="n">make_word_index</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
 <span class="n">result_no_index</span> <span class="o">=</span> <span class="n">search_without_index</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES</span><span class="p">)</span>
+
+<span class="n">BOOK_TITLES_INDEX</span> <span class="o">=</span> <span class="n">make_word_index</span><span class="p">(</span><span class="n">BOOK_TITLES</span><span class="p">)</span>
 <span class="n">result_index</span> <span class="o">=</span> <span class="n">search_with_index</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="n">BOOK_TITLES_INDEX</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result_index</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">result_no_index</span> <span class="o">==</span> <span class="n">result_index</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -440,7 +443,7 @@ True
 </div>
 </div>
 </div>
-<p>The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items…</p>
+<p>The difference is as large as milliseconds versus nanoseconds (1 ms = 1.000.000 ns)! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items…</p>
 <div class="section" id="time-complexity">
 <h4>Time complexity<a class="headerlink" href="#time-complexity" title="Permalink to this headline">¶</a></h4>
 <p>In essence and, what we have just done boils down to changing the <a class="reference external" href="https://en.wikipedia.org/wiki/Time_complexity">time complexity</a> of our search algorithm, i.e. the amount of computer time it takes to run the algorithm.</p>
@@ -542,26 +545,23 @@ None
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">getsizeof</span>
-<span class="kn">import</span> <span class="nn">array</span>
 
-<span class="c1"># We use arrays as they are already more memory-efficient than lists</span>
-<span class="c1"># https://docs.python.org/3/library/array.html</span>
-<span class="n">pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>  <span class="c1"># &#39;B&#39; = unsigned char</span>
+<span class="n">pens_sold</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>67 bytes
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80 bytes
 </pre></div>
 </div>
 </div>
 </div>
-<p>So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:</p>
+<p>So you need 80 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>  <span class="c1"># &#39;I&#39; = unsigned int</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_pens_sold</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)]</span>
 <span class="c1"># 1 byte = 0.00000095367432 megabytes</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
@@ -569,7 +569,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.147030020459205 megabytes
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77.75120573732737 megabytes
 </pre></div>
 </div>
 </div>
@@ -587,7 +587,7 @@ None
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">pens_sold</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;bytes&#39;</span><span class="p">)</span>
 
-<span class="c1"># a bit array of one million sold pens</span>
+<span class="c1"># a bit array of ten million sold pens</span>
 <span class="n">bitmap_of_all_pens_sold</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mb">0b1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000000</span><span class="p">)])</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">getsizeof</span><span class="p">(</span><span class="n">bitmap_of_all_pens_sold</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.00000095367432</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;megabytes&#39;</span><span class="p">)</span>
@@ -653,12 +653,13 @@ None
 <span class="kn">from</span> <span class="nn">whoosh.index</span> <span class="kn">import</span> <span class="n">create_in</span>
 <span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">TEXT</span>
 <span class="kn">from</span> <span class="nn">whoosh.qparser</span> <span class="kn">import</span> <span class="n">QueryParser</span>
-<span class="kn">from</span> <span class="nn">whoosh.query</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">CORPUS</span> <span class="o">=</span> <span class="s2">&quot;corpus_of_british_fiction&quot;</span>
 
 <span class="c1"># Create schema</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">To begin using Whoosh, you need an index object. The first time you create</span>
-<span class="sd">an index, you must define the index’s schema. The schema lists the fields in</span>
+<span class="sd">an index, you must define the index&#39;s schema. The schema lists the fields in</span>
 <span class="sd">the index. A field is a piece of information for each document in the index,</span>
 <span class="sd">such as its title or text content. A field can be indexed (meaning it can be</span>
 <span class="sd">searched) and/or stored (meaning the value that gets indexed is returned with</span>
@@ -694,14 +695,13 @@ None
 <span class="sd">the course repo.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="n">OS_SEP</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>  <span class="c1"># take care, different OS use different filepath separators!</span>
-
 <span class="n">writer</span> <span class="o">=</span> <span class="n">my_index</span><span class="o">.</span><span class="n">writer</span><span class="p">()</span>
 
 <span class="c1"># Corpus courtesy of Maciej Eder (http://maciejeder.org/)</span>
-<span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">CORPUS</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">document</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus_of_british_fiction&quot;</span> <span class="o">+</span> <span class="n">OS_SEP</span> <span class="o">+</span> <span class="n">document</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CORPUS</span><span class="p">,</span> <span class="n">document</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text</span><span class="p">:</span>
             <span class="n">writer</span><span class="o">.</span><span class="n">add_document</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">document</span><span class="p">,</span> 
                                 <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span>
                                 <span class="n">path</span><span class="o">=</span><span class="n">document</span><span class="p">)</span>
@@ -747,7 +747,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0009757540001373854&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Top 2 Results for Term(&#39;content&#39;, &#39;smattering&#39;) runtime=0.0007309279990295181&gt;
 Thackeray_Barry.txt
 Fielding_Joseph.txt
 </pre></div>
@@ -768,16 +768,16 @@ Fielding_Joseph.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Thackeray_Barry.txt = and customs,
-
-	and a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of the language...that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Thackeray_Barry.txt = that he had no &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of
 
 	chemistry...of tune. She had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of half-
 
-	a-dozen
-2 Fielding_Joseph.txt = and politics, hath a
+	a-dozen...to me;
 
-	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in law and divinity...the gentleman.--&quot;A
+	for I had a &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; of French--and
+2 Fielding_Joseph.txt = I have
+
+	a small &lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt; in surgery,&quot; answered...the gentleman.--&quot;A
 
 	&lt;b class=&quot;match term0&quot;&gt;smattering&lt;/b&gt;--ho, ho, ho!&quot; said...I believe it is a
 
