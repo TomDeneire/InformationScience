@@ -35,7 +35,7 @@ else:
     print("Not found!")
 
 
-However, search operations can soon become **complicated and time-consuming**. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. [Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)) or huge metadata containers (e.g. [Spotify contains >50.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/)).
+However, search operations can soon become **complicated and time-consuming**. One crucial issue is the quantity of data we need to search. The above example could afford to use a string method to look for a literal string, but obviously this is not realistic when you are searching through millions of books (e.g. [Google Books contains >40.000.000 books](https://en.wikipedia.org/wiki/Google_Books)) or huge metadata containers (e.g. [Spotify contains >70.000.000 songs](https://www.businessofapps.com/data/spotify-statistics/)).
 
 ## Indexing
 
@@ -96,13 +96,15 @@ def search_without_index(search_string, list_to_search):
     return result
 
 
-BOOK_TITLES_INDEX = make_word_index(BOOK_TITLES)
 result_no_index = search_without_index("English", BOOK_TITLES)
+
+BOOK_TITLES_INDEX = make_word_index(BOOK_TITLES)
 result_index = search_with_index("English", BOOK_TITLES_INDEX)
+
 for item in result_index:
     print("-", item)
-print(result_no_index == result_index)
 
+print(result_no_index == result_index)
 
 Obviously, the results of searching with and without a word index are the same. But what about the efficiency of the search? For this we can use Jupyter's handy feature `%timeit`: 
 
@@ -110,7 +112,7 @@ Obviously, the results of searching with and without a word index are the same. 
 %timeit search_without_index("English", BOOK_TITLES)
 
 
-The difference is as large as milliseconds versus nanoseconds! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items... 
+The difference is as large as milliseconds versus nanoseconds (1 ms = 1.000.000 ns)! Remember, with STCV we are only searching about 26,000 titles, but imagine searching a collection like the Library of Congress, which holds over 170 million items... 
 
 #### Time complexity
 
@@ -168,18 +170,15 @@ One interesting technique to avoid such problems is bitmap indexing. [Wikipedia:
 Let's say you run a pen factory and have produced 10,000,000 pens of a certain type. Now you want to keep track of which pens have been sold by recording their serial numbers. For instance, serial numbers `1`, `5` and `10`.
 
 from sys import getsizeof
-import array
 
-# We use arrays as they are already more memory-efficient than lists
-# https://docs.python.org/3/library/array.html
-pens_sold = array.array('B', [1, 5, 10])  # 'B' = unsigned char
+pens_sold = [1, 5, 10]
 size = getsizeof(pens_sold)
 print(size, 'bytes')
 
 
-So you need 67 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
+So you need 80 bytes to store this information as a Python array. By the time all pens have been sold the list will be this large:
 
-all_pens_sold = array.array('I', [i for i in range(1,10000000)])  # 'I' = unsigned int
+all_pens_sold = [i for i in range(1,10000000)]
 # 1 byte = 0.00000095367432 megabytes
 size = getsizeof(all_pens_sold) * 0.00000095367432
 print(size, 'megabytes')
@@ -196,7 +195,7 @@ pens_sold = array.array('B', [0b1, 0b0, 0b0, 0b0, 0b1, 0b0, 0b0, 0b0, 0b0, 0b1])
 size = getsizeof(pens_sold)
 print(size, 'bytes')
 
-# a bit array of one million sold pens
+# a bit array of ten million sold pens
 bitmap_of_all_pens_sold = array.array('B', [0b1 for i in range(1,10000000)])
 size = getsizeof(bitmap_of_all_pens_sold) * 0.00000095367432
 print(size, 'megabytes')
@@ -251,12 +250,13 @@ from whoosh import highlight
 from whoosh.index import create_in
 from whoosh.fields import Schema, ID, TEXT
 from whoosh.qparser import QueryParser
-from whoosh.query import *
+
+CORPUS = "corpus_of_british_fiction"
 
 # Create schema
 """
 To begin using Whoosh, you need an index object. The first time you create
-an index, you must define the index’s schema. The schema lists the fields in
+an index, you must define the index's schema. The schema lists the fields in
 the index. A field is a piece of information for each document in the index,
 such as its title or text content. A field can be indexed (meaning it can be
 searched) and/or stored (meaning the value that gets indexed is returned with
@@ -292,14 +292,13 @@ The documents we add, a small corpus of British fiction, are part of
 the course repo.
 """
 
-OS_SEP = os.sep  # take care, different OS use different filepath separators!
-
 writer = my_index.writer()
 
 # Corpus courtesy of Maciej Eder (http://maciejeder.org/)
-for document in os.listdir("corpus_of_british_fiction"):
+for document in os.listdir(CORPUS):
     if document.endswith(".txt"):
-        with open("corpus_of_british_fiction" + OS_SEP + document, 'r') as text:
+        filepath = os.path.join(CORPUS, document)
+        with open(filepath, 'r') as text:
             writer.add_document(title=document, 
                                 content=str(text.read()),
                                 path=document)
