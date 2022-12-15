@@ -74,7 +74,7 @@ Note:
     Also requests.get(string) does not require you to first url encode `string`.
     The downside is that `requests` is not in the standard library.
 
-Some general points to take away from this assignment:
+Some general points to take away from this exercise:
 
     1. Write code that is fail safe: i.e. think about what happens in 'edge
     cases' when the API server cannot be reached, when no results are found,

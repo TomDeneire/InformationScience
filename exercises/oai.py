@@ -128,7 +128,7 @@ if __name__ == "__main__":
             write_file(dc_xml, loi)
 
 """
-Some points to take away from this assignment:
+Some points to take away from this exercise:
 
     1. Refactoring code is important to keep things manageable. In this example,
     we refactored the crosswalk to a different file and used it as a module.
