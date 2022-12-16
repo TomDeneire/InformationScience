@@ -4,6 +4,8 @@
 
 Credit: Charlie Brown by Charles M. Schulz
 
+> *TL;DR: Metadata is created data about other data. There can be no proper use of metadata without a good understanding of its structure and the way it was created.*
+
 ## Metadata
 
 Earlier on we saw how, from a practical point of view, it makes more sense to talk about *data* models instead of *information* models. In this chapter, we are going to do the same with information itself. Indeed, a lot of what happens in information science does not have to do with information *per se*, but with information *about* information, also known as **metadata**:

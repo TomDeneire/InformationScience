@@ -4,6 +4,8 @@
 
 Credit: [xkcd.com](https://xkcd.com/1171/)
 
+> *TL;DR: Searching information can happen in a variety of ways; either exact or fuzzy.*
+
 ## Introduction
 
 In the previous chapter we went from searching to indexing rather quickly. In fact, although we acknowledged that searching is a discrete field of computer science, we limited our practical discussion of it to an example of the .find() string method in Python! 

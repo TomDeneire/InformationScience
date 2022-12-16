@@ -4,6 +4,8 @@
 
 Credit: [xkcd](https://xkcd.com/1651/)
 
+> *TL;DR: There is too much data out there to search effeciently. We need indexing to speed things up.*
+
 ## Searching
 
 In all of our discussions about information we have so far neglected perhaps the most important aspect of it: **searching**. Indeed, you could say that the only difference between data and information, is that "information is data that we are looking for". Ergo, very simply said, working with information often boils down to "searching stuff". Whether it be metadata stored in databases (e.g. searching a library catalogue), text stored in documents (e.g. a full-text search-engine for a website) or even multimedia information retrieval.

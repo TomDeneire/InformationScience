@@ -127,7 +127,31 @@ Other software installed on the server, includes Go (for systems programming, e.
 
 ## Example
 
-Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search and connection to authority record, getting records associated with authority record, getting basic catalographic information of results, putting results in html with templating, returning result etc.
+Let's look at a concrete example to illustrate how the different components of this information architecture work together.
+
+### OPAC
+
+When a user enters a search term in the OPAC, this happens in a web browser that renders an HTML page, with layout defined in CSS and client-side functionality written in JavaScript. This page is being served by the Apache web server.
+
+### PHP
+
+This HTML includes a section of PHP (hence the file extension is `.pthml`), which allows the client to send a command to the backend (server) that includes some data from the web form as JSON, for instance the search string "The Hobbit".
+
+### MUMPS 1
+
+This command starts a MUMPS process, which is able to use the JSON web input to figure out what needs to happen. 
+
+### Python
+
+Like PHP, MUMPS can also start another process, for instance, a Python instruction. We use this to access the Lucene index. Via the `Pylucene` module, the Lucene index is queried for the term "Hobbit" (after tokenisation), which yields a result of a set of LOIs.
+
+#### MUMPS 2
+
+This search result is then passed back to MUMPS, again using JSON. With it, MUMPS is able to populate a new HTML page, which displays a list of found LOIs with some additional information (like author, full title, cover image), that is present in the MUMPS database.
+
+#### Apache
+
+This HTML string is then handed over to Apache, which serves it as a response to the original request (input of search string) performed by the client. 
 
 ![](images/brocade_scheme.png)
 

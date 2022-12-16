@@ -250,6 +250,40 @@
   <a class="reference internal nav-link" href="#example">
    Example
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opac">
+     OPAC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#php">
+     PHP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mumps-1">
+     MUMPS 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Python
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mumps-2">
+       MUMPS 2
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apache">
+       Apache
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#production-server">
@@ -379,8 +413,32 @@
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>Example of going to OPAC, entering search, going to server, accessing Pylucene daemon, looking up search and connection to authority record, getting records associated with authority record, getting basic catalographic information of results, putting results in html with templating, returning result etc.</p>
+<p>Let’s look at a concrete example to illustrate how the different components of this information architecture work together.</p>
+<div class="section" id="opac">
+<h3>OPAC<a class="headerlink" href="#opac" title="Permalink to this headline">¶</a></h3>
+<p>When a user enters a search term in the OPAC, this happens in a web browser that renders an HTML page, with layout defined in CSS and client-side functionality written in JavaScript. This page is being served by the Apache web server.</p>
+</div>
+<div class="section" id="php">
+<h3>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h3>
+<p>This HTML includes a section of PHP (hence the file extension is <code class="docutils literal notranslate"><span class="pre">.pthml</span></code>), which allows the client to send a command to the backend (server) that includes some data from the web form as JSON, for instance the search string “The Hobbit”.</p>
+</div>
+<div class="section" id="mumps-1">
+<h3>MUMPS 1<a class="headerlink" href="#mumps-1" title="Permalink to this headline">¶</a></h3>
+<p>This command starts a MUMPS process, which is able to use the JSON web input to figure out what needs to happen.</p>
+</div>
+<div class="section" id="id1">
+<h3>Python<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Like PHP, MUMPS can also start another process, for instance, a Python instruction. We use this to access the Lucene index. Via the <code class="docutils literal notranslate"><span class="pre">Pylucene</span></code> module, the Lucene index is queried for the term “Hobbit” (after tokenisation), which yields a result of a set of LOIs.</p>
+<div class="section" id="mumps-2">
+<h4>MUMPS 2<a class="headerlink" href="#mumps-2" title="Permalink to this headline">¶</a></h4>
+<p>This search result is then passed back to MUMPS, again using JSON. With it, MUMPS is able to populate a new HTML page, which displays a list of found LOIs with some additional information (like author, full title, cover image), that is present in the MUMPS database.</p>
+</div>
+<div class="section" id="apache">
+<h4>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h4>
+<p>This HTML string is then handed over to Apache, which serves it as a response to the original request (input of search string) performed by the client.</p>
 <p><img alt="" src="_images/brocade_scheme.png" /></p>
+</div>
+</div>
 </div>
 <div class="section" id="production-server">
 <h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>

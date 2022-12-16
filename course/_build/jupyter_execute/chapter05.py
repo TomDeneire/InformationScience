@@ -4,6 +4,8 @@
 
 Credit: [xkcd](https://xkcd.com/1831/)
 
+> *TL;DR: Querying data is at the heart of information retrieval, whether we query for data or for documents that contain data.*
+
 ## Query languages
 
 Database operations can be summarized with the acronym `CRUD`: create, read, update and delete. 
