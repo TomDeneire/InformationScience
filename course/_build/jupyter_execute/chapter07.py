@@ -4,7 +4,7 @@
 
 Credit: [xkcd](https://xkcd.com/1651/)
 
-> *TL;DR: There is too much data out there to search effeciently. We need indexing to speed things up.*
+> *TL;DR: There is too much data out there to search efficiently. We need indexing to speed things up.*
 
 ## Searching
 
