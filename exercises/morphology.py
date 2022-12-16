@@ -44,13 +44,14 @@ def query_index(query: str, index: Index) -> Iterator[tuple]:
     extract highlights from results
     """
     # Parse query string
-    parser = QueryParser("content", schema=index.schema)
+    parser = QueryParser("content", schema=index.schema)  # type: ignore
     myquery = parser.parse(query)
     # Search documents
     with index.searcher() as searcher:
         results = searcher.search(myquery, limit=None)
         # set sufficiently large maxchars to account for long sentences
-        results.fragmenter = highlight.SentenceFragmenter(charlimit=None, maxchars=2000)
+        results.fragmenter = highlight.SentenceFragmenter(
+            charlimit=None, maxchars=2000)  # type: ignore
         for hit in results:
             sentences = hit.highlights("content").split("...")
             # Using a generator instead of list, as large corpora
@@ -92,7 +93,8 @@ def clean_multiple_spaces(to_clean: str) -> str:
 
 
 if __name__ == "__main__":
-    INDEX = make_index("corpus_of_british_fiction")
+    INDEX = make_index(
+        "/home/tdeneire/projects/InformationScience/course/corpus_of_british_fiction")
     my_query = ""
     while not my_query == "q:":
         my_query = input("Type word (or q: to quit): ")

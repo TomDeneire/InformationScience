@@ -54,7 +54,7 @@ def check(user_text: str, dictionary: dict) -> None:
     os.remove("tempfile.txt")
     for word in user_words:
         if word not in dictionary:
-            suggestions = [s for s in dictionary if jaro_winkler(word, s) > 0.9]
+            suggestions = [s for s in dictionary if jaro_winkler(word, s) > 0.8]
             if len(suggestions) > 0:
                 print(word, "->", suggestions)
             else:
