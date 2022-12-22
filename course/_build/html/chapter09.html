@@ -220,57 +220,67 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#server">
-   Server
+  <a class="reference internal nav-link" href="#preliminary-understanding-standard-streams">
+   Preliminary: understanding standard streams
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mumps">
-     MUMPS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apache-and-php">
-     Apache and PHP
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-software">
-     Other software
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example">
-   Example
+  <a class="reference internal nav-link" href="#brocade-system-architecture">
+   Brocade system architecture
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#opac">
-     OPAC
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#php">
-     PHP
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mumps-1">
-     MUMPS 1
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Python
+    <a class="reference internal nav-link" href="#server">
+     Server
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mumps">
+       MUMPS
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#apache-javascript-and-php">
+       Apache, Javascript and PHP
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python">
+       Python
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#other-software">
+       Other software
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     Example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#opac">
+       OPAC
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#php">
+       PHP
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mumps-1">
+       MUMPS 1
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Python
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#mumps-2">
        MUMPS 2
@@ -283,12 +293,29 @@
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customization-through-metadata">
+     Customization through metadata
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#language-codes">
+       Language codes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#meta-information">
+       Meta-information
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#production-server">
+     Production server
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#production-server">
-   Production server
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#optional-exercise-ydb-acculturation-workshop">
@@ -324,12 +351,65 @@
 <p>Brocade is a completely <strong>web-based</strong> application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.</p>
 <p>Target <strong>customers</strong> for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.</p>
 </div>
+<div class="section" id="preliminary-understanding-standard-streams">
+<h2>Preliminary: understanding standard streams<a class="headerlink" href="#preliminary-understanding-standard-streams" title="Permalink to this headline">¶</a></h2>
+<p>Before we can have a look at the architecture of such a complex system, we need to say something about how different computer programs interact through so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_streams">standard streams</a>:</p>
+<blockquote>
+<div><p>In computer programming, standard streams are interconnected input and output communication channels[1] between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (<strong>stdin</strong>), standard output (<strong>stdout</strong>) and standard error (<strong>stderr</strong>). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.</p>
+</div></blockquote>
+<p>Communication through streams makes it possible for different programs, and therefore different technologies, to communicate.</p>
+<p>For example, consider the following Python program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Message? &quot;</span><span class="p">)</span>
+<span class="n">input_bytes</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/home/tdeneire/Dropbox/code/go/test/main&quot;</span><span class="p">,</span>
+                         <span class="nb">input</span><span class="o">=</span><span class="n">input_bytes</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">result_bytes</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span>
+<span class="n">result_string</span> <span class="o">=</span> <span class="n">result_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we execute this, the following happens:</p>
+<ul class="simple">
+<li><p>a Python process is launched that asks for user input</p>
+<ul>
+<li><p>a Go sub-process is launched</p></li>
+<li><p>this sub-process receives input from the parent and returns its output to the parent process</p></li>
+</ul>
+</li>
+<li><p>the parent process prints the result</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;io&quot;</span>
+	<span class="s">&quot;os&quot;</span>
+	<span class="s">&quot;strconv&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// compiled as /home/tdeneire/Dropbox/code/go/test/main</span>
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">length</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Itoa</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+	<span class="nx">io</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The notion of <strong>one process’ output being another process’ input</strong> is vital for building software systems.</p>
+</div>
+<div class="section" id="brocade-system-architecture">
+<h2>Brocade system architecture<a class="headerlink" href="#brocade-system-architecture" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="server">
-<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
-<p>It all starts with a server, a physical machine located in the University of Antwerp’s server farm. It currently runs Red Hat OS and uses <strong><a class="reference external" href="https://www.ansible.com/">Ansible</a></strong> for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, …)</p>
+<h3>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h3>
+<p>The story of Brocade starts with a server, a physical machine located in the University of Antwerp’s server farm. It currently runs Red Hat OS and uses <strong><a class="reference external" href="https://www.ansible.com/">Ansible</a></strong> for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, …)</p>
 <p>The following components are key parts of our server infrastructure:</p>
 <div class="section" id="mumps">
-<h3>MUMPS<a class="headerlink" href="#mumps" title="Permalink to this headline">¶</a></h3>
+<h4>MUMPS<a class="headerlink" href="#mumps" title="Permalink to this headline">¶</a></h4>
 <p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS">MUMPS</a></strong> (or “M”) is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">^</span><span class="n">USERS</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;first&quot;</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;Tom&quot;</span>
 <span class="n">s</span> <span class="o">^</span><span class="n">USERS</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;last&quot;</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;Deneire&quot;</span>
@@ -386,13 +466,13 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="apache-and-php">
-<h3>Apache and PHP<a class="headerlink" href="#apache-and-php" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="apache-javascript-and-php">
+<h4>Apache, Javascript and PHP<a class="headerlink" href="#apache-javascript-and-php" title="Permalink to this headline">¶</a></h4>
 <p>Our server uses Apache webserver to host a website with a URL that ends in <code class="docutils literal notranslate"><span class="pre">?brocade.phtml</span></code>. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS/Python/Go).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">p</span></code> in <code class="docutils literal notranslate"><span class="pre">brocade.phtml</span></code> stands for PHP, it is a HTML file which can also execute PHP code. PHP (unlike Javascript) runs <em>server side</em> which means it can access the server’s shell. The shell can then start a MUMPS that processes the input HTML (e.g. username and password), performs a database operation (e.g. lookup access rights in the database) and then produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.</p>
 </div>
 <div class="section" id="python">
-<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<h4>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
 <p>Our server also has a Python installation, including several (but well-chosen) third-party packages (such as <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
 <p>Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.</p>
 <p>Some examples include:</p>
@@ -407,28 +487,30 @@
 <p>Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.</p>
 </div>
 <div class="section" id="other-software">
-<h3>Other software<a class="headerlink" href="#other-software" title="Permalink to this headline">¶</a></h3>
-<p>Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning <code class="docutils literal notranslate"><span class="pre">/library/tmp</span></code>) and Lucene for indexing.</p>
+<h4>Other software<a class="headerlink" href="#other-software" title="Permalink to this headline">¶</a></h4>
+<p>Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning obsolete files) and Lucene (Java) for indexing.</p>
 </div>
 </div>
 <div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <p>Let’s look at a concrete example to illustrate how the different components of this information architecture work together.</p>
+<p><img alt="" src="_images/brocade_scheme.png" /></p>
 <div class="section" id="opac">
-<h3>OPAC<a class="headerlink" href="#opac" title="Permalink to this headline">¶</a></h3>
+<h4>OPAC<a class="headerlink" href="#opac" title="Permalink to this headline">¶</a></h4>
 <p>When a user enters a search term in the OPAC, this happens in a web browser that renders an HTML page, with layout defined in CSS and client-side functionality written in JavaScript. This page is being served by the Apache web server.</p>
 </div>
 <div class="section" id="php">
-<h3>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h3>
+<h4>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h4>
 <p>This HTML includes a section of PHP (hence the file extension is <code class="docutils literal notranslate"><span class="pre">.pthml</span></code>), which allows the client to send a command to the backend (server) that includes some data from the web form as JSON, for instance the search string “The Hobbit”.</p>
 </div>
 <div class="section" id="mumps-1">
-<h3>MUMPS 1<a class="headerlink" href="#mumps-1" title="Permalink to this headline">¶</a></h3>
+<h4>MUMPS 1<a class="headerlink" href="#mumps-1" title="Permalink to this headline">¶</a></h4>
 <p>This command starts a MUMPS process, which is able to use the JSON web input to figure out what needs to happen.</p>
 </div>
 <div class="section" id="id1">
-<h3>Python<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h4>Python<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>Like PHP, MUMPS can also start another process, for instance, a Python instruction. We use this to access the Lucene index. Via the <code class="docutils literal notranslate"><span class="pre">Pylucene</span></code> module, the Lucene index is queried for the term “Hobbit” (after tokenisation), which yields a result of a set of LOIs.</p>
+</div>
 <div class="section" id="mumps-2">
 <h4>MUMPS 2<a class="headerlink" href="#mumps-2" title="Permalink to this headline">¶</a></h4>
 <p>This search result is then passed back to MUMPS, again using JSON. With it, MUMPS is able to populate a new HTML page, which displays a list of found LOIs with some additional information (like author, full title, cover image), that is present in the MUMPS database.</p>
@@ -436,20 +518,37 @@
 <div class="section" id="apache">
 <h4>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h4>
 <p>This HTML string is then handed over to Apache, which serves it as a response to the original request (input of search string) performed by the client.</p>
-<p><img alt="" src="_images/brocade_scheme.png" /></p>
 </div>
+</div>
+<div class="section" id="customization-through-metadata">
+<h3>Customization through metadata<a class="headerlink" href="#customization-through-metadata" title="Permalink to this headline">¶</a></h3>
+<p>Since we construct the HTML that Brocade serves to the web client, it is possible to customize that HTML according to our clients’ needs.</p>
+<div class="section" id="language-codes">
+<h4>Language codes<a class="headerlink" href="#language-codes" title="Permalink to this headline">¶</a></h4>
+<p>One example of this that all of our software is <strong>language independent</strong>. Whenever the HTML needs to contain a word like “Title” or “Author”, the Brocade software actually contains a (language code). When the screen HTML is constructed, we translate that code using system settings (language) and a translation table of these language codes, like so:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">lgcode Titel</span><span class="p">:</span>
+    <span class="nt">N</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Titel</span>
+    <span class="nt">E</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Title</span>
+    <span class="nt">F</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Titre</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="meta-information">
+<h4>Meta-information<a class="headerlink" href="#meta-information" title="Permalink to this headline">¶</a></h4>
+<p>Similarly all kinds of other settings can be customized using <strong>meta-information</strong>. For instance, when registering a book’s title, Brocade libraries can choose to allow different sets of possible “title types” (like main title, subtitle, alternate title, …). Library A can use a different set of choices than library B. The system keeps track of such preferences and, again, when the screen HTML is rendered, only the necessary title types are displayed…</p>
 </div>
 </div>
 <div class="section" id="production-server">
-<h2>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h2>
+<h3>Production server<a class="headerlink" href="#production-server" title="Permalink to this headline">¶</a></h3>
 <p>So far we’ve been speaking about ‘the’ server, but there are in fact several.</p>
 <p>The one mentioned was actually the <em>development</em> server (we call it “presto”), as of course we don’t code on the <em>production</em> server (“moto”). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)</p>
-<p>This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath <code class="docutils literal notranslate"><span class="pre">library/software</span></code>) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath <code class="docutils literal notranslate"><span class="pre">library/database</span></code>). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.</p>
+<p>This works like this: we are currently developing Brocade version 5.90, whereas on the production server we have Brocade version 5.80 running, which we leave untouched (unless there are bugs).</p>
+<p>When we are finished with 5.90 and want to install the new release, we basically copy the new software from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact.</p>
+</div>
 </div>
 <div class="section" id="optional-exercise-ydb-acculturation-workshop">
 <h2>Optional exercise: YDB Acculturation Workshop<a class="headerlink" href="#optional-exercise-ydb-acculturation-workshop" title="Permalink to this headline">¶</a></h2>
-<p>If you want a taste of what it is like to set up your own information system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free.</p>
-<p>However, for a first acquaintance it’s probably better to take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
+<p>If you want a taste of what it is like to set up your own information system, you can take a look at the <strong><a class="reference external" href="https://docs.yottadb.com/AcculturationGuide/acculturation.html">YottaDB Acculturation Workshop</a></strong> which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).</p>
 </div>
 </div>
 

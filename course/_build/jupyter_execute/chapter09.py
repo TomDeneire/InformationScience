@@ -24,13 +24,70 @@ Brocade is a completely **web-based** application, available anywhere, anyplace 
 
 Target **customers** for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.
 
-## Server
+## Preliminary: understanding standard streams
 
-It all starts with a server, a physical machine located in the University of Antwerp's server farm. It currently runs Red Hat OS and uses __[Ansible](https://www.ansible.com/)__ for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (`.yaml`) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, ...)
+Before we can have a look at the architecture of such a complex system, we need to say something about how different computer programs interact through so-called [standard streams](https://en.wikipedia.org/wiki/Standard_streams):
+
+> In computer programming, standard streams are interconnected input and output communication channels[1] between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (**stdin**), standard output (**stdout**) and standard error (**stderr**). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.
+
+Communication through streams makes it possible for different programs, and therefore different technologies, to communicate.
+
+For example, consider the following Python program:
+
+```python
+import subprocess
+
+message = input("Message? ")
+input_bytes = message.encode()
+process = subprocess.run("/home/tdeneire/Dropbox/code/go/test/main",
+                         input=input_bytes, capture_output=True)
+result_bytes = process.stdout
+result_string = result_bytes.decode()
+print(result_string)
+```
+
+When we execute this, the following happens:
+
+- a Python process is launched that asks for user input
+
+	- a Go sub-process is launched 
+	- this sub-process receives input from the parent and returns its output to the parent process
+	
+- the parent process prints the result
+
+
+```go
+package main
+
+import (
+	"io"
+	"os"
+	"strconv"
+)
+
+// compiled as /home/tdeneire/Dropbox/code/go/test/main
+func main() {
+	data, err := io.ReadAll(os.Stdin)
+
+	if err != nil {
+		panic(err)
+	}
+	length := strconv.Itoa(len(data))
+	io.WriteString(os.Stdout, length)
+}
+```
+
+The notion of **one process' output being another process' input** is vital for building software systems.
+
+## Brocade system architecture
+
+### Server
+
+The story of Brocade starts with a server, a physical machine located in the University of Antwerp's server farm. It currently runs Red Hat OS and uses __[Ansible](https://www.ansible.com/)__ for application deployment and configuration management. This means we do not manually install applications, but automate the installation process and describe it in detail in (`.yaml`) configuration files. This not only saves our system engineer a lot of time, it also ensures the consistency of the installation process (correct versions of software, dependencies, installation order, ...)
 
 The following components are key parts of our server infrastructure:
 
-### MUMPS
+#### MUMPS
 
 __[MUMPS](https://en.wikipedia.org/wiki/MUMPS)__ (or "M") is both a key-value database and an integrated programming language (which used to be quite common). How does that work? Well, MUMPS is an interpreted language, so you have an interpreter (same as in Python) at your disposal where you can do things like this:
 
@@ -97,13 +154,13 @@ In any case, MUMPS is the heart of Brocade: the database that records all of our
 ^BCAT("lvd",123456,"ti",1)="h^dut^1^0^oip^Geschiedenis van de wijsbegeerte der Grieken en Romeinen^^fp"
 ```
 
-### Apache and PHP
+#### Apache, Javascript and PHP
 
 Our server uses Apache webserver to host a website with a URL that ends in `?brocade.phtml`. This file is where we link up our frontend (HTML/Javascript/CSS) and backend (MUMPS/Python/Go).
 
 The `p` in `brocade.phtml` stands for PHP, it is a HTML file which can also execute PHP code. PHP (unlike Javascript) runs *server side* which means it can access the server's shell. The shell can then start a MUMPS that processes the input HTML (e.g. username and password), performs a database operation (e.g. lookup access rights in the database) and then produces output HTML over stdout. This is then read by PHP again to enable the server to render it on screen again.
 
-### Python
+#### Python
 
 Our server also has a Python installation, including several (but well-chosen) third-party packages (such as `pylucene`). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call **toolcat applications**.
 
@@ -121,27 +178,29 @@ So if a user uses Brocade to export a dataset in .sqlite, what happens under the
 
 Over the years, Anet has also developed Python packages that are able to read data from the MUMPS database or send data to it.
 
-### Other software
+#### Other software
 
-Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning `/library/tmp`) and Lucene for indexing.
+Other software installed on the server, includes Go (for systems programming, e.g. scheduling tasks such as cleaning obsolete files) and Lucene (Java) for indexing.
 
-## Example
+### Example
 
 Let's look at a concrete example to illustrate how the different components of this information architecture work together.
 
-### OPAC
+![](images/brocade_scheme.png)
+
+#### OPAC
 
 When a user enters a search term in the OPAC, this happens in a web browser that renders an HTML page, with layout defined in CSS and client-side functionality written in JavaScript. This page is being served by the Apache web server.
 
-### PHP
+#### PHP
 
 This HTML includes a section of PHP (hence the file extension is `.pthml`), which allows the client to send a command to the backend (server) that includes some data from the web form as JSON, for instance the search string "The Hobbit".
 
-### MUMPS 1
+#### MUMPS 1
 
 This command starts a MUMPS process, which is able to use the JSON web input to figure out what needs to happen. 
 
-### Python
+#### Python
 
 Like PHP, MUMPS can also start another process, for instance, a Python instruction. We use this to access the Lucene index. Via the `Pylucene` module, the Lucene index is queried for the term "Hobbit" (after tokenisation), which yields a result of a set of LOIs.
 
@@ -153,22 +212,36 @@ This search result is then passed back to MUMPS, again using JSON. With it, MUMP
 
 This HTML string is then handed over to Apache, which serves it as a response to the original request (input of search string) performed by the client. 
 
-![](images/brocade_scheme.png)
+### Customization through metadata
 
-## Production server
+Since we construct the HTML that Brocade serves to the web client, it is possible to customize that HTML according to our clients' needs.
+
+#### Language codes
+
+One example of this that all of our software is **language independent**. Whenever the HTML needs to contain a word like "Title" or "Author", the Brocade software actually contains a (language code). When the screen HTML is constructed, we translate that code using system settings (language) and a translation table of these language codes, like so:
+
+```yaml
+lgcode Titel:
+    N: Titel
+    E: Title
+    F: Titre
+```
+
+#### Meta-information
+
+Similarly all kinds of other settings can be customized using **meta-information**. For instance, when registering a book's title, Brocade libraries can choose to allow different sets of possible "title types" (like main title, subtitle, alternate title, ...). Library A can use a different set of choices than library B. The system keeps track of such preferences and, again, when the screen HTML is rendered, only the necessary title types are displayed...
+
+
+### Production server
 
 So far we've been speaking about 'the' server, but there are in fact several.
 
 The one mentioned was actually the *development* server (we call it "presto"), as of course we don't code on the *production* server ("moto"). If you mess that software up, all users are affected. (There are even more servers, e.g. a demonstration server, a storage server and - importantly - a replication server)
 
-This works like this: we are currently developing Brocade version 5.20, whereas on the production server we have Brocade version 5.10 running, which we leave untouched. When we are finished with 5.20 and want to install the new release, we basically copy the new software (filepath `library/software`) from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact (filepath `library/database`). If any additional operations need to be performed to get everything running, we write release software in Python and/or MUMPS.
+This works like this: we are currently developing Brocade version 5.90, whereas on the production server we have Brocade version 5.80 running, which we leave untouched (unless there are bugs). 
 
-
-
-
+When we are finished with 5.90 and want to install the new release, we basically copy the new software from the development server to the production server, while leaving the data (e.g. the MUMPS database) intact.
 
 ## Optional exercise: YDB Acculturation Workshop
 
-If you want a taste of what it is like to set up your own information system, you can start by getting the YDB MUMPS engine running. After all, it is open source software, which you can download for free. 
-
-However, for a first acquaintance it's probably better to take a look at the __[YottaDB Acculturation Workshop](https://docs.yottadb.com/AcculturationGuide/acculturation.html)__ which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).
+If you want a taste of what it is like to set up your own information system, you can take a look at the __[YottaDB Acculturation Workshop](https://docs.yottadb.com/AcculturationGuide/acculturation.html)__ which the company has made available. This will guide you through setting up YDB in a virtual container and addressing the MUMPS database, either with MUMPS, C or Go (they are currently working on a Python wrapper).
