@@ -220,6 +220,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#library-workflow">
+   Library workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preliminary-understanding-standard-streams">
    Preliminary: understanding standard streams
   </a>
@@ -351,11 +356,30 @@
 <p>Brocade is a completely <strong>web-based</strong> application, available anywhere, anyplace and anytime (where an internet connection is available) using standard browsers such as Firefox, Internet Explorer, Safari, Opera and Chrome. Brocade does not require installation of specific clients on the user’s desktop. Installation of software on local PCs is kept to a strict minimum: a PDF reader and an application called Localweb which caters for ticket printing and provides basic circulation operations when the network fails. As the Brocade server is hosted and managed centrally, software updates and system upgrades do not require interaction from the local library staff. Brocade uses a central software repository from which bug fixes can easily be installed overnight to all Brocade systems. All new releases are also installed centrally from this repository.</p>
 <p>Target <strong>customers</strong> for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.</p>
 </div>
+<div class="section" id="library-workflow">
+<h2>Library workflow<a class="headerlink" href="#library-workflow" title="Permalink to this headline">¶</a></h2>
+<p>To make this concrete, let’s have a look at the typical library workflow and how Brocade automates that. Let’s take a single issue of a scholarly journal as an example:</p>
+<ol class="simple">
+<li><p>Brocade allows libraries to manage <strong>subscriptions</strong> to journals.</p></li>
+<li><p>These will periodically create an <strong>order</strong> to be sent out.</p></li>
+<li><p>When the copy/copies are delivered, they come with an <strong>invoice</strong> that is registered for follow-up.</p></li>
+<li><p>Certain publications cause automatic <strong>notifications</strong> for patrons.</p></li>
+<li><p>Before circulation, the <strong>catalography</strong> department registers bibliographic metadata for the publication, including a barcode and shelfmark.</p></li>
+<li><p>Part of catalography is the <strong>authorization</strong> of names, places, subjects; to make them more searchable.</p></li>
+<li><p>Patrons can then search for the publication in the <strong>OPAC</strong>.</p></li>
+<li><p>In the OPAC, there are also features to <strong>request or reserve</strong> a publication.</p></li>
+<li><p>After that, the publication can be <strong>loaned out</strong>.</p></li>
+<li><p>Patrons can check their loans and other <strong>personal information</strong>, such as fines.</p></li>
+<li><p>Another possibility is that the publication is requested from an outside library via <strong>Interlibrary Loan</strong>.</p></li>
+<li><p>Sometimes it is sent, or a physical copy of it. Other times a <strong>digitisation</strong> is made, which is uploaded into the system and provided in the OPAC.</p></li>
+</ol>
+<p>(And mind you, this is just library workflow. Brocade also automates archives, musea and documentation centers – all of which have different workflows.)</p>
+</div>
 <div class="section" id="preliminary-understanding-standard-streams">
 <h2>Preliminary: understanding standard streams<a class="headerlink" href="#preliminary-understanding-standard-streams" title="Permalink to this headline">¶</a></h2>
 <p>Before we can have a look at the architecture of such a complex system, we need to say something about how different computer programs interact through so-called <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_streams">standard streams</a>:</p>
 <blockquote>
-<div><p>In computer programming, standard streams are interconnected input and output communication channels[1] between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (<strong>stdin</strong>), standard output (<strong>stdout</strong>) and standard error (<strong>stderr</strong>). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.</p>
+<div><p>In computer programming, standard streams are interconnected input and output communication channels between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (<strong>stdin</strong>), standard output (<strong>stdout</strong>) and standard error (<strong>stderr</strong>). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.</p>
 </div></blockquote>
 <p>Communication through streams makes it possible for different programs, and therefore different technologies, to communicate.</p>
 <p>For example, consider the following Python program:</p>
@@ -391,7 +415,6 @@
 <span class="c1">// compiled as /home/tdeneire/Dropbox/code/go/test/main</span>
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
-
 	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 	<span class="p">}</span>
@@ -429,10 +452,10 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Of course, you can also run code from files in MUMPS. These have extension <code class="docutils literal notranslate"><span class="pre">.m</span></code> and need to be installed in a designated <code class="docutils literal notranslate"><span class="pre">r</span></code> folder (e.g. <code class="docutils literal notranslate"><span class="pre">library/mumps/brocade/r</span></code>).</p>
+<p>Of course, you can also run code from files in MUMPS.</p>
 <p>There are now, and have always been, several <strong><a class="reference external" href="https://en.wikipedia.org/wiki/MUMPS#History">MUMPS implementations</a></strong>, one of which is <strong><a class="reference external" href="https://en.wikipedia.org/wiki/GT.M">G.TM</a></strong>. G.TM is now open source, which allows a company called <strong><a class="reference external" href="https://yottadb.com/">YottaDB</a></strong> to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.</p>
 <p>YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is a language that, like all languages, has its <strong><a class="reference external" href="https://thedailywtf.com/articles/A_Case_of_the_MUMPS">flaws</a></strong>. On the other hand, MUMPS is simple, fast and powerful, and is codified in an <strong><a class="reference external" href="https://en.wikipedia.org/wiki/International_Organization_for_Standardization">ISO-standard</a></strong> which means that is allows for very stable code to build applications that can stand the test of time.</p>
-<p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter05 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
+<p>In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book <code class="docutils literal notranslate"><span class="pre">c:lvd:123456</span></code> which we used as an example in chapter 5 is stored in our database, in global <code class="docutils literal notranslate"><span class="pre">^BCAT</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">^</span><span class="n">BCAT</span><span class="p">(</span><span class="s2">&quot;lvd&quot;</span><span class="p">,</span><span class="mi">123456</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;^UA-CST^53320,52220^tdeneire^65512,39826^^^&quot;</span>
 <span class="o">^</span><span class="n">BCAT</span><span class="p">(</span><span class="s2">&quot;lvd&quot;</span><span class="p">,</span><span class="mi">123456</span><span class="p">,</span><span class="s2">&quot;au&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;aut^0^oip^Sassen^Ferdinand^^nd&quot;</span>
 <span class="o">^</span><span class="n">BCAT</span><span class="p">(</span><span class="s2">&quot;lvd&quot;</span><span class="p">,</span><span class="mi">123456</span><span class="p">,</span><span class="s2">&quot;co&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s2">&quot;190 p.^^^^^oip^nd^normal^^^^^^^&quot;</span>
@@ -473,7 +496,7 @@
 </div>
 <div class="section" id="python">
 <h4>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
-<p>Our server also has a Python installation, including several (but well-chosen) third-party packages (such as <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
+<p>Our server also has a Python installation, including several (but well-chosen) third-party packages (such as <code class="docutils literal notranslate"><span class="pre">pylucene</span></code>, <code class="docutils literal notranslate"><span class="pre">lxml</span></code> or <code class="docutils literal notranslate"><span class="pre">xlsxwriter</span></code>). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call <strong>toolcat applications</strong>.</p>
 <p>Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.</p>
 <p>Some examples include:</p>
 <ul class="simple">
@@ -590,7 +613,7 @@
         
           By Tom Deneire<br/>
         
-            &copy; Copyright 2022.<br/>
+            &copy; Copyright 2023.<br/>
       </p>
     </div>
   </footer>

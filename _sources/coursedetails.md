@@ -42,7 +42,7 @@ For a detailed description, see [Chapter 1: Welcome](https://tomdeneire.github.i
 
 ### 5. Teaching method and planned learning activities
 
-Each course will feature about 1,5 to 2 hours of theory and 1 hour of practice. Most courses will feature a **code exercises**, which will be introduced and discussed during the practical part of the course.
+Each course will feature both theory and code review. Most courses will feature a **code exercise**, which will be introduced and discussed during the practical part of the course.
 
 Model solutions will be made available in the repository with a few weeks delay.
 
@@ -52,7 +52,7 @@ The course assessment form is a so-called "open book" exam. This means that stud
 
 There will be two types of questions:
 
-1. Theoretical questions about key concepts in information science
+1. Theoretical questions about key concepts in information science and the required reading
 2. Code exercises about the technologies introduced in the course
 
 ### 7. Study material
