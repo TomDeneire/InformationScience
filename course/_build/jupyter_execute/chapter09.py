@@ -24,11 +24,30 @@ Brocade is a completely **web-based** application, available anywhere, anyplace 
 
 Target **customers** for Brocade are libraries (public libraries, academic and education libraries, special libraries), museums, documentation centres and archival organisations. The Brocade system has been implemented in various libraries in Belgium, The Netherlands and South Africa.
 
+## Library workflow
+
+To make this concrete, let's have a look at the typical library workflow and how Brocade automates that. Let's take a single issue of a scholarly journal as an example:
+
+1. Brocade allows libraries to manage **subscriptions** to journals.
+2. These will periodically create an **order** to be sent out.
+3. When the copy/copies are delivered, they come with an **invoice** that is registered for follow-up.
+4. Certain publications cause automatic **notifications** for patrons.
+5. Before circulation, the **catalography** department registers bibliographic metadata for the publication, including a barcode and shelfmark.
+6. Part of catalography is the **authorization** of names, places, subjects; to make them more searchable.
+7. Patrons can then search for the publication in the **OPAC**.
+8. In the OPAC, there are also features to **request or reserve** a publication.
+9. After that, the publication can be **loaned out**.
+10. Patrons can check their loans and other **personal information**, such as fines.
+11. Another possibility is that the publication is requested from an outside library via **Interlibrary Loan**.
+12. Sometimes it is sent, or a physical copy of it. Other times a **digitisation** is made, which is uploaded into the system and provided in the OPAC.
+
+(And mind you, this is just library workflow. Brocade also automates archives, musea and documentation centers -- all of which have different workflows.)
+
 ## Preliminary: understanding standard streams
 
 Before we can have a look at the architecture of such a complex system, we need to say something about how different computer programs interact through so-called [standard streams](https://en.wikipedia.org/wiki/Standard_streams):
 
-> In computer programming, standard streams are interconnected input and output communication channels[1] between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (**stdin**), standard output (**stdout**) and standard error (**stderr**). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.
+> In computer programming, standard streams are interconnected input and output communication channels between a computer program and its environment when it begins execution. The three input/output (I/O) connections are called standard input (**stdin**), standard output (**stdout**) and standard error (**stderr**). Originally I/O happened via a physically connected system console (input via keyboard, output via monitor), but standard streams abstract this. When a command is executed via an interactive shell, the streams are typically connected to the text terminal on which the shell is running, but can be changed with redirection or a pipeline. More generally, a child process inherits the standard streams of its parent process.
 
 Communication through streams makes it possible for different programs, and therefore different technologies, to communicate.
 
@@ -68,7 +87,6 @@ import (
 // compiled as /home/tdeneire/Dropbox/code/go/test/main
 func main() {
 	data, err := io.ReadAll(os.Stdin)
-
 	if err != nil {
 		panic(err)
 	}
@@ -113,13 +131,13 @@ The structure is that of a subscripted array, which is equivalent to this in JSO
 }
 ```
 
-Of course, you can also run code from files in MUMPS. These have extension `.m` and need to be installed in a designated `r` folder (e.g. `library/mumps/brocade/r`).
+Of course, you can also run code from files in MUMPS.
 
 There are now, and have always been, several __[MUMPS implementations](https://en.wikipedia.org/wiki/MUMPS#History)__, one of which is __[G.TM](https://en.wikipedia.org/wiki/GT.M)__. G.TM is now open source, which allows a company called __[YottaDB](https://yottadb.com/)__ to distribute it and offer database support. For Brocade, YottaDB is our database provider, but technically our MUMPS platform and compiler is G.TM.
 
 YottaDB also provide a C and Go wrapper, so you can access the MUMPS database without using MUMPS, if you want. You see, MUMPS is a language that, like all languages, has its __[flaws](https://thedailywtf.com/articles/A_Case_of_the_MUMPS)__. On the other hand, MUMPS is simple, fast and powerful, and is codified in an __[ISO-standard](https://en.wikipedia.org/wiki/International_Organization_for_Standardization)__ which means that is allows for very stable code to build applications that can stand the test of time.
 
-In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book `c:lvd:123456` which we used as an example in chapter05 is stored in our database, in global `^BCAT`:
+In any case, MUMPS is the heart of Brocade: the database that records all of our data and metadata. For instance, this is how book `c:lvd:123456` which we used as an example in chapter 5 is stored in our database, in global `^BCAT`:
 
 ```
 ^BCAT("lvd",123456)="^UA-CST^53320,52220^tdeneire^65512,39826^^^"
@@ -162,7 +180,7 @@ The `p` in `brocade.phtml` stands for PHP, it is a HTML file which can also exec
 
 #### Python
 
-Our server also has a Python installation, including several (but well-chosen) third-party packages (such as `pylucene`). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call **toolcat applications**.
+Our server also has a Python installation, including several (but well-chosen) third-party packages (such as `pylucene`, `lxml` or `xlsxwriter`). In Brocade, Python is used for many different things, but one of its main purposes is to run what we call **toolcat applications**.
 
 Toolcat applications are typically pieces of specific backend software that offer support or extensions for other applications.
 
