@@ -7,4 +7,4 @@ course/index
 course/.*
 course/data/authorities.sqlite
 __pycache__
-
+.ipynb_checkpoints
